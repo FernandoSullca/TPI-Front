@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  test-deploy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #image: angular-deploy
+    #volumes:
+    #  - ./:/app/
+    #run:
+    container_name: angular-v1
+    restart: always
+    networks:
+      - nginx_default
+
+networks:
+  nginx_default:
+    external: true
