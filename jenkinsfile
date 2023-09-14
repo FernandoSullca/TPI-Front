@@ -6,10 +6,10 @@ pipeline{
     }
 
     parameters{
-        string(name: 'container_name', defaultValue: 'angular_app', description: 'Nombre del contenedor de docker')
-        string(name: 'image_name', defaultValue: 'angular_img', description: 'Nombre de la imagen de docker')
+        string(name: 'container_name', defaultValue: 'angular_TPI_app', description: 'Nombre del contenedor de docker')
+        string(name: 'image_name', defaultValue: 'angular_TPI_img', description: 'Nombre de la imagen de docker')
         string(name: 'tag_image', defaultValue: 'lts', description: 'Tag de la imagen de angular')
-        string(name: 'container_port', defaultValue: '80', description: 'Puerto que usa el contenedor')
+        string(name: 'container_port', defaultValue: '85', description: 'Puerto que usa el contenedor')
     }
 
     stages{
@@ -38,7 +38,7 @@ pipeline{
 
         stage('deploy') {
             steps {
-                sh "docker run -d -p ${container_port}:80 --name ${container_name} ${image_name}:${tag_image}"
+                sh "docker run -d -p ${container_port}:85 --name ${container_name} ${image_name}:${tag_image}"
             }
         }
     }
