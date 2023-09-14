@@ -25,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## capz solo esto Docker
+`docker compose up -d --build`
+
+# NOTAS CI/CD
+`docker build -t angular-deploy .`
+`docker run -d -it -p 80:80 angular-deploy`
+## update
+`docker compose up -d --build`
+
