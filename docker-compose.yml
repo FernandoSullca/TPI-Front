@@ -9,7 +9,7 @@ services:
     #volumes:
     #  - ./:/app/
     #run:
-    container_name: angular-v1
+    container_name: angular-v2
     restart: always
     networks:
       - nginx_default
