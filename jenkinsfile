@@ -6,9 +6,9 @@ pipeline{
     }
 
     parameters{
-        string(name: 'container_name', defaultValue: 'angular_TPI_app', description: 'Nombre del contenedor de docker')
-        string(name: 'image_name', defaultValue: 'angular_TPI_img', description: 'Nombre de la imagen de docker')
-        string(name: 'tag_image', defaultValue: 'lts_TPI', description: 'Tag de la imagen de angular')
+        string(name: 'container_name', defaultValue: 'angular_tpi_app', description: 'Nombre del contenedor de docker')
+        string(name: 'image_name', defaultValue: 'angular_tpi_img', description: 'Nombre de la imagen de docker')
+        string(name: 'tag_image', defaultValue: 'lts_tpi', description: 'Tag de la imagen de angular')
         string(name: 'container_port', defaultValue: '85', description: 'Puerto que usa el contenedor')
     }
 
