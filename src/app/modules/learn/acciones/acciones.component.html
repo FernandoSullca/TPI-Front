@@ -1,0 +1,12 @@
+<p>acciones works!</p>
+<div class="question-container">
+    <h2>Pregunta</h2>
+    <p>{{ currentQuestion }}</p>
+    <button
+      *ngIf="!isLastQuestion"
+      (click)="onNextQuestionClick()"
+    >
+      Siguiente Pregunta
+    </button>
+    <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
+  </div>
