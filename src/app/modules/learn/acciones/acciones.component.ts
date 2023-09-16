@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from 'src\\app\\core\\services\\api\\questions\\question.service' // Reemplaza con la ubicación real de tu servicio
 import { Tematica, Opcion, Pregunta, Introduccion, Trivia, Questions } from 'src/app/core/models/questions/questions.models';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-acciones',
@@ -222,7 +222,8 @@ export class AccionesComponent implements OnInit {
       }
     ]
   }
-  
+  buttonText: string = 'Siguiente Pregunta'; // Texto del botón por defecto
+  isLastQuestion: boolean = false;
   respQuestions:  any;
   
   currentQuestion: string='';
@@ -233,10 +234,8 @@ export class AccionesComponent implements OnInit {
         opciones: []
    };
  
-
-  isLastQuestion: boolean = false;
   currentQuestionIndex: number=0;
-  constructor(private questionService: QuestionService) { }
+  constructor(private questionService: QuestionService,private router: Router) { }
 
   ngOnInit(): void {
     // Carga las preguntas desde el archivo JSON cuando se inicie el componente
@@ -276,12 +275,23 @@ export class AccionesComponent implements OnInit {
       } else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
         console.log('Has respondido todas las preguntas.');
+        this.isLastQuestion=true;
+        this.buttonText = 'Continuar'; 
       }
     } else {
       console.error('Error: HardcodePreguntas no contiene datos válidos.');
     }
   }
   
+  // if (this.isLastQuestion) {
+  //   // Si no hay más preguntas, redirige a la página deseada
+  //   console.log('Has respondido todas las preguntas.');
+  //   this.router.navigate(['/otra-pagina']); // Reemplaza '/otra-pagina' con la URL de la página a la que deseas redirigir.
+  // } else {
+  //   // Carga la siguiente pregunta o Debo verificar si existe otras mecanicas de preguntas
+  //   this.loadNextQuestion();
+  // }
+
   getTriviaQuestions(){
 
     console.log(this.respQuestions);
@@ -311,6 +321,15 @@ export class AccionesComponent implements OnInit {
   }
 
 
+  loadNextArea(option: string): void {
+ 
+  }
+
+  loadRoadMap(): void {
+    this.router.navigate(['/home']); 
+    this.buttonText = 'Continuar'; 
+    // this.loadRoadMap();
+  }
   onOptionSelected(option: string): void {
     // Lógica para manejar la selección de una opción (verificar si es correcta, etc.)
     // Puedes implementar esto según tus necesidades.

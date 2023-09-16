@@ -14,7 +14,7 @@
   
     <!-- Área Central para Preguntas y Opciones -->
     <div class="col-md-6 p-3">
-      <div class="question-container">
+      <div class="question-container" *ngIf="!isLastQuestion">
         <h3>Les presentamos "Las acciones"</h3>
         <h5>Elija el instrumento correcto</h5>
   
@@ -35,12 +35,17 @@
         <!-- Botón Siguiente Pregunta aquí -->
         <div class=" d-grid gap-2 d-md-flex justify-content-md-end">
           <button class="btn btn-primary btn btn-primary me-md-2" *ngIf="!isLastQuestion"
-            (click)="loadNextQuestion()">Siguiente Pregunta</button>
+            (click)="loadNextQuestion()">{{ buttonText }}</button>
           <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
         </div>
       </div>
-    </div>
-  
+      <div *ngIf="isLastQuestion">
+      <button class="btn btn-primary btn btn-primary me-md-2"
+      (click)="loadRoadMap()">{{ buttonText }}</button>
+      <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
+      </div>
+      </div>
+     
     <!-- Área Derecha para Etapas -->
     <div class="col-md-3 p-3">
       <div class="asside-etapas">
