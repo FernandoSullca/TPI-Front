@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { TimeLineComponent } from './shared/components';
+import { DefaultPathComponent } from './default-path/default-path.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { TimeLineComponent } from './shared/components';
     AppComponent,
     FooterComponent,
     NavbarComponent,
+    DefaultPathComponent,
    
   ],
   imports: [
