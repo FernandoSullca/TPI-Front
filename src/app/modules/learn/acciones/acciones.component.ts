@@ -42,6 +42,10 @@ export class AccionesComponent implements OnInit {
               {
                 "texto": "Una acción es un préstamo a corto plazo.",
                 "correcta": false
+              },
+              {
+                "texto": "Esta opcion no es",
+                "correcta": false
               }
             ]
           },
@@ -58,6 +62,10 @@ export class AccionesComponent implements OnInit {
               },
               {
                 "texto": "Inversionistas",
+                "correcta": false
+              },
+              {
+                "texto": "Esta opcion no es",
                 "correcta": false
               }
             ]
@@ -84,6 +92,10 @@ export class AccionesComponent implements OnInit {
               {
                 "texto": "Un bono es una inversión en bienes raíces.",
                 "correcta": false
+              },
+              {
+                "texto": "Esta opcion no es",
+                "correcta": false
               }
             ]
           },
@@ -100,6 +112,10 @@ export class AccionesComponent implements OnInit {
               },
               {
                 "texto": "Prima",
+                "correcta": false
+              },
+              {
+                "texto": "Esta opcion no es",
                 "correcta": false
               }
             ]
@@ -126,6 +142,10 @@ export class AccionesComponent implements OnInit {
               {
                 "texto": "Ausencia de riesgo.",
                 "correcta": false
+              },
+              {
+                "texto": "Esta opcion no es",
+                "correcta": false
               }
             ]
           },
@@ -142,6 +162,10 @@ export class AccionesComponent implements OnInit {
               },
               {
                 "texto": "Acciones emitidas por el gobierno.",
+                "correcta": false
+              },
+              {
+                "texto": "Esta opcion no es",
                 "correcta": false
               }
             ]
@@ -166,6 +190,10 @@ export class AccionesComponent implements OnInit {
               {
                 "texto": "El precio actual de un bono en el mercado.",
                 "correcta": false
+              },
+              {
+                "texto": "Esta opcion no es",
+                "correcta": false
               }
             ]
           },
@@ -182,6 +210,10 @@ export class AccionesComponent implements OnInit {
               },
               {
                 "texto": "Empresas de tecnología.",
+                "correcta": false
+              },
+              {
+                "texto": "Esta opcion no es",
                 "correcta": false
               }
             ]
