@@ -1,12 +1,17 @@
 <p>acciones works!</p>
 <div class="question-container">
-    <h2>Pregunta</h2>
-    <p>{{ currentQuestion }}</p>
-    <button
-      *ngIf="!isLastQuestion"
-      (click)="onNextQuestionClick()"
-    >
-      Siguiente Pregunta
-    </button>
-    <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
-  </div>
+  <h2>Pregunta</h2>
+  <p>{{ quest.pregunta }}</p>
+  <ul>
+    <li *ngFor="let opcion of quest.opciones">
+      <label>
+        <input type="radio" name="opcion" (click)="onOptionSelected(opcion.texto)" />
+        {{ opcion.texto }}
+      </label>
+    </li>
+  </ul>
+  <button *ngIf="!isLastQuestion" (click)="loadNextQuestion()">
+    Siguiente Pregunta
+  </button>
+  <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
+</div>

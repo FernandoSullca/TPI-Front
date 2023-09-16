@@ -8,6 +8,7 @@ const routes: Routes = [
   {path:"register",loadChildren:()=>import('./modules').then(m=>m.RegisterModule)},
   {path:"portfolio",loadChildren:()=>import('./modules').then(m=>m.PortfolioModule)},
   {path:"portfolio-details",loadChildren:()=>import('./modules').then(m=>m.PortfolioDetailsComponent)},
+  {path:"aprender-acciones",loadChildren:()=>import('./modules').then(m=>m.AccionesModule)},
 ];
 
 @NgModule({

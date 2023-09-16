@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { TimeLineComponent } from './shared/components';
+import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { TimeLineComponent } from './shared/components';
     BrowserModule,
     AppRoutingModule, 
     TimeLineComponent,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
