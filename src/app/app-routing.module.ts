@@ -9,6 +9,7 @@ const routes: Routes = [
   {path:"portfolio",loadChildren:()=>import('./modules').then(m=>m.PortfolioModule)},
   {path:"portfolio-details",loadChildren:()=>import('./modules').then(m=>m.PortfolioDetailsComponent)},
   {path:"aprender-acciones",loadChildren:()=>import('./modules').then(m=>m.AccionesModule)},
+  {path:"aprender-interes",loadChildren:()=>import('./modules').then(m=>m.InteresCompuestoModule)},
 ];
 
 @NgModule({

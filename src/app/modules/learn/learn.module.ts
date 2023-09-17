@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AccionesComponent } from './acciones/acciones.component';
 import { AccionesRoutingModule } from './acciones/acciones-routing.module';
-
+import { InteresCompuestoRoutingModule } from './interes-compuesto/interes-compuesto-routing.module';
 
 
 @NgModule({
   declarations: [
+  
+
   ],
   imports: [
-    CommonModule,AccionesRoutingModule
+    CommonModule,AccionesRoutingModule,InteresCompuestoRoutingModule
   ]
 })
 export class LearnModule { }

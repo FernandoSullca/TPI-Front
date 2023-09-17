@@ -1,0 +1,103 @@
+{
+    "tematicas": [
+      {
+        "nombre": "Acciones",
+        "descripcion": "Las acciones representan participaciones en la propiedad de una empresa."
+      },
+      {
+        "nombre": "Bonos",
+        "descripcion": "Los bonos son préstamos emitidos por una entidad que prometen pagar intereses y devolver el capital al vencimiento."
+      },
+      {
+        "nombre": "Interés Compuesto",
+        "descripcion": "El interés compuesto es una poderosa herramienta financiera que permite hacer crecer tu dinero con el tiempo."
+      }
+    ],
+    "introducciones": [
+      {
+        "tematica": "Interés Compuesto",
+        "titulo": "Introducción al Interés Compuesto",
+        "contenido": "El interés compuesto es una herramienta financiera que te permite multiplicar tu dinero a lo largo del tiempo.",
+        "nivel": 1,
+        "preguntas": [
+          {
+            "pregunta": "¿Qué es el interés compuesto?",
+            "opciones": [
+              {
+                "texto": "Un método para calcular impuestos.",
+                "correcta": false
+              },
+              {
+                "texto": "Una forma de hacer crecer tu dinero con el tiempo.",
+                "correcta": true
+              },
+              {
+                "texto": "Una técnica de marketing.",
+                "correcta": false
+              }
+            ]
+          },
+          {
+            "pregunta": "¿Cómo se calcula el interés compuesto?",
+            "opciones": [
+              {
+                "texto": "Se calcula solo sobre el capital original.",
+                "correcta": false
+              },
+              {
+                "texto": "Se calcula sobre el capital original y los intereses acumulados.",
+                "correcta": true
+              },
+              {
+                "texto": "Se calcula sobre la tasa de interés anual.",
+                "correcta": false
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "trivias": [
+      {
+        "tematica": "Interés Compuesto",
+        "nivel": 1,
+        "preguntas": [
+          {
+            "pregunta": "¿Cuál es la ventaja clave del interés compuesto?",
+            "opciones": [
+              {
+                "texto": "El crecimiento exponencial del dinero.",
+                "correcta": true
+              },
+              {
+                "texto": "La inversión en acciones.",
+                "correcta": false
+              },
+              {
+                "texto": "El ahorro a corto plazo.",
+                "correcta": false
+              }
+            ]
+          },
+          {
+            "pregunta": "¿Qué sucede con el interés en el interés compuesto?",
+            "opciones": [
+              {
+                "texto": "Permanece constante a lo largo del tiempo.",
+                "correcta": false
+              },
+              {
+                "texto": "Se acumula y se suma al capital original.",
+                "correcta": true
+              },
+              {
+                "texto": "Se reduce cada año.",
+                "correcta": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  
