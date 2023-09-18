@@ -12,4 +12,4 @@ import { PortfolioDetailsRoutingModule } from './portfolio-details-routing.modul
     CommonModule,PortfolioDetailsRoutingModule
   ]
 })
-export class DetailPortfolioModule { }
+export class PortfolioDetailsModule { }
