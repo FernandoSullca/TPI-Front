@@ -9,21 +9,24 @@
   .section3 {
     flex: 1;
     background-color: #f0f0f0;
-    padding: 20px;
+    padding: 0 1rem ;
     border: 1px solid #ccc; /* Agregamos un borde delgado a las secciones */
   }
   .logo-container{
     display: flex; /* Utilizar flexbox para centrar verticalmente */
+    flex-direction: column;
     justify-content: center; /* Centrar verticalmente los elementos hijos (el logo) */
     width: 100%;
-    height: 10%;
-
+    height: 15%; 
     #logo {
-      width: auto; /* El logo ocupará todo el ancho del contenedor */
-      height: auto; /* La altura se ajustará automáticamente para mantener la proporción */
+      width: auto;
+      height: auto; /* El logo ocupará todo el ancho del contenedor */ /* La altura se ajustará automáticamente para mantener la proporción */
+    }
+    .name{
+      margin-top: -5rem;
+      text-align: center;
     }
   }
-  
   .section2 {
     flex: 3; /* Esta sección ocupará el 60% del ancho total */
     background-color: #e0e0e0;
@@ -56,6 +59,26 @@
       width: 80%;
       height: auto;
       border: 1px solid #ccc;
+    }
+    .button-next{
+      width: 80%;
+      margin-top: auto;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10%;
+    }
+    .me-md-2{
+      margin-right: 0px !important;
+    }
+  }
+  .section3{
+    .button-container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 80%;
+      gap: 15%;
+      margin-top: auto;
     }
   }
 }
