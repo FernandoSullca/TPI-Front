@@ -17,14 +17,10 @@
     flex-direction: column;
     justify-content: center; /* Centrar verticalmente los elementos hijos (el logo) */
     width: 100%;
-    height: 15%; 
+    height: 25%; 
     #logo {
       width: auto;
       height: auto; /* El logo ocupará todo el ancho del contenedor */ /* La altura se ajustará automáticamente para mantener la proporción */
-    }
-    .name{
-      margin-top: -5rem;
-      text-align: center;
     }
   }
   .section2 {
@@ -35,7 +31,12 @@
     flex-direction: column;
     align-items: center;
     border: 1px solid #ccc; /* Agregamos un borde delgado a la sección 2 */
+    .education-logo{
+      width: 5%;
+      height: 5%;
+    }
     .title{
+      margin-top: 2rem;
       width: auto;
     }
     .progress-container {
