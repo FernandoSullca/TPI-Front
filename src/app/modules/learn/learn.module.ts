@@ -5,6 +5,7 @@ import { InteresCompuestoModule } from './components/interes-compuesto';
 import { AccionesModule } from './components/acciones';
 import { InstrumentosModule } from './components/instrumentos';
 import { OpcionesModule } from './components/opciones';
+import { TriviaComponent } from 'src/app/shared/components';
 
 
 @NgModule({

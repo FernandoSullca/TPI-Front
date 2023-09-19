@@ -68,15 +68,6 @@ export class InteresCompuestoComponent implements OnInit {
 }
   
 
-// if (this.isLastQuestion) {
-//   // Si no hay más preguntas, redirige a la página deseada
-//   console.log('Has respondido todas las preguntas.');
-//   this.router.navigate(['/otra-pagina']); // Reemplaza '/otra-pagina' con la URL de la página a la que deseas redirigir.
-// } else {
-//   // Carga la siguiente pregunta o Debo verificar si existe otras mecanicas de preguntas
-//   this.loadNextQuestion();
-// }
-
 getQuestion(tr: Trivia[]): Pregunta  {
 
   if (tr && tr.length > 0 && tr[0].preguntas && tr[0].preguntas.length > 0) {

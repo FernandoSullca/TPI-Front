@@ -22,6 +22,88 @@ export class DataServiceService {
     // ...
   ],
   trivias: [
+    ///Acciones
+    {
+      "tematica": "Acciones",
+      "nivel": 1,
+      "preguntas": [
+        {
+          "pregunta": "¿Cuál es una ventaja de invertir en acciones?",
+          "opciones": [
+            {
+              "texto": "Posibilidad de obtener dividendos.",
+              "correcta": true
+            },
+            {
+              "texto": "Rentabilidad fija garantizada.",
+              "correcta": false
+            },
+            {
+              "texto": "Ausencia de riesgo.",
+              "correcta": false
+            }
+          ]
+        },
+        {
+          "pregunta": "¿Qué se entiende por el término 'blue chip' en el contexto de las acciones?",
+          "opciones": [
+            {
+              "texto": "Acciones de empresas líderes y estables.",
+              "correcta": true
+            },
+            {
+              "texto": "Acciones con alto riesgo de volatilidad.",
+              "correcta": false
+            },
+            {
+              "texto": "Acciones emitidas por el gobierno.",
+              "correcta": false
+            }
+          ]
+        }
+      ]
+    },
+    ///BONOS
+    {
+      "tematica": "Bonos",
+      "nivel": 1,
+      "preguntas": [
+        {
+          "pregunta": "¿Qué se conoce como 'cupón' en los bonos?",
+          "opciones": [
+            {
+              "texto": "Los intereses periódicos que se pagan a los titulares de bonos.",
+              "correcta": true
+            },
+            {
+              "texto": "El valor nominal de un bono.",
+              "correcta": false
+            },
+            {
+              "texto": "El precio actual de un bono en el mercado.",
+              "correcta": false
+            }
+          ]
+        },
+        {
+          "pregunta": "¿Qué tipo de entidad emite bonos?",
+          "opciones": [
+            {
+              "texto": "Entidades financieras, corporaciones o gobiernos.",
+              "correcta": true
+            },
+            {
+              "texto": "Acciones de empresas líderes y estables.",
+              "correcta": false
+            },
+            {
+              "texto": "Empresas de tecnología.",
+              "correcta": false
+            }
+          ]
+        }
+      ]
+    },
     ///INTERESES COMPUESTOS
     {
       "tematica": "Interés Compuesto",

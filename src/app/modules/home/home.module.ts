@@ -7,9 +7,9 @@ import { TimeLineComponent } from 'src/app/shared/components/time-line';
 
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent,TimeLineComponent],
   imports: [
-    CommonModule,HomeRoutingModule,TimeLineComponent
+    CommonModule,HomeRoutingModule
   ]
 })
 export class HomeModule { }

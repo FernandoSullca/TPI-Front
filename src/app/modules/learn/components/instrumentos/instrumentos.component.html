@@ -14,36 +14,7 @@
     
       <!-- Área Central para Preguntas y Opciones -->
       <div class="col-md-6 p-3">
-        <div class="question-container" *ngIf="!isLastQuestion">
-          <h3>Les presentamos "Los instrumentos"</h3>
-          <h5>Elija el instrumento correcto</h5>
-    
-          <div class="card">
-            <p class="card-body">{{ quest.pregunta }}</p>
-          </div>
-    
-          <!-- Opciones de respuesta aquí -->
-          <div class="">
-            <div class="row gap-2">
-              <div *ngFor="let opcion of options" class="col-md-6">
-                <button type="button" class="btn btn-block p-2 bg-light border" (click)="onOptionSelected(opcion.texto)">{{
-                  opcion.texto }}</button>
-              </div>
-            </div>
-          </div>
-    
-          <!-- Botón Siguiente Pregunta aquí -->
-          <div class=" d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary btn btn-primary me-md-2" *ngIf="!isLastQuestion"
-              (click)="loadNextQuestion()">{{ buttonText }}</button>
-            <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
-          </div>
-        </div>
-        <div *ngIf="isLastQuestion">
-        <button class="btn btn-primary btn btn-primary me-md-2"
-        (click)="loadRoadMap()">{{ buttonText }}</button>
-        <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
-        </div>
+        <app-trivia  [tematica]="'Instrumentos'"></app-trivia>
         </div>
        
       <!-- Área Derecha para Etapas -->

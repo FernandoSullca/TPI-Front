@@ -26,7 +26,7 @@ export class InstrumentosComponent {
 
 ngOnInit(): void {
   // Llama al servicio para obtener trivias por la temática seleccionada
-  this.loadQuestion();
+  // this.loadQuestion();
 }
 
 
@@ -69,16 +69,6 @@ loadNextQuestion(): void {
 console.error('Error: HardcodePreguntas no contiene datos válidos.');
 }
 }
-
-
-// if (this.isLastQuestion) {
-//   // Si no hay más preguntas, redirige a la página deseada
-//   console.log('Has respondido todas las preguntas.');
-//   this.router.navigate(['/otra-pagina']); // Reemplaza '/otra-pagina' con la URL de la página a la que deseas redirigir.
-// } else {
-//   // Carga la siguiente pregunta o Debo verificar si existe otras mecanicas de preguntas
-//   this.loadNextQuestion();
-// }
 
 getQuestion(tr: Trivia[]): Pregunta  {
 
