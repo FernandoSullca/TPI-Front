@@ -1,0 +1,180 @@
+{
+  "tematicas": [
+    {
+      "nombre": "Acciones",
+      "descripcion": "Las acciones representan participaciones en la propiedad de una empresa."
+    },
+    {
+      "nombre": "Bonos",
+      "descripcion": "Los bonos son préstamos emitidos por una entidad que prometen pagar intereses y devolver el capital al vencimiento."
+    }
+  ],
+  "introducciones": [
+    {
+      "tematica": "Acciones",
+      "titulo": "Introducción a las Acciones",
+      "contenido": "En este tutorial, aprenderás sobre las acciones y su funcionamiento.",
+      "nivel": 1,
+      "preguntas": [
+        {
+          "pregunta": "¿Qué es una acción?",
+          "opciones": [
+            {
+              "texto": "Una acción representa una participación en la propiedad de una empresa.",
+              "correcta": true
+            },
+            {
+              "texto": "Una acción es un tipo de bono emitido por el gobierno.",
+              "correcta": false
+            },
+            {
+              "texto": "Una acción es un préstamo a corto plazo.",
+              "correcta": false
+            }
+          ]
+        },
+        {
+          "pregunta": "¿Cómo se llaman las personas que poseen acciones de una empresa?",
+          "opciones": [
+            {
+              "texto": "Accionistas",
+              "correcta": true
+            },
+            {
+              "texto": "Bonistas",
+              "correcta": false
+            },
+            {
+              "texto": "Inversionistas",
+              "correcta": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tematica": "Bonos",
+      "titulo": "Introducción a los Bonos",
+      "contenido": "En este tutorial, aprenderás sobre los bonos y su funcionamiento.",
+      "nivel": 1,
+      "preguntas": [
+        {
+          "pregunta": "¿Qué es un bono?",
+          "opciones": [
+            {
+              "texto": "Un bono es un préstamo que emite una entidad y que promete pagar intereses y devolver el capital al vencimiento.",
+              "correcta": true
+            },
+            {
+              "texto": "Un bono es una acción que representa la propiedad de una empresa.",
+              "correcta": false
+            },
+            {
+              "texto": "Un bono es una inversión en bienes raíces.",
+              "correcta": false
+            }
+          ]
+        },
+        {
+          "pregunta": "¿Cómo se llama el interés que se paga periódicamente a los titulares de bonos?",
+          "opciones": [
+            {
+              "texto": "Cupón",
+              "correcta": true
+            },
+            {
+              "texto": "Dividendo",
+              "correcta": false
+            },
+            {
+              "texto": "Prima",
+              "correcta": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "trivias": [
+    {
+      "tematica": "Acciones",
+      "nivel": 1,
+      "preguntas": [
+        {
+          "pregunta": "¿Cuál es una ventaja de invertir en acciones?",
+          "opciones": [
+            {
+              "texto": "Posibilidad de obtener dividendos.",
+              "correcta": true
+            },
+            {
+              "texto": "Rentabilidad fija garantizada.",
+              "correcta": false
+            },
+            {
+              "texto": "Ausencia de riesgo.",
+              "correcta": false
+            }
+          ]
+        },
+        {
+          "pregunta": "¿Qué se entiende por el término 'blue chip' en el contexto de las acciones?",
+          "opciones": [
+            {
+              "texto": "Acciones de empresas líderes y estables.",
+              "correcta": true
+            },
+            {
+              "texto": "Acciones con alto riesgo de volatilidad.",
+              "correcta": false
+            },
+            {
+              "texto": "Acciones emitidas por el gobierno.",
+              "correcta": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tematica": "Bonos",
+      "nivel": 1,
+      "preguntas": [
+        {
+          "pregunta": "¿Qué se conoce como 'cupón' en los bonos?",
+          "opciones": [
+            {
+              "texto": "Los intereses periódicos que se pagan a los titulares de bonos.",
+              "correcta": true
+            },
+            {
+              "texto": "El valor nominal de un bono.",
+              "correcta": false
+            },
+            {
+              "texto": "El precio actual de un bono en el mercado.",
+              "correcta": false
+            }
+          ]
+        },
+        {
+          "pregunta": "¿Qué tipo de entidad emite bonos?",
+          "opciones": [
+            {
+              "texto": "Entidades financieras, corporaciones o gobiernos.",
+              "correcta": true
+            },
+            {
+              "texto": "Acciones de empresas líderes y estables.",
+              "correcta": false
+            },
+            {
+              "texto": "Empresas de tecnología.",
+              "correcta": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
