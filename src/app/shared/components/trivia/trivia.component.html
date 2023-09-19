@@ -9,7 +9,7 @@
 
     <!-- Opciones de respuesta aquí -->
     <div class="">
-      <div class="row gap-2">
+      <div class="row gap-6">
         <div *ngFor="let opcion of options" class="col-md-6">
           <button type="button" class="btn btn-block p-2 bg-light border" (click)="onOptionSelected(opcion.texto)">{{
             opcion.texto }}</button>
