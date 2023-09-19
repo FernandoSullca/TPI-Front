@@ -42,6 +42,11 @@ export class DataServiceService {
               "texto": "Ausencia de riesgo.",
               "correcta": false
             }
+            ,
+            {
+              "texto": "Esta opcion no es.",
+              "correcta": false
+            }
           ]
         },
         {
@@ -57,6 +62,10 @@ export class DataServiceService {
             },
             {
               "texto": "Acciones emitidas por el gobierno.",
+              "correcta": false
+            },
+            {
+              "texto": "Esta opcion no es.",
               "correcta": false
             }
           ]
@@ -82,6 +91,10 @@ export class DataServiceService {
             {
               "texto": "El precio actual de un bono en el mercado.",
               "correcta": false
+            },
+            {
+              "texto": "Esta opcion no es.",
+              "correcta": false
             }
           ]
         },
@@ -98,6 +111,10 @@ export class DataServiceService {
             },
             {
               "texto": "Empresas de tecnología.",
+              "correcta": false
+            },
+            {
+              "texto": "Esta opcion no es.",
               "correcta": false
             }
           ]
@@ -123,6 +140,10 @@ export class DataServiceService {
             {
               "texto": "El ahorro a corto plazo.",
               "correcta": false
+            },
+            {
+              "texto": "Esta opcion no es.",
+              "correcta": false
             }
           ]
         },
@@ -139,6 +160,10 @@ export class DataServiceService {
             },
             {
               "texto": "Se reduce cada año.",
+              "correcta": false
+            },
+            {
+              "texto": "Esta opcion no es.",
               "correcta": false
             }
           ]
@@ -163,6 +188,10 @@ export class DataServiceService {
             {
               "texto": "Solo son útiles para las empresas.",
               "correcta": false
+            },
+            {
+              "texto": "Esta opcion no es.",
+              "correcta": false
             }
           ]
         },
@@ -179,6 +208,10 @@ export class DataServiceService {
             },
             {
               "texto": "Solo están disponibles para inversionistas profesionales.",
+              "correcta": false
+            },
+            {
+              "texto": "Esta opcion no es.",
               "correcta": false
             }
           ]
@@ -203,6 +236,10 @@ export class DataServiceService {
             {
               "texto": "Las opciones son más caras que las acciones.",
               "correcta": false
+            },
+            {
+              "texto": "Esta opcion no es.",
+              "correcta": false
             }
           ]
         },
@@ -219,6 +256,10 @@ export class DataServiceService {
             },
             {
               "texto": "Solo para invertir en acciones.",
+              "correcta": false
+            },
+            {
+              "texto": "Esta opcion no es.",
               "correcta": false
             }
           ]
