@@ -22,6 +22,7 @@ export class DataServiceService {
     // ...
   ],
   trivias: [
+    ///INTERESES COMPUESTOS
     {
       "tematica": "Interés Compuesto",
       "nivel": 1,
@@ -56,6 +57,86 @@ export class DataServiceService {
             },
             {
               "texto": "Se reduce cada año.",
+              "correcta": false
+            }
+          ]
+        }
+      ]
+    },///INSTRUMENTOS
+    {
+      "tematica": "Instrumentos",
+      "nivel": 1,
+      "preguntas": [
+        {
+          "pregunta": "¿Qué papel desempeñan los instrumentos financieros en las inversiones?",
+          "opciones": [
+            {
+              "texto": "No tienen ningún papel en las inversiones.",
+              "correcta": false
+            },
+            {
+              "texto": "Facilitan la diversificación y gestión de carteras de inversión.",
+              "correcta": true
+            },
+            {
+              "texto": "Solo son útiles para las empresas.",
+              "correcta": false
+            }
+          ]
+        },
+        {
+          "pregunta": "¿Cuál es una característica común de los instrumentos financieros?",
+          "opciones": [
+            {
+              "texto": "Son siempre iguales y no varían en valor.",
+              "correcta": false
+            },
+            {
+              "texto": "Pueden variar en valor y generar ganancias o pérdidas.",
+              "correcta": true
+            },
+            {
+              "texto": "Solo están disponibles para inversionistas profesionales.",
+              "correcta": false
+            }
+          ]
+        }
+      ]
+    },///OPCIONES
+    {
+      "tematica": "Opciones",
+      "nivel": 1,
+      "preguntas": [
+        {
+          "pregunta": "¿En qué se diferencian las opciones financieras de las acciones?",
+          "opciones": [
+            {
+              "texto": "Las opciones son contratos que otorgan derechos de compra o venta, mientras que las acciones representan propiedad en una empresa.",
+              "correcta": true
+            },
+            {
+              "texto": "No hay diferencias, son iguales.",
+              "correcta": false
+            },
+            {
+              "texto": "Las opciones son más caras que las acciones.",
+              "correcta": false
+            }
+          ]
+        },
+        {
+          "pregunta": "¿Para qué pueden utilizarse las opciones financieras?",
+          "opciones": [
+            {
+              "texto": "Solo para comprar bienes raíces.",
+              "correcta": false
+            },
+            {
+              "texto": "Para tomar decisiones estratégicas en inversiones y gestionar riesgos.",
+              "correcta": true
+            },
+            {
+              "texto": "Solo para invertir en acciones.",
               "correcta": false
             }
           ]
