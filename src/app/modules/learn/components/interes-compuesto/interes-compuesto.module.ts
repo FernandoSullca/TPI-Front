@@ -10,7 +10,7 @@ import { TriviaModule } from 'src/app/shared/components/trivia/trivia.module';
   declarations: [InteresCompuestoComponent],
   imports: [
     CommonModule,InteresCompuestoRoutingModule,
-    TriviaModule
+    TriviaModule//Importo el componente compartido
   ]
 })
 export class InteresCompuestoModule { }

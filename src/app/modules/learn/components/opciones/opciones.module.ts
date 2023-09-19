@@ -11,7 +11,7 @@ import { TriviaModule } from 'src/app/shared/components/trivia/trivia.module';
   declarations: [OpcionesComponent],
   imports: [
     CommonModule,
-    OpcionesRoutingModule, TriviaModule
+    OpcionesRoutingModule, TriviaModule //Importo el componente compartido
    
   ]
 })

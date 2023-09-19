@@ -12,7 +12,7 @@ import { DataServiceService } from 'src/app/core/services/api/DataLocalService/d
 }) 
 
 export class TriviaComponent {
- @Input() tematica: string | undefined;
+ @Input() tematica: string | undefined;// Texto entrada para filtrar las preguntas-respuestas por tematica
  tematicaSeleccionada: string | undefined;
   trivias: any[] = []; // Variable para almacenar trivias filtradas
   options: Opcion[] = [];
@@ -29,7 +29,6 @@ export class TriviaComponent {
 
   ngOnInit(): void {
     this.tematicaSeleccionada = this.tematica;
-    // Ahora puedes utilizar this.tematicaSeleccionada en otros lugares de tu componente.
     this.loadQuestion();
   }
 
@@ -67,23 +66,14 @@ export class TriviaComponent {
       } else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
         console.log('Has respondido todas las preguntas.');
-        this.isLastQuestion = true;
-        this.buttonText = 'Continuar';
+        this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
+        this.buttonText = 'Continuar';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
       }
     } else {
-      console.error('Error: HardcodePreguntas no contiene datos válidos.');
+      console.error('Error: Fin de preguntas válidos- Ultima Vista antes de Volver al home-RoadMap.');
     }
   }
 
-
-  // if (this.isLastQuestion) {
-  //   // Si no hay más preguntas, redirige a la página deseada
-  //   console.log('Has respondido todas las preguntas.');
-  //   this.router.navigate(['/otra-pagina']); // Reemplaza '/otra-pagina' con la URL de la página a la que deseas redirigir.
-  // } else {
-  //   // Carga la siguiente pregunta o Debo verificar si existe otras mecanicas de preguntas
-  //   this.loadNextQuestion();
-  // }
 
   getQuestion(tr: Trivia[]): Pregunta {
 
@@ -139,6 +129,7 @@ export class TriviaComponent {
     this.buttonText = 'Continuar';
     // this.loadRoadMap();
   }
+
   onOptionSelected(option: string): void {
     // Lógica para manejar la selección de una opción (verificar si es correcta, etc.)
     // Puedes implementar esto según tus necesidades.

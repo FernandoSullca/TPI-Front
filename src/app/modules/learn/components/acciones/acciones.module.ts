@@ -8,7 +8,7 @@ import { TriviaModule } from 'src/app/shared/components/trivia/trivia.module';
   declarations: [AccionesComponent],
   imports: [
     CommonModule,AccionesRoutingModule,
-    TriviaModule
+    TriviaModule//Importo el componente compartido
   ]
 })
 
