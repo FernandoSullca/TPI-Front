@@ -1,5 +1,5 @@
 <div class="container-page">
-    <section class="section1">
+    <section class="section1" >
         <div class="logo-container">
             <svg id="logo" viewBox="0 5 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -11,22 +11,21 @@
             </svg>
         </div>
         </section>
-    <section class="section2">
+    <section class="section2" *ngFor="let item of data">
         <div class="education-logo">
             <svg id="logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22 9L12 4L2 9L12 14L22 9ZM22 9V15M19 10.5V16.5L12 20L5 16.5V10.5" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
-        <ngb-alert type="custom" [dismissible]="false" class="title">TEMA PROPUESTO</ngb-alert>
-        <div class="progress-container">
+            <ngb-alert type="custom" [dismissible]="false" class="title">{{item.nombre}}</ngb-alert>
+            <div class="progress-container">
                 <ngb-progressbar [value]="25"></ngb-progressbar>
-        </div>
-        <ngb-alert type="custom" [dismissible]="false" class="subtitle">Primeras letras de la descrip</ngb-alert>
-        <ngb-alert type="custom" [dismissible]="false" class="info-container">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ex fugiat facilis 
-        nesciunt modi distinctio aperiam praesentium harum, natus aspernatur eligendi non assumenda voluptatum placeat deleniti iure quod. Veniam, alias!</ngb-alert>
-        <div class="button-next">
-            <button class="btn btn-success me-md-2" (click)="loadTrivia('acciones')">Ponerme a preba</button>
-        </div>  
+            </div>
+            <ngb-alert type="custom" [dismissible]="false" class="subtitle">Subtitulo | contenido que abarca</ngb-alert>
+            <ngb-alert type="custom" [dismissible]="false" class="info-container">{{item.descripcion}}</ngb-alert>
+            <div class="button-next">
+                <button class="btn btn-success me-md-2" (click)="loadTrivia()">Ponerme a preba</button>
+            </div>
     </section>
     <div class="section3">
         <div class="row justify-content-between">

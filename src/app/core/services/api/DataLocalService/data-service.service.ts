@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Tematica } from 'src/app/core/models/questions/questions.models';
 
 @Injectable({
   providedIn: 'root'
@@ -283,6 +284,10 @@ export class DataServiceService {
   getTriviasByTematica(tematica: string) {
       // Filtra las trivias por la temática proporcionada
       return this.data.trivias.filter(trivia => trivia.tematica === tematica);
+  }
+  getThemeByname(themeName: string) {
+    // Filtra las trivias por la temática proporcionada
+    return this.data.tematicas.filter(tutorial => tutorial.nombre === themeName);
   }
   
 }
