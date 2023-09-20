@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Tematica, Opcion, Pregunta, Introduccion, Trivia, Questions } from 'src/app/core/models/questions/questions.models';
 import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/core/services/api/DataLocalService/data-service.service';
+import { NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-acciones',
@@ -16,7 +17,12 @@ export class AccionesComponent implements OnInit {
   
   trivias: Trivia[]=[];
 
-  constructor(private DataService: DataServiceService,private router: Router) { }
+  constructor(private config: NgbProgressbarConfig,private DataService: DataServiceService,private router: Router) { 
+    config.striped = true;
+		config.animated = true;
+		config.type = 'success';
+		config.height = '20px';
+  }
 
   ngOnInit(): void {
     // loadQuestion();Carga las preguntas desde el archivo JSON cuando se inicie el componente
