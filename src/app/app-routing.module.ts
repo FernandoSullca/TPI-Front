@@ -13,6 +13,7 @@ const routes: Routes = [
   {path:"aprender-interes",loadChildren:()=>import('./modules').then(m=>m.InteresCompuestoModule)},
   {path:"aprender-instrumentos",loadChildren:()=>import('./modules').then(m=>m.InstrumentosModule)},
   {path:"aprender-opciones",loadChildren:()=>import('./modules').then(m=>m.OpcionesModule)},
+  {path: "precios", loadChildren: () => import('./modules').then(m => m.PricePanelModule) },
 ];
 
 @NgModule({

@@ -3,5 +3,5 @@ export *from './home';
 export *from './manage-portfolio';
 export *from './tutorial';
 export *from './learn';
-// export *from './price-panel';
- 
+export *from './price-panel';
+// export *from './tutorial';
