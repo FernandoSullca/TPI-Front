@@ -10,6 +10,7 @@ export class PricePanelComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
