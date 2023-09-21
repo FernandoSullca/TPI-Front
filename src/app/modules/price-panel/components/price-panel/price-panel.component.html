@@ -27,11 +27,23 @@
       <td>fila</td>
       <td>fila</td>
       <td>fila</td>
-      <td>fila</td>
-      <td>fila</td>
+      <td> <button
+        (click)="prueba()"
+        type="submit" class="btn btn-primary w-100 mt-2">
+          prueba
+        </button></td>
+      <td >{{algo}}</td>
     </tr>
-    <tr>
-      <td>fila</td>
+   
+<ul>
+  <!-- Iteramos sobre el array y mostramos cada objeto -->
+  <li *ngFor="let object of objects">
+    <p>Nombre: {{ object.name }}</p>
+    <p>Edad: {{ object.age }}</p>
+  </li>
+</ul>
+    <tr >
+      <td></td>
       <td>fila</td>
       <td>fila</td>
       <td>fila</td>
