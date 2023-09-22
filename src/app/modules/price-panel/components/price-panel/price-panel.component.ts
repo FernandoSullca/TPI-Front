@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './price-panel.component.html',
   styleUrls: ['./price-panel.component.scss']
 })
-export class PricePanelComponent {
+export class PricePanelComponent implements OnInit {
   // public titulos = [];
   titulos = signal([]);
   lista = [1, 2, 3, 4];
@@ -22,7 +22,7 @@ export class PricePanelComponent {
   ngOnInit(): void {
     // const response = this.pricePanelService.obtenerTitulos();
     // console.log("🚀 ~ file: price-panel.component.ts:16 ~ PricePanelComponent ~ ngOnInit ~ response:", response)
-    this.getTitulos();
+    // this.getTitulos();
   }
 
   public getTitulos() {
