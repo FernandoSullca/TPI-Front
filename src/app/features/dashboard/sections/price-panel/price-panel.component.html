@@ -1,0 +1,61 @@
+<table class="table table-striped text-center">
+  <tbody>
+    <tr>
+      <td>Simbolo</td>
+      <td>Último Operado</td>
+      <td>Variacion Diaria</td>
+      <td>Cantidad Compra</td>
+      <td>Precio Compra</td>
+      <td>Precio Venta</td>
+      <td>Cantidad Venta</td>
+      <td>Apertura</td>
+      <td>Minimo</td>
+      <td>Máximo</td>
+      <td>Último Cierre</td>
+      <td>Monto Operado</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          titulo.simbolo
+        </strong>
+        <br>
+        <span>titulo.descripcion</span>
+      </td>
+      <td>titulo.ultimoPrecio</td>
+      <td>titulo.variacionPorcentual</td>
+      <td>titulo.puntas?.cantidadCompra</td>
+      <td>titulo.puntas?.precioCompra</td>
+      <td>titulo.puntas?.precioVenta</td>
+      <td>titulo.puntas?.cantidadVenta</td>
+      <td>titulo.apertura</td>
+      <td>titulo.minimo</td>
+      <td>titulo.maximo</td>
+      <td>titulo.ultimoCierre</td>
+      <td>titulo.ultimoPrecio</td>
+      <td>&#9734;</td>
+    </tr>
+
+    <tr *ngFor="let titulo of titulos">
+      <td>
+        <strong>
+          {{titulo.simbolo}}
+        </strong>
+        <br>
+        <span>{{titulo.descripcion}}</span>
+      </td>
+      <td>{{titulo.ultimoPrecio}}</td>
+      <td>{{titulo.variacionPorcentual}}</td>
+      <td>{{titulo.puntas?.cantidadCompra}}</td>
+      <td>{{titulo.puntas?.precioCompra}}</td>
+      <td>{{titulo.puntas?.precioVenta}}</td>
+      <td>{{titulo.puntas?.cantidadVenta}}</td>
+      <td>{{titulo.apertura}}</td>
+      <td>{{titulo.minimo}}</td>
+      <td>{{titulo.maximo}}</td>
+      <td>{{titulo.ultimoCierre}}</td>
+      <td>{{titulo.ultimoPrecio}}</td>
+      <td>&#9734;</td>
+    </tr>
+</table>

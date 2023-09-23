@@ -1,1 +1,0 @@
-export * from './price-panel-manager.module'
