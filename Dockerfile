@@ -8,6 +8,9 @@ RUN npm run build
 # Fin build app
 # Inicio deploy nginx
 FROM nginx:1.25.1-alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN rm -rf /usr/share/nginx/html/*
+
 ## test-deploy nombre carpeta app (repo)
 COPY --from=build-step /app/dist/tpi-front /usr/share/nginx/html
 #RUN docker build -t angular-deploy .

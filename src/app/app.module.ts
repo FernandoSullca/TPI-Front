@@ -1,28 +1,43 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
-
+import { LoginComponent } from './features/login/login.component';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { LandingComponent } from './features/landing/landing.component';
+import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
-
-//import { TimeLineComponent,TriviaComponent  } from './shared/components';//tratar de evitar inclucuir en app-module componentes compartidos que recive (not singletons )o enviara informacion o compostamiento(posibles errore de recursividad en llamadas)
-
+import { ContentComponent } from './features/dashboard/sections/content/content.component';
+import { AccionesComponent } from './features/dashboard/sections/acciones/acciones.component';
+import { InteresCompuestoComponent } from './features/dashboard/sections/interes-compuesto/interes-compuesto.component';
+import { InstrumentosComponent } from './features/dashboard/sections/instrumentos/instrumentos.component';
+import { OpcionesComponent } from './features/dashboard/sections/opciones/opciones.component';
+import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
+import { TriviaComponent } from './features/dashboard/sections/trivia/trivia.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
-    NavbarComponent, 
+    LoginComponent,
+    DashboardComponent,
+    LandingComponent,
+    ContentComponent,
+    AccionesComponent,
+    InteresCompuestoComponent,
+    InstrumentosComponent,
+    OpcionesComponent,
+    PricePanelComponent,
+    TriviaComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
+    AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
