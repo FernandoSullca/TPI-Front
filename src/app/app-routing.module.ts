@@ -19,13 +19,13 @@ import { OpcionesComponent } from './features/dashboard/sections/opciones/opcion
 const routes: Routes = [
   // Rutas de las páginas
   { path: '', component: LandingComponent }, // Redirección por defecto
-  { path: 'dashboard', component: DashboardComponent },
+  // { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'precio', pathMatch: 'full' }, // Ruta por defecto del dashboard
+      { path: '', redirectTo: 'tutorial', pathMatch: 'full' }, // Ruta por defecto del dashboard
       { path: 'precio', component: PricePanelComponent },
       { path: 'otro', component: OtroComponent },
       { path: 'tutorial', component: ContentComponent },
