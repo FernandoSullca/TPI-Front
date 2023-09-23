@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 // import { PricePanelService } from 'src/app/core/services/api/price-panel/price-panel.service';
 import { CommonModule } from '@angular/common';
-// import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
+import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 
 @Component({
   selector: 'app-price-panel',
@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./price-panel.component.scss']
 })
 export class PricePanelComponent implements OnInit {
-  // public titulos: Titulo[] = [];
+  public titulos: Titulo[] = [];
 //   titulos = signal([]);
   /* lista = [1, 2, 3, 4];
   public algo = 'algo';
