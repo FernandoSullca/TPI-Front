@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
 
 //import { TimeLineComponent,TriviaComponent  } from './shared/components';//tratar de evitar inclucuir en app-module componentes compartidos que recive (not singletons )o enviara informacion o compostamiento(posibles errore de recursividad en llamadas)
+import { DefaultPathComponent } from './default-path/default-path.component';
 
 
 @NgModule({
@@ -17,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientMo
     AppComponent,
     FooterComponent,
     NavbarComponent, 
+    DefaultPathComponent,
+   
   ],
   imports: [
     BrowserModule,

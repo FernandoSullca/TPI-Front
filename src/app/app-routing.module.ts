@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DefaultPathComponent } from './default-path/default-path.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,6 +15,8 @@ const routes: Routes = [
   {path:"aprender-instrumentos",loadChildren:()=>import('./modules').then(m=>m.InstrumentosModule)},
   {path:"aprender-opciones",loadChildren:()=>import('./modules').then(m=>m.OpcionesModule)},
   {path: "precios", loadChildren: () => import('./modules').then(m => m.PricePanelModule) },
+  { path: '**', component: DefaultPathComponent },
+
 ];
 
 @NgModule({
