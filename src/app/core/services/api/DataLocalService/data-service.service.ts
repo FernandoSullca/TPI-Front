@@ -10,7 +10,7 @@ export class DataServiceService {
   tematicas: [
     {
       nombre: 'Acciones',
-      descripcion: 'Las acciones representan participaciones en la propiedad de una empresa.'
+      descripcion: 'Las acciones representan la propiedad fraccional de una empresa. Se emiten para recaudar capital y se negocian en mercados financieros. Los inversores compran acciones para obtener ganancias a través de la apreciación del precio y dividendos. Son un gran instrumento de inversión debido a su potencial de crecimiento y liquidez. Sin embargo, también conllevan riesgos, como la volatilidad del mercado y la posibilidad de pérdidas si el precio baja.\nImagina que estás interesado en invertir en una empresa tecnológica llamada "TechCorp". Decides comprar 100 acciones de TechCorp a $50 por acción, lo que te costaría $5,000 en total. A lo largo del tiempo, la empresa experimenta un crecimiento sólido y su precio de acción aumenta a $75 por acción.'
     },
     {
       nombre: 'Bonos',

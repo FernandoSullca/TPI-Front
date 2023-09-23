@@ -1,6 +1,5 @@
-<p>trivia works!</p>
 <div class="question-container" *ngIf="!isLastQuestion">
-    <h3>Les presentamos "{{ tematica}}"</h3>
+    <!--<h3>Les presentamos "{{ tematica}}"</h3>-->
     <h5>Elija el instrumento correcto</h5>
 
     <div class="card">
@@ -24,7 +23,7 @@
       <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
     </div>
   </div>
-  <div *ngIf="isLastQuestion">
+  <div *ngIf="isLastQuestion" style="text-align: center;">
   <button class="btn btn-primary btn btn-primary me-md-2"
   (click)="loadRoadMap()">{{ buttonText }}</button>
   <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>

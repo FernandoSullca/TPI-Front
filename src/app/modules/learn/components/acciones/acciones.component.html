@@ -1,53 +1,47 @@
 
-<!-- <div class="container mt-3 mb-4 p-2"></div> -->
-<div class="mt-3 mb-4 p-4">
-  <div class="row justify-content-center">
 
-    <!-- Área Izquierda para Multimedias -->
-    <div class="col-md-3 p-3">
-      <div class="asside-multimedias">
-        <!-- Contenido multimedia aquí -->
-        <img class="img-fluid" src="assets\\image\\FINANCE.png" alt="financeLogos">
-        <img class="img-fluid" src="assets\\image\\baner finance.png" alt="Multimedia-Acciones">
+<!-- <div class="container mt-3 mb-4 p-2"></div> -->
+<div class="container-page">
+  <section class="section1" >
+      <div class="logo-container">
+          <svg id="logo" viewBox="0 5 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                  <style>
+                      .cls-1{fill:#E0BC00;}
+                  </style>
+              </defs>
+              <path class="cls-1" d="M14.5 10.75C14.0858 10.75 13.75 10.4142 13.75 10C13.75 9.58579 14.0858 9.25 14.5 9.25H17C17.4142 9.25 17.75 9.58579 17.75 10V12.5C17.75 12.9142 17.4142 13.25 17 13.25C16.5858 13.25 16.25 12.9142 16.25 12.5V11.8107L14.2374 13.8232C13.554 14.5066 12.446 14.5066 11.7626 13.8232L10.1768 12.2374C10.0791 12.1398 9.92085 12.1398 9.82322 12.2374L7.53033 14.5303C7.23744 14.8232 6.76256 14.8232 6.46967 14.5303C6.17678 14.2374 6.17678 13.7626 6.46967 13.4697L8.76256 11.1768C9.44598 10.4934 10.554 10.4934 11.2374 11.1768L12.8232 12.7626C12.9209 12.8602 13.0791 12.8602 13.1768 12.7626L15.1893 10.75H14.5Z" fill="#1C274C"/>
+          </svg>
       </div>
-    </div>
-  
-    <!-- Área Central para Preguntas y Opciones -->
-    <div class="col-md-6 p-3">
-      <app-trivia  [tematica]="'Acciones'"></app-trivia>
-    </div>
-     
-    <!-- Área Derecha para Etapas -->
-    <div class="col-md-3 p-3">
-      <div class="asside-etapas">
-        <!-- Botones o cuadros de etapas aquí -->
-        <div class="asside-recompensabasicas  row justify-content-between">
+  </section>
+  <section class="section2">
+      <div class="education-logo">
+          <svg id="logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 9L12 4L2 9L12 14L22 9ZM22 9V15M19 10.5V16.5L12 20L5 16.5V10.5" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      </div>
+        <ngb-alert type="custom" [dismissible]="false" class="title">Acciones</ngb-alert>
+          <div class="progress-container">
+              <ngb-progressbar [value]="25"></ngb-progressbar>  
+          </div>
+          <app-trivia  [tematica]="'Acciones'"></app-trivia>
+  </section>
+  <div class="section3">
+      <div class="row justify-content-between">
+        <div class="col-md-auto">
           <h5>Vidas|</h5>
+        </div>
+        <div class="col-md-auto">
           <h5>dinero|</h5>
+        </div>
+        <div class="col-md-auto">
           <h5>Moneda personalizada</h5>
         </div>
-  
-        <button type="button" class="btn btn-block p-2 bg-light border disabled">Los instrumentos son....</button>
-        <button type="button" class="btn btn-block p-2 bg-light border">Encuentra al instrumento</button>
-        <button type="button" class="btn btn-block p-2 bg-light border disabled">
-          <!-- Otra etapa --></button>
       </div>
-    </div>
-  
+      <div class="button-container">
+        <button type="button" class="btn btn-block p-2 bg-light border disabled">Las acciones son...</button>
+        <button type="button" class="btn btn-block p-2 bg-light border">Encuentra al instrumento</button>
+        <button type="button" class="btn btn-block p-2 bg-light border disabled">Siguiente etapa</button>
+      </div>
   </div>
 </div>
-
-<!-- <div class="row justify-content-center">
-  <!-- Área Izquierda para Multimedias -->
-  <!-- <div class="col-md-3 col-12 p-2">
-      <!-- Contenido multimedia aquí -->
-  <!-- </div>
-  <!-- Área Central para Preguntas y Opciones -->
-  <!-- <div class="col-md-6 col-12 p-2">
-      <!-- Contenido central aquí -->
-  <!-- </div>
-  <!-- Área Derecha para Etapas -->
-  <!-- <div class="col-md-3 col-12 p-2">
-      <!-- Contenido de la derecha aquí -->
-  <!-- </div> --> --> --> --> --> -->
-<!-- </div> --> -->
