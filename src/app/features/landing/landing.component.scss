@@ -1,5 +1,92 @@
 @import "../../../../src/variables";
+//landig
+$color-grey: #2B2B2B;
+main{
+    background-color: $color-grey;
+}
 
+.page-primario{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    background-image: url(/assets\\image\\Image-landig-icono.png);
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+}
+.boton-start-page{
+    width: 249px;
+height: 50px;
+flex-shrink: 0;
+    border-radius: 15px;
+background: var(--Yellow, #F8D57E);
+/*****************/
+color: #333;
+text-align: center;
+font-family: Poppins;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 32px; /* 160% */
+}
+.btn-xl {
+    padding: 1.25rem 2.25rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 10rem;
+  }
+.Tilulo-page{
+    color: #FFF;
+    text-align: center;
+font-family: Poppins;
+font-size: 46px;
+font-style: normal;
+font-weight: 600;
+// line-height: 90px; /* 187.5% */
+}
+.Tilulo-Marca-page{
+    color: #FFF;
+    font-family: Poppins;
+font-size: 64px;
+font-style: normal;
+font-weight: 700;
+// line-height: 90px;
+}
+
+.Tilulo-Marca-Lema-page{
+    color: #FFF;
+text-align: center;
+font-family: Poppins;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 32px; /* 160% */
+opacity: 0.4;
+}
+.page-image{
+    display: inline-flex;
+    justify-content: center;
+    height: 15em;
+    background-image: url("/assets/image/Image-landig-icono.png");
+    background-repeat: no-repeat;
+    background-position: center -25em;
+    background-size: 50em 42em;
+   
+}
+
+.image-page-img{
+    width: 60em;
+    height: auto;
+    flex-shrink: 0;
+    }
+.page-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;}
 section.login{
     background-color: $primary-color;
     min-height: 100vh;
