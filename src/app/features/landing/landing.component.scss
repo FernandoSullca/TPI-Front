@@ -11,13 +11,9 @@ main{
     justify-content: center;
     align-items: center;
     gap: 0.5em;
-    background-image: url(/assets\\image\\Image-landig-icono.png);
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 16px 12px;
 }
 .boton-start-page{
-    width: 249px;
+    width: 12em;
 height: 50px;
 flex-shrink: 0;
     border-radius: 15px;
@@ -30,14 +26,17 @@ font-size: 20px;
 font-style: normal;
 font-weight: 400;
 line-height: 32px; /* 160% */
+
 }
 .btn-xl {
     padding: 1.25rem 2.25rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 10rem;
+    /* font-size: 0.85rem; */
+    // font-weight: 700;
+    // text-transform: uppercase;
+    /* border: none; */
+    /* border-radius: 10rem;*/
+
+    
   }
 .Tilulo-page{
     color: #FFF;
