@@ -15,12 +15,14 @@ import { AccionesComponent } from './features/dashboard/sections/acciones/accion
 import { ContentComponent } from './features/dashboard/sections/content/content.component';
 import { InteresCompuestoComponent } from './features/dashboard/sections/interes-compuesto/interes-compuesto.component';
 import { OpcionesComponent } from './features/dashboard/sections/opciones/opciones.component';
+import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 
 const routes: Routes = [
   // Rutas de las páginas
   { path: '', component: LandingComponent }, // Redirección por defecto
   // { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
+  { path: "perfil", component:  PerfilSubjetivoComponent},
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -33,6 +35,7 @@ const routes: Routes = [
       { path: "aprender-interes", component:  InteresCompuestoComponent},
       { path: "aprender-instrumentos", component:  InteresCompuestoComponent},
       { path: "aprender-opciones", component:  OpcionesComponent},
+  
     ],
   },
   // Otras rutas o manejo de errores

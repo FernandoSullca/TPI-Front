@@ -16,7 +16,7 @@ import { InstrumentosComponent } from './features/dashboard/sections/instrumento
 import { OpcionesComponent } from './features/dashboard/sections/opciones/opciones.component';
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
 import { TriviaComponent } from './features/dashboard/sections/trivia/trivia.component';
-import { PerfilSubjetivoComponent } from './features/dashboard/sections/perfil-subjetivo/perfil-subjetivo.component';
+import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 
 @NgModule({
   declarations: [
