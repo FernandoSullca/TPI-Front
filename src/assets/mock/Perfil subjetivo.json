@@ -1,0 +1,15 @@
+{
+    "etapa1": [
+      {
+        "tipo": "checkbox",
+        "pregunta": "¿Pregunta 1?",
+        "opciones": ["Opción 1", "Opción 2", "Opción 3"]
+      },
+      {
+        "tipo": "botones",
+        "pregunta": "¿Pregunta 2?",
+        "opciones": ["Opción A", "Opción B", "Opción C"]
+      }
+    ]
+  }
+  
