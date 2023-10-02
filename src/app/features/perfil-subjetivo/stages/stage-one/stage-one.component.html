@@ -1,0 +1,55 @@
+<p>stage-one works!</p>
+<div *ngFor="let pregunta of cuestionario.preguntas">
+    <!-- Verifica el tipo de pregunta -->
+  
+    <!-- Pregunta de tipo checkbox -->
+    <ng-container *ngIf="pregunta.tipo === 'checkbox'">
+        <p>{{ pregunta.descripcion }}</p>
+        <p>   Podés elegir más de una opción o ninguna</p>
+        <div *ngIf="isArray(pregunta.respuestas)">
+            <div *ngFor="let respuesta of pregunta.respuestas">
+                <input type="checkbox" id="{{ respuesta }}" name="{{ respuesta }}">
+                <label for="{{ respuesta }}">{{ respuesta }}</label>
+            </div>
+        </div>
+        <div *ngIf="!isArray(pregunta.respuestas)">
+            <div *ngFor="let respuesta of pregunta.respuestas as respuestas">
+                <input type="checkbox" id="{{ respuesta }}" name="{{ respuesta }}">
+                <label for="{{ respuesta }}">{{ respuesta }}</label>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- Pregunta de tipo radio -->
+
+
+    <ng-container *ngIf="pregunta.tipo === 'radio'">
+        <p>{{ pregunta.descripcion }}</p>
+        <p>   elegir Solo una opción"</p>
+        <div *ngIf="isArray(pregunta.respuestas)">
+            <div *ngFor="let respuesta of pregunta.respuestas ">
+                <input type="radio" id="{{ respuesta }}" name="respuestaRadio" value="{{ respuesta }}">
+                <label for="{{ respuesta }}">{{ respuesta }}</label>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- Pregunta de tipo botones-unica-opcion -->
+    <ng-container *ngIf="pregunta.tipo === 'botones-unica-opcion'">
+        <p>{{ pregunta.descripcion }}</p>
+        <p>  Elije el nivel de conocimiento por cada instrumento</p>
+        <div *ngIf="isArraybnt(pregunta.respuestas)">
+            <div *ngFor="let respuesta of pregunta.respuestas">
+                <div *ngIf="isArraybnt(respuesta.respuestas)"> 
+                       <p>{{respuesta.instrumento }}</p>
+                    <div *ngFor="let opcion of respuesta.respuestas">
+                    
+                        <input type="button" id="{{ opcion }}" name="{{ opcion.instrumento }}" value="{{ opcion }}">
+                        <!-- <label for="{{ opcion }}">{{ opcion }}</label> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+</div>

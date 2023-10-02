@@ -16,6 +16,7 @@ import { ContentComponent } from './features/dashboard/sections/content/content.
 import { InteresCompuestoComponent } from './features/dashboard/sections/interes-compuesto/interes-compuesto.component';
 import { OpcionesComponent } from './features/dashboard/sections/opciones/opciones.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
+import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
 
 const routes: Routes = [
   // Rutas de las páginas
@@ -23,6 +24,7 @@ const routes: Routes = [
   // { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: "perfil", component:  PerfilSubjetivoComponent},
+  { path: "perfil-inversor", component:  StageOneComponent},
   {
     path: 'dashboard',
     component: DashboardComponent,

@@ -11,7 +11,7 @@ import { NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class AccionesComponent implements OnInit {
-
+  tematica: string = '';
   buttonText: string = 'Siguiente Pregunta'; // Texto del botón por defecto
   tematicaSeleccionada: string = 'Acciones'; // Temática seleccionada
   
