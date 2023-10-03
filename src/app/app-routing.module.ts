@@ -30,8 +30,8 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: '', redirectTo: 'tutorial', pathMatch: 'full' }, // Ruta por defecto del dashboard
-      { path: 'precio', component: PricePanelComponent },
-      { path: 'otro', component: OtroComponent },
+      { path: 'precios', component: PricePanelComponent },
+      // { path: 'otro', component: OtroComponent },
       { path: 'tutorial', component: ContentComponent },
       { path: "aprender-acciones", component: AccionesComponent },
       { path: "aprender-interes", component:  InteresCompuestoComponent},

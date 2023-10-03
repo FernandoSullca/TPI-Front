@@ -18,6 +18,7 @@ import { PricePanelComponent } from './features/dashboard/sections/price-panel/p
 import { TriviaComponent } from './features/dashboard/sections/trivia/trivia.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
+import { OtroComponent } from './features/dashboard/sections/otro/otro.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/
     InstrumentosComponent,
     OpcionesComponent,
     PricePanelComponent,
+    TriviaComponent
     TriviaComponent,
     PerfilSubjetivoComponent,
     StageOneComponent,
