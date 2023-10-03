@@ -32,7 +32,6 @@ import { OtroComponent } from './features/dashboard/sections/otro/otro.component
     InstrumentosComponent,
     OpcionesComponent,
     PricePanelComponent,
-    TriviaComponent
     TriviaComponent,
     PerfilSubjetivoComponent,
     StageOneComponent,
