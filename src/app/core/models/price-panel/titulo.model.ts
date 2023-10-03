@@ -28,7 +28,7 @@ export class Titulo {
     ) {}
 
     // Método para serializar el objeto JSON recibido desde la API
-    public static serializarProducto(json: any): Titulo {
+    public static serializar(json: any): Titulo {
         return new this(
             json.simbolo,
             json.puntas,
