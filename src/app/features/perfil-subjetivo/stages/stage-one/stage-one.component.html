@@ -1,55 +1,90 @@
-<p>stage-one works!</p>
-<div *ngFor="let pregunta of cuestionario.preguntas">
-    <!-- Verifica el tipo de pregunta -->
-  
-    <!-- Pregunta de tipo checkbox -->
-    <ng-container *ngIf="pregunta.tipo === 'checkbox'">
-        <p>{{ pregunta.descripcion }}</p>
-        <p>   Podés elegir más de una opción o ninguna</p>
-        <div *ngIf="isArray(pregunta.respuestas)">
-            <div *ngFor="let respuesta of pregunta.respuestas">
-                <input type="checkbox" id="{{ respuesta }}" name="{{ respuesta }}">
-                <label for="{{ respuesta }}">{{ respuesta }}</label>
-            </div>
-        </div>
-        <div *ngIf="!isArray(pregunta.respuestas)">
-            <div *ngFor="let respuesta of pregunta.respuestas as respuestas">
-                <input type="checkbox" id="{{ respuesta }}" name="{{ respuesta }}">
-                <label for="{{ respuesta }}">{{ respuesta }}</label>
-            </div>
-        </div>
-    </ng-container>
+<div class="container main-container bg-white">
+    <div class="brand-box pt-2">
+        <h2>MercadoJr</h2>
+        <img src="/assets/image/logo.svg" alt="">
+    </div>
+    <div class="container-perfil p-4">
 
-    <!-- Pregunta de tipo radio -->
+        <div *ngFor="let pregunta of cuestionario.preguntas">
+            <!-- Verifica el tipo de pregunta -->
 
-
-    <ng-container *ngIf="pregunta.tipo === 'radio'">
-        <p>{{ pregunta.descripcion }}</p>
-        <p>   elegir Solo una opción"</p>
-        <div *ngIf="isArray(pregunta.respuestas)">
-            <div *ngFor="let respuesta of pregunta.respuestas ">
-                <input type="radio" id="{{ respuesta }}" name="respuestaRadio" value="{{ respuesta }}">
-                <label for="{{ respuesta }}">{{ respuesta }}</label>
-            </div>
-        </div>
-    </ng-container>
-
-    <!-- Pregunta de tipo botones-unica-opcion -->
-    <ng-container *ngIf="pregunta.tipo === 'botones-unica-opcion'">
-        <p>{{ pregunta.descripcion }}</p>
-        <p>  Elije el nivel de conocimiento por cada instrumento</p>
-        <div *ngIf="isArraybnt(pregunta.respuestas)">
-            <div *ngFor="let respuesta of pregunta.respuestas">
-                <div *ngIf="isArraybnt(respuesta.respuestas)"> 
-                       <p>{{respuesta.instrumento }}</p>
-                    <div *ngFor="let opcion of respuesta.respuestas">
-                    
-                        <input type="button" id="{{ opcion }}" name="{{ opcion.instrumento }}" value="{{ opcion }}">
-                        <!-- <label for="{{ opcion }}">{{ opcion }}</label> -->
+            <!-- Pregunta de tipo checkbox -->
+            <ng-container *ngIf="pregunta.tipo === 'checkbox'">
+                <div class="container-perfil-Questions p-2">
+                    <p>{{ pregunta.descripcion }}</p>
+                </div>
+                <p> Podés elegir más de una opción o ninguna</p>
+                <div *ngIf="isArray(pregunta.respuestas)">
+                    <div *ngFor="let respuesta of pregunta.respuestas">
+                        <input type="checkbox" id="{{ respuesta }}" name="{{ respuesta }}">
+                        <label for="{{ respuesta }}">{{ respuesta }}</label>
                     </div>
                 </div>
+                <div *ngIf="!isArray(pregunta.respuestas)">
+                    <div *ngFor="let respuesta of pregunta.respuestas as respuestas">
+                        <input type="checkbox" id="{{ respuesta }}" name="{{ respuesta }}">
+                        <label for="{{ respuesta }}">{{ respuesta }}</label>
+                    </div>
+                </div>
+ 
+            </ng-container>
+
+            <!-- Pregunta de tipo radio -->
+            <ng-container *ngIf="pregunta.tipo === 'radio'">
+                <div class="container-perfil-Questions p-2">
+                    <p>{{ pregunta.descripcion }}</p>
+                </div>
+                <p> elegir Solo una opción"</p>
+                <div *ngIf="isArray(pregunta.respuestas)">
+                    <div *ngFor="let respuesta of pregunta.respuestas ">
+                        <input type="radio" id="{{ respuesta }}" name="respuestaRadio" value="{{ respuesta }}">
+                        <label for="{{ respuesta }}">{{ respuesta }}</label>
+                    </div>
+                </div>
+            
+            </ng-container>
+
+            <!-- Pregunta de tipo botones-unica-opcion -->
+            <ng-container *ngIf="pregunta.tipo === 'botones-unica-opcion'" style="text-align: center;">
+                <div class="container-perfil-Questions p-2">
+                    <p>{{ pregunta.descripcion }}</p>
+                </div>
+                <p> Elije el nivel de conocimiento por cada instrumento</p>
+                <div *ngIf="isArraybnt(pregunta.respuestas)">
+                    <div *ngFor="let respuesta of pregunta.respuestas" >
+                        <div *ngIf="isArraybnt(respuesta.respuestas)">
+                            <p>{{respuesta.instrumento }}</p>
+                            <div class="row">
+                            <div *ngFor="let opcion of respuesta.respuestas" class="col-auto"  >
+
+                                <input type="button" id="{{ opcion }}" name="{{ opcion.instrumento }}"
+                                    value="{{ opcion }}" >
+                                <!-- <label for="{{ opcion }}">{{ opcion }}</label> -->
+                            </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+
+            </ng-container>
+
+            <!-- Botón Siguiente Pregunta aquí -->
+           
+            <div class="justify-content-md-end" style="text-align: center;">
+                <button class="btn btn-primary btn btn-primary me-md-2" *ngIf="!isLastQuestion"
+                    (click)="loadNextQuestion()">{{ buttonText }}</button>
+                <!-- <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p> -->
+            </div>
+
+            <div *ngIf="isLastQuestion" style="text-align: center;">
+                <button class="btn btn-primary btn btn-primary me-md-2"
+                (click)="loadHome()">{{ buttonText }}</button>
+                <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
             </div>
         </div>
-    </ng-container>
+
+    </div>
+
 
 </div>
