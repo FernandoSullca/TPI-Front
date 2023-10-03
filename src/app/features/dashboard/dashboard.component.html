@@ -12,16 +12,16 @@
       <!-- *ngIf="!enabledAdminMode" -->
       <div>
         <!-- *ngIf="enabledPerfil" -->
-        <li routerLink='/aprender' routerLinkActive="active" (click)="actionMenuMobile()">
+        <li routerLink='/dashboard/aprender' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/aprender.svg" alt="">
           <span>Aprender</span>
         </li>
-        <li routerLink='/perfil-inversor' routerLinkActive="active" (click)="actionMenuMobile()">
+        <li routerLink='/dashboard/perfil-inversor' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/campana.svg" alt="">
           <span>Perfil inversor</span>
           <p *ngIf="false" class="notif">1</p>
         </li>
-        <li routerLink='/foro' routerLinkActive="active" (click)="actionMenuMobile()">
+        <li routerLink='/dashboard/foro' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/foro.svg" alt=""><span>Foro</span>
           <!--           *ngIf="quantityNotifications > 0"
           {{quantityNotifications}}
@@ -30,10 +30,10 @@
             3
           </p>
         </li>
-        <li routerLink='/cartera' routerLinkActive="active" (click)="actionMenuMobile()">
+        <li routerLink='/dashboard/cartera' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/perfil.svg" alt=""><span>Cartera</span>
         </li>
-        <li routerLink='/panel-precios' routerLinkActive="active" (click)="actionMenuMobile()">
+        <li routerLink='/dashboard/precios' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/perfil.svg" alt=""><span>Panel Precios</span>
         </li>
       </div>
