@@ -19,6 +19,8 @@ import { TriviaComponent } from './features/dashboard/sections/trivia/trivia.com
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
 import { OtroComponent } from './features/dashboard/sections/otro/otro.component';
+import { PerfilInversorComponent } from './features/dashboard/sections/perfil-inversor/perfil-inversor.component';
+import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { OtroComponent } from './features/dashboard/sections/otro/otro.component
     TriviaComponent,
     PerfilSubjetivoComponent,
     StageOneComponent,
+    PerfilInversorComponent,
+    StageTwoComponent,
   ],
   imports: [
     BrowserModule,
