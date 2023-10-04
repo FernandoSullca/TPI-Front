@@ -11326,6 +11326,11 @@ line-height: 32px; /* 160% */
   }
 }
 
+
+
 @media (min-width: 1200px) {
- 
+  .masthead {
+    width: 55vw;
+    height: 100vh;
+  }
 }
