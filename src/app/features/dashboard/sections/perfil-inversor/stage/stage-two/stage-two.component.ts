@@ -19,7 +19,7 @@ export class StageTwoComponent {
 
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;
-
+  issugerencia:boolean=false;
   preguntas: Pregunta[] = [];
   resPreguntas: Pregunta[] = [];
   data: any;
@@ -68,11 +68,19 @@ export class StageTwoComponent {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
         console.log('Has respondido todas las preguntas.');
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
-        this.buttonText = 'Continuar';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
+        this.buttonText = 'Obtener portfolio sugerido';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
+   
       }
     } else {
       console.error('Error: Fin de preguntas válidos- Ultima Vista antes de Volver al home-RoadMap.');
     }
+  }
+
+  loadSugerencias(): void {
+    // this.router.navigate(['/dashboard']);
+    this.buttonText = 'Continuar';
+    // this.loadRoadMap();
+    this.issugerencia = true;
   }
 
   loadHome(): void {

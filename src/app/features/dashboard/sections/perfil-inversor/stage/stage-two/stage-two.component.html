@@ -7,7 +7,8 @@
     <div class="container-perfil p-4">
 
         <!-- Botón Siguiente Pregunta aquí -->
-        <div *ngFor="let pregunta of preguntas">
+        <div *ngIf="!isLastQuestion"> 
+            <div *ngFor="let pregunta of preguntas" >
             <h3>{{ pregunta.pregunta }}</h3>
             <ng-container *ngIf="pregunta.tipoContenido === 'imagen'; else textoContenido">
                 <img [src]="pregunta.descripcion" alt="Imagen">
@@ -23,14 +24,27 @@
                 </div>
             </div>
 
-        </div>
+        </div></div>
+       
         <div class="justify-content-md-end" style="text-align: center;">
             <button class="btn btn-primary btn btn-primary me-md-2" *ngIf="!isLastQuestion"
                 (click)="loadNextQuestion()">{{ buttonText }}</button>
             <!-- <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p> -->
         </div>
 
-        <div *ngIf="isLastQuestion" style="text-align: center;">
+    <div *ngIf="isLastQuestion " style="text-align: center;">
+
+            <h3> Perfil final asociado: Moderado Jr</h3>
+            <h3>El inversor moderado no busca con su cartera de inversión conseguir ingresos corrientes pero si requiere un modesto(Potencial) aumento en el valor de sus inversiones. 
+            El inversor tolera algunas volatilidad pero busca afrontar un menor riesgo que el inversos agresivo.</h3>
+                        <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadSugerencias()" *ngIf="!issugerencia ">{{ buttonText }}</button>
+            <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
+        </div>
+
+        <div *ngIf="isLastQuestion && issugerencia" style="text-align: center;">
+
+            <h3> Portfolio suferido acorde a tu perfil</h3>
+            <img src="\assets\image\Group inversiones recomendadas.png" alt="">
             <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadHome()">{{ buttonText }}</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
         </div>
