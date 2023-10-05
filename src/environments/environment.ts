@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API:'https://api.mercadojunior.com.ar'
+  API:'http://localhost:8080'
 };
 
 /*

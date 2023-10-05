@@ -20,8 +20,7 @@
       </div>
       <!-- [ngClass]="{'text-primary': i % 2 }"      -->
       <div *ngFor="let titulo of titulos; index as i;">
-        <div class="row" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'"
-        >
+        <div class="row" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
           <div class="col overflow-hidden text-start">
             <strong>
               {{titulo.simbolo}}
@@ -54,7 +53,8 @@
           <label for="simbolos" class="form-label">
             Especie
           </label>
-          <select class="form-control" id="simbolos">
+          <select class="form-control" id="simbolos" name='simbolo' [(ngModel)]="simbolo" placeholder="hola">
+            <option value="" disabled selected>Seleccione un instrumento aca</option>
             <option *ngFor="let simbolo of titulosSimbolo" value="{{simbolo}}">{{simbolo}}</option>
           </select>
         </div>
@@ -63,7 +63,8 @@
           <label for="simbolos" class="form-label">
             Cantidad
           </label>
-          <input type="number" class="form-control" id="cantidad">
+          <input placeholder="Ingrese cantidad aca" name='cantidad' [(ngModel)]="cantidad" type="number"
+            class="form-control" id="cantidad">
         </div>
       </div>
 
@@ -73,6 +74,11 @@
           <button type="button" class="boton btn btn-lg" (click)="comprar()">COMPRAR</button>
         </div>
       </div>
+
+      <div class="col d-flex justify-content-around">
+        <message [textMessage]="textMessage" [typeMessage]="typeMessage"></message>
+      </div>
+
     </div>
 
 

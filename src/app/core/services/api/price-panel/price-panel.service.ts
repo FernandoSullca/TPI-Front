@@ -22,23 +22,22 @@ export class PricePanelService {
 
   }
 
-  public async capturarOrden(sentido: string) {
-    const body = {
-      "simboloInstrumento": "AGRO",
-      "esEfectivo": true,
-      "monedaOid": 1,
-      "fecha_orden": "2023-10-02",
-      "cantidad": 100,
-      "precio": 200,
-      "sentido": sentido
-    }
-    const resp = await axios.post(`${environment.API}/panel/acciones`, body);
-    const { data } = resp;
-    console.log("🚀 ~ file: price-panel.service.ts:31 ~ PricePanelService ~ capturarOrden ~ data:", data)
-    /*  const datos = Array.from(data);
-     return datos.map((titulo) => {
-       return Titulo.serializar(titulo);
-     }); */
+  public async capturarOrden(sentido: string, intrumento: string, cantidad: number) {
+    let date = new Date()
+    let day = `${(date.getDate())}`.padStart(2, '0');
+    let month = `${(date.getMonth() + 1)}`.padStart(2, '0');
+    let year = date.getFullYear();
+    const fecha = `${year}-${month}-${day}`;
 
+    const body = {
+      "simboloInstrumento": intrumento,
+      "monedaOid": 1, // siempre 1 moneda peso
+      "fecha_orden": fecha, // fecha actual
+      "cantidad": cantidad, // cantidad de "acciones" del instrumento
+      "sentido": sentido // venta
+    }
+    const resp = await axios.post(`${environment.API}/orden/capturar`, body);
+    const { data } = resp;
+    return data;
   }
 }

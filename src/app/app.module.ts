@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './features/login/login.component';
@@ -21,6 +23,7 @@ import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/
 import { OtroComponent } from './features/dashboard/sections/otro/otro.component';
 import { PerfilInversorComponent } from './features/dashboard/sections/perfil-inversor/perfil-inversor.component';
 import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
+import { MessageComponent } from './common/message/message.component';
 
 @NgModule({
   declarations: [
@@ -39,13 +42,15 @@ import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor
     StageOneComponent,
     PerfilInversorComponent,
     StageTwoComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
