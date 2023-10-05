@@ -11149,30 +11149,7 @@ video.bg-video {
     /* padding: calc(1rem + 2px);*/
 }
 
-@media (min-width: 992px) {
-  .masthead {
-    height: 100%;
-    width: 65vw;
-    min-height: 0;
-    padding-bottom: 0;
-  }
-  .masthead:before {
-    transform: skewX(-9deg);
-    transform-origin: top right;
-  }
-  .masthead .masthead-content {
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 2rem;
-    padding-right: 9rem;
-  }
-  .masthead .masthead-content h1, .masthead .masthead-content .h1 {
-    font-size: 3.5rem;
-  }
-  .masthead .masthead-content p {
-    font-size: 1.3rem;
-  }
-}
+
 @media (min-width: 1200px) {
   .masthead {
     width: 55vw;
@@ -11239,20 +11216,22 @@ text-align: center;
   color: #FFF;
 text-align: center;
 font-family: Poppins;
-font-size: 20px;
+font-size: 1.8rem;
 font-style: normal;
 font-weight: 400;
 line-height: 32px; /* 160% */
 opacity: 0.4;
 }
+
 .boton-start-page{
   width: 12em;
 /* height: 50px; */
 flex-shrink: 0;
   border-radius: 15px;
-background: var(--Yellow, #F8D57E);
+background:  #12A5E5;
+// background: var(--Yellow, #F8D57E);
 /*****************/
-color: #333;
+color: white;
 text-align: center;
 font-family: Poppins;
 font-size: 20px;
@@ -11269,7 +11248,11 @@ line-height: 32px; /* 160% */
 
 .btn-primary {
 
-  --bs-btn-hover-bg: #12A5E5;
+  // --bs-btn-hover-bg: #12A5E5;
+  --bs-btn-hover-bg: var(--Yellow,#F8D57E);
+  --bs-btn-hover-color:  #333;
+  // color: #333;
+  // background: var(--Yellow, #F8D57E);
 
 }
 .logotipo-container{
@@ -11316,21 +11299,54 @@ line-height: 32px; /* 160% */
 
 
 @media (min-width: 992px) {
+  .masthead {
+    height: 100%;
+    width: 65vw;
+    min-height: 0;
+    padding-bottom: 0;
+  }
+  .masthead:before {
+    transform: skewX(-9deg);
+    transform-origin: top right;
+  }
+  .masthead .masthead-content {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 2rem;
+    padding-right: 9rem;
+  }
+  .masthead .masthead-content h1, .masthead .masthead-content .h1 {
+    font-size: 3.5rem;
+  }
+  .masthead .masthead-content p {
+    font-size: 1.3rem;
+  }
+}
 
+@media (min-width: 992px) {
+
+  .masthead .masthead-content .Tilulo-Marca-Lema-page {
+      font-size: 1.5rem;
+  
+  }
+  
+}
+
+@media (min-width: 1200px) {
+  .masthead {
+    width: 55vw;
+    height: 100vh;
+  }
+  .masthead .masthead-content .Tilulo-Marca-Lema-page {
+    
+      font-size: 1.8rem;
+  
+  }
 }
 
 /***Mobil*/
 @media (max-width: 991px) {
   .logotipo-container img{
     width: 10%;
-  }
-}
-
-
-
-@media (min-width: 1200px) {
-  .masthead {
-    width: 55vw;
-    height: 100vh;
   }
 }
