@@ -101,7 +101,7 @@ export class StageOneComponent implements OnInit{
   }
 
   loadHome(): void {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/dashboard/perfil-inversor']);
     this.buttonText = 'Continuar';
     // this.loadRoadMap();
   }
