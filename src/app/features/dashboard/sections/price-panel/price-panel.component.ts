@@ -11,8 +11,9 @@ import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 export class PricePanelComponent implements OnInit {
   public titulos: Titulo[] = [];
   public titulosSimbolo: String[] = [];
-
-//   titulos = signal([]);
+  public simbolo: any;
+  public cantidad: any;
+  //   titulos = signal([]);
   /* lista = [1, 2, 3, 4];
   public algo = 'algo';
   objects: object[] = [
@@ -38,9 +39,16 @@ export class PricePanelComponent implements OnInit {
       })
       .catch((error) => console.error(error))
   }
-/* 
-  public prueba() {
-    console.log(this.titulos)
-  } */
+
+  public vender() {
+    console.log(this.simbolo)
+  }
+  public comprar() {
+    console.log(this.cantidad)
+  }
+  /* 
+    public prueba() {
+      console.log(this.titulos)
+    } */
 
 }
