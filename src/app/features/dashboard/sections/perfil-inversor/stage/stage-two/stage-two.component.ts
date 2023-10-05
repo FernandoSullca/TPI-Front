@@ -84,7 +84,7 @@ export class StageTwoComponent {
   }
 
   loadHome(): void {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/dashboard/precios']);
     this.buttonText = 'Continuar';
     // this.loadRoadMap();
   }
