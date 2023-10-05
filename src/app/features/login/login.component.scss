@@ -1,5 +1,5 @@
 @import "../../../../src/variables";
-
+$primary-color: #5273E4; 
 section.login{
     background-color: $primary-color;
     min-height: 100vh;
@@ -20,10 +20,15 @@ section.login{
         img{
             width: 30%;
             user-select: none;
+            padding-top: 1em;
         }
 
         h1{
-            font-size: 2rem;
+            font-size: 4rem;
+        }
+        // Correcion longitud de marca con regular-Bold-estilo
+        h3{
+            font-size: 4rem;
         }
     }
 
@@ -78,27 +83,42 @@ section.login{
             }
 
             .btn-gral{
-                background-color: #fff;
-                color: #000;
+
+                background-color: #495057;
+                color: white;
+                /* color: #000;*/
                 text-align: center;
                 padding: 0.8rem 0;
                 margin-top: 2rem;
+                
             }
         }
     }
 }
-
+/*********correcion de texto MercadoJR para Regular y Bold*********/
+  .bold-text-Marca {
+    font-weight: normal; /* Establece la fuente regular para "Mercado" */
+  }
+  
+  .bold-Marca {
+    font-weight: bold; /* Establece la fuente en negrita para "JR" */
+  }
 @media(max-width:992px){
     section.login{
+       
         flex-direction: column;
 
-        .lateral-brand{
+        .lateral-brand{ 
+             ////Padin de la imagen
+            padding-top: 20em;
+             ////Padin de la imagen
             width: 100%;
             height: 30vh;
             padding: 1.5rem 0;
 
             img{
-                height: 40%;
+                // height: 40%;
+                height: 80%;
                 width: auto;
             }
 
@@ -128,6 +148,10 @@ section.login{
 @media(max-width:699px){
     section.login{
         .lateral-brand{
+            ////Padin de la imagen
+             padding-top: 2em;
+            ////Padin de la imagen
+               
             h1{
                 font-size: 1.3rem;
             }
