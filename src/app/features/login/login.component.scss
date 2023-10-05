@@ -105,15 +105,20 @@ section.login{
   }
 @media(max-width:992px){
     section.login{
+       
         flex-direction: column;
 
-        .lateral-brand{
+        .lateral-brand{ 
+             ////Padin de la imagen
+            padding-top: 20em;
+             ////Padin de la imagen
             width: 100%;
             height: 30vh;
             padding: 1.5rem 0;
 
             img{
-                height: 40%;
+                // height: 40%;
+                height: 80%;
                 width: auto;
             }
 
@@ -143,6 +148,10 @@ section.login{
 @media(max-width:699px){
     section.login{
         .lateral-brand{
+            ////Padin de la imagen
+             padding-top: 2em;
+            ////Padin de la imagen
+               
             h1{
                 font-size: 1.3rem;
             }
