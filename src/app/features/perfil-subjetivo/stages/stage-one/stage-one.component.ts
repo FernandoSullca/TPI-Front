@@ -15,10 +15,6 @@ export class StageOneComponent implements OnInit{
     preguntas: [],
   };
 
-  questionario:Cuestionario= {
-    preguntas: [],
-  };;
-
   resCuestionario:  Cuestionario= {
     preguntas: [],
   };
@@ -36,72 +32,29 @@ export class StageOneComponent implements OnInit{
   constructor(private questionsService: QuestionsProfileService,private router: Router) { }
 
   ngOnInit(): void {
-     // Ejemplo usando el método con el JSON local (descomenta esta línea y comenta la línea siguiente si es tu caso):
-    this.respQues= this.questionsService.getCuestionarioInicial();
-    // this.loadQuestions();
-    
-    // Si estás utilizando el método que realiza una solicitud HTTP, puedes hacerlo así:
-     this.questionsService.getPreguntas().subscribe((data) => {
+       
+      this.questionsService.getPreguntas().subscribe((data) => {
       this.resCuestionario= data;
-      console.log("suscribe");
-      console.log(this.resCuestionario);
-      console.log(this.resCuestionario);
       this.loadQuestions();
-      
     });
 
-  
   }
   loadQuestions() {
-  console.log( "--------Load Questions----");
-  console.log( this.respQues.preguntas[0]);
-  this.cuestionario.preguntas[0]=this.respQues.preguntas[0];
-  console.log(this.cuestionario.preguntas[0]);
   
-  /************************ */
-  // this.cuestionario.preguntas[0]=this.resCuestionario[0].preguntas[0];
-  console.log( "--------Load Questions----");
-  console.log(this.resCuestionario);
-  
-  this.questionario=this.resCuestionario;
-  console.log(this.questionario);
+  this.cuestionario.preguntas[0]=this.resCuestionario.preguntas[0];
+
   }
 
-  isArray(respuestas: string[] | Respuesta[]): respuestas is string[] {
-    return Array.isArray(respuestas);
-  }
-  
-  isArraybnt(respuestas: string[] | RespuestaBnt[]): respuestas is RespuestaBnt[] {
-    return Array.isArray(respuestas);
-  }
-  
   loadNextQuestion(): void {
 
-    if (this.respQues) {
- 
-      const resp = this.respQues.preguntas;
-      console.log( "--------Load NEXtQuestions----");
-      console.log( this.respQues);
-      console.log( "-------------------");
-      console.log( resp);
-      console.log( this.respQues.preguntas);
-      console.log( "---------LOngitudd----------");
-      console.log( resp.length);
-      // Verifica si todavía hay preguntas disponibles 
+    if (this.resCuestionario) {
+      // Incrementa el índice para la próxima pregunta
       this.currentQuestionIndex++;
-      console.log( "----------Indice---------");
-      console.log(this.currentQuestionIndex);
-      console.log( "----------his.respQues.preguntass---------");
-      console.log(this.respQues.preguntas[0]);
-      console.log(this.respQues.preguntas[1]);
-      console.log(this.respQues.preguntas[2]);
     
-      if (this.currentQuestionIndex <resp.length) {
-        this.cuestionario.preguntas[0]=this.respQues.preguntas[this.currentQuestionIndex];
-        // Incrementa el índice para la próxima pregunta
-
-        // this.quest = this.getNextQuestion(trivias, this.currentQuestionIndex);
-        // this.options = this.getNextOptions(trivias, this.currentQuestionIndex);
+      if (this.currentQuestionIndex <this.resCuestionario.preguntas.length) {
+    
+        this.cuestionario.preguntas[0]=this.resCuestionario.preguntas[this.currentQuestionIndex];
+        console.log(this.cuestionario.preguntas[0]);
       } else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
         console.log('Has respondido todas las preguntas.');
@@ -112,7 +65,17 @@ export class StageOneComponent implements OnInit{
       console.error('Error: Fin de preguntas válidos- Ultima Vista antes de Volver al home-RoadMap.');
     }
   }
-
+  isArray(respuestas:Respuesta[]): respuestas is Respuesta[] {
+    return Array.isArray(respuestas);
+  }
+  
+  isArraybnt(respuestas: RespuestaBnt[]): respuestas is RespuestaBnt[] {
+    return Array.isArray(respuestas);
+  }
+  
+  isArraybntist(respuestas: RespuestaBnt[]): respuestas is RespuestaBnt[] {
+    return Array.isArray(respuestas);
+  }
   loadHome(): void {
     this.router.navigate(['/dashboard/perfil-inversor']);
     this.buttonText = 'Continuar';
