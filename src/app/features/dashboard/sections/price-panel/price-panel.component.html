@@ -19,26 +19,28 @@
         <div class="col">Monto Operado</div>
       </div>
       <!-- [ngClass]="{'text-primary': i % 2 }"      -->
-      <div *ngFor="let titulo of titulos; index as i;">
-        <div class="row" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
-          <div class="col overflow-hidden text-start">
-            <strong>
-              {{titulo.simbolo}}
-            </strong>
-            <br>
-            <span>{{titulo.descripcion}}</span>
+      <div class="row filas">
+        <div *ngFor="let titulo of titulos; index as i;">
+          <div class="row" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
+            <div class="col overflow-hidden text-start">
+              <strong>
+                {{titulo.simbolo}}
+              </strong>
+              <br>
+              <span>{{titulo.descripcion}}</span>
+            </div>
+            <div class="col overflow-hidden">{{titulo.ultimoPrecio || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.variacionPorcentual || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.cantidadCompra || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.precioCompra || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.precioVenta || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.cantidadVenta || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.apertura || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.minimo || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.maximo || '-'}}</div>
+            <div class="col overflow-hidden">{{titulo.ultimoCierre || '-'}}</div>
+            <div class="col overflow-hidden">{{titulo.ultimoPrecio || '-'}}</div>
           </div>
-          <div class="col overflow-hidden">{{titulo.ultimoPrecio || '-'}}</div>
-          <div class="col overflow-hidden d-none d-xl-block">{{titulo.variacionPorcentual || '-'}}</div>
-          <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.cantidadCompra || '-'}}</div>
-          <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.precioCompra || '-'}}</div>
-          <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.precioVenta || '-'}}</div>
-          <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.cantidadVenta || '-'}}</div>
-          <div class="col overflow-hidden d-none d-xl-block">{{titulo.apertura || '-'}}</div>
-          <div class="col overflow-hidden d-none d-xl-block">{{titulo.minimo || '-'}}</div>
-          <div class="col overflow-hidden d-none d-xl-block">{{titulo.maximo || '-'}}</div>
-          <div class="col overflow-hidden">{{titulo.ultimoCierre || '-'}}</div>
-          <div class="col overflow-hidden">{{titulo.ultimoPrecio || '-'}}</div>
         </div>
       </div>
     </div>
