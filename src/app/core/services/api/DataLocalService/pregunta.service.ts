@@ -9,7 +9,7 @@ import { Pregunta } from 'src/app/core/models/perfil-objetivo/preguntaObjetivo.m
 export class PreguntaService {
 
 
-  private preguntasUrl = 'assets\\mock\\pregunta-objetivas,json'; // Ruta al archivo JSON
+  private preguntasUrl = 'assets\\mock\\pregunta-objetivas.json'; // Ruta al archivo JSON
 
   constructor(private http: HttpClient) {}
 

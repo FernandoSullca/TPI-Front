@@ -15,6 +15,14 @@ export class StageOneComponent implements OnInit{
     preguntas: [],
   };
 
+  questionario:Cuestionario= {
+    preguntas: [],
+  };;
+
+  resCuestionario:  Cuestionario= {
+    preguntas: [],
+  };
+
   // @Input() tematica: string | undefined;// Texto entrada para filtrar las preguntas-respuestas por tematica
   tematicaSeleccionada: string | undefined;
    trivias: any[] = []; // Variable para almacenar trivias filtradas
@@ -28,30 +36,35 @@ export class StageOneComponent implements OnInit{
   constructor(private questionsService: QuestionsProfileService,private router: Router) { }
 
   ngOnInit(): void {
-   
-       // Llamas al método del servicio para obtener el cuestionario
-    // Si estás utilizando el método que devuelve el JSON local, puedes hacerlo así:
-    // this.cuestionario = this.questionsService.getCuestionarioInicial();
-
-    // Si estás utilizando el método que realiza una solicitud HTTP, puedes hacerlo así:
-    // this.questionsService.getCuestionario().subscribe((data) => {
-    //   this.cuestionario = data;
-    // });
-
-    // Ejemplo usando el método con el JSON local (descomenta esta línea y comenta la línea siguiente si es tu caso):
+     // Ejemplo usando el método con el JSON local (descomenta esta línea y comenta la línea siguiente si es tu caso):
     this.respQues= this.questionsService.getCuestionarioInicial();
-    this.loadQuestions();
+    // this.loadQuestions();
     
+    // Si estás utilizando el método que realiza una solicitud HTTP, puedes hacerlo así:
+     this.questionsService.getPreguntas().subscribe((data) => {
+      this.resCuestionario= data;
+      console.log("suscribe");
+      console.log(this.resCuestionario);
+      console.log(this.resCuestionario);
+      this.loadQuestions();
+      
+    });
+
+  
   }
   loadQuestions() {
   console.log( "--------Load Questions----");
+  console.log( this.respQues.preguntas[0]);
   this.cuestionario.preguntas[0]=this.respQues.preguntas[0];
-  console.log("----------");
   console.log(this.cuestionario.preguntas[0]);
-  console.log(this.respQues.preguntas[0]);
-  console.log("----Todas las preguntas-");
-  console.log(this.respQues.preguntas);
-  console.log("----------");
+  
+  /************************ */
+  // this.cuestionario.preguntas[0]=this.resCuestionario[0].preguntas[0];
+  console.log( "--------Load Questions----");
+  console.log(this.resCuestionario);
+  
+  this.questionario=this.resCuestionario;
+  console.log(this.questionario);
   }
 
   isArray(respuestas: string[] | Respuesta[]): respuestas is string[] {
