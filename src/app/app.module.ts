@@ -24,6 +24,7 @@ import { OtroComponent } from './features/dashboard/sections/otro/otro.component
 import { PerfilInversorComponent } from './features/dashboard/sections/perfil-inversor/perfil-inversor.component';
 import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
 import { MessageComponent } from './common/message/message.component';
+import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MessageComponent } from './common/message/message.component';
     StageOneComponent,
     PerfilInversorComponent,
     StageTwoComponent,
-    MessageComponent
+    MessageComponent,
+    CarteraComponent
   ],
   imports: [
     BrowserModule,
