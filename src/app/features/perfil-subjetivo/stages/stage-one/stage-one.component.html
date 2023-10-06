@@ -16,16 +16,22 @@
                 <p> Podés elegir más de una opción o ninguna</p>
                 <div *ngIf="isArray(pregunta.respuestas)">
                     <div *ngFor="let respuesta of pregunta.respuestas">
-                        <input type="checkbox" id="{{ respuesta.nombre }}" name="{{ respuesta.nombre}}">
+                        <input type="checkbox" 
+                        id="{{ respuesta.nombre }}" 
+                        name="{{ respuesta.nombre}}"
+                        
+                        [(ngModel)]="respuesta.valor"
+                        (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor)"                        >
+
                         <label for="{{ respuesta }}">{{ respuesta.nombre }}</label>
                     </div>
                 </div>
-                <div *ngIf="!isArray(pregunta.respuestas)">
+                <!-- <div *ngIf="!isArray(pregunta.respuestas)">
                     <div *ngFor="let respuesta of pregunta.respuestas as respuestas">
                         <input type="checkbox" id="{{ respuesta.name }}" name="{{ respuesta.name }}">
                         <label for="{{ respuesta }}">{{ respuesta.name }}</label>
                     </div>
-                </div>
+                </div> -->
  
             </ng-container>
 

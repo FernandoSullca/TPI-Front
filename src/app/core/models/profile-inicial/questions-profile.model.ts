@@ -13,6 +13,11 @@ export interface PreguntaBase {
 export interface Seccion {
   nombre: string;
 }
+export interface Categoria {
+  nombre: string;
+  descripcion: string;
+}
+
 
 export interface PreguntaCheckbox extends PreguntaBase {
   TipoComponente: "checkbox";

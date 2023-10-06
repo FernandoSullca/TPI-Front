@@ -8,9 +8,7 @@ import { QuestionsProfileService } from 'src/app/core/services/api/DataLocalServ
   styleUrls: ['./stage-one.component.scss']
 })
 export class StageOneComponent implements OnInit{
-  respQues: Cuestionario= {
-    preguntas: [],
-  };
+
   cuestionario: Cuestionario= {
     preguntas: [],
   };
@@ -19,14 +17,13 @@ export class StageOneComponent implements OnInit{
     preguntas: [],
   };
 
-  // @Input() tematica: string | undefined;// Texto entrada para filtrar las preguntas-respuestas por tematica
-  tematicaSeleccionada: string | undefined;
-   trivias: any[] = []; // Variable para almacenar trivias filtradas
-  
+   
    buttonText: string = 'Siguiente Pregunta'; // Texto del botón por defecto
  
    isLastQuestion: boolean = false;
    currentQuestionIndex: number = 0;
+  //  opcionesSeleccionadas: string[] = [];
+   opcionesSeleccionadas: { seccion: string, pregunta: string, valor: number }[] = [];
 
   
   constructor(private questionsService: QuestionsProfileService,private router: Router) { }
@@ -75,6 +72,19 @@ export class StageOneComponent implements OnInit{
   
   isArraybntist(respuestas: RespuestaBnt[]): respuestas is RespuestaBnt[] {
     return Array.isArray(respuestas);
+  }
+
+  actualizarOpcionesSeleccionadas(seccion: string,pregunta: string, valor: number) {
+    if (valor) {
+
+      this.opcionesSeleccionadas.push({ seccion, pregunta, valor });
+    } else {
+      // Eliminar la opción no seleccionada del arreglo de opciones seleccionadas
+      const index = this.opcionesSeleccionadas.findIndex(opcion => opcion.pregunta === pregunta && opcion.valor === valor);
+      if (index !== -1) {
+        this.opcionesSeleccionadas.splice(index, 1);
+      }
+    }
   }
   loadHome(): void {
     this.router.navigate(['/dashboard/perfil-inversor']);
