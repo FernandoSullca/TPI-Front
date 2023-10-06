@@ -7,7 +7,7 @@ import { Cuestionario } from 'src/app/core/models/profile-inicial/questions-prof
   providedIn: 'root'
 })
 export class QuestionsProfileService {
-  private apiUrl = 'URL_DEL_JSON'; // Reemplaza con la URL real de tu JSON
+  private apiUrl = 'assets\\mock\\Perfil subjetivo.json'; // Reemplaza con la URL real de tu JSON
   private data = {
     "preguntas": [
       {
@@ -62,6 +62,10 @@ export class QuestionsProfileService {
   };
   
   constructor(private http: HttpClient) { }
+
+  getPreguntas(): Observable<Cuestionario> {
+    return this.http.get<Cuestionario>(this.apiUrl);
+  }
 
   getCuestionario(): Observable<Cuestionario> {
     return this.http.get<Cuestionario>(this.apiUrl);

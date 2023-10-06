@@ -1,6 +1,7 @@
 export interface Cuestionario {
     preguntas: (PreguntaCheckbox |PreguntaRadio  |PreguntaBotones )[];
   }
+  
 export interface Respuesta {
      respuestas: string[];
   
