@@ -11,15 +11,12 @@ import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 export class PricePanelComponent implements OnInit {
   public titulos: Titulo[] = [];
   public titulosSimbolo: String[] = [];
+  public simbolo: string = '';
+  public cantidad: number = 0;
+  public textMessage: string = '';
+  public typeMessage: string = '';
 
-//   titulos = signal([]);
-  /* lista = [1, 2, 3, 4];
-  public algo = 'algo';
-  objects: object[] = [
-    { name: 'Juan', age: 25 },
-    { name: 'Pedro', age: 30 },
-    { name: 'María', age: 20 }
-  ]; */
+
   constructor(private pricePanelService: PricePanelService) { }
 
   ngOnInit(): void {
@@ -31,16 +28,51 @@ export class PricePanelComponent implements OnInit {
   public getTitulos() {
     return this.pricePanelService.obtenerTitulos()
       .then((titulos) => {
-        console.log("🚀 ~ file: price-panel.component.ts:32 ~ PricePanelComponent ~ .then ~ titulos:", titulos)
         this.titulos = titulos;
         this.titulosSimbolo = titulos.map((t) => t.simbolo || 'Desconocido')
-        // this.titulos.set(titulos);
       })
       .catch((error) => console.error(error))
   }
-/* 
-  public prueba() {
-    console.log(this.titulos)
-  } */
 
+  public vender() {
+    if (!this.validateData()) {
+      this.textMessage = "Debes ingresar datos validos"
+      this.typeMessage = "error"
+      return false;
+    }
+    return this.pricePanelService.capturarOrden('venta', this.simbolo, this.cantidad)
+      .then(() => {
+        this.textMessage = "Operacion realizada"
+        this.typeMessage = "success"
+      })
+      .catch((error) => {
+        this.textMessage = "Operacion fallida"
+        this.typeMessage = "error"
+        console.error(error)
+      })
+
+
+  }
+  public comprar() {
+    if (!this.validateData()) {
+      this.textMessage = "Debes ingresar datos validos"
+      this.typeMessage = "error"
+      return false;
+    }
+
+    return this.pricePanelService.capturarOrden('compra', this.simbolo, this.cantidad)
+      .then(() => {
+        this.textMessage = "Operacion realizada"
+        this.typeMessage = "success"
+      })
+      .catch((error) => {
+        this.textMessage = "Operacion fallida"
+        this.typeMessage = "error"
+        console.error(error)
+      })
+  }
+
+  public validateData() {
+    return this.cantidad && this.simbolo
+  }
 }

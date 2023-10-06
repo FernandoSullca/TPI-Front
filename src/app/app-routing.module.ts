@@ -17,6 +17,8 @@ import { InteresCompuestoComponent } from './features/dashboard/sections/interes
 import { OpcionesComponent } from './features/dashboard/sections/opciones/opciones.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
+import { PerfilInversorComponent } from './features/dashboard/sections/perfil-inversor/perfil-inversor.component';
+import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
 
 const routes: Routes = [
   // Rutas de las páginas
@@ -37,7 +39,8 @@ const routes: Routes = [
       { path: "aprender-interes", component:  InteresCompuestoComponent},
       { path: "aprender-instrumentos", component:  InteresCompuestoComponent},
       { path: "aprender-opciones", component:  OpcionesComponent},
-  
+      { path: "perfil-inversor", component: PerfilInversorComponent},
+      { path: "perfil-inversor-questions", component: StageTwoComponent},
     ],
   },
   // Otras rutas o manejo de errores
