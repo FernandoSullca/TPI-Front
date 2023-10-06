@@ -1,10 +1,10 @@
 <section>
   <div class="touch-background" [ngClass]="{'active': menuMobile}" (click)="actionMenuMobile()"></div>
   <div class="menu-mobile" (click)="actionMenuMobile()">
-    <img src="/assets/img/menu_mobile.svg" alt="">
+    <img src="/assets/image/menu_mobile.svg" alt="">
   </div>
   <nav [ngClass]="{'active': menuMobile}">
-    <div class="brand-box">
+    <div class="brand-box" [routerLink]="['/']">
       <img src="/assets/image/logo.svg" alt="">
       <h2>MercadoJr</h2>
     </div>
@@ -12,24 +12,24 @@
       <!-- *ngIf="!enabledAdminMode" -->
       <div>
         <!-- *ngIf="enabledPerfil" -->
-        <li routerLink='/dashboard/aprender' routerLinkActive="active" (click)="actionMenuMobile()">
+        <!-- <li routerLink='/dashboard/aprender' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/aprender.svg" alt="">
           <span>Aprender</span>
-        </li>
+        </li> -->
         <li routerLink='/dashboard/perfil-inversor' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/campana.svg" alt="">
           <span>Perfil inversor</span>
           <p *ngIf="false" class="notif">1</p>
         </li>
-        <li routerLink='/dashboard/foro' routerLinkActive="active" (click)="actionMenuMobile()">
-          <img src="/assets/image/foro.svg" alt=""><span>Foro</span>
+        <!-- <li routerLink='/dashboard/foro' routerLinkActive="active" (click)="actionMenuMobile()">
+          <img src="/assets/image/foro.svg" alt=""><span>Foro</span> -->
           <!--           *ngIf="quantityNotifications > 0"
           {{quantityNotifications}}
  -->
-          <p class="notif">
+          <!-- <p class="notif">
             3
           </p>
-        </li>
+        </li> -->
         <li routerLink='/dashboard/cartera' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/perfil.svg" alt=""><span>Cartera</span>
         </li>
@@ -40,8 +40,8 @@
     </ul>
     <!-- (click)="logout()" -->
     <div class="logout">
-      <span>Nombre</span>
-      <img src="/assets/img/logout.svg" alt="logout">
+      <span>Cerrar sesión</span>
+      <img src="/assets/image/logout.svg" alt="logout">
     </div>
   </nav>
   <div class="main-content">
