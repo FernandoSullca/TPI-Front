@@ -20,18 +20,14 @@
                         id="{{ respuesta.nombre }}" 
                         name="{{ respuesta.nombre}}"
                         
-                        [(ngModel)]="respuesta.valor"
-                        (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor)"                        >
+                        [(ngModel)]="respuesta.seleccionada"
+                        (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor,respuesta.seleccionada)"   
+                        >
 
                         <label for="{{ respuesta }}">{{ respuesta.nombre }}</label>
                     </div>
                 </div>
-                <!-- <div *ngIf="!isArray(pregunta.respuestas)">
-                    <div *ngFor="let respuesta of pregunta.respuestas as respuestas">
-                        <input type="checkbox" id="{{ respuesta.name }}" name="{{ respuesta.name }}">
-                        <label for="{{ respuesta }}">{{ respuesta.name }}</label>
-                    </div>
-                </div> -->
+
  
             </ng-container>
 
@@ -43,8 +39,12 @@
                 <p> elegir Solo una opción"</p>
                 <div *ngIf="isArray(pregunta.respuestas)">
                     <div *ngFor="let respuesta of pregunta.respuestas ">
-                        <input type="radio" id="{{ respuesta.nombre }}" name="respuestaRadio" value="{{ respuesta.nombre }}">
-                        <label for="{{ respuesta }}">{{ respuesta.nombre }}</label>
+                        <input type="radio" id="{{ respuesta.nombre }}" 
+                        name="{{respuesta.nombre}}" value="{{respuesta.valor}}"
+                        [(ngModel)]="opcionSeleccionada"
+                        (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor,respuesta.seleccionada)"
+                        >
+                        <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label>
                     </div>
                 </div>
             
@@ -88,8 +88,13 @@
                              <div class="row">
                             <div *ngFor="let opcion of respuesta.respuestas" class="col-auto"  >
 
-                                <input type="button" id="{{ opcion }}" name="{{ opcion.nombre }}"
-                                    value="{{ opcion.nombre }}" >
+                                <input type="button" id="{{ opcion.nombre }}" 
+                                name="{{ opcion.nombre }}"
+                               
+                                [(ngModel)]="respuesta.seleccionada"
+                                (onchange)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor,respuesta.seleccionada)"
+                                value="{{opcion.nombre}}"
+                                >
                                
                             </div>
                             </div> 
@@ -116,6 +121,5 @@
         </div>
 
     </div>
-
 
 </div>

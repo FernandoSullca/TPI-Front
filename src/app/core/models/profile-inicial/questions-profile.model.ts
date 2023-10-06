@@ -1,6 +1,7 @@
 export interface Respuesta {
   nombre: string;
   valor: number;
+  seleccionada: boolean;
 }
 
 export interface PreguntaBase {

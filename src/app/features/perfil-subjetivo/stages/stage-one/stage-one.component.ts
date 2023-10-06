@@ -8,7 +8,7 @@ import { QuestionsProfileService } from 'src/app/core/services/api/DataLocalServ
   styleUrls: ['./stage-one.component.scss']
 })
 export class StageOneComponent implements OnInit{
-
+  seleccionada:boolean=false
   cuestionario: Cuestionario= {
     preguntas: [],
   };
@@ -22,10 +22,14 @@ export class StageOneComponent implements OnInit{
  
    isLastQuestion: boolean = false;
    currentQuestionIndex: number = 0;
-  //  opcionesSeleccionadas: string[] = [];
-   opcionesSeleccionadas: { seccion: string, pregunta: string, valor: number }[] = [];
+   //  opcionesSeleccionadas: string[] = [];
+   opcionesSeleccionadas: { seccion: string, pregunta: string, valor: number } [] = [];
+   opcionSeleccionada: number = 0;
+   //fix radius, una unica opcion
+  //  opcionSeleccionada: { seccion: string, pregunta: string, valor: number } | null = null;
 
-  
+   respuestasDeUsuario:{seccion: string,calculo: number } [] = [];
+
   constructor(private questionsService: QuestionsProfileService,private router: Router) { }
 
   ngOnInit(): void {
@@ -43,8 +47,14 @@ export class StageOneComponent implements OnInit{
   }
 
   loadNextQuestion(): void {
+   
+      if (this.resCuestionario) {
+      // Guaradr respuesta de usuario
+      this.guardarrespuestas(this.cuestionario.preguntas[0].seccion.nombre,
+                             this.cuestionario.preguntas[0].TipoComponente);
 
-    if (this.resCuestionario) {
+      console.log("-Resultado Guradado");    
+      console.log(this.respuestasDeUsuario);                
       // Incrementa el índice para la próxima pregunta
       this.currentQuestionIndex++;
     
@@ -74,9 +84,11 @@ export class StageOneComponent implements OnInit{
     return Array.isArray(respuestas);
   }
 
-  actualizarOpcionesSeleccionadas(seccion: string,pregunta: string, valor: number) {
-    if (valor) {
-
+  actualizarOpcionesSeleccionadas(seccion: string,pregunta: string, valor: number, seleccionada: boolean) {
+  
+    // console.log(this.opcionesSeleccionadas);
+    console.log(this.opcionSeleccionada);
+    if (seleccionada) {
       this.opcionesSeleccionadas.push({ seccion, pregunta, valor });
     } else {
       // Eliminar la opción no seleccionada del arreglo de opciones seleccionadas
@@ -85,13 +97,61 @@ export class StageOneComponent implements OnInit{
         this.opcionesSeleccionadas.splice(index, 1);
       }
     }
+    // console.log(this.opcionesSeleccionadas);
   }
+
   loadHome(): void {
     this.router.navigate(['/dashboard/perfil-inversor']);
     this.buttonText = 'Continuar';
     // this.loadRoadMap();
   }
 
+  guardarrespuestas(seccion: string, tipo: string) {
+    // Verificar el tipo de pregunta
+    let index=-1
+    switch (tipo) {
+      case 'checkbox':
+        // Pregunta de tipo checkbox
+        // const respuestaExistente = this.respuestasDeUsuario.find(respuesta => respuesta.seccion === seccion);
+        index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
+        const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
+        const sumaCheckbox = valoresCheckbox.reduce((total, valor) => total + valor, 0);
+        if( index !== -1){
+            // respuestaExistente.calculo += sumaCheckbox;
+          this.respuestasDeUsuario[index].calculo += sumaCheckbox;
+        }
+        else
+        {
+          this.respuestasDeUsuario.push({ seccion, calculo: sumaCheckbox });
+        }
+        
+        break;
+      case 'radio':
+        // Pregunta de tipo radio
+        index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
+        const valorRadio = this.opcionSeleccionada; 
+        if( index !== -1){
+        this.respuestasDeUsuario[index].calculo += valorRadio;
+        }
+        else{
+          
+        this.respuestasDeUsuario.push({ seccion, calculo: valorRadio });
+        }
+       
+        break;
+      case 'boton':
+        // Pregunta de tipo botón
+        // Realiza aquí las acciones específicas para preguntas de botón
+        break;
+      default:
+        // Tipo de pregunta no reconocido
+        console.error('Tipo de pregunta no reconocido');
+        break;
+    }
+  }
+  
 }
  
+
+
 
