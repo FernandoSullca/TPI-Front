@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cuestionario, Respuesta, RespuestaBnt } from 'src/app/core/models/profile-inicial/questions-profile.model';
-import { QuestionsProfileService } from 'src/app/core/services/api/DataLocalService/questions-profile.service';
+import { Cuestionario, Respuesta, RespuestaBnt } from 'src/app/core/models/initial-profile/questions-profile.model';
+import { QuestionsTargetService } from 'src/app/core/services/api/target-profile/questions-target-profile.service';
 import { Pregunta } from 'src/app/core/models/perfil-objetivo/preguntaObjetivo.model';
 import { PreguntaService } from 'src/app/core/services/api/DataLocalService/pregunta.service';
 @Component({
@@ -24,7 +24,7 @@ export class StageTwoComponent {
   resPreguntas: Pregunta[] = [];
   data: any;
 
-  constructor(private questionsService: QuestionsProfileService, private router: Router, private preguntaService: PreguntaService) { }
+  constructor(private questionsService: QuestionsTargetService , private router: Router, private preguntaService: PreguntaService) { }
 
   ngOnInit(): void {
 
