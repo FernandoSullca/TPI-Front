@@ -1,67 +1,66 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cuestionario, Respuesta,RespuestaBnt  } from 'src/app/core/models/profile-inicial/questions-profile.model';
-import { QuestionsProfileService } from 'src/app/core/services/api/DataLocalService/questions-profile.service';
+import { Cuestionario, Respuesta, RespuestaBnt } from 'src/app/core/models/profile-inicial/questions-profile.model';
+import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
 @Component({
   selector: 'app-stage-one',
   templateUrl: './stage-one.component.html',
   styleUrls: ['./stage-one.component.scss']
 })
-export class StageOneComponent implements OnInit{
-  seleccionada:boolean=false
-  cuestionario: Cuestionario= {
-    preguntas: [],
-  };
-
-  resCuestionario:  Cuestionario= {
-    preguntas: [],
-  };
-
-   
-   buttonText: string = 'Siguiente Pregunta'; // Texto del botón por defecto
+export class StageOneComponent implements OnInit {
  
-   isLastQuestion: boolean = false;
-   currentQuestionIndex: number = 0;
-   //  opcionesSeleccionadas: string[] = [];
-   opcionesSeleccionadas: { seccion: string, pregunta: string, valor: number } [] = [];
-   opcionSeleccionada: number = 0;
-   //fix radius, una unica opcion
-  //  opcionSeleccionada: { seccion: string, pregunta: string, valor: number } | null = null;
+  cuestionario: Cuestionario = {
+    preguntas: [],
+  };
 
-   respuestasDeUsuario:{seccion: string,calculo: number } [] = [];
+  resCuestionario: Cuestionario = {
+    preguntas: [],
+  };
 
-  constructor(private questionsService: QuestionsProfileService,private router: Router) { }
+  buttonText: string = 'Siguiente Pregunta';
+  isLastQuestion: boolean = false;
+  currentQuestionIndex: number = 0;
+
+  opcionesSeleccionadas: { seccion: string, pregunta: string, valor: number }[] = [];
+  opcionSeleccionada: number = 0;
+  respuestasSeleccionadasPorInstrumento: Record<string, number> = {};
+
+  AnalisisSubjetivo: Record<string, number> = {  };
+  respuestasDeUsuario: { seccion: string, calculo: number }[] = [];
+
+  constructor(private profileService: QuestionsProfileService, private router: Router) { }
 
   ngOnInit(): void {
-       
-      this.questionsService.getPreguntas().subscribe((data) => {
-      this.resCuestionario= data;
+    this.profileService.getCuestionario().subscribe((data) => {
+      this.resCuestionario = data;
       this.loadQuestions();
     });
-
   }
+
   loadQuestions() {
-  
-  this.cuestionario.preguntas[0]=this.resCuestionario.preguntas[0];
+
+    this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[0];
 
   }
 
   loadNextQuestion(): void {
-   
-      if (this.resCuestionario) {
-      // Guaradr respuesta de usuario
-      this.guardarrespuestas(this.cuestionario.preguntas[0].seccion.nombre,
-                             this.cuestionario.preguntas[0].TipoComponente);
 
-      console.log("-Resultado Guradado");    
-      console.log(this.respuestasDeUsuario);                
+    if (this.resCuestionario) {
+  
+      this.guardarrespuestas(this.cuestionario.preguntas[0].seccion.nombre,
+        this.cuestionario.preguntas[0].TipoComponente);
+
+      console.log("-Resultado Guradado");
+      console.log(this.respuestasDeUsuario);
+
+      console.log(this.AnalisisSubjetivo);
       // Incrementa el índice para la próxima pregunta
       this.currentQuestionIndex++;
-    
-      if (this.currentQuestionIndex <this.resCuestionario.preguntas.length) {
-    
-        this.cuestionario.preguntas[0]=this.resCuestionario.preguntas[this.currentQuestionIndex];
-        console.log(this.cuestionario.preguntas[0]);
+
+      if (this.currentQuestionIndex < this.resCuestionario.preguntas.length) {
+
+        this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[this.currentQuestionIndex];
+
       } else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
         console.log('Has respondido todas las preguntas.');
@@ -72,22 +71,21 @@ export class StageOneComponent implements OnInit{
       console.error('Error: Fin de preguntas válidos- Ultima Vista antes de Volver al home-RoadMap.');
     }
   }
-  isArray(respuestas:Respuesta[]): respuestas is Respuesta[] {
+  isArray(respuestas: Respuesta[]): respuestas is Respuesta[] {
     return Array.isArray(respuestas);
   }
-  
+
   isArraybnt(respuestas: RespuestaBnt[]): respuestas is RespuestaBnt[] {
     return Array.isArray(respuestas);
   }
-  
+
   isArraybntist(respuestas: RespuestaBnt[]): respuestas is RespuestaBnt[] {
     return Array.isArray(respuestas);
   }
 
-  actualizarOpcionesSeleccionadas(seccion: string,pregunta: string, valor: number, seleccionada: boolean) {
+  actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number, seleccionada: boolean) {
   
-    // console.log(this.opcionesSeleccionadas);
-    console.log(this.opcionSeleccionada);
+    this.opcionSeleccionada=valor;
     if (seleccionada) {
       this.opcionesSeleccionadas.push({ seccion, pregunta, valor });
     } else {
@@ -97,61 +95,118 @@ export class StageOneComponent implements OnInit{
         this.opcionesSeleccionadas.splice(index, 1);
       }
     }
-    // console.log(this.opcionesSeleccionadas);
   }
 
-  loadHome(): void {
-    this.router.navigate(['/dashboard/perfil-inversor']);
-    this.buttonText = 'Continuar';
-    // this.loadRoadMap();
+  actualizarOpcionesSeleccionadasBotonInstrumento(seccion: string, instrumento: string, valor: number) {
+    // Almacena la respuesta seleccionada para este instrumento.
+    this.respuestasSeleccionadasPorInstrumento[instrumento] = valor;
+
+    // console.log(this.respuestasSeleccionadasPorInstrumento);
+
+  }
+
+  esRespuestaSeleccionada(instrumento: string, valor: number): boolean {
+    return this.respuestasSeleccionadasPorInstrumento[instrumento] === valor;
   }
 
   guardarrespuestas(seccion: string, tipo: string) {
     // Verificar el tipo de pregunta
-    let index=-1
+    let index = -1
     switch (tipo) {
       case 'checkbox':
-        // Pregunta de tipo checkbox
-        // const respuestaExistente = this.respuestasDeUsuario.find(respuesta => respuesta.seccion === seccion);
+
+      
         index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
         const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
         const sumaCheckbox = valoresCheckbox.reduce((total, valor) => total + valor, 0);
-        if( index !== -1){
-            // respuestaExistente.calculo += sumaCheckbox;
+        console.log('Suma total:', sumaCheckbox);
+        if (index !== -1) {
+          // respuestaExistente.calculo += sumaCheckbox;
           this.respuestasDeUsuario[index].calculo += sumaCheckbox;
         }
-        else
-        {
+        else {
           this.respuestasDeUsuario.push({ seccion, calculo: sumaCheckbox });
         }
-        
+        if (!this.AnalisisSubjetivo[seccion]) {
+          this.AnalisisSubjetivo[seccion] = 0;
+        }
+        this.AnalisisSubjetivo[seccion] += sumaCheckbox;
         break;
       case 'radio':
-        // Pregunta de tipo radio
-        index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
-        const valorRadio = this.opcionSeleccionada; 
-        if( index !== -1){
-        this.respuestasDeUsuario[index].calculo += valorRadio;
+  
+        index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);//Horizonte o riesgo
+        let valorRadio = this.opcionSeleccionada;
+        console.log('Suma total:', valorRadio);
+        if (index !== -1) {
+          this.respuestasDeUsuario[index].calculo += valorRadio;
         }
-        else{
-          
-        this.respuestasDeUsuario.push({ seccion, calculo: valorRadio });
+        else {
+
+          this.respuestasDeUsuario.push({ seccion, calculo: valorRadio });
         }
-       
+        if (!this.AnalisisSubjetivo[seccion]) {
+          this.AnalisisSubjetivo[seccion] = 0;
+        }
+        this.AnalisisSubjetivo[seccion] += valorRadio;
         break;
       case 'boton':
-        // Pregunta de tipo botón
-        // Realiza aquí las acciones específicas para preguntas de botón
+        index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
+        let suma = 0;
+        console.log(this.respuestasSeleccionadasPorInstrumento);
+        for (const instrumento in this.respuestasSeleccionadasPorInstrumento) {
+          if (this.respuestasSeleccionadasPorInstrumento.hasOwnProperty(instrumento)) {
+            suma += this.respuestasSeleccionadasPorInstrumento[instrumento];
+          }
+        }
+        console.log('Suma total:', suma);
+        if (index !== -1) {
+          this.respuestasDeUsuario[index].calculo += suma;
+        }
+        else {
+
+          this.respuestasDeUsuario.push({ seccion, calculo: suma });
+        }
+        if (!this.AnalisisSubjetivo[seccion]) {
+          this.AnalisisSubjetivo[seccion] = 0;
+        }
+        this.AnalisisSubjetivo[seccion] +=suma;
         break;
       default:
         // Tipo de pregunta no reconocido
         console.error('Tipo de pregunta no reconocido');
         break;
     }
+    this.opcionesSeleccionadas = [];
   }
+
+  loadHome(): void {
+    this.entregarResultados() ;
+    this.router.navigate(['/dashboard/perfil-inversor']);
+    this.buttonText = 'Continuar';
+  }
+
+ /**********Post de resultados almacenados**********/ 
+ public entregarResultados() {
+    if (!this.validateData()) {
+
+      return false;
+    }
+    return this.profileService.TestSubjetivoResultados(this.AnalisisSubjetivo)
+      .then(() => {
+        console.log("Enviado");
+      })
+      .catch((error) => {
   
+        console.error(error)
+      })
+  }
+
+  validateData() {
+  return true;
+  }
+
 }
- 
+
 
 
 

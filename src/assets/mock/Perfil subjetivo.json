@@ -3,7 +3,7 @@
       "descripcion": "¿En cuáles de estos instrumentos has invertido alguna vez?",
       "TipoComponente": "checkbox",
       "seccion": {
-        "nombre": "Tolerancia al riesgo"
+        "nombre": "Horizonte Temporal"
       },
       "respuestas": [{
           "nombre": "Plazo Fijo",
@@ -58,6 +58,9 @@
     {
       "descripcion": "¿Cuál es tu nivel de conocimiento en los siguientes instrumentos?",
       "TipoComponente": "boton",
+      "seccion": {
+        "nombre": "Tolerancia al riesgo"
+      },
       "respuestas": [{
           "instrumento": "Fondos Comunes de Inversión",
           "respuestas": [{
