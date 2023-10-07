@@ -52,7 +52,7 @@ export class PricePanelComponent implements OnInit {
         this.typeMessage = "success"
       })
       .catch((error) => {
-        this.textMessage = "Operacion fallida"
+        this.textMessage = error.response.data;
         this.typeMessage = "error"
         console.error(error)
       })
@@ -72,7 +72,7 @@ export class PricePanelComponent implements OnInit {
         this.typeMessage = "success"
       })
       .catch((error) => {
-        this.textMessage = "Operacion fallida"
+        this.textMessage = error.response.data
         this.typeMessage = "error"
         console.error(error)
       })
