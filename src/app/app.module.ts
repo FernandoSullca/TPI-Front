@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
+import { NgChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './features/login/login.component';
@@ -25,6 +25,7 @@ import { PerfilInversorComponent } from './features/dashboard/sections/perfil-in
 import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
 import { MessageComponent } from './common/message/message.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component';
+import { GraficoComponent } from './features/dashboard/sections/grafico/grafico.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.
     PerfilInversorComponent,
     StageTwoComponent,
     MessageComponent,
-    CarteraComponent
+    CarteraComponent,
+    GraficoComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.
     NgbModule,
     HttpClientModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
