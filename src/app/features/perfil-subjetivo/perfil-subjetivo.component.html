@@ -1,20 +1,21 @@
-<div class="container main-container bg-white">
-    <div class="brand-box pt-2">
-        <h2>MercadoJr</h2>
-        <img src="/assets/image/logo.svg" alt="">
+<div class="container-fluid container main-container bg-white">
+    <div class="row brand-box pt-2">
+        <div class="col-sm-12 d-flex">
+            <h2>MercadoJr</h2>
+            <img src="/assets/image/logo.svg" alt="">
+        </div>
     </div>
-    <div class="container-perfil p-4">
-
-        <div>
+    <div class="row container-perfil p-4 mx-2">
+        <div class="col-sm-12">
             <h3>
                 Antes de arrancar te realizaremos un breve cuestionario.
                 Ésto tiene como fin ayudarte a conocer tu perfil como inversor de acuerdo a tus objetivos y necesidades.
             </h3>
         </div>
-        <img class="mx-auto d-block"src="\assets\image\Group Goals-Perfil.svg">
+        <img id="meta" class="mx-auto d-block"src="\assets\image\Group Goals-Perfil.svg">
     </div>
-    <div>
-        <button class="bnt btn-Iniciar btn-primary "  (click)="loadStages()">Iniciar</button>
+    <div class="mt-3">
+        <button class="bnt btn-Iniciar btn-primary " (click)="loadStages()">Iniciar</button>
     </div>
 
 </div>
