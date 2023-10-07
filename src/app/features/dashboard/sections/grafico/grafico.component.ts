@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 
 @Component({
@@ -7,6 +7,8 @@ import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
   styleUrls: ['./grafico.component.scss']
 })
 export class GraficoComponent {
+
+  @Input() cantidadPorInstrumento: any; 
 
   public pieChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -18,14 +20,21 @@ export class GraficoComponent {
     },
   };
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
-    labels: ['BYMA', 'TECO2'], // Etiquetas en formato de arreglo de cadenas
+    labels: [], // Etiquetas en formato de arreglo de cadenas
     datasets: [
       {
-        data: [1100, 1000],
+        data: [],
       },
     ],
   };
   
 
   public pieChartType: ChartType = 'pie';
+  
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['cantidadPorInstrumento'] && this.cantidadPorInstrumento) {
+      this.pieChartData.labels = Object.keys(this.cantidadPorInstrumento);
+      this.pieChartData.datasets[0].data = Object.values(this.cantidadPorInstrumento);
+    }
+  }
 }
