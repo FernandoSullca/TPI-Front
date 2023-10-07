@@ -3,13 +3,22 @@
     height: 100%;
     border: double;
     display:flex;
+    flex-wrap: wrap;
     justify-content: space-around;
-}
-.total-valorizado-section,.cartera-grafico-section {
-    width: 40%;
-    height: 40%;
-    background-color: #FFF;
-    border-radius: 1rem;
-    box-shadow: 4px 2px 8px #e8e8ef;
-    background-color: aquamarine;
+    .total-valorizado-section,.cartera-grafico-section,.valuacionTotalDetalle-section,.referencia-grafico-section {
+        width: 40%;
+        height: 40%;
+        background-color: #FFF;
+        border-radius: 1rem;
+        box-shadow: 4px 2px 8px #e8e8ef;
+        background-color: aquamarine;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .valuacionTotalDetalle-section{
+        align-items: first baseline;
+    }
 }
