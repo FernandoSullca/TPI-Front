@@ -6,8 +6,7 @@ import { Pregunta } from 'src/app/core/models/perfil-objetivo/preguntaObjetivo.m
 @Injectable({
   providedIn: 'root'
 })
-export class PreguntaService {
-
+export class QuestionsTargetService {
 
   private preguntasUrl = 'assets\\mock\\pregunta-objetivas.json'; // Ruta al archivo JSON
 
