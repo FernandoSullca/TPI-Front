@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Cuestionario } from 'src/app/core/models/profile-inicial/questions-profile.model';
+import { Cuestionario } from 'src/app/core/models/initial-profile/questions-profile.model';
 import { environment } from 'src/environments/environment';
 import axios from 'axios';
 
@@ -16,6 +16,16 @@ export class QuestionsProfileService {
 
   getCuestionario(): Observable<Cuestionario> {
     return this.http.get<Cuestionario>(this.apiUrl);
+  }
+
+  public async obtenerTestSubjetivo() {
+    const resp = await axios.get(`${this.apiUrl}/perfil-Subjetivo`);
+    const { data } = resp;
+    const datos = Array.from(data);
+    return datos.map((test) => {
+      // return Cuestionario.serializar(test);
+    });
+
   }
 
   public async TestSubjetivoResultados(AnalisisSubjetivo: Record<string, number>) {

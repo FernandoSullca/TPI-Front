@@ -1,0 +1,52 @@
+{
+  "preguntas": [{
+    "descripcion": "¿En cuáles de estos instrumentos has invertido alguna vez?",
+    "TipoComponente": "checkbox|radio|boton",
+    "seccion": {
+      "nombre": "Horizonte Temporal|Horizonte Temporal"
+    },
+    "respuestas": [{
+        "instrumento": "",
+        "nombre": "Plazo Fijo",
+        "valor": 1
+      },
+      {
+        "instrumento": "",
+        "nombre": "Fondos Comunes de Inversión",
+        "valor": 2
+      },
+      {
+        "instrumento": "Bonos",
+        "respuestas": [{
+            "nombre": "BAJA",
+            "valor": 1
+          },
+          {
+            "nombre": "MEDIA",
+            "valor": 2
+          },
+          {
+            "nombre": "ALTA",
+            "valor": 3
+          }
+        ]
+      },
+      {
+        "instrumento": "Futuros",
+        "respuestas": [{
+            "nombre": "BAJA",
+            "valor": 6
+          },
+          {
+            "nombre": "MEDIA",
+            "valor": 7
+          },
+          {
+            "nombre": "ALTA",
+            "valor": 8
+          }
+        ]
+      }
+    ]
+  }]
+}

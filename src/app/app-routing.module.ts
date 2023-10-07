@@ -17,10 +17,10 @@ import { InteresCompuestoComponent } from './features/dashboard/sections/interes
 import { OpcionesComponent } from './features/dashboard/sections/opciones/opciones.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
-import { PerfilInversorComponent } from './features/dashboard/sections/perfil-inversor/perfil-inversor.component';
-import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
+// import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
 import { StageResultComponent } from './features/perfil-subjetivo/stages/stage-result/stage-result.component';
-
+import { InvestorProfileComponent } from './features/dashboard/sections/investor-profile/investor-profile.component';
+import { StageTwoComponent } from './features/dashboard/sections/investor-profile/stage/stage-two/stage-two.component';
 const routes: Routes = [
   // Rutas de las páginas
   { path: '', component: LandingComponent }, // Redirección por defecto
@@ -42,8 +42,10 @@ const routes: Routes = [
       { path: "aprender-interes", component:  InteresCompuestoComponent},
       { path: "aprender-instrumentos", component:  InteresCompuestoComponent},
       { path: "aprender-opciones", component:  OpcionesComponent},
-      { path: "perfil-inversor", component: PerfilInversorComponent},
+      // { path: "perfil-inversor", component: PerfilInversorComponent},
+      { path: "perfil-inversor", component: InvestorProfileComponent},
       { path: "perfil-inversor-questions", component: StageTwoComponent},
+      // { path: "perfil-inversor-questions", component: StageTwoComponent},
     ],
   },
   // Otras rutas o manejo de errores
