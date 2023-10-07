@@ -179,8 +179,14 @@ export class StageOneComponent implements OnInit {
     this.opcionesSeleccionadas = [];
   }
 
-  loadHome(): void {
+  loadResultado(): void {
     this.entregarResultados() ;
+    this.router.navigate(['/perfil-inversor-resultado']);
+    this.buttonText = 'Continuar';
+  }
+  
+  loadHome(): void {
+    // this.entregarResultados() ;
     this.router.navigate(['/dashboard/perfil-inversor']);
     this.buttonText = 'Continuar';
   }

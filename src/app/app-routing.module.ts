@@ -19,6 +19,7 @@ import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-sub
 import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
 import { PerfilInversorComponent } from './features/dashboard/sections/perfil-inversor/perfil-inversor.component';
 import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
+import { StageResultComponent } from './features/perfil-subjetivo/stages/stage-result/stage-result.component';
 
 const routes: Routes = [
   // Rutas de las páginas
@@ -27,6 +28,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: "perfil", component:  PerfilSubjetivoComponent},
   { path: "perfil-inversor", component:  StageOneComponent},
+  { path: "perfil-inversor-resultado", component:  StageResultComponent},
+  
   {
     path: 'dashboard',
     component: DashboardComponent,
