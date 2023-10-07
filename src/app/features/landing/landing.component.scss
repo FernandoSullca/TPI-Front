@@ -11282,7 +11282,8 @@ line-height: 32px; /* 160% */
 /* Cambiar video por imagenes en version mobil */
 @media (pointer: coarse) and (hover: none) {
   body {
-    background-image: url("/assets/image/bg-mobile-Notebook graficos.png") #2a5555 no-repeat center center scroll;
+    //Pide que sea bacgroun en lugar de backgroundUrl
+    background: url("/assets/image/bg-mobile-Notebook graficos.png") #2a5555 no-repeat center center scroll;
     background-size: cover;
   }
   body video {
@@ -11300,7 +11301,7 @@ line-height: 32px; /* 160% */
 
 @media (min-width: 992px) {
   .masthead {
-    height: 100%;
+    height: 100vh;
     width: 65vw;
     min-height: 0;
     padding-bottom: 0;

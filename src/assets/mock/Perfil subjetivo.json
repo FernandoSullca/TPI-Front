@@ -1,50 +1,145 @@
 {
-  "preguntas": [
-    {
+  "preguntas": [{
       "descripcion": "¿En cuáles de estos instrumentos has invertido alguna vez?",
-      "tipo": "checkbox",
-      "respuestas": [
-        "Plazo Fijo",
-        "Fondos Comunes de Inversión",
-        "Bonos",
-        "Acciones",
-        "Opciones",
-        "Futuros"
+      "TipoComponente": "checkbox",
+      "seccion": {
+        "nombre": "Horizonte Temporal"
+      },
+      "respuestas": [{
+          "nombre": "Plazo Fijo",
+          "valor": 1
+        },
+        {
+          "nombre": "Fondos Comunes de Inversión",
+          "valor": 2
+        },
+        {
+          "nombre": "Bonos",
+          "valor": 3
+        },
+        {
+          "nombre": "Acciones",
+          "valor": 5
+        },
+        {
+          "nombre": "Opciones",
+          "valor": 6
+        },
+        {
+          "nombre": "Futuros",
+          "valor": 7
+        }
       ]
     },
     {
       "descripcion": "¿Cuántos años tenés?",
-      "tipo": "radio",
-      "respuestas": [
-        "Menos de 30",
-        "30-40",
-        "41-50",
-        "Más de 50"
+      "TipoComponente": "radio",
+      "seccion": {
+        "nombre": "Horizonte Temporal"
+      },
+      "respuestas": [{
+          "nombre": "Menos de 30",
+          "valor": 1
+        },
+        {
+          "nombre": "30-40",
+          "valor": 3
+        },
+        {
+          "nombre": "41-50",
+          "valor": 7
+        },
+        {
+          "nombre": "Más de 50",
+          "valor": 10
+        }
       ]
     },
     {
       "descripcion": "¿Cuál es tu nivel de conocimiento en los siguientes instrumentos?",
-      "tipo": "botones-unica-opcion",
-      "respuestas": [
-        {
+      "TipoComponente": "boton",
+      "seccion": {
+        "nombre": "Tolerancia al riesgo"
+      },
+      "respuestas": [{
           "instrumento": "Fondos Comunes de Inversión",
-          "respuestas": ["BAJA", "MEDIA", "ALTA"]
+          "respuestas": [{
+              "nombre": "BAJA",
+              "valor": 1
+            },
+            {
+              "nombre": "MEDIA",
+              "valor": 2
+            },
+            {
+              "nombre": "ALTA",
+              "valor": 3
+            }
+          ]
         },
         {
           "instrumento": "Bonos",
-          "respuestas": ["BAJA", "MEDIA", "ALTA"]
+          "respuestas": [{
+            "nombre": "BAJA",
+            "valor": 1
+          },
+          {
+            "nombre": "MEDIA",
+            "valor": 2
+          },
+          {
+            "nombre": "ALTA",
+            "valor": 3
+          }
+        ]
         },
         {
           "instrumento": "Acciones",
-          "respuestas": ["BAJA", "MEDIA", "ALTA"]
+          "respuestas": [{
+            "nombre": "BAJA",
+            "valor": 2
+          },
+          {
+            "nombre": "MEDIA",
+            "valor": 3
+          },
+          {
+            "nombre": "ALTA",
+            "valor": 4
+          }
+        ]
         },
         {
           "instrumento": "Opciones",
-          "respuestas": ["BAJA", "MEDIA", "ALTA"]
+          "respuestas": [{
+            "nombre": "BAJA",
+            "valor": 3
+          },
+          {
+            "nombre": "MEDIA",
+            "valor": 4
+          },
+          {
+            "nombre": "ALTA",
+            "valor": 5
+          }
+        ]
         },
         {
           "instrumento": "Futuros",
-          "respuestas": ["BAJA", "MEDIA", "ALTA"]
+          "respuestas": [{
+            "nombre": "BAJA",
+            "valor": 6
+          },
+          {
+            "nombre": "MEDIA",
+            "valor": 7
+          },
+          {
+            "nombre": "ALTA",
+            "valor": 8
+          }
+        ]
         }
       ]
     }

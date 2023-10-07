@@ -21,12 +21,13 @@ import { TriviaComponent } from './features/dashboard/sections/trivia/trivia.com
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
 import { OtroComponent } from './features/dashboard/sections/otro/otro.component';
-import { PerfilInversorComponent } from './features/dashboard/sections/perfil-inversor/perfil-inversor.component';
-import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
+// import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
 import { MessageComponent } from './common/message/message.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component';
 import { GraficoComponent } from './features/dashboard/sections/grafico/grafico.component';
-
+import { StageResultComponent } from './features/perfil-subjetivo/stages/stage-result/stage-result.component';
+import { InvestorProfileComponent } from './features/dashboard/sections/investor-profile/investor-profile.component'; 
+import { StageTwoComponent } from './features/dashboard/sections/investor-profile/stage/stage-two/stage-two.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,11 +43,12 @@ import { GraficoComponent } from './features/dashboard/sections/grafico/grafico.
     TriviaComponent,
     PerfilSubjetivoComponent,
     StageOneComponent,
-    PerfilInversorComponent,
     StageTwoComponent,
     MessageComponent,
     CarteraComponent,
-    GraficoComponent
+    GraficoComponent,
+    StageResultComponent,
+    InvestorProfileComponent
   ],
   imports: [
     BrowserModule,
