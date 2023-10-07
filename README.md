@@ -10,6 +10,21 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
+// lo demas ...mas tarde
+///Routing del modulo especifico
+//asdkjasldjklasda
+`ng generate module modules/<Modulo-Especifico>/<Modulo-Especifico>-routing --flat`
+
+///Routing del modulo especifico
+`ng generate module modules/authentication/authentication-routing --flat` 
+
+//Componente Login para el Modulo Autentificacion
+`ng generate component modules/<Modulo-Especifico>/components/<Nombre-Especifico>`
+
+//Componente * para el Modulo *
+`ng generate component modules/<Modulo-Especifico>/components/<Nombre-Especifico>`
+
+`ng generate component shared/components/<nombre de componentes Compartido>`
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.

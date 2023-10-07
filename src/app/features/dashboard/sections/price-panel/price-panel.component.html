@@ -1,0 +1,89 @@
+<div class="container-fluid">
+  <div class="row text-center table-price">
+    <div class="text-start">
+      <h1>Panel de precios</h1>
+    </div>
+    <div class="col-sm-12">
+      <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
+        <div class="col">Simbolo</div>
+        <div class="col">Último Operado</div>
+        <div class="col d-none d-xl-block">Variacion Diaria</div>
+        <div class="col d-none d-xl-block">Cantidad Compra</div>
+        <div class="col d-none d-xl-block">Precio Compra</div>
+        <div class="col d-none d-xl-block">Precio Venta</div>
+        <div class="col d-none d-xl-block">Cantidad Venta</div>
+        <div class="col d-none d-xl-block">Apertura</div>
+        <div class="col d-none d-xl-block">Minimo</div>
+        <div class="col d-none d-xl-block">Máximo</div>
+        <div class="col">Último Cierre</div>
+        <div class="col">Monto Operado</div>
+      </div>
+      <!-- [ngClass]="{'text-primary': i % 2 }"      -->
+      <div class="row filas">
+        <div *ngFor="let titulo of titulos; index as i;">
+          <div class="row" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
+            <div class="col overflow-hidden text-start">
+              <strong>
+                {{titulo.simbolo}}
+              </strong>
+              <br>
+              <span>{{titulo.descripcion}}</span>
+            </div>
+            <div class="col overflow-hidden">{{titulo.ultimoPrecio || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.variacionPorcentual || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.cantidadCompra || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.precioCompra || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.precioVenta || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.cantidadVenta || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.apertura || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.minimo || '-'}}</div>
+            <div class="col overflow-hidden d-none d-xl-block">{{titulo.maximo || '-'}}</div>
+            <div class="col overflow-hidden">{{titulo.ultimoCierre || '-'}}</div>
+            <div class="col overflow-hidden">{{titulo.ultimoPrecio || '-'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5" style="height: 30vh;">
+    <div class="container-fluid ">
+      <div class="ml-5">
+        <h1>Nueva orden</h1>
+      </div>
+      <div class="row d-flex align-content-between mb-3 inputs-orden">
+        <div class="col-md-12">
+          <label for="simbolos" class="form-label">
+            Especie
+          </label>
+          <select class="form-control" id="simbolos" name='simbolo' [(ngModel)]="simbolo" placeholder="hola">
+            <option value="" disabled selected>Seleccione un instrumento aca</option>
+            <option *ngFor="let simbolo of titulosSimbolo" value="{{simbolo}}">{{simbolo}}</option>
+          </select>
+        </div>
+
+        <div class="col-md-12">
+          <label for="simbolos" class="form-label">
+            Cantidad
+          </label>
+          <input placeholder="Ingrese cantidad aca" name='cantidad' [(ngModel)]="cantidad" type="number"
+            class="form-control" id="cantidad">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex justify-content-around">
+          <button type="button" class="boton btn btn-lg" (click)="vender()">VENDER</button>
+          <button type="button" class="boton btn btn-lg" (click)="comprar()">COMPRAR</button>
+        </div>
+      </div>
+
+      <div class="col d-flex justify-content-around">
+        <message [textMessage]="textMessage" [typeMessage]="typeMessage"></message>
+      </div>
+
+    </div>
+
+
+
+  </div>
+</div>

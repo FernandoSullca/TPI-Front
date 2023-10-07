@@ -1,0 +1,47 @@
+@import "../../../../../variables";
+
+.filas {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 50vh;
+
+}
+
+.table-price {
+
+    @media(max-width:992px) {
+        font-size: .8rem;
+    }
+
+    @media(max-width:1600px) {
+        font-size: .75rem;
+    }
+}
+
+.filasClaras {
+    background-color: white;
+}
+
+.filasOscuras {
+    background-color: #f9f9f9;
+}
+
+.boton {
+    background-color: $primary-color;
+    color: $color-white;
+    border-radius: 1.5rem;
+    font-weight: bold;
+
+}
+
+.inputs-orden {
+    select {
+        color: $primary-color;
+        font-weight: bold;
+    }
+
+    input {
+        color: $primary-color;
+        font-weight: bold;
+    }
+}

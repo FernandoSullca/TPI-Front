@@ -1,0 +1,181 @@
+{
+    "tematicas": [
+      {
+        "nombre": "Instrumentos",
+        "descripcion": "Los instrumentos financieros son activos que permiten a las personas invertir y gestionar su dinero en el mercado financiero."
+      },
+      {
+        "nombre": "Opciones",
+        "descripcion": "Las opciones son contratos financieros que otorgan a los inversores el derecho, pero no la obligación, de comprar o vender un activo subyacente a un precio específico en una fecha futura."
+      }
+    ],
+    "introducciones": [
+      {
+        "tematica": "Instrumentos",
+        "titulo": "Introducción a los Instrumentos Financieros",
+        "contenido": "Los instrumentos financieros son herramientas clave en el mundo de las inversiones. Conócelos y aprende a utilizarlos de manera efectiva.",
+        "nivel": 1,
+        "preguntas": [
+          {
+            "pregunta": "¿Qué son los instrumentos financieros?",
+            "opciones": [
+              {
+                "texto": "Documentos legales utilizados en transacciones comerciales.",
+                "correcta": false
+              },
+              {
+                "texto": "Activos que permiten a las personas invertir y gestionar su dinero.",
+                "correcta": true
+              },
+              {
+                "texto": "Formas de pago en efectivo.",
+                "correcta": false
+              }
+            ]
+          },
+          {
+            "pregunta": "¿Cuál es la importancia de los instrumentos financieros?",
+            "opciones": [
+              {
+                "texto": "No tienen importancia en el mundo de las finanzas.",
+                "correcta": false
+              },
+              {
+                "texto": "Facilitan la inversión y gestión de activos financieros.",
+                "correcta": true
+              },
+              {
+                "texto": "Solo son relevantes para los bancos.",
+                "correcta": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tematica": "Opciones",
+        "titulo": "Introducción a las Opciones Financieras",
+        "contenido": "Las opciones financieras son contratos que te permiten tomar decisiones estratégicas en tus inversiones. Aprende cómo funcionan.",
+        "nivel": 1,
+        "preguntas": [
+          {
+            "pregunta": "¿Qué son las opciones financieras?",
+            "opciones": [
+              {
+                "texto": "Contratos de compra de acciones.",
+                "correcta": false
+              },
+              {
+                "texto": "Contratos financieros que otorgan derechos de compra o venta de activos.",
+                "correcta": true
+              },
+              {
+                "texto": "Documentos legales para el registro de propiedades.",
+                "correcta": false
+              }
+            ]
+          },
+          {
+            "pregunta": "¿Cuál es el principal beneficio de las opciones financieras?",
+            "opciones": [
+              {
+                "texto": "Generan intereses fijos.",
+                "correcta": false
+              },
+              {
+                "texto": "Otorgan el derecho, pero no la obligación, de comprar o vender activos a un precio específico.",
+                "correcta": true
+              },
+              {
+                "texto": "Permiten el acceso a préstamos bancarios.",
+                "correcta": false
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "trivias": [
+      {
+        "tematica": "Instrumentos",
+        "nivel": 1,
+        "preguntas": [
+          {
+            "pregunta": "¿Qué papel desempeñan los instrumentos financieros en las inversiones?",
+            "opciones": [
+              {
+                "texto": "No tienen ningún papel en las inversiones.",
+                "correcta": false
+              },
+              {
+                "texto": "Facilitan la diversificación y gestión de carteras de inversión.",
+                "correcta": true
+              },
+              {
+                "texto": "Solo son útiles para las empresas.",
+                "correcta": false
+              }
+            ]
+          },
+          {
+            "pregunta": "¿Cuál es una característica común de los instrumentos financieros?",
+            "opciones": [
+              {
+                "texto": "Son siempre iguales y no varían en valor.",
+                "correcta": false
+              },
+              {
+                "texto": "Pueden variar en valor y generar ganancias o pérdidas.",
+                "correcta": true
+              },
+              {
+                "texto": "Solo están disponibles para inversionistas profesionales.",
+                "correcta": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tematica": "Opciones",
+        "nivel": 1,
+        "preguntas": [
+          {
+            "pregunta": "¿En qué se diferencian las opciones financieras de las acciones?",
+            "opciones": [
+              {
+                "texto": "Las opciones son contratos que otorgan derechos de compra o venta, mientras que las acciones representan propiedad en una empresa.",
+                "correcta": true
+              },
+              {
+                "texto": "No hay diferencias, son iguales.",
+                "correcta": false
+              },
+              {
+                "texto": "Las opciones son más caras que las acciones.",
+                "correcta": false
+              }
+            ]
+          },
+          {
+            "pregunta": "¿Para qué pueden utilizarse las opciones financieras?",
+            "opciones": [
+              {
+                "texto": "Solo para comprar bienes raíces.",
+                "correcta": false
+              },
+              {
+                "texto": "Para tomar decisiones estratégicas en inversiones y gestionar riesgos.",
+                "correcta": true
+              },
+              {
+                "texto": "Solo para invertir en acciones.",
+                "correcta": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  
