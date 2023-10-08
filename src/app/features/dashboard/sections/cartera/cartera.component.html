@@ -1,9 +1,10 @@
-<div class="container">
+<div class="container" *ngIf="cartera">
     <div class="total-valorizado-section">
         <b>
             <h3>Valor Total</h3>
         </b>
-        <h2>{{cartera.totalCartera}}</h2>
+        <h2 *ngIf="cartera?.totalCartera; else elseBlock">{{cartera.totalCartera}}</h2>
+        <ng-template #elseBlock>0.00</ng-template>
     </div>
     <div class="cartera-grafico-section">
         <app-grafico [cantidadPorInstrumento]="cartera.cantidadPorInstrumento"></app-grafico>
