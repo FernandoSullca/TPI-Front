@@ -43,4 +43,21 @@ export class QuestionsProfileService {
     console.log(data);
     return data;
   }
+
+
+  public data: any;
+
+  setperfil(data: string) {
+    this.data = data;
+    console.log("Guardando dato enservicio");
+    console.log(data);
+    console.log("Guardando dato enservicio");
+    console.log(this.data);
+  }
+
+  getperfil() {
+    console.log("REcuperando datos enservicio");
+    console.log(this.data);
+    return this.data;
+  }
 }

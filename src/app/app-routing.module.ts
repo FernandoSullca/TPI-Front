@@ -28,7 +28,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: "perfil", component:  PerfilSubjetivoComponent},
   { path: "perfil-inversor", component:  StageOneComponent},
-  { path: "perfil-inversor-resultado", component:  StageResultComponent},
+  // { path: 'perfil-inversor-resultado/:perfil', component:  StageResultComponent},
+  { path: 'perfil-inversor-resultado', component:  StageResultComponent},
   
   {
     path: 'dashboard',
