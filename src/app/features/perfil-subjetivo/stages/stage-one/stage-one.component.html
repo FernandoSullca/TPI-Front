@@ -116,9 +116,6 @@
                                 <ng-container *ngIf="respuesta.instrumento;">
                                     <div class="row"> 
                                         <div *ngFor="let opcion of opcionesPorInstrumento(pregunta.respuestas,respuesta.instrumento)" class="col-auto">
-                                            <!-- <p>{{ opcion.nombre }}</p> -->
-                                            <!-- <p>{{ opcion.valor }}</p>
-                                            <p>{{ opcion.orden }}</p> -->
                                          <button type="button" id="{{ opcion.nombre }}" name="{{ respuesta.instrumento }}"
                                             [class.selected]="esRespuestaSeleccionada(respuesta.instrumento, opcion.valor)"
                                             (click)="actualizarOpcionesSeleccionadasBotonInstrumento(pregunta.seccion.nombre, respuesta.instrumento, opcion.valor)">

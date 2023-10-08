@@ -41,12 +41,13 @@ export class StageOneComponent implements OnInit {
   ngOnInit(): void {
     // Solicitud a json local;
     this.profileService.getCuestionario().subscribe((data) => {
-      console.log("data");
+      console.log("Test Subjetivo Obtenido");
       console.log(data);
       console.log("------------------");
       this.resCuestionario = data;
       this.loadQuestions();
     });
+     // Solicitud a json API;
     // this.getTestPerfil();
   }
 
@@ -74,20 +75,7 @@ export class StageOneComponent implements OnInit {
 
     this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[0];
 
-    //Filtrado para armar las preguntas multiples/opciones-respuestas
-    // const preguntaFiltrada = this.filtrarPreguntasCompuestasBTN(this.resCuestionario);
-    // if (preguntaFiltrada) {
-    //   const questions = this.convertirPreguntaBotones(preguntaFiltrada[0]);
-    //   // console.log("    const questions=this.convertirPreguntaBotones(preguntaFiltrada[0]);");
-    //   // console.log(questions);
-    //   // console.log("------------------");
-    // }
-    this.PregSubjetivo.preguntas[0] = this.testSubjetivo.preguntas[0];
-    console.log("this.PregSubjetivo");
-    console.log(this.PregSubjetivo);
-    console.log("------------------");
-    console.log(this.AnalisisSubjetivo);
-    console.log("------------------");
+    // this.PregSubjetivo.preguntas[0] = this.testSubjetivo.preguntas[0];
   }
 
   loadNextQuestion(): void {
@@ -97,10 +85,8 @@ export class StageOneComponent implements OnInit {
       this.guardarrespuestas(this.cuestionario.preguntas[0].seccion.nombre,
         this.cuestionario.preguntas[0].TipoComponente);
 
-      console.log("-Resultado Guradado");
+      console.log("-Resultado Temporal Guardado");
       console.log(this.respuestasDeUsuario);
-
-      console.log(this.AnalisisSubjetivo);
       // Incrementa el índice para la próxima pregunta
       this.currentQuestionIndex++;
 
@@ -110,7 +96,9 @@ export class StageOneComponent implements OnInit {
 
       } else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
+    
         console.log('Has respondido todas las preguntas.');
+        console.log(this.AnalisisSubjetivo);
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
         this.buttonText = 'Continuar';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
         // this.entregarResultados()
@@ -152,6 +140,7 @@ export class StageOneComponent implements OnInit {
 
     // SE actualiza para el cadso de los raidus(unica opcion)
     this.opcionSeleccionada = valor;
+  
     const index = this.opcionesSeleccionadas.findIndex(opcion => opcion.pregunta === pregunta && opcion.valor === valor);
     if (index !== -1) {
       // Eliminar la opción no seleccionada del arreglo de opciones seleccionadas
@@ -182,7 +171,7 @@ export class StageOneComponent implements OnInit {
     switch (tipo) {
       case 'CHECKBOX':
 
-
+        console.log('Suma total:Area CHECKBOX');
         index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
         const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
         const sumaCheckbox = valoresCheckbox.reduce((total, valor) => total + valor, 0);
@@ -200,10 +189,10 @@ export class StageOneComponent implements OnInit {
         this.AnalisisSubjetivo[seccion] += sumaCheckbox;
         break;
       case 'RADIO':
-
+        console.log('Suma total:Area RADIO');
         index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);//Horizonte o riesgo
         let valorRadio = this.opcionSeleccionada;
-        console.log('Suma total:', valorRadio);
+ 
         if (index !== -1) {
           this.respuestasDeUsuario[index].calculo += valorRadio;
         }
@@ -215,11 +204,14 @@ export class StageOneComponent implements OnInit {
           this.AnalisisSubjetivo[seccion] = 0;
         }
         this.AnalisisSubjetivo[seccion] += valorRadio;
+        console.log(valorRadio);
         break;
       case 'BOTON':
+        console.log('Suma total:Area BOTON');
         index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
         let suma = 0;
-        console.log(this.respuestasSeleccionadasPorInstrumento);
+        // console.log("Puntaje por respuestas");
+        // console.log(this.respuestasSeleccionadasPorInstrumento);
         for (const instrumento in this.respuestasSeleccionadasPorInstrumento) {
           if (this.respuestasSeleccionadasPorInstrumento.hasOwnProperty(instrumento)) {
             suma += this.respuestasSeleccionadasPorInstrumento[instrumento];
@@ -319,26 +311,9 @@ export class StageOneComponent implements OnInit {
     return true;
   }
 
-  filtrarPreguntasCompuestasBTN(cuestionario: CuestionarioInitial): Pregunta[] {
-
-    // Filtrar las preguntas de tipo "Boton" que tienen un instrumento no nulo
-    const preguntasBotonConInstrumento: Pregunta[] = cuestionario.preguntas.filter((pregunta) => {
-      return pregunta.TipoComponente === 'BOTON' && pregunta.respuestas[0]?.instrumento !== null;
-    });
-
-    return preguntasBotonConInstrumento;
-
-  }
-  // Nueva función para convertir pregunta a preguntaBotones
-
-  convertirPreguntaBotones(pregunta: Pregunta): PreguntaBotones {
-
-    return convertirAPreguntaBotones(pregunta);
-  }
-
 
   instrumentoMostrado: boolean = false;
-  //Obtiene 
+  //Obtiene ell refactor de preguntas de botones para que sea visibles
   opcionesPorInstrumento(respuestasbnts: Respuesta[], instrumento: string): any[] {
     // Filtrar y ordenar las opciones por instrumento y orden
     // console.log("Funciones unificar respuestas");
@@ -351,15 +326,27 @@ export class StageOneComponent implements OnInit {
     return respuestasbnts.orden == 1;
   }
 
-  // getInstrumentosUnicos(respuestas: Respuesta[]): string[] {
-  //   const instrumentosUnicos = new Set<string>();
 
-  //   respuestas.forEach((respuesta) => {
-  //     instrumentosUnicos.add(respuesta.instrumento);
+  /******************************Relacionado con tratamiento de pregunrtas api */
+  // filtrarPreguntasCompuestasBTN(cuestionario: CuestionarioInitial): Pregunta[] {
+
+  //   // Filtrar las preguntas de tipo "Boton" que tienen un instrumento no nulo
+  //   const preguntasBotonConInstrumento: Pregunta[] = cuestionario.preguntas.filter((pregunta) => {
+  //     return pregunta.TipoComponente === 'BOTON' && pregunta.respuestas[0]?.instrumento !== null;
   //   });
 
-  //   return Array.from(instrumentosUnicos);
+  //   return preguntasBotonConInstrumento;
+
   // }
+  
+  // Nueva función para convertir pregunta a preguntaBotones
+
+  // convertirPreguntaBotones(pregunta: Pregunta): PreguntaBotones {
+
+  //   return convertirAPreguntaBotones(pregunta);
+  // }
+
+
 }
 
 

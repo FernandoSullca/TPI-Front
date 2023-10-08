@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cuestionario, Respuesta, RespuestaBnt } from 'src/app/core/models/initial-profile/questions-profile.model';
 import { QuestionsTargetService } from 'src/app/core/services/api/target-profile/questions-target-profile.service';
-import { Pregunta } from 'src/app/core/models/perfil-objetivo/preguntaObjetivo.model';
+import { Pregunta, Respuesta,RespuestaBnt  } from 'src/app/core/models/perfil-objetivo/preguntaObjetivo.model';
 import { PreguntaService } from 'src/app/core/services/api/DataLocalService/pregunta.service';
 @Component({
   selector: 'app-stage-two',
