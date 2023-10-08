@@ -60,9 +60,11 @@ export class StageOneComponent implements OnInit {
   public getTestPerfil() {
     return this.profileService.obtenerTestSubjetivo()
       .then((testSubjetivo) => {
-        // this.testSubjetivo.preguntas = testSubjetivo;
+        this.testSubjetivo.preguntas = testSubjetivo;
         console.log("Servicio a questionario inicial");
         console.log(this.testSubjetivo);
+        this.resCuestionario=this.testSubjetivo;
+        this.loadQuestions();
       })
       .catch((error) => console.error(error))
   }
@@ -73,13 +75,13 @@ export class StageOneComponent implements OnInit {
     this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[0];
 
     //Filtrado para armar las preguntas multiples/opciones-respuestas
-    const preguntaFiltrada = this.filtrarPreguntasCompuestasBTN(this.resCuestionario);
-    if (preguntaFiltrada) {
-      const questions = this.convertirPreguntaBotones(preguntaFiltrada[0]);
-      // console.log("    const questions=this.convertirPreguntaBotones(preguntaFiltrada[0]);");
-      // console.log(questions);
-      // console.log("------------------");
-    }
+    // const preguntaFiltrada = this.filtrarPreguntasCompuestasBTN(this.resCuestionario);
+    // if (preguntaFiltrada) {
+    //   const questions = this.convertirPreguntaBotones(preguntaFiltrada[0]);
+    //   // console.log("    const questions=this.convertirPreguntaBotones(preguntaFiltrada[0]);");
+    //   // console.log(questions);
+    //   // console.log("------------------");
+    // }
     this.PregSubjetivo.preguntas[0] = this.testSubjetivo.preguntas[0];
     console.log("this.PregSubjetivo");
     console.log(this.PregSubjetivo);
@@ -328,10 +330,12 @@ export class StageOneComponent implements OnInit {
 
   }
   // Nueva función para convertir pregunta a preguntaBotones
+
   convertirPreguntaBotones(pregunta: Pregunta): PreguntaBotones {
 
     return convertirAPreguntaBotones(pregunta);
   }
+
 
   instrumentoMostrado: boolean = false;
   //Obtiene 

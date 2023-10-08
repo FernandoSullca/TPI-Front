@@ -61,6 +61,7 @@ export class Respuesta {
 }
 
 function convertirAPreguntaBotones(pregunta: Pregunta): PreguntaBotones {
+  debugger
   const respuestasBnt: RespuestaBnt[] = pregunta.respuestas.map((respuesta) => {
     return {
       respuestas: [respuesta],

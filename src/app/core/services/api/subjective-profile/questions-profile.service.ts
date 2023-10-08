@@ -26,7 +26,7 @@ export class QuestionsProfileService {
     const datos = Array.from(data);
     console.log(datos);
     return datos.map((test) => {
-    //  return CuestionarioInitial.serializar(test);
+    return CuestionarioInitial.serializar(test);
     });
   }
 
