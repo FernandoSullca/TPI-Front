@@ -37,7 +37,7 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'tutorial', pathMatch: 'full' }, // Ruta por defecto del dashboard
+      { path: '', redirectTo: 'cartera', pathMatch: 'full' }, // Ruta por defecto del dashboard
       { path: 'precios', component: PricePanelComponent },
       // { path: 'otro', component: OtroComponent },
       { path: 'tutorial', component: ContentComponent },
