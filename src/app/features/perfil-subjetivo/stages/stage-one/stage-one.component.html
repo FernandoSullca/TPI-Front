@@ -10,7 +10,24 @@
                 <!-- Verifica el tipo de pregunta -->
 
                 <!-- Pregunta de tipo checkbox -->
-                <ng-container *ngIf="pregunta.TipoComponente=== 'checkbox'">
+                <ng-container *ngIf="pregunta.TipoComponente=== 'CHECKBOX'">
+                    <div class="container-perfil-Questions p-2">
+                        <p>{{ pregunta.descripcion }}</p>
+                    </div>
+                    <p> Podés elegir más de una opción o ninguna</p>
+                    <div *ngIf="isArray(pregunta.respuestas)">
+                        <div *ngFor="let respuesta of pregunta.respuestas">
+                            <input type="checkbox" id="{{ respuesta.nombre }}" name="{{ respuesta.nombre}}"
+                                (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor)">
+
+                            <label for="{{ respuesta }}">{{ respuesta.nombre }}</label>
+                        </div>
+                    </div>
+
+
+                </ng-container>
+                <!-- 
+                <ng-container *ngIf="pregunta.TipoComponente=== 'CHECKBOX'">
                     <div class="container-perfil-Questions p-2">
                         <p>{{ pregunta.descripcion }}</p>
                     </div>
@@ -26,10 +43,9 @@
                     </div>
 
 
-                </ng-container>
-
+                </ng-container> -->
                 <!-- Pregunta de tipo radio -->
-                <ng-container *ngIf="pregunta.TipoComponente === 'radio'">
+                <!-- <ng-container *ngIf="pregunta.TipoComponente === 'RADIO'">
                     <div class="container-perfil-Questions p-2">
                         <p>{{ pregunta.descripcion }}</p>
                     </div>
@@ -43,10 +59,26 @@
                         </div>
                     </div>
 
+                </ng-container> -->
+                <!-- Pregunta de tipo radio -->
+                <ng-container *ngIf="pregunta.TipoComponente === 'RADIO'">
+                    <div class="container-perfil-Questions p-2">
+                        <p>{{ pregunta.descripcion }}</p>
+                    </div>
+                    <p> elegir Solo una opción"</p>
+                    <div *ngIf="isArray(pregunta.respuestas)">
+                        <div *ngFor="let respuesta of pregunta.respuestas ">
+                            <input type="radio" id="{{ respuesta.nombre }}" name="{{respuesta.nombre}}"
+                                value="{{respuesta.valor}}" [(ngModel)]="opcionSeleccionada"
+                                (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor)">
+                            <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label>
+                        </div>
+                    </div>
+
                 </ng-container>
 
                 <!-- Pregunta de tipo botones-unica-opcion -->
-
+                <!-- 
                 <ng-container *ngIf="pregunta.TipoComponente === 'boton'" style="text-align: center;">
                     <div class="container-perfil-Questions p-2">
                         <p>{{ pregunta.descripcion }}</p>
@@ -54,7 +86,6 @@
                     <p> Elije el nivel de conocimiento por cada instrumento</p>
                     <div *ngIf="isArraybnt(pregunta.respuestas)">
                         <div *ngFor="let respuesta of pregunta.respuestas">
-                            <!-- <div *ngIf="isArraybnt(respuesta.instrumento)"> -->
                             <p>{{respuesta.instrumento }}</p>
                             <div class="row">
                                 <div *ngFor="let opcion of respuesta.respuestas" class="col-auto">
@@ -65,15 +96,63 @@
 
                                         {{ opcion.nombre }}
                                     </button>
-
-
-
                                 </div>
                             </div>
-
-                            <!-- </div>  -->
                         </div>
                     </div>
+
+                </ng-container> -->
+
+                <ng-container *ngIf="pregunta.TipoComponente === 'BOTON'" style="text-align: center;">
+                    <div class="container-perfil-Questions p-2">
+                        <p>{{ pregunta.descripcion }}</p>
+                    </div>
+                    <p> Elije el nivel de conocimiento por cada instrumento</p>
+
+                    <div *ngFor="let respuesta of pregunta.respuestas">
+                        <div class="row">
+                            <!-- Mostrar el instrumento solo una vez -->
+                            <div *ngIf="esPrimero(respuesta)">
+                                <p>{{ respuesta.instrumento }}</p>
+                                <ng-container *ngIf="respuesta.instrumento;">
+                                    <div class="row"> 
+                                        <div *ngFor="let opcion of opcionesPorInstrumento(pregunta.respuestas,respuesta.instrumento)" class="col-auto">
+                                            <!-- <p>{{ opcion.nombre }}</p> -->
+                                            <!-- <p>{{ opcion.valor }}</p>
+                                            <p>{{ opcion.orden }}</p> -->
+                                         <button type="button" id="{{ opcion.nombre }}" name="{{ respuesta.instrumento }}"
+                                            [class.selected]="esRespuestaSeleccionada(respuesta.instrumento, opcion.valor)"
+                                            (click)="actualizarOpcionesSeleccionadasBotonInstrumento(pregunta.seccion.nombre, respuesta.instrumento, opcion.valor)">
+                                        {{ opcion.nombre }}
+                                    </button>
+                                        </div>
+                                    </div> 
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- <div *ngIf="isArraybnt(pregunta.respuestas)"> -->
+
+
+
+                    <!-- <div *ngFor="let respuesta of pregunta.respuestas">
+                        <p>{{respuesta.instrumento }}</p>
+                        <div class="row"> -->
+                    <!-- <div *ngFor="let opcion of respuesta.respuestas" class="col-auto"> -->
+
+                    <!-- <button type="button" id="{{ opcion.nombre }}" name="{{ respuesta.instrumento }}"
+                                        [class.selected]="esRespuestaSeleccionada(respuesta.instrumento, opcion.valor)"
+                                        (click)="actualizarOpcionesSeleccionadasBotonInstrumento(pregunta.seccion.nombre, respuesta.instrumento, opcion.valor)">
+
+                                        {{ opcion.nombre }}
+                                    </button> -->
+                    <!-- </div> -->
+                    <!-- </div>
+                    </div> -->
+                    <!-- </div> -->
 
                 </ng-container>
 
