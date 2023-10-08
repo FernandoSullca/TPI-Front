@@ -3,12 +3,14 @@
     flex-direction: column;
     align-content: center;
     align-items: center;
+    padding-bottom: 1rem;
+    border-radius: 1rem;
 }
 .brand-box {
     display: flex;
     align-items: center;
     white-space: nowrap;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
 
     img {
       height: 2.5rem;
@@ -37,4 +39,9 @@
   flex-shrink: 0;
   fill: #3261A8;
   filter: drop-shadow(0px 4px 6px rgba(163, 161, 255, 0.16));
+}
+@media (min-width: 690px) {
+  #meta {
+    width: 40%;
+  }
 }
