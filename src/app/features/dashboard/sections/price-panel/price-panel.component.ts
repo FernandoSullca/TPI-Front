@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { PricePanelService } from 'src/app/core/services/api/price-panel/price-panel.service';
 // import { CommonModule } from '@angular/common';
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
+import { mockAcciones } from 'src/app/core/services/api/price-panel/mock'
 
 @Component({
   selector: 'app-price-panel',
@@ -37,7 +38,10 @@ export class PricePanelComponent implements OnInit {
           }
         });
       })
-      .catch((error) => console.error(error))
+      .catch((error) => {
+        this.titulos = mockAcciones;
+          console.error(error)
+      })
   }
 
   public vender() {

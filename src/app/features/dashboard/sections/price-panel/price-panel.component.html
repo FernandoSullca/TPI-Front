@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row text-center table-price">
     <div class="text-start">
-      <h1>Panel de precios</h1>
+      <h3>Panel de precios</h3>
     </div>
     <div class="col-sm-12">
       <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
@@ -26,8 +26,6 @@
               <strong>
                 {{titulo.simbolo}}
               </strong>
-              <br>
-              <span>{{titulo.descripcion}}</span>
             </div>
             <div class="col overflow-hidden">{{titulo.ultimoPrecio || '-'}}</div>
             <div class="col overflow-hidden d-none d-xl-block">{{titulo.variacionPorcentual || '-'}}</div>
@@ -47,8 +45,8 @@
   </div>
   <div class="row mt-5" style="height: 30vh;">
     <div class="container-fluid ">
-      <div class="ml-5">
-        <h1>Nueva orden</h1>
+      <div class="text-start">
+        <h3>Capturar orden</h3>
       </div>
       <div class="row d-flex align-content-between mb-3 inputs-orden">
         <div class="col-md-12">
@@ -70,7 +68,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row mb-3">
         <div class="col d-flex justify-content-around">
           <button type="button" class="boton btn btn-lg" (click)="vender()">VENDER</button>
           <button type="button" class="boton btn btn-lg" (click)="comprar()">COMPRAR</button>
