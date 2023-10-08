@@ -15,11 +15,9 @@ export class HandleErrorApiService {
 				console.log('ERROR DE CLIENTE');
 			} else {
 				console.log('ERROR DE SERVIDOR');
-				console.log(error.status);
-				console.log(error.message);
 			}
 		} else {
-			console.log('OTRO TIPO DE ERROR');
+			console.log('ERROR DESCONOCIDO');
 		}
 		return throwError(() => error);
 	}

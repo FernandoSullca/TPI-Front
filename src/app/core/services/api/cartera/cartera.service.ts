@@ -10,6 +10,7 @@ import { HandleErrorApiService } from '../../manejo-errores/handle-error-api.ser
   providedIn: 'root'
 })
 export class CarteraService {
+
   resp = `${environment.API}/cartera/valuacion/total`;
   constructor(private http: HttpClient,private handleErrorService : HandleErrorApiService ) {}
 
