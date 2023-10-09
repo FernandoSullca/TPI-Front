@@ -17,6 +17,7 @@
                     <p class="alinea-descripcion-pregunta-check"> Podés elegir más de una opción o ninguna</p>
                     <div *ngIf="isArray(pregunta.respuestas)">
                         <div *ngFor="let respuesta of pregunta.respuestas" class="alinea-pregunta-check">
+                            
                             <input type="checkbox" id="{{ respuesta.nombre }}" name="{{ respuesta.nombre}}"
                                 (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor)">
 
@@ -35,11 +36,11 @@
                     <p class="alinea-descripcion-pregunta-radius">Elegir solo una opción</p>
                     <div *ngIf="isArray(pregunta.respuestas)" class="alinea-pregunta-radius">
                         <div *ngFor="let respuesta of pregunta.respuestas " class="alineacion-botones-opciones-radius" >
-                              <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label>
+                              <!-- <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label> -->
                               <input type="radio" id="{{ respuesta.nombre }}" name="{{respuesta.nombre}}"
                                 value="{{respuesta.valor}}" [(ngModel)]="opcionSeleccionada"
                                 (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor)">
-                          
+                             <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label>
                         </div>
                     </div>
                 </ng-container>
