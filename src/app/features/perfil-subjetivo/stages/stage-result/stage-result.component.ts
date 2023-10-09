@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router ,ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
 
 @Component({
@@ -8,10 +9,29 @@ import { QuestionsProfileService } from 'src/app/core/services/api/subjective-pr
   styleUrls: ['./stage-result.component.scss']
 })
 export class StageResultComponent {
-  resultadotest="Moderado"
+  resultado="Moderado"
+  valorRecibido: any;
+  perfil: any;
+  resultadotest$: Observable<string | undefined>;
+  constructor(private profileService: QuestionsProfileService, private router: Router,private route: ActivatedRoute) { 
+    this.resultadotest$ = new Observable<string | undefined>();
+  }
 
-  constructor(private profileService: QuestionsProfileService, private router: Router) { }
+  ngOnInit(): void {
+    // this.route.params.subscribe((params) => {
+    //   this.resultadotest= params['perfil'];
+    //   // Ahora puedes usar this.valorRecibido en tu componente
+    // });
+    // this.resultadotest=this.valorRecibido;
+    //  this.resultadotest = this.profileService.getperfil();
+     this.resultadotest$ = this.profileService.getperfil();
+    // this.profileService.getperfil().subscribe((resultadotest:string) => {
+    //   this.resultadotest = resultadotest;
+    //   // Continuar con la lógica del componente
+    // });
+  }
 
+ 
   loadHome(): void {
     // this.entregarResultados() ;
     this.router.navigate(['/dashboard/perfil-inversor']);

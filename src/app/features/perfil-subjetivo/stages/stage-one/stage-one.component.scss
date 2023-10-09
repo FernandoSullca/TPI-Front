@@ -4,15 +4,17 @@
     flex-direction: column;
     align-content: center;
     align-items: center;
+    height: 100vh;
 }
 .brand-box {
     display: flex;
     align-items: center;
     white-space: nowrap;
-    margin-bottom: 2rem;
+    // margin-bottom: 2rem;
+    margin-top: 2rem;
 
     img {
-      height: 2.5rem;
+      height: 3.8rem;
       // margin-right: .7rem;
       margin-left: .7rem;
       padding-bottom: 1em;
@@ -24,6 +26,31 @@
     }
   }
 
+
+  /*********correcion de texto MercadoJR para Regular y Bold*********/
+.bold-text-Marca {
+  font-weight: normal;
+  /* Establece la fuente regular para "Mercado" */
+}
+
+.bold-Marca {
+  font-weight: bold;
+  /* Establece la fuente en negrita para "JR" */
+}
+ .alinearcion-logotipo{
+  display: flex !important;
+  align-content: flex-end;
+  align-items: center;
+} 
+
+///*********/////
+/// 
+  .botonera-lg{
+    background-color: #3261A8;
+      color: #FFFFFF;
+      border-radius: 1.5rem;
+      font-weight: bold;
+  }
 .container-perfil {
    width: 80%;
   height: auto;
@@ -36,6 +63,10 @@
   flex-shrink: 0;
   border-radius: 30px;
   border: 2px solid #3261A8;
+  text-align: center;
+  padding-bottom: 0rem;
+  // padding-top: 1rem;
+  font-weight: 700;
 }
 
 .btn-Iniciar {

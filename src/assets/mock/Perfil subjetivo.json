@@ -1,7 +1,8 @@
 {
-  "preguntas": [{
+  "preguntas": [
+    {
       "descripcion": "¿En cuáles de estos instrumentos has invertido alguna vez?",
-      "TipoComponente": "checkbox",
+      "TipoComponente": "CHECKBOX",
       "seccion": {
         "nombre": "Horizonte Temporal"
       },
@@ -33,7 +34,7 @@
     },
     {
       "descripcion": "¿Cuántos años tenés?",
-      "TipoComponente": "radio",
+      "TipoComponente": "RADIO",
       "seccion": {
         "nombre": "Horizonte Temporal"
       },
@@ -56,92 +57,103 @@
       ]
     },
     {
-      "descripcion": "¿Cuál es tu nivel de conocimiento en los siguientes instrumentos?",
-      "TipoComponente": "boton",
+      "descripcion": "¿En cuáles de estos instrumentos has invertido alguna vez?",
+      "TipoComponente": "BOTON",
       "seccion": {
-        "nombre": "Tolerancia al riesgo"
+          "nombre": "Tolerancia al riesgo"
       },
-      "respuestas": [{
-          "instrumento": "Fondos Comunes de Inversión",
-          "respuestas": [{
+      "respuestas": [
+          {
+              "instrumento": "Fondos Comunes de Inversión",
               "nombre": "BAJA",
-              "valor": 1
-            },
-            {
+              "valor": 1,
+              "orden": 1
+          },
+          {
+              "instrumento": "Fondos Comunes de Inversión",
               "nombre": "MEDIA",
-              "valor": 2
-            },
-            {
+              "valor": 2,
+              "orden": 2
+          },
+          {
+              "instrumento": "Fondos Comunes de Inversión",
               "nombre": "ALTA",
-              "valor": 3
-            }
-          ]
-        },
-        {
-          "instrumento": "Bonos",
-          "respuestas": [{
-            "nombre": "BAJA",
-            "valor": 1
+              "valor": 3,
+              "orden": 3
           },
           {
-            "nombre": "MEDIA",
-            "valor": 2
+              "instrumento": "Bonos",
+              "nombre": "BAJA",
+              "valor": 1,
+              "orden": 1
           },
           {
-            "nombre": "ALTA",
-            "valor": 3
+              "instrumento": "Bonos",
+              "nombre": "MEDIA",
+              "valor": 2,
+              "orden": 2
+          },
+          {
+              "instrumento": "Bonos",
+              "nombre": "ALTA",
+              "valor": 3,
+              "orden": 3
+          },
+          {
+              "instrumento": "Acciones",
+              "nombre": "BAJA",
+              "valor": 2,
+              "orden": 1
+          },
+          {
+              "instrumento": "Acciones",
+              "nombre": "MEDIA",
+              "valor": 3,
+              "orden": 2
+          },
+          {
+              "instrumento": "Acciones",
+              "nombre": "ALTA",
+              "valor": 4,
+              "orden": 3
+          },
+          {
+              "instrumento": "Opciones",
+              "nombre": "BAJA",
+              "valor": 3,
+              "orden": 1
+          },
+          {
+              "instrumento": "Opciones",
+              "nombre": "MEDIA",
+              "valor": 4,
+              "orden": 2
+          },
+          {
+              "instrumento": "Opciones",
+              "nombre": "ALTA",
+              "valor": 5,
+              "orden": 3
+          },
+          {
+              "instrumento": "Futuros",
+              "nombre": "BAJA",
+              "valor": 6,
+              "orden": 1
+          },
+          {
+              "instrumento": "Futuros",
+              "nombre": "MEDIA",
+              "valor": 7,
+              "orden": 2
+          },
+          {
+              "instrumento": "Futuros",
+              "nombre": "ALTA",
+              "valor": 8,
+              "orden": 3
           }
-        ]
-        },
-        {
-          "instrumento": "Acciones",
-          "respuestas": [{
-            "nombre": "BAJA",
-            "valor": 2
-          },
-          {
-            "nombre": "MEDIA",
-            "valor": 3
-          },
-          {
-            "nombre": "ALTA",
-            "valor": 4
-          }
-        ]
-        },
-        {
-          "instrumento": "Opciones",
-          "respuestas": [{
-            "nombre": "BAJA",
-            "valor": 3
-          },
-          {
-            "nombre": "MEDIA",
-            "valor": 4
-          },
-          {
-            "nombre": "ALTA",
-            "valor": 5
-          }
-        ]
-        },
-        {
-          "instrumento": "Futuros",
-          "respuestas": [{
-            "nombre": "BAJA",
-            "valor": 6
-          },
-          {
-            "nombre": "MEDIA",
-            "valor": 7
-          },
-          {
-            "nombre": "ALTA",
-            "valor": 8
-          }
-        ]
-        }
       ]
-    }
+  }
   ]
 }

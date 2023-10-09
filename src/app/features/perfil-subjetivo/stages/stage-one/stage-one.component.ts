@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Cuestionario, Respuesta, RespuestaBnt } from 'src/app/core/models/initial-profile/questions-profile.model';
+import { Router, ActivatedRoute } from '@angular/router';
+import { from } from 'rxjs';
+import { CuestionarioInitial, Pregunta, Respuesta, convertirAPreguntaBotones, PreguntaBotones } from 'src/app/core/models/initial-profile/initial-profile.model';
+// import { Cuestionario, RespuestaBnt } from 'src/app/core/models/initial-profile/questions-profile.model';
 import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
 @Component({
   selector: 'app-stage-one',
@@ -8,52 +10,83 @@ import { QuestionsProfileService } from 'src/app/core/services/api/subjective-pr
   styleUrls: ['./stage-one.component.scss']
 })
 export class StageOneComponent implements OnInit {
- 
-  cuestionario: Cuestionario = {
+
+  cuestionario: CuestionarioInitial = {
     preguntas: [],
   };
 
-  resCuestionario: Cuestionario = {
+  resCuestionario: CuestionarioInitial = {
     preguntas: [],
   };
 
+  ///////Control de paginacion. preguntas Siguiente:
   buttonText: string = 'Siguiente Pregunta';
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;
 
+  /////////Almacenamiento de las respuestas de las preguntas
   opcionesSeleccionadas: { seccion: string, pregunta: string, valor: number }[] = [];
   opcionSeleccionada: number = 0;
   respuestasSeleccionadasPorInstrumento: Record<string, number> = {};
 
-  AnalisisSubjetivo: Record<string, number> = {  };
+  /////////Almacenamiento de las respuestas Calculada
+  AnalisisSubjetivo: Record<string, number> = {};
+  /////////Almacenamiento de las respuestas calculada y perfil obtenido
   respuestasDeUsuario: { seccion: string, calculo: number }[] = [];
 
-  constructor(private profileService: QuestionsProfileService, private router: Router) { }
+  respuestasPerfil: any = [];
+
+  constructor(private profileService: QuestionsProfileService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // Solicitud a json local;
     this.profileService.getCuestionario().subscribe((data) => {
+      console.log("Test Subjetivo Obtenido");
+      console.log(data);
+      console.log("------------------");
       this.resCuestionario = data;
       this.loadQuestions();
     });
+     // Solicitud a json API;
+    // this.getTestPerfil();
   }
+
+  public testSubjetivo: CuestionarioInitial = {
+    preguntas: []
+  };
+  public PregSubjetivo: CuestionarioInitial = {
+    preguntas: []
+  };
+
+  public getTestPerfil() {
+    return this.profileService.obtenerTestSubjetivo()
+      .then((testSubjetivo) => {
+        this.testSubjetivo.preguntas = testSubjetivo;
+        console.log("Servicio a questionario inicial");
+        console.log(this.testSubjetivo);
+        this.resCuestionario=this.testSubjetivo;
+        this.loadQuestions();
+      })
+      .catch((error) => console.error(error))
+  }
+
 
   loadQuestions() {
 
     this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[0];
-
+    //Metodo para consultar a la API
+    // this.PregSubjetivo.preguntas[0] = this.testSubjetivo.preguntas[0];
   }
 
   loadNextQuestion(): void {
 
     if (this.resCuestionario) {
-  
+
       this.guardarrespuestas(this.cuestionario.preguntas[0].seccion.nombre,
         this.cuestionario.preguntas[0].TipoComponente);
 
-      console.log("-Resultado Guradado");
+      console.log("-Resultado Temporal Guardado");
       console.log(this.respuestasDeUsuario);
-
-      console.log(this.AnalisisSubjetivo);
       // Incrementa el índice para la próxima pregunta
       this.currentQuestionIndex++;
 
@@ -63,9 +96,16 @@ export class StageOneComponent implements OnInit {
 
       } else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
+    
         console.log('Has respondido todas las preguntas.');
+        console.log(this.AnalisisSubjetivo);
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
         this.buttonText = 'Continuar';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
+        //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
+        //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
+         this.entregarResultados().then(() => {
+         
+        });
       }
     } else {
       console.error('Error: Fin de preguntas válidos- Ultima Vista antes de Volver al home-RoadMap.');
@@ -75,24 +115,20 @@ export class StageOneComponent implements OnInit {
     return Array.isArray(respuestas);
   }
 
-  isArraybnt(respuestas: RespuestaBnt[]): respuestas is RespuestaBnt[] {
-    return Array.isArray(respuestas);
-  }
 
-  isArraybntist(respuestas: RespuestaBnt[]): respuestas is RespuestaBnt[] {
-    return Array.isArray(respuestas);
-  }
+  actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
 
-  actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number, seleccionada: boolean) {
+    // SE actualiza para el cadso de los raidus(unica opcion)
+    this.opcionSeleccionada = valor;
   
-    this.opcionSeleccionada=valor;
-    if (seleccionada) {
-      this.opcionesSeleccionadas.push({ seccion, pregunta, valor });
-    } else {
+    const index = this.opcionesSeleccionadas.findIndex(opcion => opcion.pregunta === pregunta && opcion.valor === valor);
+    if (index !== -1) {
       // Eliminar la opción no seleccionada del arreglo de opciones seleccionadas
-      const index = this.opcionesSeleccionadas.findIndex(opcion => opcion.pregunta === pregunta && opcion.valor === valor);
-      if (index !== -1) {
-        this.opcionesSeleccionadas.splice(index, 1);
+      this.opcionesSeleccionadas.splice(index, 1);
+
+    } else {
+      // Si noesta en el grupo de opciones ingresadas se guarda
+      this.opcionesSeleccionadas.push({ seccion, pregunta, valor }); if (index !== -1) {
       }
     }
   }
@@ -113,9 +149,9 @@ export class StageOneComponent implements OnInit {
     // Verificar el tipo de pregunta
     let index = -1
     switch (tipo) {
-      case 'checkbox':
+      case 'CHECKBOX':
 
-      
+        console.log('Suma total:Area CHECKBOX');
         index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
         const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
         const sumaCheckbox = valoresCheckbox.reduce((total, valor) => total + valor, 0);
@@ -132,11 +168,11 @@ export class StageOneComponent implements OnInit {
         }
         this.AnalisisSubjetivo[seccion] += sumaCheckbox;
         break;
-      case 'radio':
-  
+      case 'RADIO':
+        console.log('Suma total:Area RADIO');
         index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);//Horizonte o riesgo
         let valorRadio = this.opcionSeleccionada;
-        console.log('Suma total:', valorRadio);
+ 
         if (index !== -1) {
           this.respuestasDeUsuario[index].calculo += valorRadio;
         }
@@ -148,11 +184,14 @@ export class StageOneComponent implements OnInit {
           this.AnalisisSubjetivo[seccion] = 0;
         }
         this.AnalisisSubjetivo[seccion] += valorRadio;
+        console.log(valorRadio);
         break;
-      case 'boton':
+      case 'BOTON':
+        console.log('Suma total:Area BOTON');
         index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
         let suma = 0;
-        console.log(this.respuestasSeleccionadasPorInstrumento);
+        // console.log("Puntaje por respuestas");
+        // console.log(this.respuestasSeleccionadasPorInstrumento);
         for (const instrumento in this.respuestasSeleccionadasPorInstrumento) {
           if (this.respuestasSeleccionadasPorInstrumento.hasOwnProperty(instrumento)) {
             suma += this.respuestasSeleccionadasPorInstrumento[instrumento];
@@ -169,47 +208,82 @@ export class StageOneComponent implements OnInit {
         if (!this.AnalisisSubjetivo[seccion]) {
           this.AnalisisSubjetivo[seccion] = 0;
         }
-        this.AnalisisSubjetivo[seccion] +=suma;
+        this.AnalisisSubjetivo[seccion] += suma;
         break;
       default:
         // Tipo de pregunta no reconocido
-        console.error('Tipo de pregunta no reconocido');
+        console.error('Tipo de pregunta no reconocido-para valorizar respuesta');
         break;
     }
     this.opcionesSeleccionadas = [];
   }
 
   loadResultado(): void {
-    this.entregarResultados() ;
-    this.router.navigate(['/perfil-inversor-resultado']);
-    this.buttonText = 'Continuar';
+  //  this.entregarResultados()
+      // this.entregarResultados();
+      console.log("Verificar las repuesta en el componente");
+      console.log(this.respuestasPerfil.perfilInversorl);
+      console.log("--------");
+      // const valorParaEnviar = this.respuestasPerfil.perfilInversorl;
+
+      // this.router.navigate(['/perfil-inversor-resultado/', {perfil:valorParaEnviar}]);
+      // this.profileService.setperfil(this.respuestasPerfil.perfilInversorl);
+      this.router.navigate(['/perfil-inversor-resultado']);
+      this.buttonText = 'Continuar';
+
   }
-  
+
   loadHome(): void {
     // this.entregarResultados() ;
     this.router.navigate(['/dashboard/perfil-inversor']);
     this.buttonText = 'Continuar';
   }
 
- /**********Post de resultados almacenados**********/ 
- public entregarResultados() {
-    if (!this.validateData()) {
 
-      return false;
+  /**********Post de resultados almacenados**********/
+
+  public async entregarResultados(): Promise<void> {
+    if (!this.validateData()) {
+      return;
     }
-    return this.profileService.TestSubjetivoResultados(this.AnalisisSubjetivo)
-      .then(() => {
-        console.log("Enviado");
-      })
-      .catch((error) => {
   
-        console.error(error)
-      })
+    try {
+      console.log("Enviando Resultados...");
+      const data = await from(this.profileService.TestSubjetivoResultados(this.AnalisisSubjetivo)).toPromise();
+  
+      if (data && data.perfilInversor) {
+        this.respuestasPerfil = data;
+        console.log("Resultados enviados correctamente");
+        console.log(this.respuestasPerfil.perfilInversor);
+        this.profileService.setperfil(this.respuestasPerfil.perfilInversorl);
+      } else {
+        console.error('No se recibió una respuesta válida de la API.');
+        // Maneja el error como sea necesario
+      }
+    } catch (error) {
+      console.error('Error al enviar los resultados:', error);
+      // Maneja el error como sea necesario
+    }
   }
 
   validateData() {
-  return true;
+    return true;
   }
+
+  instrumentoMostrado: boolean = false;
+  //Obtiene el refactor de preguntas de botones para que sea visibles
+  opcionesPorInstrumento(respuestasbnts: Respuesta[], instrumento: string): any[] {
+    // Filtrar y ordenar las opciones por instrumento y orden
+    // console.log("Funciones unificar respuestas");
+    return respuestasbnts
+      .filter((respuestasbnts) => respuestasbnts.instrumento === instrumento)
+      .sort((a: { orden: number; }, b: { orden: number; }) => a.orden - b.orden);
+  }
+
+  esPrimero(respuestasbnts: Respuesta) {
+    return respuestasbnts.orden == 1;
+  }
+
 
 }
 
