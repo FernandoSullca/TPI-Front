@@ -19,7 +19,8 @@
                         <div *ngFor="let respuesta of pregunta.respuestas" class="alinea-pregunta-check">
                             
                             <input type="checkbox" id="{{ respuesta.nombre }}" name="{{ respuesta.nombre}}"
-                                (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor)">
+                                (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor)"
+                                >
 
                             <label for="{{ respuesta }}">{{ respuesta.nombre }}</label>
                         </div>
