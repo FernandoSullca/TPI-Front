@@ -44,14 +44,6 @@
   align-items: center;
 }
 
-///*********/////
-/// 
-.botonera-lg {
-  background-color: #3261A8;
-  color: #FFFFFF;
-  border-radius: 1.5rem;
-  font-weight: bold;
-}
 
 .container-perfil {
   width: 80%;
@@ -88,6 +80,11 @@
 
 .alinea-pregunta-check {
   padding-left: 4rem;
+
+  label {
+
+    padding-left: 0.5rem;
+  }
 }
 
 .alinea-descripcion-pregunta-radius {
@@ -105,8 +102,61 @@
   align-items: center;
 }
 
-.alineacion-botones-opciones {
+.alineacion-botones-opciones-checks {
   display: flex;
   justify-content: space-between;
   width: 9rem;
+}
+
+.alinea-descripcion-pregunta-boton {
+  // padding-left: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.alinea-pregunta-boton {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 0.2rem;
+}
+.nombre-instrumento-boton{
+  font-weight: 700;
+}
+///*********/////
+/// 
+.botonera-lg {
+  background-color: #3261A8;
+  color: #FFFFFF;
+  border-radius: 1.5rem;
+  font-weight: bold;
+}
+
+.botonera-lg-opciones{
+  background-color: #3261A8;
+  color: #FFFFFF;
+  border-radius: 1.5rem;
+  font-weight: bold;
+  width: 6rem;
+}
+/* Estilo para botones no seleccionados */
+.botonera-lg-opciones:not(.selected) {
+
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 1.5rem;
+  font-weight: bold;
+  width: 6rem;
+  /* Estilos para botones no seleccionados */
+}
+.container-botonera-lg {
+  /*background-color: #3261A8; */
+  color: #FFFFFF;
+  border-radius: 1.5rem;
+  font-weight: bold;
+  padding-top: 2rem;
+  text-align: center;
 }
