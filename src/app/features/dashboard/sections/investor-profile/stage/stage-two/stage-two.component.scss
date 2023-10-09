@@ -1,42 +1,93 @@
-
-.main-container{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  height: 95vh;
 }
+
 .brand-box {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  margin-top: 2rem;
 
-    img {
-      height: 2.5rem;
-      // margin-right: .7rem;
-      margin-left: .7rem;
-      padding-bottom: 1em;
-    }
-
-    h2 {
-      // margin: 0;
-      font-size: 1.2rem;
-    }
+  img {
+    height: 2.8rem;
+    // margin-right: .7rem;
+    margin-left: .7rem;
+    padding-bottom: 1em;
   }
 
+  h2 {
+    // margin: 0;
+    font-size: 1.3rem;
+    padding-top: 0.3rem;
+  }
+}
+
 .container-perfil {
-   width: 80%;
+  width: 80%;
   height: auto;
   flex-shrink: 0;
   border-radius: 30px;
   // border: 2px solid #3261A8;
 }
-.container-perfil-Questions{
+
+.container-perfil-Quest-descr-opt {
+  row-gap: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-perfil-Questions {
   height: auto;
   flex-shrink: 0;
   border-radius: 30px;
   border: 2px solid #3261A8;
+  text-align: center;
+  /* padding-bottom: 3rem; */
+  font-weight: 700;
+  font-size: 1.2rem;
+  // margin-bottom: 2em;
 }
+
+.container-perfil-Descripcion {
+  // height: auto;
+  display: flex;
+  height: 20em;
+  flex-shrink: 0;
+  border-radius: 30px;
+  border: 2px solid #3261A8;
+  text-align: center;
+  // padding-top: 1rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 2em;
+
+  img {
+    align-items: center;
+  }
+
+  ul {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    text-align: start;
+
+    li {
+
+      display: flex;
+      justify-content: flex-start;
+      align-content: flex-start;
+      align-items: stretch;
+    }
+  }
+
+}
+
 
 .btn-Iniciar {
   width: 253px;
@@ -45,3 +96,45 @@
   fill: #3261A8;
   filter: drop-shadow(0px 4px 6px rgba(163, 161, 255, 0.16));
 }
+
+.botonera-lg-opciones {
+  background-color: #3261A8;
+  color: #FFFFFF;
+  border-radius: 1.5rem;
+  font-weight: bold;
+  width: 6rem;
+  height: auto;
+  /* Para que la altura se ajuste automáticamente al contenido */
+  text-align: center;
+  /* Alinea el texto en el centro verticalmente */
+  white-space: normal;
+  /* Permite que el texto se divida en varias líneas */
+  word-wrap: break-word;
+  /* Rompe palabras largas en líneas si es necesario */
+}
+
+.centrar-opciones {
+  display: flex;
+  /* flex-wrap: nowrap; */
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+/*********correcion de texto MercadoJR para Regular y Bold*********/
+.bold-text-Marca {
+  font-weight: normal;
+  /* Establece la fuente regular para "Mercado" */
+}
+
+.bold-Marca {
+  font-weight: bold;
+  /* Establece la fuente en negrita para "JR" */
+}
+
+.alinearcion-logotipo {
+  display: flex !important;
+  align-content: flex-end;
+  align-items: center;
+}
+
+///*********/////

@@ -15,13 +15,23 @@
     "pregunta": "En relación a las obligaciones negociables, ¿cuál de las siguientes opciones se asemeja más a la TEA (Tasa Efectiva Anual)?considerando todos los costos y pagos asociados a la inversión.",
     "valor": 75,
     "tipoContenido": "texto",
-    "descripcion": "A- La tasa de interés nominal mensual.B- La tasa de interés nominal anual sin considerar los costos adicionales.C- La TIR (Tasa Interna de Retorno), que tiene en cuenta todos los costos y flujos de efectivo asociados a la inversión.D La tasa de interés nominal diaria.",
+    "descripcion":"A- La tasa de interés nominal mensual. B- La tasa de interés nominal anual sin considerar los costos adicionales. C- La TIR (Tasa Interna de Retorno), que tiene en cuenta todos los costos y flujos de efectivo asociados a la inversión. D- La tasa de interés nominal diaria.",
     "opciones": [
       {"texto": "A.", "esVerdadera": false},
       {"texto": "B.", "esVerdadera": false},
       {"texto": "NS/NC.", "esVerdadera": false},
       {"texto": "C.", "esVerdadera": true},
       {"texto": "D.", "esVerdadera": false}
+    ]
+  },
+  {
+    "pregunta": "Dada la siguiente descripción, analiza si el concepto es verdadero o falso",
+    "valor": 75,
+    "tipoContenido": "texto",
+    "descripcion":"El mercado de valores es un mercado secundario donde los inversores compran y venden acciones de empresas públicas. Es un componente importante del mercado de capitales.",
+    "opciones": [
+      {"texto": "Verdadero", "esVerdadera": true},
+      {"texto": "Falso", "esVerdadera": false}
     ]
   }
 ]

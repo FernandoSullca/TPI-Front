@@ -1,43 +1,59 @@
 <p>stage-two works!</p>
 <div class="container main-container bg-white">
-    <div class="brand-box pt-2">
-        <h2>MercadoJr</h2>
-        <img src="/assets/image/logo.svg" alt="">
+    <div class="row brand-box pt-2">
+        <div class="col-sm-12 d-flex">
+            <h2><span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h2>
+            <img src="/assets/image/logo.svg" alt="">
+        </div>
     </div>
     <div class="container-perfil p-4">
 
         <!-- Botón Siguiente Pregunta aquí -->
-        <div *ngIf="!isLastQuestion"> 
-            <div *ngFor="let pregunta of preguntas" >
-            <h3>{{ pregunta.pregunta }}</h3>
-            <ng-container *ngIf="pregunta.tipoContenido === 'imagen'; else textoContenido">
-                <img [src]="pregunta.descripcion" alt="Imagen">
-            </ng-container>
-            <ng-template #textoContenido>
-                <p>{{ pregunta.descripcion }}</p>
-            </ng-template>
-            <!-- Renderizar opciones aquí -->
-            <div class="row">
-                <div *ngFor="let opcion of pregunta.opciones" class="col-auto">
-                    <input type="button" id="{{ opcion }}" name="{{opcion.texto}}" value="{{opcion.texto}}">
-                    <!-- <label for="{{ opcion }}">{{ opcion }}</label> -->
+        <div *ngIf="!isLastQuestion">
+            <div class="container-perfil-Quest-descr-opt" *ngFor="let pregunta of preguntas">
+                <div class="container-perfil-Questions ">
+                    <h4 >{{ pregunta.pregunta }}</h4>
                 </div>
-            </div>
+              
+                <div class="container-perfil-Descripcion">
+                    <ng-container *ngIf="pregunta.tipoContenido === 'imagen'; else textoContenido">
+                        <img [src]="pregunta.descripcion" alt="Imagen" class="img-fluid">
+                    </ng-container>
+                    <ng-template #textoContenido>
 
-        </div></div>
-       
+                        <ul>
+                            <li *ngFor="let linea of descripcionFormateada">{{ linea }}</li>
+                        </ul>
+                    </ng-template>
+                </div>
+
+                <!-- Renderizar opciones aquí -->
+                <div class="row centrar-opciones">
+                    <div *ngFor="let opcion of pregunta.opciones" class="col-auto">
+                        <input class="botonera-lg-opciones" type="button" id="{{ opcion }}" name="{{opcion.texto}}"
+                            value="{{opcion.texto}}">
+                        <!-- <label for="{{ opcion }}">{{ opcion }}</label> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <div class="justify-content-md-end" style="text-align: center;">
             <button class="btn btn-primary btn btn-primary me-md-2" *ngIf="!isLastQuestion"
                 (click)="loadNextQuestion()">{{ buttonText }}</button>
             <!-- <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p> -->
         </div>
 
-    <div *ngIf="isLastQuestion " style="text-align: center;">
+        <div *ngIf="isLastQuestion " style="text-align: center;">
 
             <h3> Perfil final asociado: Moderado Jr</h3>
-            <h3>El inversor moderado no busca con su cartera de inversión conseguir ingresos corrientes pero si requiere un modesto(Potencial) aumento en el valor de sus inversiones. 
-            El inversor tolera algunas volatilidad pero busca afrontar un menor riesgo que el inversos agresivo.</h3>
-                        <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadSugerencias()" *ngIf="!issugerencia ">{{ buttonText }}</button>
+            <p>El inversor moderado no busca con su cartera de inversión conseguir ingresos corrientes pero si requiere
+                un modesto(Potencial) aumento en el valor de sus inversiones.
+                El inversor tolera algunas volatilidad pero busca afrontar un menor riesgo que el inversos agresivo.
+            </p>
+            <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadSugerencias()"
+                *ngIf="!issugerencia ">{{ buttonText }}</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
         </div>
 

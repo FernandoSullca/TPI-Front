@@ -30,13 +30,14 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: "perfil", component:  PerfilSubjetivoComponent},
   { path: "perfil-inversor", component:  StageOneComponent},
-  { path: "perfil-inversor-resultado", component:  StageResultComponent},
+  // { path: 'perfil-inversor-resultado/:perfil', component:  StageResultComponent},
+  { path: 'perfil-inversor-resultado', component:  StageResultComponent},
   
   {
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'tutorial', pathMatch: 'full' }, // Ruta por defecto del dashboard
+      { path: '', redirectTo: 'cartera', pathMatch: 'full' }, // Ruta por defecto del dashboard
       { path: 'precios', component: PricePanelComponent },
       // { path: 'otro', component: OtroComponent },
       { path: 'tutorial', component: ContentComponent },

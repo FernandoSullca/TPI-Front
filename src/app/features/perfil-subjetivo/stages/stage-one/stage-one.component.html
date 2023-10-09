@@ -1,6 +1,6 @@
 <div class="container main-container bg-white">
-    <div class="brand-box pt-2">
-        <h2>MercadoJr</h2>
+    <div class="brand-box pt-2 alinearcion-logotipo">
+        <h3><span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h3>
         <img src="/assets/image/logo.svg" alt="">
     </div>
     <div class="container-perfil p-4">
@@ -10,16 +10,16 @@
                 <!-- Verifica el tipo de pregunta -->
 
                 <!-- Pregunta de tipo checkbox -->
-                <ng-container *ngIf="pregunta.TipoComponente=== 'checkbox'">
-                    <div class="container-perfil-Questions p-2">
-                        <p>{{ pregunta.descripcion }}</p>
+                <ng-container *ngIf="pregunta.TipoComponente=== 'CHECKBOX'">
+                    <div class="container-perfil-Questions p-2 pb-0">
+                        <p class="">{{ pregunta.descripcion }}</p>
                     </div>
-                    <p> Podés elegir más de una opción o ninguna</p>
+                    <p class="alinea-descripcion-pregunta-check"> Podés elegir más de una opción o ninguna</p>
                     <div *ngIf="isArray(pregunta.respuestas)">
-                        <div *ngFor="let respuesta of pregunta.respuestas">
+                        <div *ngFor="let respuesta of pregunta.respuestas" class="alinea-pregunta-check">
+                            
                             <input type="checkbox" id="{{ respuesta.nombre }}" name="{{ respuesta.nombre}}"
-                                [(ngModel)]="respuesta.seleccionada"
-                                (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor,respuesta.seleccionada)">
+                                (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor)">
 
                             <label for="{{ respuesta }}">{{ respuesta.nombre }}</label>
                         </div>
@@ -29,58 +29,76 @@
                 </ng-container>
 
                 <!-- Pregunta de tipo radio -->
-                <ng-container *ngIf="pregunta.TipoComponente === 'radio'">
-                    <div class="container-perfil-Questions p-2">
+                <ng-container *ngIf="pregunta.TipoComponente === 'RADIO'">
+                    <div class="container-perfil-Questions p-2 pb-0">
                         <p>{{ pregunta.descripcion }}</p>
                     </div>
-                    <p> elegir Solo una opción"</p>
-                    <div *ngIf="isArray(pregunta.respuestas)">
-                        <div *ngFor="let respuesta of pregunta.respuestas ">
-                            <input type="radio" id="{{ respuesta.nombre }}" name="{{respuesta.nombre}}"
+                    <p class="alinea-descripcion-pregunta-radius">Elegir solo una opción</p>
+                    <div *ngIf="isArray(pregunta.respuestas)" class="alinea-pregunta-radius">
+                        <div *ngFor="let respuesta of pregunta.respuestas " class="alineacion-botones-opciones-radius" >
+                              <!-- <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label> -->
+                              <input type="radio" id="{{ respuesta.nombre }}" name="{{respuesta.nombre}}"
                                 value="{{respuesta.valor}}" [(ngModel)]="opcionSeleccionada"
-                                (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor,respuesta.seleccionada)">
-                            <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label>
+                                (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor)">
+                             <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label>
                         </div>
                     </div>
-
                 </ng-container>
 
                 <!-- Pregunta de tipo botones-unica-opcion -->
-
-                <ng-container *ngIf="pregunta.TipoComponente === 'boton'" style="text-align: center;">
-                    <div class="container-perfil-Questions p-2">
+                <ng-container *ngIf="pregunta.TipoComponente === 'BOTON'" style="text-align: center;">
+                    <div class="container-perfil-Questions p-2 pb-0">
                         <p>{{ pregunta.descripcion }}</p>
                     </div>
-                    <p> Elije el nivel de conocimiento por cada instrumento</p>
-                    <div *ngIf="isArraybnt(pregunta.respuestas)">
-                        <div *ngFor="let respuesta of pregunta.respuestas">
-                            <!-- <div *ngIf="isArraybnt(respuesta.instrumento)"> -->
-                            <p>{{respuesta.instrumento }}</p>
-                            <div class="row">
-                                <div *ngFor="let opcion of respuesta.respuestas" class="col-auto">
+                    <p class="alinea-descripcion-pregunta-boton"> Elije el nivel de conocimiento por cada instrumento</p>
 
-                                    <button type="button" id="{{ opcion.nombre }}" name="{{ respuesta.instrumento }}"
+                    <div *ngFor="let respuesta of pregunta.respuestas" class="alinea-pregunta-boton">
+                        <div class="row">
+                            <!-- Mostrar el instrumento solo una vez -->
+                            <div *ngIf="esPrimero(respuesta)">
+                                <p class="pb-0 mb-1 nombre-instrumento-boton">{{ respuesta.instrumento }}</p>
+                                <ng-container *ngIf="respuesta.instrumento;" >
+                                    <div class="row"> 
+                                        <div *ngFor="let opcion of opcionesPorInstrumento(pregunta.respuestas,respuesta.instrumento)" class="col-auto">
+                                         <button class="botonera-lg-opciones" type="button" id="{{ opcion.nombre }}" name="{{ respuesta.instrumento }}"
+                                            [class.selected]="esRespuestaSeleccionada(respuesta.instrumento, opcion.valor)"
+                                            (click)="actualizarOpcionesSeleccionadasBotonInstrumento(pregunta.seccion.nombre, respuesta.instrumento, opcion.valor)">
+                                        {{ opcion.nombre }}
+                                    </button>
+                                        </div>
+                                    </div> 
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- <div *ngIf="isArraybnt(pregunta.respuestas)"> -->
+
+
+
+                    <!-- <div *ngFor="let respuesta of pregunta.respuestas">
+                        <p>{{respuesta.instrumento }}</p>
+                        <div class="row"> -->
+                    <!-- <div *ngFor="let opcion of respuesta.respuestas" class="col-auto"> -->
+
+                    <!-- <button type="button" id="{{ opcion.nombre }}" name="{{ respuesta.instrumento }}"
                                         [class.selected]="esRespuestaSeleccionada(respuesta.instrumento, opcion.valor)"
                                         (click)="actualizarOpcionesSeleccionadasBotonInstrumento(pregunta.seccion.nombre, respuesta.instrumento, opcion.valor)">
 
                                         {{ opcion.nombre }}
-                                    </button>
-
-
-
-                                </div>
-                            </div>
-
-                            <!-- </div>  -->
-                        </div>
-                    </div>
+                                    </button> -->
+                    <!-- </div> -->
+                    <!-- </div>
+                    </div> -->
+                    <!-- </div> -->
 
                 </ng-container>
 
                 <!-- Botón Siguiente Pregunta aquí -->
 
-                <div class="justify-content-md-end" style="text-align: center;">
-                    <button class="btn btn-primary btn btn-primary me-md-2" *ngIf="!isLastQuestion"
+                <div class="justify-content-md-end container-botonera-lg " >
+                    <button class="btn btn-primary btn btn-primary me-md-2 botonera-lg" *ngIf="!isLastQuestion"
                         (click)="loadNextQuestion()">{{ buttonText }}</button>
                     <!-- <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p> -->
                 </div>
@@ -88,7 +106,7 @@
             </div>
         </div>
         <div *ngIf="isLastQuestion" style="text-align: center;">
-            <button class="btn btn-primary btn btn-primary me-md-2" (click)=" loadResultado()">{{ buttonText }}</button>
+            <button class="btn btn-primary btn btn-primary me-md-2 botonera-lg" (click)=" loadResultado()">{{ buttonText }}</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
         </div>
     </div>

@@ -1,5 +1,5 @@
-// pregunta.model.ts
-export interface Pregunta {
+// preguntaObjetivas.model.ts
+  export interface Pregunta {
     pregunta: string;
     valor: number;
     tipoContenido: string; // Agrega el campo "tipoContenido"
@@ -11,4 +11,14 @@ export interface Pregunta {
     texto: string;
     esVerdadera: boolean;
   }
+ 
+  export interface Respuesta {
+    nombre: string;
+    valor: number;
+    seleccionada: boolean;
+  }
   
+  export interface RespuestaBnt {
+    respuestas: Respuesta[];
+    instrumento: string;
+  }

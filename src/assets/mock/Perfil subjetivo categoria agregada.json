@@ -3,6 +3,9 @@
     {
       "descripcion": "¿En cuáles de estos instrumentos has invertido alguna vez?",
       "TipoComponente": "CHECKBOX",
+      "categoria": {
+        "nombre": "Test Inversor"
+      },
       "seccion": {
         "nombre": "Horizonte Temporal"
       },
@@ -35,6 +38,9 @@
     {
       "descripcion": "¿Cuántos años tenés?",
       "TipoComponente": "RADIO",
+      "categoria": {
+        "nombre": "Test Inversor"
+      },
       "seccion": {
         "nombre": "Horizonte Temporal"
       },
@@ -59,6 +65,9 @@
     {
       "descripcion": "¿En cuáles de estos instrumentos has invertido alguna vez?",
       "TipoComponente": "BOTON",
+      "categoria": {
+        "nombre": "Test Inversor"
+      },
       "seccion": {
           "nombre": "Tolerancia al riesgo"
       },
