@@ -74,7 +74,7 @@ export class StageOneComponent implements OnInit {
   loadQuestions() {
 
     this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[0];
-
+    //Metodo para consultar a la API
     // this.PregSubjetivo.preguntas[0] = this.testSubjetivo.preguntas[0];
   }
 
@@ -101,8 +101,9 @@ export class StageOneComponent implements OnInit {
         console.log(this.AnalisisSubjetivo);
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
         this.buttonText = 'Continuar';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
-        // this.entregarResultados()
-        this.entregarResultados().then(() => {
+        //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
+        //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
+         this.entregarResultados().then(() => {
          
         });
       }
@@ -114,27 +115,6 @@ export class StageOneComponent implements OnInit {
     return Array.isArray(respuestas);
   }
 
-  // isArraybnt(respuestas: RespuestaBnt[]): respuestas is RespuestaBnt[] {
-  //   return Array.isArray(respuestas);
-  // }
-
-  // isArraybntist(respuestas: RespuestaBnt[]): respuestas is RespuestaBnt[] {
-  //   return Array.isArray(respuestas);
-  // }
-
-  // actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number, seleccionada: boolean) {
-
-  //   this.opcionSeleccionada=valor;
-  //   if (seleccionada) {
-  //     this.opcionesSeleccionadas.push({ seccion, pregunta, valor });
-  //   } else {
-  //     // Eliminar la opción no seleccionada del arreglo de opciones seleccionadas
-  //     const index = this.opcionesSeleccionadas.findIndex(opcion => opcion.pregunta === pregunta && opcion.valor === valor);
-  //     if (index !== -1) {
-  //       this.opcionesSeleccionadas.splice(index, 1);
-  //     }
-  //   }
-  // }
 
   actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
 
@@ -286,34 +266,12 @@ export class StageOneComponent implements OnInit {
     }
   }
 
-  // public entregarResultados() {
-  //   if (!this.validateData()) {
-
-  //     return false;
-  //   }
-  //   console.log("Enviando--- Resultados");
-  //   return this.profileService.TestSubjetivoResultados(this.AnalisisSubjetivo)
-  //     .then((data) => {
-  //       this.respuestasPerfil = data;
-  //       console.log(data)
-  //       console.log("Enviado");
-  //       console.log(this.respuestasPerfil);
-  //       console.log(this.respuestasPerfil.perfilInversor);
-  //       this.profileService.setperfil(this.respuestasPerfil.perfilInversorl);
-  //     })
-  //     .catch((error) => {
-
-  //       console.error(error)
-  //     })
-  // }
-
   validateData() {
     return true;
   }
 
-
   instrumentoMostrado: boolean = false;
-  //Obtiene ell refactor de preguntas de botones para que sea visibles
+  //Obtiene el refactor de preguntas de botones para que sea visibles
   opcionesPorInstrumento(respuestasbnts: Respuesta[], instrumento: string): any[] {
     // Filtrar y ordenar las opciones por instrumento y orden
     // console.log("Funciones unificar respuestas");
@@ -325,26 +283,6 @@ export class StageOneComponent implements OnInit {
   esPrimero(respuestasbnts: Respuesta) {
     return respuestasbnts.orden == 1;
   }
-
-
-  /******************************Relacionado con tratamiento de pregunrtas api */
-  // filtrarPreguntasCompuestasBTN(cuestionario: CuestionarioInitial): Pregunta[] {
-
-  //   // Filtrar las preguntas de tipo "Boton" que tienen un instrumento no nulo
-  //   const preguntasBotonConInstrumento: Pregunta[] = cuestionario.preguntas.filter((pregunta) => {
-  //     return pregunta.TipoComponente === 'BOTON' && pregunta.respuestas[0]?.instrumento !== null;
-  //   });
-
-  //   return preguntasBotonConInstrumento;
-
-  // }
-  
-  // Nueva función para convertir pregunta a preguntaBotones
-
-  // convertirPreguntaBotones(pregunta: Pregunta): PreguntaBotones {
-
-  //   return convertirAPreguntaBotones(pregunta);
-  // }
 
 
 }
