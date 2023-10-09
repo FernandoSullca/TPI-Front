@@ -28,6 +28,7 @@ import { GraficoComponent } from './features/dashboard/sections/grafico/grafico.
 import { StageResultComponent } from './features/perfil-subjetivo/stages/stage-result/stage-result.component';
 import { InvestorProfileComponent } from './features/dashboard/sections/investor-profile/investor-profile.component'; 
 import { StageTwoComponent } from './features/dashboard/sections/investor-profile/stage/stage-two/stage-two.component';
+import { ModalComponent } from './common/modal/modal/modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { StageTwoComponent } from './features/dashboard/sections/investor-profil
     CarteraComponent,
     GraficoComponent,
     StageResultComponent,
-    InvestorProfileComponent
+    InvestorProfileComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

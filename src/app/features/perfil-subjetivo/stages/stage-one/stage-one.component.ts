@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalComponent } from 'src/app/common/modal/modal/modal.component';
 import { Cuestionario, Respuesta, RespuestaBnt } from 'src/app/core/models/initial-profile/questions-profile.model';
 import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
 @Component({
@@ -8,7 +9,10 @@ import { QuestionsProfileService } from 'src/app/core/services/api/subjective-pr
   styleUrls: ['./stage-one.component.scss']
 })
 export class StageOneComponent implements OnInit {
- 
+
+  @ViewChild(ModalComponent) modal?: ModalComponent;
+  mensajeFinalizacion:String="¡Cambiando mensaje de prueba!";
+  
   cuestionario: Cuestionario = {
     preguntas: [],
   };
@@ -210,6 +214,7 @@ export class StageOneComponent implements OnInit {
   validateData() {
   return true;
   }
+  
 
 }
 
