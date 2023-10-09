@@ -23,6 +23,8 @@ export class StageTwoComponent {
   resPreguntas: Pregunta[] = [];
   data: any;
 
+  descripcionFormateada: string[] = [];
+
   constructor(private questionsService: QuestionsTargetService , private router: Router, private preguntaService: PreguntaService) { }
 
   ngOnInit(): void {
@@ -37,6 +39,11 @@ export class StageTwoComponent {
 
   loadQuestions() {
     this.preguntas[0] = this.resPreguntas[0];
+    if(this.preguntas[0].tipoContenido!="texto")
+    {
+      this.formatearDescripcion() ;
+    }
+    
   }
 
   isArray(respuestas: string[] | Respuesta[]): respuestas is string[] {
@@ -59,6 +66,10 @@ export class StageTwoComponent {
       if (this.currentQuestionIndex < this.resPreguntas.length) {
 
         this.preguntas[0] = this.resPreguntas[this.currentQuestionIndex];
+        if(this.preguntas[0].tipoContenido=="texto")
+        {
+          this.formatearDescripcion() ;
+        }
         // Incrementa el índice para la próxima pregunta
 
         // this.quest = this.getNextQuestion(trivias, this.currentQuestionIndex);
@@ -88,5 +99,9 @@ export class StageTwoComponent {
     // this.loadRoadMap();
   }
 
+  formatearDescripcion() {
+    const lineas = this.preguntas[0].descripcion.split(/(?=[A-Z]- )/);
+    this.descripcionFormateada = lineas.map((linea) => linea.trim());
+  }
 
 }
