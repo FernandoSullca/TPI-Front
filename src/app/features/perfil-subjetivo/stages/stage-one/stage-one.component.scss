@@ -102,12 +102,27 @@
   align-items: center;
 }
 
-.alineacion-botones-opciones-checks {
+// .alineacion-botones-opciones-checks {
+//   display: flex;
+//   justify-content: space-between;
+//   // width: 9rem;
+//   max-width: 35rem;
+// }
+
+.alineacion-botones-opciones-radius {
   display: flex;
   justify-content: space-between;
-  width: 9rem;
-}
+  width: 80%;
+  // max-width: 35rem;
+  padding-bottom: 1em;
 
+  label{
+    padding-right: 2em;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+  }
+}
 .alinea-descripcion-pregunta-boton {
   // padding-left: 2rem;
   font-weight: 700;

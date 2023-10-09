@@ -34,7 +34,7 @@
                     </div>
                     <p class="alinea-descripcion-pregunta-radius">Elegir solo una opción</p>
                     <div *ngIf="isArray(pregunta.respuestas)" class="alinea-pregunta-radius">
-                        <div *ngFor="let respuesta of pregunta.respuestas " class="alineacion-botones-opciones-checks" >
+                        <div *ngFor="let respuesta of pregunta.respuestas " class="alineacion-botones-opciones-radius" >
                               <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label>
                               <input type="radio" id="{{ respuesta.nombre }}" name="{{respuesta.nombre}}"
                                 value="{{respuesta.valor}}" [(ngModel)]="opcionSeleccionada"

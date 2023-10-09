@@ -12,7 +12,8 @@ import axios from 'axios';
 })
 export class QuestionsProfileService {
  
-  private apiUrl = 'assets\\mock\\Perfil subjetivo.json'; // Reemplaza con la URL real de tu JSON
+  private apiUrl = 'assets\\mock\\Perfil subjetivo V1.0.json'; // Reemplaza con la URL real de tu JSON
+   //private apiUrl = 'assets\\mock\\Perfil subjetivo categoria agregada.json'; // Reemplaza con la URL real de tu JSON
   //private apiUrl=environment.API
   constructor(private http: HttpClient) { }
 
