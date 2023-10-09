@@ -1,6 +1,6 @@
 <div class="container main-container bg-white">
-    <div class="brand-box pt-2">
-        <h2>MercadoJr</h2>
+    <div class="brand-box pt-2 alinearcion-logotipo">
+        <h3><span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h3>
         <img src="/assets/image/logo.svg" alt="">
     </div>
     <div class="container-perfil p-4">
@@ -154,7 +154,7 @@
                 <!-- Botón Siguiente Pregunta aquí -->
 
                 <div class="justify-content-md-end" style="text-align: center;">
-                    <button class="btn btn-primary btn btn-primary me-md-2" *ngIf="!isLastQuestion"
+                    <button class="btn btn-primary btn btn-primary me-md-2 botonera-lg" *ngIf="!isLastQuestion"
                         (click)="loadNextQuestion()">{{ buttonText }}</button>
                     <!-- <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p> -->
                 </div>
@@ -162,7 +162,7 @@
             </div>
         </div>
         <div *ngIf="isLastQuestion" style="text-align: center;">
-            <button class="btn btn-primary btn btn-primary me-md-2" (click)=" loadResultado()">{{ buttonText }}</button>
+            <button class="btn btn-primary btn btn-primary me-md-2 botonera-lg" (click)=" loadResultado()">{{ buttonText }}</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
         </div>
     </div>
