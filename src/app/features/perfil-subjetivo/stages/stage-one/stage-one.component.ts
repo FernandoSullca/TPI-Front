@@ -45,7 +45,9 @@ export class StageOneComponent implements OnInit {
     preguntas: []
   };
 
-  constructor(private profileService: QuestionsProfileService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private profileService: QuestionsProfileService, private router: Router, private route: ActivatedRoute) { 
+    this.respuestasPerfil = {}; // Inicializa respuestasPerfil como un objeto vacío
+  }
 
   ngOnInit(): void {
     // Solicitud a json local;
@@ -104,12 +106,17 @@ export class StageOneComponent implements OnInit {
 
         console.log('Has respondido todas las preguntas.');
         console.log(this.AnalisisSubjetivo);
+        console.log('Estos eran tus resultados.');
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
         this.buttonText = 'FINALIZAR';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
         //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
         //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
-        this.entregarResultados().then(() => {
-
+        this.entregarResultados().then((data) => {
+          console.log(data)
+          this.respuestasPerfil=data;
+          console.log(this.respuestasPerfil)
+          console.log(this.respuestasPerfil.perfilInversor)
+          console.log('Entrega de resultados completada.'); 
         });
       }
     } else {
@@ -204,8 +211,10 @@ export class StageOneComponent implements OnInit {
       if (data && data.perfilInversor) {
         this.respuestasPerfil = data;
         console.log("Resultados enviados correctamente");
+        console.log(data);
         console.log(this.respuestasPerfil.perfilInversor);
         this.profileService.setperfil(this.respuestasPerfil.perfilInversorl);
+        return this.respuestasPerfil;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
         // Maneja el error como sea necesario

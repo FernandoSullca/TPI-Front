@@ -24,7 +24,7 @@ export class StageResultComponent {
     // });
     // this.resultadotest=this.valorRecibido;
     //  this.resultadotest = this.profileService.getperfil();
-     this.resultadotest$ = this.profileService.getperfil();
+    //  this.resultadotest$ = this.profileService.getperfil();
     // this.profileService.getperfil().subscribe((resultadotest:string) => {
     //   this.resultadotest = resultadotest;
     //   // Continuar con la lógica del componente
