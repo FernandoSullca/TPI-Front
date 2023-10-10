@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Cuestionario } from 'src/app/core/models/initial-profile/questions-profile.model';
+// import { Cuestionario } from 'src/app/core/models/initial-profile/questions-profile.model';
 import { environment } from 'src/environments/environment';
 import axios from 'axios';
 
@@ -66,13 +66,13 @@ export class QuestionsProfileService {
   private apiUrrPostmant='http://localhost:3000'
   constructor(private http: HttpClient) { }
 
-  getPreguntas(): Observable<Cuestionario> {
-    return this.http.get<Cuestionario>(this.apiUrl);
-  }
+  // getPreguntas(): Observable<Cuestionario> {
+  //   return this.http.get<Cuestionario>(this.apiUrl);
+  // }
 
-  getCuestionario(): Observable<Cuestionario> {
-    return this.http.get<Cuestionario>(this.apiUrl);
-  }
+  // getCuestionario(): Observable<Cuestionario> {
+  //   return this.http.get<Cuestionario>(this.apiUrl);
+  // }
   getCuestionarioInicial() {
     return this.data;
   }

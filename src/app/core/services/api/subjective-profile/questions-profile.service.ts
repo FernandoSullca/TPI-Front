@@ -1,19 +1,20 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { EventEmitter, Injectable, Output } from '@angular/core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 // import { Cuestionario } from 'src/app/core/models/initial-profile/questions-profile.model';
 import { CuestionarioInitial } from 'src/app/core/models/initial-profile/initial-profile.model';
 import { environment } from 'src/environments/environment';
 import axios from 'axios';
+import { eventListeners } from '@popperjs/core';
 // import { Cuestionario } from 'src/app/core/models/initial-profile/initial-profile.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionsProfileService {
- 
+  @Output() disparadordemensageResultado:EventEmitter<any>=new EventEmitter(); 
   private apiUrl = 'assets\\mock\\Perfil subjetivo V1.0.json'; // Reemplaza con la URL real de tu JSON
-   //private apiUrl = 'assets\\mock\\Perfil subjetivo categoria agregada.json'; // Reemplaza con la URL real de tu JSON
+  //private apiUrl = 'assets\\mock\\Perfil subjetivo categoria agregada.json'; // Reemplaza con la URL real de tu JSON
   //private apiUrl=environment.API
   constructor(private http: HttpClient) { }
 
@@ -41,24 +42,10 @@ export class QuestionsProfileService {
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-subjetivo`, body);
     const { data } = resp;
-    console.log(data);
     return data;
   }
+////////////
+private perfilSubject = new Subject<any>();
 
 
-  public data: any;
-
-  setperfil(data: string) {
-    this.data = data;
-    console.log("Guardando dato enservicio");
-    console.log(data);
-    console.log("Guardando dato enservicio");
-    console.log(this.data);
-  }
-
-  getperfil() {
-    console.log("REcuperando datos enservicio");
-    console.log(this.data);
-    return this.data;
-  }
 }
