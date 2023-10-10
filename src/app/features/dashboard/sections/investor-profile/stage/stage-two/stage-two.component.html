@@ -1,9 +1,8 @@
-<p>stage-two works!</p>
 <div class="container main-container bg-white">
     <div class="row brand-box pt-2">
         <div class="col-sm-12 d-flex">
             <h2><span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h2>
-            <img src="/assets/image/logo.svg" alt="">
+            <img src="/assets/image/logo.svg" alt="" >
         </div>
     </div>
     <div class="container-perfil p-4">
@@ -14,7 +13,7 @@
                 <div class="container-perfil-Questions ">
                     <h4 >{{ pregunta.pregunta }}</h4>
                 </div>
-              
+
                 <div class="container-perfil-Descripcion">
                     <ng-container *ngIf="pregunta.tipoContenido === 'imagen'; else textoContenido">
                         <img [src]="pregunta.descripcion" alt="Imagen" class="img-fluid">
@@ -39,7 +38,7 @@
             </div>
         </div>
 
-        <div class="justify-content-md-end" style="text-align: center;">
+        <div class="justify-content-md-end mt-5" style="text-align: center;">
             <button class="btn btn-primary btn btn-primary me-md-2" *ngIf="!isLastQuestion"
                 (click)="loadNextQuestion()">{{ buttonText }}</button>
             <!-- <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p> -->
@@ -47,7 +46,7 @@
 
         <div *ngIf="isLastQuestion " style="text-align: center;">
 
-            <h3> Perfil final asociado: Moderado Jr</h3>
+            <h3> Perfil final asociado: Moderado</h3>
             <p>El inversor moderado no busca con su cartera de inversión conseguir ingresos corrientes pero si requiere
                 un modesto(Potencial) aumento en el valor de sus inversiones.
                 El inversor tolera algunas volatilidad pero busca afrontar un menor riesgo que el inversos agresivo.
