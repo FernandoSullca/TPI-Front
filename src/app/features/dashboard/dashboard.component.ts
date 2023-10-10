@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +13,7 @@ export class DashboardComponent implements OnInit {
   public enabledAdminMode = false;
   public quantityNotifications = 0;
 
-  constructor(
-  ) { }
+  constructor(private router : Router) { }
 
   public ngOnInit(): void {
   }
@@ -21,4 +21,7 @@ export class DashboardComponent implements OnInit {
     this.menuMobile = !this.menuMobile;
   }
 
+  cerrarSesion() {
+    this.router.navigate(["/"]);
+  }
 }
