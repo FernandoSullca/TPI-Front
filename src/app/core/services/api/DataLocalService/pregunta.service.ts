@@ -16,7 +16,23 @@ export class PreguntaService {
 
   constructor(private http: HttpClient) {}
 
-  getPreguntas(): Observable<Pregunta[]> {
-    return this.http.get<Pregunta[]>(this.preguntasModeradoUrl);
+  getPreguntas(tipo:string): Observable<Pregunta[]> {
+
+    switch(tipo){
+      case 'CONSERVADOR':
+        this.preguntasUrl = this.preguntasConservadorUrl; // Ruta al archivo JSON
+        break;
+      case 'MODERADO': 
+        this.preguntasUrl = this.preguntasModeradoUrl; 
+        break;
+      case 'AGRESIVO':
+        this.preguntasUrl = this.preguntasArriesgadoUrl;
+        break;
+      default:
+        console.log("Tipo de perfil no existente");
+        break;
+    }
+
+    return this.http.get<Pregunta[]>(this.preguntasUrl);
   }
 }

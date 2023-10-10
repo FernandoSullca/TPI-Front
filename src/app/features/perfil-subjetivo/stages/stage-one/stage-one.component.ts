@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
 import { CuestionarioInitial, Pregunta, Respuesta, convertirAPreguntaBotones, PreguntaBotones } from 'src/app/core/models/initial-profile/initial-profile.model';
+import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 // import { Cuestionario, RespuestaBnt } from 'src/app/core/models/initial-profile/questions-profile.model';
 import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
 @Component({
@@ -45,8 +46,10 @@ export class StageOneComponent implements OnInit {
     preguntas: []
   };
 
-  constructor(private profileService: QuestionsProfileService, private router: Router, private route: ActivatedRoute) { 
-    this.respuestasPerfil = {}; // Inicializa respuestasPerfil como un objeto vacío
+  constructor(private profileService: QuestionsProfileService,
+     private router: Router, private route: ActivatedRoute,
+     private localStorageService: LocalStorageService) {
+   
   }
 
   ngOnInit(): void {
@@ -92,8 +95,8 @@ export class StageOneComponent implements OnInit {
       this.guardarrespuestas(this.cuestionario.preguntas[0].seccion.nombre,
         this.cuestionario.preguntas[0].TipoComponente);
 
-      console.log("-Resultado Temporal Guardado");
-      console.log(this.respuestasDeUsuario);
+      // console.log("-Resultado Temporal Guardado");
+      // console.log(this.respuestasDeUsuario);
       // Incrementa el índice para la próxima pregunta
       this.currentQuestionIndex++;
 
@@ -101,7 +104,8 @@ export class StageOneComponent implements OnInit {
 
         this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[this.currentQuestionIndex];
 
-      } else {
+      }
+      else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
 
         console.log('Has respondido todas las preguntas.');
@@ -112,11 +116,15 @@ export class StageOneComponent implements OnInit {
         //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
         //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
         this.entregarResultados().then((data) => {
-          console.log(data)
-          this.respuestasPerfil=data;
-          console.log(this.respuestasPerfil)
-          console.log(this.respuestasPerfil.perfilInversor)
-          console.log('Entrega de resultados completada.'); 
+          this.respuestasPerfil = data;
+          this.profileService.disparadordemensageResultado.emit({
+            data:this.respuestasPerfil.perfilInversor
+          });
+          this.localStorageService.setItem('perfil',this.respuestasPerfil.perfilInversor);
+          this.profileService.enviarPerfil({
+            data: this.respuestasPerfil.perfilInversor
+          });
+          console.log('Entrega de resultados completada.');
         });
       }
     } else {
@@ -130,11 +138,11 @@ export class StageOneComponent implements OnInit {
     switch (tipo) {
       case 'CHECKBOX':
 
-        console.log('Suma total:Area CHECKBOX');
+        // console.log('Suma total:Area CHECKBOX');
         index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
         const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
         const sumaCheckbox = valoresCheckbox.reduce((total, valor) => total + valor, 0);
-        console.log('Suma total:', sumaCheckbox);
+        // console.log('Suma total:', sumaCheckbox);
         if (index !== -1) {
           // respuestaExistente.calculo += sumaCheckbox;
           this.respuestasDeUsuario[index].calculo += sumaCheckbox;
@@ -148,7 +156,7 @@ export class StageOneComponent implements OnInit {
         this.AnalisisSubjetivo[seccion] += sumaCheckbox;
         break;
       case 'RADIO':
-        console.log('Suma total:Area RADIO');
+        // console.log('Suma total:Area RADIO');
         index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);//Horizonte o riesgo
         let valorRadio = this.opcionSeleccionada;
 
@@ -163,10 +171,10 @@ export class StageOneComponent implements OnInit {
           this.AnalisisSubjetivo[seccion] = 0;
         }
         this.AnalisisSubjetivo[seccion] += valorRadio;
-        console.log(valorRadio);
+        // console.log(valorRadio);
         break;
       case 'BOTON':
-        console.log('Suma total:Area BOTON');
+        // console.log('Suma total:Area BOTON');
         index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
         let suma = 0;
         // console.log("Puntaje por respuestas");
@@ -176,7 +184,7 @@ export class StageOneComponent implements OnInit {
             suma += this.respuestasSeleccionadasPorInstrumento[instrumento];
           }
         }
-        console.log('Suma total:', suma);
+        // console.log('Suma total:', suma);
         if (index !== -1) {
           this.respuestasDeUsuario[index].calculo += suma;
         }
@@ -211,9 +219,6 @@ export class StageOneComponent implements OnInit {
       if (data && data.perfilInversor) {
         this.respuestasPerfil = data;
         console.log("Resultados enviados correctamente");
-        console.log(data);
-        console.log(this.respuestasPerfil.perfilInversor);
-        this.profileService.setperfil(this.respuestasPerfil.perfilInversorl);
         return this.respuestasPerfil;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
@@ -262,24 +267,8 @@ export class StageOneComponent implements OnInit {
     return Array.isArray(respuestas);
   }
 
-  loadResultado(): void {
-    //  this.entregarResultados()
-    // this.entregarResultados();
-    console.log("Verificar las repuesta en el componente");
-    console.log(this.respuestasPerfil.perfilInversorl);
-    console.log("--------");
-    // const valorParaEnviar = this.respuestasPerfil.perfilInversorl;
-
-    // this.router.navigate(['/perfil-inversor-resultado/', {perfil:valorParaEnviar}]);
-    // this.profileService.setperfil(this.respuestasPerfil.perfilInversorl);
+  loadPageResultado(): void {
     this.router.navigate(['/perfil-inversor-resultado']);
-    this.buttonText = 'Continuar';
-
-  }
-
-  loadHome(): void {
-    // this.entregarResultados() ;
-    this.router.navigate(['/dashboard/precios']);
     this.buttonText = 'Continuar';
   }
 
@@ -296,6 +285,7 @@ export class StageOneComponent implements OnInit {
     return respuestasbnts.orden == 1;
   }
 
+ 
 
 }
 

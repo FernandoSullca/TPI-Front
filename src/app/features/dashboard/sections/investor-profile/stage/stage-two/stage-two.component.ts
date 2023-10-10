@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { QuestionsTargetService } from 'src/app/core/services/api/target-profile/questions-target-profile.service';
 import { Pregunta, Respuesta,RespuestaBnt  } from 'src/app/core/models/perfil-objetivo/preguntaObjetivo.model';
 import { PreguntaService } from 'src/app/core/services/api/DataLocalService/pregunta.service';
+import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 @Component({
   selector: 'app-stage-two',
   templateUrl: './stage-two.component.html',
@@ -25,12 +26,21 @@ export class StageTwoComponent {
 
   descripcionFormateada: string[] = [];
 
-  constructor(private questionsService: QuestionsTargetService , private router: Router, private preguntaService: PreguntaService) { }
+  valorRecibido: any;
+  constructor(private questionsService: QuestionsTargetService , 
+    private router: Router, private preguntaService: PreguntaService,
+    private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
 
     /*********Area Preguntas onjetivas*********/
-    this.preguntaService.getPreguntas().subscribe((data: Pregunta[]) => {
+
+    
+    const storedProfile = this.localStorageService.getItem('perfil');
+    if (storedProfile) {
+      this.valorRecibido = storedProfile;
+    }
+    this.preguntaService.getPreguntas(this.valorRecibido).subscribe((data: Pregunta[]) => {
       this.resPreguntas = data;
       this.loadQuestions();
     });

@@ -1,25 +1,22 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { EventEmitter, Injectable, Output } from '@angular/core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 // import { Cuestionario } from 'src/app/core/models/initial-profile/questions-profile.model';
 import { CuestionarioInitial } from 'src/app/core/models/initial-profile/initial-profile.model';
 import { environment } from 'src/environments/environment';
 import axios from 'axios';
+import { eventListeners } from '@popperjs/core';
 // import { Cuestionario } from 'src/app/core/models/initial-profile/initial-profile.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionsProfileService {
- 
+  @Output() disparadordemensageResultado:EventEmitter<any>=new EventEmitter(); 
   private apiUrl = 'assets\\mock\\Perfil subjetivo V1.0.json'; // Reemplaza con la URL real de tu JSON
   //private apiUrl = 'assets\\mock\\Perfil subjetivo categoria agregada.json'; // Reemplaza con la URL real de tu JSON
   //private apiUrl=environment.API
   constructor(private http: HttpClient) { }
-
-
-  private perfilInversorSubject: BehaviorSubject<string | undefined> = new BehaviorSubject<string | undefined>(undefined);
-  public perfilInversor$: Observable<string | undefined> = this.perfilInversorSubject.asObservable();
 
   getCuestionario(): Observable<CuestionarioInitial> {
     return this.http.get<CuestionarioInitial>(this.apiUrl);
@@ -47,24 +44,18 @@ export class QuestionsProfileService {
     const { data } = resp;
     return data;
   }
+////////////
+private perfilSubject = new Subject<any>();
 
+enviarPerfil(perfil: any) {
+  this.perfilSubject.next(perfil);
+}
 
-  perfilInversor: string="";
+obtenerPerfil() {
+  console.log(this.perfilSubject.asObservable().forEach);
+  console.log(this.perfilSubject.asObservable());
+  return this.perfilSubject.asObservable();
+  
+}
 
-
-  setperfil(data: string) {
-    this.perfilInversorSubject.next(data);
-    this.perfilInversor = data;
-    console.log("Guardando dato enservicio");
-    console.log(data);
-    console.log("Guardando dato enservicio");
-    console.log(this.perfilInversorSubject);
-  }
-
-  getperfil() {
-    console.log("REcuperando datos enservicio");
-    console.log(this.perfilInversor);
-    return this.perfilInversor$;
-    // return this.perfilInversor;
-  }
 }

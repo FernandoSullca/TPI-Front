@@ -2,13 +2,12 @@
 
     <div class="container-perfil-resultado p-3">
         <div>
+         <h3>
+                Resultado parcial de perfil: <b>{{valorRecibido}}</b>
+            </h3> 
             <h3>
-                Resultado parcial de perfil: <b>{{resultado}}</b>
-            </h3>
-            <div *ngIf="resultadotest$ | async as resultadotest">
-                <!-- Aquí puedes mostrar resultadotest -->
-                {{ resultadotest }}
-              </div>
+                Resultado parcial de perfil: <b>{{ resultado$ | async }}</b>
+              </h3>
         </div>
     </div>
     <div class="infomacion-central">
