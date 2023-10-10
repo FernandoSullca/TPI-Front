@@ -108,8 +108,8 @@
 
             </div>
         </div>
-        <div *ngIf="isLastQuestion" style="text-align: center;">
-            <button class="btn btn-primary btn btn-primary me-md-2 botonera-lg" (click)=" loadResultado()">{{ buttonText }}</button>
+        <div *ngIf="isLastQuestion" class="finalizacion-area">
+            <button class="btn btn-primary btn btn-primary me-md-2 botonera-lg " (click)=" loadResultado()">{{ buttonText }}</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
         </div>
     </div>

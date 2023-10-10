@@ -5,7 +5,7 @@
       "TipoComponente": "CHECKBOX",
       "categoria": {
         "nombre": "Test Inversor"
-      },
+      },  
       "seccion": {
         "nombre": "Tolerancia al riesgo"
       },
