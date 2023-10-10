@@ -20,7 +20,7 @@ export class StageOneComponent implements OnInit {
   };
 
   ///////Control de paginacion. preguntas Siguiente:
-  buttonText: string = 'Siguiente Pregunta';
+  buttonText: string = 'SIGUIENTE PREGUNTA';
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;
 
@@ -100,7 +100,7 @@ export class StageOneComponent implements OnInit {
         console.log('Has respondido todas las preguntas.');
         console.log(this.AnalisisSubjetivo);
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
-        this.buttonText = 'Continuar';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
+        this.buttonText = 'FINALIZAR';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
         //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
         //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
          this.entregarResultados().then(() => {
@@ -235,7 +235,7 @@ export class StageOneComponent implements OnInit {
 
   loadHome(): void {
     // this.entregarResultados() ;
-    this.router.navigate(['/dashboard/perfil-inversor']);
+    this.router.navigate(['/dashboard/precios']);
     this.buttonText = 'Continuar';
   }
 
