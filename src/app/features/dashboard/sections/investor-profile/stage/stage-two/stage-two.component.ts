@@ -39,7 +39,7 @@ export class StageTwoComponent {
 
   loadQuestions() {
     this.preguntas[0] = this.resPreguntas[0];
-    if(this.preguntas[0].tipoContenido!="texto")
+    if(this.preguntas[0].tipoContenido=="texto")
     {
       this.formatearDescripcion() ;
     }
