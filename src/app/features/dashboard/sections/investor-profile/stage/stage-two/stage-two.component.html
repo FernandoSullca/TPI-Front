@@ -15,14 +15,13 @@
                 </div>
 
                 <div class="container-perfil-Descripcion">
-                    <ng-container *ngIf="pregunta.tipoContenido === 'imagen'; else textoContenido">
-                        <img [src]="pregunta.descripcion" alt="Imagen" class="img-fluid">
-                    </ng-container>
-                    <ng-template #textoContenido>
-
+                    <ng-container *ngIf="pregunta.tipoContenido =='texto'; else imgContenido">
                         <ul>
                             <li *ngFor="let linea of descripcionFormateada">{{ linea }}</li>
                         </ul>
+                    </ng-container>
+                    <ng-template #imgContenido>
+                      <img [src]="pregunta.descripcion" alt="Imagen" class="img-fluid">
                     </ng-template>
                 </div>
 
