@@ -47,15 +47,5 @@ export class QuestionsProfileService {
 ////////////
 private perfilSubject = new Subject<any>();
 
-enviarPerfil(perfil: any) {
-  this.perfilSubject.next(perfil);
-}
-
-obtenerPerfil() {
-  console.log(this.perfilSubject.asObservable().forEach);
-  console.log(this.perfilSubject.asObservable());
-  return this.perfilSubject.asObservable();
-  
-}
 
 }

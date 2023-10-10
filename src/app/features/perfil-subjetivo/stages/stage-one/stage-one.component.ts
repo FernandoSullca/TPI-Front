@@ -121,9 +121,7 @@ export class StageOneComponent implements OnInit {
             data:this.respuestasPerfil.perfilInversor
           });
           this.localStorageService.setItem('perfil',this.respuestasPerfil.perfilInversor);
-          this.profileService.enviarPerfil({
-            data: this.respuestasPerfil.perfilInversor
-          });
+       
           console.log('Entrega de resultados completada.');
         });
       }

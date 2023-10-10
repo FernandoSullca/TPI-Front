@@ -23,22 +23,13 @@ export class StageResultComponent implements OnInit {
 
  
   ngOnInit(): void {
-    // this.profileService.obtenerPerfil().subscribe(data => {
-    //   console.log("Recibiendo datos de perfil-----");
-    //   console.log(data);
-    //   this.resultado = data.data;
-    //   console.log(this.resultado);
-    // });
 
     const storedProfile = this.localStorageService.getItem('perfil');
     if (storedProfile) {
       this.valorRecibido = storedProfile;
     }
 
-    this.resultado$ = this.profileService.obtenerPerfil().pipe(
-      map(data =>data.data), 
-      tap(resultado => console.log(resultado))
-    );
+ 
     // this.profileService.disparadordemensageResultado.subscribe(data=>{
     //   console.log("Recibiendo datos de perfil-----");
     //   console.log(data);
@@ -46,8 +37,7 @@ export class StageResultComponent implements OnInit {
     //   console.log(this.perfil.data);
     //   this.resultado=this.perfil.data
     // })
-      // Forzar una actualización de la vista
-      // this.cdr.detectChanges();
+ 
   }
 
  
