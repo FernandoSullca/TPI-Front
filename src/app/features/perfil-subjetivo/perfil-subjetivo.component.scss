@@ -5,6 +5,7 @@
     align-items: center;
     padding-bottom: 1rem;
     border-radius: 1rem;
+    height: 700px;
 }
 .brand-box {
     display: flex;
@@ -15,7 +16,7 @@
     img {
       height: 3.8rem;
       // margin-right: .7rem;
-      margin-left: .7rem;
+      margin-left: .1rem;
       padding-bottom: 1em;
     }
 
@@ -62,6 +63,10 @@
   flex-shrink: 0;
   fill: #3261A8;
   filter: drop-shadow(0px 4px 6px rgba(163, 161, 255, 0.16));
+}
+.botonera{
+  width: 200px;
+  height: 200px;
 }
 @media (min-width: 690px) {
   #meta {

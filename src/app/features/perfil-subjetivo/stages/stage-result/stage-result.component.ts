@@ -34,7 +34,12 @@ export class StageResultComponent {
  
   loadHome(): void {
     // this.entregarResultados() ;
-    this.router.navigate(['/dashboard/perfil-inversor']);
+    this.router.navigate(['/dashboard/precios']);
     // this.buttonText = 'Continuar';
   }
+  loadStages() { 
+    let url: string = './dashboard/perfil-inversor-questions';
+    this.router.navigate([url]);
+  }
+
 }
