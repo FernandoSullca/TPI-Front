@@ -17,6 +17,6 @@ export class PreguntaService {
   constructor(private http: HttpClient) {}
 
   getPreguntas(): Observable<Pregunta[]> {
-    return this.http.get<Pregunta[]>(this.preguntasConservadorUrl);
+    return this.http.get<Pregunta[]>(this.preguntasModeradoUrl);
   }
 }
