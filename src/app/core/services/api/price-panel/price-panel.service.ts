@@ -22,22 +22,24 @@ export class PricePanelService {
 
   }
 
-  public async capturarOrden(sentido: string, intrumento: string, cantidad: number) {
+  public async capturarOrden(sentido: string, simbolo: string, cantidad: number, mapa: Map<string, string>) {
     let date = new Date()
     let day = `${(date.getDate())}`.padStart(2, '0');
     let month = `${(date.getMonth() + 1)}`.padStart(2, '0');
     let year = date.getFullYear();
     const fecha = `${year}-${month}-${day}`;
-
+    const categoriaInstrumento = mapa.get(simbolo);
     const body = {
-      "simboloInstrumento": intrumento,
+      "simboloInstrumento": simbolo,
       "monedaOid": 1, // siempre 1 moneda peso
       "fecha_orden": fecha, // fecha actual
       "cantidad": cantidad, // cantidad de "acciones" del instrumento
-      "sentido": sentido // venta
+      "sentido": sentido, // venta
+      "categoriaInstrumento": categoriaInstrumento
     }
     const resp = await axios.post(`${environment.API}/orden/capturar`, body);
     const { data } = resp;
+    
     return data;
   }
 }
