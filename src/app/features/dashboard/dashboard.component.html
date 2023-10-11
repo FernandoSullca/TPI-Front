@@ -4,8 +4,10 @@
     <img src="/assets/image/menu_mobile.svg" alt="">
   </div>
   <nav [ngClass]="{'active': menuMobile}">
-    <div class="brand-box" [routerLink]="['/']">
-      <h2>MercadoJR</h2>
+
+    <div class="brand-box" [routerLink]="['/']">      
+      <h2>Mercado<b>JR</b></h2>
+
       <img style="margin-left: 2px; margin-top: -14px;" src="/assets/image/logo.svg" alt="">
     </div>
     <ul>
@@ -16,8 +18,8 @@
           <img src="/assets/image/aprender.svg" alt="">
           <span>Aprender</span>
         </li> -->
-        <li routerLink='/dashboard/perfil-inversor' routerLinkActive="active" (click)="actionMenuMobile()">
-          <img src="/assets/image/campana.svg" alt="">
+        <li routerLink='/dashboard/perfil-inversor-questions' routerLinkActive="active" (click)="actionMenuMobile()">
+          <img src="/assets/image/perfil-icon.svg" alt="">
           <span>Perfil inversor</span>
           <p *ngIf="false" class="notif">1</p>
         </li>
@@ -31,10 +33,14 @@
           </p>
         </li> -->
         <li routerLink='/dashboard/cartera' routerLinkActive="active" (click)="actionMenuMobile()">
-          <img src="/assets/image/perfil.svg" alt=""><span>Cartera</span>
+          <img src="/assets/image/cartera-icon.svg" alt=""><span>Cartera</span>
         </li>
         <li routerLink='/dashboard/precios' routerLinkActive="active" (click)="actionMenuMobile()">
-          <img src="/assets/image/perfil.svg" alt=""><span>Panel precios</span>
+
+          <img src="/assets/image/panel-precios-icon.svg" alt=""><span>Panel Precios</span>
+        </li>
+        <li routerLinkActive="active" (click)="actionMenuMobile()">
+          <img src="/assets/image/prediccion-icon.svg" alt=""><span>Predicción</span>
         </li>
       </div>
     </ul>

@@ -11,28 +11,33 @@
         <div *ngIf="!isLastQuestion">
             <div class="container-perfil-Quest-descr-opt" *ngFor="let pregunta of preguntas">
                 <div class="container-perfil-Questions ">
-                    <h4 >{{ pregunta.pregunta }}</h4>
+                    <h4>{{ pregunta.pregunta }}</h4>
                 </div>
 
                 <div class="container-perfil-Descripcion">
                     <ng-container *ngIf="pregunta.tipoContenido =='texto'; else imgContenido">
-                        <ul>
-                            <li *ngFor="let linea of descripcionFormateada">{{ linea }}</li>
-                        </ul>
+                        <div class="row">
+                             <div  class="alineacion-radios" *ngFor="let linea of descripcionFormateada">
+                            <input type="radio" class="col-auto">
+                            <label class="col-auto" for="{{ pregunta.valor }}">{{ linea }}</label>
+                             </div>
+                        </div>
+            
                     </ng-container>
+
                     <ng-template #imgContenido>
-                      <img [src]="pregunta.descripcion" alt="Imagen" class="img-fluid">
+                        <img [src]="pregunta.descripcion" alt="Imagen" class="img-fluid">
                     </ng-template>
                 </div>
 
                 <!-- Renderizar opciones aquí -->
-                <div class="row centrar-opciones">
+                <!-- <div class="row centrar-opciones">
                     <div *ngFor="let opcion of pregunta.opciones" class="col-auto">
                         <input class="botonera-lg-opciones" type="button" id="{{ opcion }}" name="{{opcion.texto}}"
                             value="{{opcion.texto}}">
-                        <!-- <label for="{{ opcion }}">{{ opcion }}</label> -->
+                     <label for="{{ opcion }}">{{ opcion }}</label> 
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
