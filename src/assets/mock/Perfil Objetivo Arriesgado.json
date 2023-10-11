@@ -1,0 +1,132 @@
+[{
+    "pregunta": "¿Puede explicar el concepto de apalancamiento financiero y cómo puede afectar a la rentabilidad y el riesgo de una inversión?",
+    "valor": 75,
+    "tipoContenido": "texto",
+    "descripcion": "A- El apalancamiento financiero se refiere a la inversión en activos libres de riesgo.",
+    "opciones": [{
+        "texto": "A- El apalancamiento financiero se refiere a la inversión en activos libres de riesgo.",
+        "valor": 0,
+        "esVerdadera": false
+      },
+      {
+        "texto": "B- El apalancamiento financiero es el uso de deuda para aumentar la exposición a un activo y puede aumentar tanto la rentabilidad como el riesgo.",
+        "valor": 5,
+        "esVerdadera": true
+      },
+      {
+        "texto": "C- El apalancamiento financiero implica diversificar una cartera para reducir el riesgo.",
+        "valor": 0,
+        "esVerdadera": false
+      }
+    ]
+  },
+  {
+    "pregunta": "¿Qué son las opciones y cómo se pueden utilizar en una estrategia de inversión arriesgada?",
+    "valor": 75,
+    "tipoContenido": "texto",
+    "descripcion": " C- Las opciones son inversiones seguras que garantizan un rendimiento fijo.",
+    "opciones": [{
+        "texto": "A- Las opciones son activos de bajo riesgo que se utilizan para proteger una cartera contra pérdidas.",
+        "valor": 0,
+        "esVerdadera": false
+      },
+      {
+        "texto": "B- Las opciones son contratos que otorgan el derecho, pero no la obligación, de comprar o vender un activo subyacente a un precio específico en el futuro, y se pueden utilizar para especular o cubrir posiciones.",
+        "valor": 5,
+        "esVerdadera": true
+      },
+      {
+        "texto": "C- Las opciones son inversiones seguras que garantizan un rendimiento fijo.",
+        "valor": 0,
+        "esVerdadera": false
+      }
+    ]
+  },
+  {
+    "pregunta": "¿Cómo afectan los eventos económicos y políticos globales a la volatilidad del mercado, y cómo puede un inversor arriesgado aprovechar estas situaciones?",
+    "valor": 75,
+    "tipoContenido": "texto",
+    "descripcion": "C- Los eventos globales solo afectan a los inversores conservadores.",
+    "opciones": [{
+        "texto": "A- Los eventos globales no tienen impacto en la volatilidad del mercado.",
+        "valor": 0,
+        "esVerdadera": false
+      },
+      {
+        "texto": "B- Los eventos económicos y políticos globales pueden aumentar la volatilidad del mercado y un inversor arriesgado puede aprovechar estas oportunidades para realizar operaciones especulativas o tomar posiciones estratégicas.",
+        "valor": 5,
+        "esVerdadera": true
+      },
+      {
+        "texto": "C- Los eventos globales solo afectan a los inversores conservadores.",
+        "valor": 0,
+        "esVerdadera": false
+      }
+    ]
+  },
+  {
+    "pregunta": "¿Qué significa el término \"volatilidad\" en el contexto de las inversiones y por qué es importante para un inversor arriesgado?",
+    "valor": 75,
+    "tipoContenido": "texto",
+    "descripcion": "A- La volatilidad se refiere a la estabilidad de los precios de mercado y no es relevante para un inversor arriesgado.",
+    "opciones": [{
+        "texto": "A- La volatilidad se refiere a la estabilidad de los precios de mercado y no es relevante para un inversor arriesgado.",
+        "valor": 0,
+        "esVerdadera": false
+      },
+      {
+        "texto": "B- La volatilidad se refiere a la variación de los precios de mercado con el tiempo, y es importante para un inversor arriesgado porque puede crear oportunidades de ganancias o pérdidas significativas.",
+        "valor": 10,
+        "esVerdadera": true
+      },
+      {
+        "texto": "C- La volatilidad se refiere a la seguridad de las inversiones en efectivo.C",
+        "valor": 0,
+        "esVerdadera": false
+      }
+    ]
+  },
+  {
+    "pregunta": "¿Cuál es el propósito principal de utilizar una opción de compra (call option) en una estrategia de inversión arriesgada?",
+    "valor": 75,
+    "tipoContenido": "texto",
+    "descripcion": "C- Una opción de compra se utiliza para vender una inversión cuando se alcanza un precio objetivo.",
+    "opciones": [{
+        "texto": "A- Una opción de compra se utiliza para limitar las pérdidas en una inversión.",
+        "esVerdadera": false
+      },
+      {
+        "texto": "B- Una opción de compra se utiliza para obtener el derecho, pero no la obligación, de comprar un activo subyacente a un precio específico en el futuro, lo que permite a los inversores arriesgados beneficiarse de aumentos de precio potenciales con un desembolso inicial limitado.",
+        "valor": 10,
+        "esVerdadera": true
+      },
+      {
+        "texto": "C- Una opción de compra se utiliza para vender una inversión cuando se alcanza un precio objetivo.",
+        "valor": 0,
+        "esVerdadera": false
+      }
+    ]
+  },
+  {
+    "pregunta": "¿Qué es el análisis técnico en el contexto de la inversión y cómo puede ser útil para un inversor arriesgado?",
+    "valor": 75,
+    "tipoContenido": "texto",
+    "descripcion": "C- El análisis técnico se centra en la evaluación de la gestión de riesgos y no en la predicción de precios.",
+    "opciones": [{
+        "texto": "A- El análisis técnico se enfoca en el estudio de los estados financieros de las empresas y no es relevante para un inversor arriesgado.",
+        "valor": 0,
+        "esVerdadera": false
+      },
+      {
+        "texto": "B- El análisis técnico implica el estudio de los patrones de precios pasados y el volumen de operaciones para predecir movimientos futuros del mercado, y puede ser útil para un inversor arriesgado al tomar decisiones de compra y venta.",
+        "valor": 5,
+        "esVerdadera": true
+      },
+      {
+        "texto": "C- El análisis técnico se centra en la evaluación de la gestión de riesgos y no en la predicción de precios.",
+        "valor": 0,
+        "esVerdadera": false
+      }
+    ]
+  }
+]

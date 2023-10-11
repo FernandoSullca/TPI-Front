@@ -9,13 +9,39 @@ import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 export class GraficoComponent {
 
   @Input() cantidadPorInstrumento: any; 
+  colores = [
+    '#669900',
+    '#CC3399',
+    '#CCEE66',
+    '#006699',
+    '#3399CC',
+    '#990066',
+    '#CC3399',
+    '#FF6600',
+    '#99CC33',
+    '#FFCC00'
+  ];
 
   public pieChartOptions: ChartConfiguration['options'] = {
+    maintainAspectRatio:false,
     responsive: true,
     plugins: {
+      title:{
+        display:true,
+        text:'Activos valorizados',
+        color:'#00000',
+        font:{
+          size:20
+        }
+      },
       legend: {
         display: true,
         position: 'bottom',
+        labels:{
+          usePointStyle: true,
+          boxWidth:10,
+          color:'#00000'
+        }
       },
     },
   };
@@ -24,6 +50,7 @@ export class GraficoComponent {
     datasets: [
       {
         data: [],
+        backgroundColor:this.colores
       },
     ],
   };
