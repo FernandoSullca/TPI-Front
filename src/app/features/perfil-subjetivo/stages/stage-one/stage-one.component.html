@@ -17,7 +17,7 @@
                     <p class="alinea-descripcion-pregunta-check"> Podés elegir más de una opción o ninguna</p>
                     <div *ngIf="isArray(pregunta.respuestas)">
                         <div *ngFor="let respuesta of pregunta.respuestas" class="alinea-pregunta-check">
-                            
+
                             <input type="checkbox" id="{{ respuesta.nombre }}" name="{{ respuesta.nombre}}"
                                 (change)="actualizarOpcionesSeleccionadas(pregunta.seccion.nombre,respuesta.nombre,respuesta.valor)"
                                 >
@@ -51,7 +51,7 @@
                     <div class="container-perfil-Questions p-2 pb-0">
                         <p>{{ pregunta.descripcion }}</p>
                     </div>
-                    <p class="alinea-descripcion-pregunta-boton"> Elije el nivel de conocimiento por cada instrumento</p>
+                    <p class="alinea-descripcion-pregunta-boton"> Elige el nivel de conocimiento por cada instrumento</p>
 
                     <div *ngFor="let respuesta of pregunta.respuestas" class="alinea-pregunta-boton">
                         <div class="row">
@@ -59,7 +59,7 @@
                             <div *ngIf="esPrimero(respuesta)">
                                 <p class="pb-0 mb-1 nombre-instrumento-boton">{{ respuesta.instrumento }}</p>
                                 <ng-container *ngIf="respuesta.instrumento;" >
-                                    <div class="row"> 
+                                    <div class="row">
                                         <div *ngFor="let opcion of opcionesPorInstrumento(pregunta.respuestas,respuesta.instrumento)" class="col-auto">
                                          <button class="botonera-lg-opciones" type="button" id="{{ opcion.nombre }}" name="{{ respuesta.instrumento }}"
                                             [class.selected]="esRespuestaSeleccionada(respuesta.instrumento, opcion.valor)"
@@ -67,7 +67,7 @@
                                         {{ opcion.nombre }}
                                     </button>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </ng-container>
                             </div>
                         </div>
@@ -109,8 +109,9 @@
             </div>
         </div>
         <div *ngIf="isLastQuestion" class="finalizacion-area">
-            <button class="btn btn-primary btn btn-primary me-md-2 botonera-lg" (click)=" loadResultado()">{{ buttonText }}</button>
+            <button class="btn btn-primary btn btn-primary me-md-2 botonera-lg" (click)=" loadPageResultado()">{{ buttonText }}</button>
             <p *ngIf="isLastQuestion" style="margin-top: 1.5rem;">¡Has respondido todas las preguntas!</p>
+          
         </div>
     </div>
 

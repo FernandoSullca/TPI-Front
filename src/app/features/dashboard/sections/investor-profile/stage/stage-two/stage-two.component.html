@@ -1,9 +1,8 @@
-<p>stage-two works!</p>
 <div class="container main-container bg-white">
     <div class="row brand-box pt-2">
         <div class="col-sm-12 d-flex">
             <h2><span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h2>
-            <img src="/assets/image/logo.svg" alt="">
+            <img src="/assets/image/logo.svg" alt="" >
         </div>
     </div>
     <div class="container-perfil p-4">
@@ -12,33 +11,38 @@
         <div *ngIf="!isLastQuestion">
             <div class="container-perfil-Quest-descr-opt" *ngFor="let pregunta of preguntas">
                 <div class="container-perfil-Questions ">
-                    <h4 >{{ pregunta.pregunta }}</h4>
+                    <p>{{ pregunta.pregunta }}</p>
                 </div>
-              
+
                 <div class="container-perfil-Descripcion">
                     <ng-container *ngIf="pregunta.tipoContenido =='texto'; else imgContenido">
-                        <ul>
-                            <li *ngFor="let linea of descripcionFormateada">{{ linea }}</li>
-                        </ul>
+                        <div class="row">
+                             <div  class="alineacion-radios" *ngFor="let linea of descripcionFormateada">
+                            <input type="radio" class="col-auto">
+                            <label class="col-auto enunciado-radio" for="{{ pregunta.valor }}">{{ linea }}</label>
+                             </div>
+                        </div>
+            
                     </ng-container>
+
                     <ng-template #imgContenido>
-                      <img [src]="pregunta.descripcion" alt="Imagen" class="img-fluid">
+                        <img [src]="pregunta.descripcion" alt="Imagen" class="img-fluid">
                     </ng-template>
                 </div>
 
                 <!-- Renderizar opciones aquí -->
-                <div class="row centrar-opciones">
+                <!-- <div class="row centrar-opciones">
                     <div *ngFor="let opcion of pregunta.opciones" class="col-auto">
                         <input class="botonera-lg-opciones" type="button" id="{{ opcion }}" name="{{opcion.texto}}"
                             value="{{opcion.texto}}">
-                        <!-- <label for="{{ opcion }}">{{ opcion }}</label> -->
+                     <label for="{{ opcion }}">{{ opcion }}</label> 
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
 
-        <div class="justify-content-md-end" style="text-align: center;">
+        <div class="justify-content-md-end mt-5" style="text-align: center;">
             <button class="btn btn-primary btn btn-primary me-md-2" *ngIf="!isLastQuestion"
                 (click)="loadNextQuestion()">{{ buttonText }}</button>
             <!-- <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p> -->
@@ -46,7 +50,7 @@
 
         <div *ngIf="isLastQuestion " style="text-align: center;">
 
-            <h3> Perfil final asociado: Moderado Jr</h3>
+            <h3> Perfil final asociado: Moderado</h3>
             <p>El inversor moderado no busca con su cartera de inversión conseguir ingresos corrientes pero si requiere
                 un modesto(Potencial) aumento en el valor de sus inversiones.
                 El inversor tolera algunas volatilidad pero busca afrontar un menor riesgo que el inversos agresivo.
@@ -58,7 +62,7 @@
 
         <div *ngIf="isLastQuestion && issugerencia" style="text-align: center;">
 
-            <h3> Portfolio suferido acorde a tu perfil</h3>
+            <h3> Portfolio sugerido acorde a tú perfil</h3>
             <img src="\assets\image\Group inversiones recomendadas.png" alt="">
             <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadHome()">{{ buttonText }}</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
