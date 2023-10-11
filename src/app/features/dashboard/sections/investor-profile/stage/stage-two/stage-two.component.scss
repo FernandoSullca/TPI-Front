@@ -3,7 +3,7 @@
   flex-direction: column;
   align-content: center;
   align-items: center;
-  height: 95vh;
+  // height: 95vh;
 }
 
 .brand-box {
@@ -62,7 +62,7 @@
   // text-align: center;
   // padding-top: 1rem;
   font-weight: 700;
-  font-size: 1.2rem;
+  // font-size: 1.2rem;
   padding: 2em;
 
   img {
@@ -142,8 +142,11 @@
   flex-direction: row;
   align-items: center;
   label {
-        width: 90%;
-  }
+    width: 90%;
+    font-size: 16px;
+    font-weight: 700;
+   
+      }
 }
 
 

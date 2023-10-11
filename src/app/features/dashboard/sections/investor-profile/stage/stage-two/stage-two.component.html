@@ -11,7 +11,7 @@
         <div *ngIf="!isLastQuestion">
             <div class="container-perfil-Quest-descr-opt" *ngFor="let pregunta of preguntas">
                 <div class="container-perfil-Questions ">
-                    <h4>{{ pregunta.pregunta }}</h4>
+                    <p>{{ pregunta.pregunta }}</p>
                 </div>
 
                 <div class="container-perfil-Descripcion">
@@ -19,7 +19,7 @@
                         <div class="row">
                              <div  class="alineacion-radios" *ngFor="let linea of descripcionFormateada">
                             <input type="radio" class="col-auto">
-                            <label class="col-auto" for="{{ pregunta.valor }}">{{ linea }}</label>
+                            <label class="col-auto enunciado-radio" for="{{ pregunta.valor }}">{{ linea }}</label>
                              </div>
                         </div>
             
