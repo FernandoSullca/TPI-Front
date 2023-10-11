@@ -6,7 +6,11 @@
     height: 50vh;
 
 }
-
+.fila-instrumento :hover {
+    cursor: pointer;
+    background-color: $primary-color;
+    color: $color-white;
+}
 .table-price {
 
     @media(max-width:992px) {
