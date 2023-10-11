@@ -2,17 +2,20 @@
     "pregunta": "¿Qué significa el término \"ratio de Sharpe\" y cómo se utiliza en la evaluación de carteras de inversión?",
     "valor": 75,
     "tipoContenido": "texto",
-    "descripcion": "A- El ratio de Sharpe mide la rentabilidad absoluta de una inversión. B- El ratio de Sharpe mide la relación entre el rendimiento y la volatilidad de una inversión y se utiliza para evaluar la eficiencia de una cartera. C- El ratio de Sharpe mide el rendimiento de una inversión sin tener en cuenta el riesgo asociado.",
+    "descripcion": "C- El ratio de Sharpe mide el rendimiento de una inversión sin tener en cuenta el riesgo asociado.",
     "opciones": [{
-        "texto": "A.",
+        "texto": "A- El ratio de Sharpe mide la rentabilidad absoluta de una inversión.",
+        "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "B.",
+        "texto": "B- El ratio de Sharpe mide la relación entre el rendimiento y la volatilidad de una inversión y se utiliza para evaluar la eficiencia de una cartera.",
+        "valor": 5,
         "esVerdadera": true
       },
       {
-        "texto": "C.",
+        "texto": "C- El ratio de Sharpe mide el rendimiento de una inversión sin tener en cuenta el riesgo asociado.",
+        "valor": 0,
         "esVerdadera": false
       }
     ]
@@ -21,17 +24,20 @@
     "pregunta": "¿Cuáles son los principales tipos de activos que componen una cartera diversificada de inversión moderada?",
     "valor": 75,
     "tipoContenido": "texto",
-    "descripcion": "A- Solo bonos corporativos de alto rendimiento. B- Acciones de empresas tecnológicas en crecimiento. C- Una combinación de acciones y bonos de calidad.",
+    "descripcion": "A- Solo bonos corporativos de alto rendimiento.",
     "opciones": [{
-        "texto": "A",
+        "texto": "A- Solo bonos corporativos de alto rendimiento.",
+        "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "B",
+        "texto": "B- Acciones de empresas tecnológicas en crecimiento.",
+        "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "C",
+        "texto": "C- Una combinación de acciones y bonos de calidad.",
+        "valor": 5,
         "esVerdadera": true
       }
     ]
@@ -40,17 +46,20 @@
     "pregunta": "¿Cuál es la importancia de establecer un horizonte de inversión a la hora de construir una cartera moderada?",
     "valor": 75,
     "tipoContenido": "texto",
-    "descripcion": "A- No es importante tener un horizonte de inversión definido. B- Un horizonte de inversión a largo plazo permite tomar riesgos significativos. C- Un horizonte de inversión a largo plazo ayuda a seleccionar activos y estrategias adecuados. ",
+    "descripcion": "A- No es importante tener un horizonte de inversión definido.",
     "opciones": [{
-        "texto": "A",
+        "texto": "A- No es importante tener un horizonte de inversión definido.",
+        "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "B",
+        "texto": "B- Un horizonte de inversión a largo plazo permite tomar riesgos significativos.",
+        "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "C",
+        "texto": "C- Un horizonte de inversión a largo plazo ayuda a seleccionar activos y estrategias adecuados.",
+        "valor": 5,
         "esVerdadera": true
       }
     ]
@@ -59,17 +68,20 @@
     "pregunta": "¿Cómo se calcula el rendimiento compuesto de una inversión a lo largo del tiempo?",
     "valor": 75,
     "tipoContenido": "texto",
-    "descripcion": "A- Sumando los rendimientos de cada año. B- Promediando los rendimientos anuales. C- Multiplicando los rendimientos anuales, teniendo en cuenta el interés compuesto.",
+    "descripcion": "C- Multiplicando los rendimientos anuales, teniendo en cuenta el interés compuesto.",
     "opciones": [{
-        "texto": "A",
+        "texto": "A- Sumando los rendimientos de cada año.",
+        "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "B",
+        "texto": "B- Promediando los rendimientos anuales.",
+        "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "C",
+        "texto": "C- Multiplicando los rendimientos anuales, teniendo en cuenta el interés compuesto.",
+        "valor": 10,
         "esVerdadera": true
       }
     ]
@@ -78,17 +90,20 @@
     "pregunta": "¿Cuáles son los riesgos asociados con la inversión en acciones y cómo se pueden mitigar en una cartera moderada?",
     "valor": 75,
     "tipoContenido": "texto",
-    "descripcion": "A- No hay riesgos asociados con la inversión en acciones. B- Los riesgos incluyen la volatilidad de los precios y la pérdida de capital, y se pueden mitigar mediante la diversificación y la selección de acciones de calidad. C- Los riesgos solo pueden mitigarse mediante la inversión en bonos.",
+    "descripcion": "A- No hay riesgos asociados con la inversión en acciones.",
     "opciones": [{
-        "texto": "A",
+        "texto": "A- No hay riesgos asociados con la inversión en acciones.",
+        "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "B",
+        "texto": "B- Los riesgos incluyen la volatilidad de los precios y la pérdida de capital, y se pueden mitigar mediante la diversificación y la selección de acciones de calidad.",
+        "valor": 10,
         "esVerdadera": true
       },
       {
-        "texto": "C",
+        "texto": "C- Los riesgos solo pueden mitigarse mediante la inversión en bonos.",
+        "valor": 0,
         "esVerdadera": false
       }
     ]
@@ -97,17 +112,20 @@
     "pregunta": "¿Cómo afecta la inflación a las inversiones y cómo puede un inversor moderado proteger su cartera contra la erosión del poder adquisitivo?",
     "valor": 75,
     "tipoContenido": "texto",
-    "descripcion": "A- La inflación no afecta a las inversiones. B- La inflación disminuye el valor real de las inversiones a lo largo del tiempo, y un inversor moderado puede proteger su cartera invirtiendo en activos que históricamente han superado la inflación, como acciones y bienes raíces. C- La inflación solo afecta a las inversiones en efectivo.",
+    "descripcion": "A- La inflación no afecta a las inversiones.",
     "opciones": [{
-        "texto": "A",
+        "texto": "A- La inflación no afecta a las inversiones.",
+        "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "B",
+        "texto": "B- La inflación disminuye el valor real de las inversiones a lo largo del tiempo, y un inversor moderado puede proteger su cartera invirtiendo en activos que históricamente han superado la inflación, como acciones y bienes raíces.",
+        "valor": 5,
         "esVerdadera": true
       },
       {
-        "texto": "C",
+        "texto": "C- La inflación solo afecta a las inversiones en efectivo.",
+        "valor": 0,
         "esVerdadera": false
       }
     ]
