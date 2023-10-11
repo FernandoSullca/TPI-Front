@@ -271,7 +271,7 @@ export class StageOneComponent implements OnInit {
 
   }
 
-  esRespuestaSeleccionada(instrumento: string, valor: number): boolean {
+  esRespuestaSeleccionada(instrumento: string, valor: number, order: number): boolean {
     return this.respuestasSeleccionadasPorInstrumento[instrumento] === valor;
   }
 

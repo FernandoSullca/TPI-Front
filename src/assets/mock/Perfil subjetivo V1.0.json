@@ -12,10 +12,12 @@
       "respuestas": [{
           "nombre": "Plazo Fijo",
           "valor": 0
+   
         },
         {
           "nombre": "Fondos Comunes de Inversion (De renta fija)",
           "valor": 0
+   
         },
         {
           "nombre": "Bonos",
@@ -24,14 +26,17 @@
         {
           "nombre": "Acciones",
           "valor": 2
+
         },
         {
           "nombre": "Opciones",
           "valor": 3
+
         },
         {
           "nombre": "Futuros",
           "valor": 4
+
         }
       ]
     },
@@ -53,13 +58,13 @@
         {
           "instrumento": "Fondos Comunes de Inversión",
           "nombre": "MEDIA",
-          "valor": 0,
+          "valor": 1,
           "orden": 2
         },
         {
           "instrumento": "Fondos Comunes de Inversión",
           "nombre": "ALTA",
-          "valor": 1,
+          "valor": 2,
           "orden": 3
         },
         {
@@ -71,13 +76,13 @@
         {
           "instrumento": "Bonos",
           "nombre": "MEDIA",
-          "valor": 0,
+          "valor": 2,
           "orden": 2
         },
         {
           "instrumento": "Bonos",
           "nombre": "ALTA",
-          "valor": 1,
+          "valor": 3,
           "orden": 3
         },
         {
