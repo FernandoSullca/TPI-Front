@@ -10,16 +10,16 @@ export class GraficoComponent {
 
   @Input() cantidadPorInstrumento: any; 
   colores = [
-    '#3261a8',
-    '#485aa4',
-    '#5e54a0',
-    '#744d9c',
-    '#8a4698',
-    '#9f4095',
-    '#b53991',
-    '#cb328d',
-    '#e12c89',
-    '#f72585',
+    '#669900',
+    '#CC3399',
+    '#CCEE66',
+    '#006699',
+    '#3399CC',
+    '#990066',
+    '#CC3399',
+    '#FF6600',
+    '#99CC33',
+    '#FFCC00'
   ];
 
   public pieChartOptions: ChartConfiguration['options'] = {

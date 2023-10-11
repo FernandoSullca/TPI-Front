@@ -4,7 +4,7 @@
             <b>
                 <h3>Total valorizado</h3>
             </b>
-            <h2 *ngIf="cartera?.totalCartera; else elseBlock">{{cartera.totalCartera}}</h2>
+            <h2 *ngIf="cartera?.totalCartera; else elseBlock">$ {{cartera.totalCartera}}</h2>
             <ng-template #elseBlock>0.00</ng-template>
         </div>
         <div class="valuacionTotalDetalle-section">
@@ -25,7 +25,7 @@
                         <path
                             d="M16 11.4024C14.343 11.4024 13 12.3694 13 13.5633C13 14.7572 14.343 15.7243 16 15.7243C17.657 15.7243 19 16.6913 19 17.8852C19 19.0791 17.657 20.0462 16 20.0462M16 11.4024V20.0462M16 11.4024C17.11 11.4024 18.08 11.8367 18.599 12.4829M16 11.4024V10.3219M16 20.0462V21.1266M16 20.0462C14.89 20.0462 13.92 19.6118 13.401 18.9657M25 15.7243C25 17.0013 24.7672 18.2658 24.3149 19.4456C23.8626 20.6254 23.1997 21.6974 22.364 22.6004C21.5282 23.5034 20.5361 24.2196 19.4442 24.7083C18.3522 25.197 17.1819 25.4485 16 25.4485C14.8181 25.4485 13.6478 25.197 12.5558 24.7083C11.4639 24.2196 10.4718 23.5034 9.63604 22.6004C8.80031 21.6974 8.13738 20.6254 7.68508 19.4456C7.23279 18.2658 7 17.0013 7 15.7243C7 13.1452 7.94821 10.6718 9.63604 8.84817C11.3239 7.02452 13.6131 6 16 6C18.3869 6 20.6761 7.02452 22.364 8.84817C24.0518 10.6718 25 13.1452 25 15.7243Z"
                             stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg> Total en titulos: {{cartera.totalInstrumentos}}
+                    </svg> Total en títulos: {{cartera.totalInstrumentos}}
                 </h4>
             </b>
         </div>

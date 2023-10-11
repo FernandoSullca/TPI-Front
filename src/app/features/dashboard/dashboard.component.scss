@@ -23,17 +23,14 @@ section {
       .brand-box {
         display: flex;
         align-items: center;
-        white-space: nowrap;
-        margin-bottom: 2rem;
-  
+        margin: 2rem 0 2rem 0;
+        cursor: pointer;
         img {
-          height: 2.5rem;
           margin-right: .7rem;
         }
   
         h2 {
-          margin: 0;
-          font-size: 1.2rem;
+          font-size: 1.5rem;
         }
       }
   
@@ -57,11 +54,12 @@ section {
           position: relative;
           opacity: .7;
           user-select: none;
-  
+        
           img {
             width: 1.7rem;
             height: 1.7rem;
             margin-right: .7rem;
+            color:#1E4176;
           }
   
           .notif {

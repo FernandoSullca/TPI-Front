@@ -13,6 +13,7 @@ export class CarteraComponent implements OnInit{
   constructor(private carteraService : CarteraService, private router: Router) { }
 
   cartera:Cartera|undefined;
+
   ngOnInit(): void {
     this.getCartera();
   }
