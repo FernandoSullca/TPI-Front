@@ -14,15 +14,21 @@
                     <p>{{ pregunta.pregunta }}</p>
                 </div>
 
-                <div class="container-perfil-Descripcion">
+                <div class="container-perfil-Descripcion">  
+                    <!-- <p class="alinea-descripcion-pregunta-radius">Elegir solo una opción</p> -->
                     <ng-container *ngIf="pregunta.tipoContenido =='texto'; else imgContenido">
-                        <div class="row">
-                             <div  class="alineacion-radios" *ngFor="let linea of descripcionFormateada">
-                            <input type="radio" class="col-auto">
-                            <label class="col-auto enunciado-radio" for="{{ pregunta.valor }}">{{ linea }}</label>
-                             </div>
-                        </div>
-            
+
+                            <!-- <div *ngIf="isArray(pregunta.respuestas)" class="alinea-pregunta-radius"> -->
+                                <div class="row">  
+                                <div class="alineacion-radios alineacion-botones-opciones-radius"   *ngFor="let opcion of pregunta.opciones " >
+                                      <!-- <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label> -->
+                                      <input class="col-auto" type="radio" id="{{ opcion.texto }}" name="{{opcion.texto}}"
+                                        value="{{opcion.valor}}" [(ngModel)]="opcionSeleccionada"
+                                        (change)="actualizarOpcionesSeleccionadas(opcion.texto,opcion.valor)">
+                                     <label class="col-auto enunciado-radio" for="{{ opcion.texto}}">{{ opcion.texto }}</label>
+                                </div>
+                            </div>
+                        <!-- </div> -->
                     </ng-container>
 
                     <ng-template #imgContenido>
@@ -30,17 +36,9 @@
                     </ng-template>
                 </div>
 
-                <!-- Renderizar opciones aquí -->
-                <!-- <div class="row centrar-opciones">
-                    <div *ngFor="let opcion of pregunta.opciones" class="col-auto">
-                        <input class="botonera-lg-opciones" type="button" id="{{ opcion }}" name="{{opcion.texto}}"
-                            value="{{opcion.texto}}">
-                     <label for="{{ opcion }}">{{ opcion }}</label> 
-                    </div>
-                </div> -->
-
             </div>
         </div>
+
 
         <div class="justify-content-md-end mt-5" style="text-align: center;">
             <button class="btn btn-primary btn btn-primary me-md-2" *ngIf="!isLastQuestion"
@@ -50,11 +48,11 @@
 
         <div *ngIf="isLastQuestion " style="text-align: center;">
 
-            <h3> Perfil final asociado: Moderado</h3>
-            <p>El inversor moderado no busca con su cartera de inversión conseguir ingresos corrientes pero si requiere
+            <h3> Perfil final asociado:{{ResultadoPerfilObjetivo}}</h3>
+            <!-- <p>El inversor {{ResultadoPerfilObjetivo}}no busca con su cartera de inversión conseguir ingresos corrientes pero si requiere
                 un modesto aumento en el valor de sus inversiones.
                 El inversor tolera algunas volatilidad pero busca afrontar un menor riesgo que el inversor agresivo.
-            </p>
+            </p> -->
             <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadSugerencias()"
                 *ngIf="!issugerencia ">{{ buttonText }}</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
