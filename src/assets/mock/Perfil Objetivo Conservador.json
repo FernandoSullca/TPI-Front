@@ -49,17 +49,17 @@
     "tipoContenido": "texto",
     "descripcion": "A- La diversificación significa concentrar todas las inversiones en un solo activo para maximizar las ganancias. B- La diversificación significa invertir en una sola clase de activos para minimizar los riesgos. C- La diversificación implica invertir en una variedad de activos para reducir el riesgo total de la cartera.",
     "opciones": [{
-        "texto": "A",
+        "texto": " A- La diversificación significa concentrar todas las inversiones en un solo activo para maximizar las ganancias.",
         "valor": 1,
         "esVerdadera": false
       },
       {
-        "texto": "B",
+        "texto": "B- La diversificación significa invertir en una sola clase de activos para minimizar los riesgos. ",
         "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "C",
+        "texto": "C- La diversificación implica invertir en una variedad de activos para reducir el riesgo total de la cartera.",
         "valor": 5,
         "esVerdadera": true
       }
@@ -69,19 +69,19 @@
     "pregunta": "¿Qué factores pueden afectar las tasas de interés y cómo pueden influir en los bonos?",
     "valor": 75,
     "tipoContenido": "texto",
-    "descripcion": "A- Las tasas de interés son invariables y no afectan a los bonos. B- Las tasas de interés pueden ser influenciadas por la oferta y la demanda, así como por la política monetaria, y pueden afectar el precio de los bonos. C- Las tasas de interés solo afectan a las acciones, no a los bonos.",
+    "descripcion": "A- Las tasas de interés son invariables y no afectan a los bonos. B- Las tasas de interés pueden ser influenciadas por la oferta y la demanda, así como por la política monetaria, y pueden afectar el precio de los bonos. C- Las tasas de interés solo afectan a las acciones, no a los bonos.",    
     "opciones": [{
-        "texto": "A",
+        "texto": "A- Las tasas de interés son invariables y no afectan a los bonos.",
         "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "B",
+        "texto": "B- Las tasas de interés pueden ser influenciadas por la oferta y la demanda, así como por la política monetaria, y pueden afectar el precio de los bonos. ",
         "valor": 10,
         "esVerdadera": true
       },
       {
-        "texto": "C",
+        "texto": "C- Las tasas de interés solo afectan a las acciones, no a los bonos.",
         "valor": 0,
         "esVerdadera": false
       }
@@ -93,17 +93,17 @@
     "tipoContenido": "texto",
     "descripcion": "A- Invertir en activos de alto riesgo para maximizar el crecimiento del capital. B- Mantener una cartera diversificada de bonos y acciones para equilibrar el riesgo y el retorno. C- Mantener una cartera completamente en efectivo para evitar cualquier riesgo.",
     "opciones": [{
-        "texto": "A",
+        "texto": "A- Invertir en activos de alto riesgo para maximizar el crecimiento del capital.",
         "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "B",
+        "texto": "B- Mantener una cartera diversificada de bonos y acciones para equilibrar el riesgo y el retorno.",
         "valor": 10,
         "esVerdadera": true
       },
       {
-        "texto": "C",
+        "texto": "C- Mantener una cartera completamente en efectivo para evitar cualquier riesgo.",
         "valor": 0,
         "esVerdadera": false
       }
@@ -115,17 +115,17 @@
     "tipoContenido": "texto",
     "descripcion": "A- Invertir en activos de alto riesgo para maximizar el crecimiento del capital. B- Mantener una cartera diversificada de bonos y acciones para equilibrar el riesgo y el retorno. C- Mantener una cartera completamente en efectivo para evitar cualquier riesgo.",
     "opciones": [{
-        "texto": "A",
+        "texto": "A- Invertir en activos de alto riesgo para maximizar el crecimiento del capital.",
         "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "B",
+        "texto": "B- Mantener una cartera diversificada de bonos y acciones para equilibrar el riesgo y el retorno.",
         "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "C",
+        "texto": "C- Mantener una cartera completamente en efectivo para evitar cualquier riesgo.",
         "valor": 5,
         "esVerdadera": true
       }
