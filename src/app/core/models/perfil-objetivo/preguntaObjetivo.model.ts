@@ -9,6 +9,7 @@
   
   export interface Opcion {
     texto: string;
+    valor:number;
     esVerdadera: boolean;
   }
  

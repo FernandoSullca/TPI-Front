@@ -12,6 +12,7 @@ import { eventListeners } from '@popperjs/core';
   providedIn: 'root'
 })
 export class QuestionsProfileService {
+
   @Output() disparadordemensageResultado:EventEmitter<any>=new EventEmitter(); 
   private apiUrl = 'assets\\mock\\Perfil subjetivo V1.0.json'; // Reemplaza con la URL real de tu JSON
   //private apiUrl = 'assets\\mock\\Perfil subjetivo categoria agregada.json'; // Reemplaza con la URL real de tu JSON
@@ -27,9 +28,10 @@ export class QuestionsProfileService {
     const { data } = resp;
     const datos = Array.from(data);
     console.log(datos);
-    return datos.map((test) => {
-    return CuestionarioInitial.serializar(test);
-    });
+    return data;
+    // return datos.map((test) => {
+    // return CuestionarioInitial.serializar(test);
+    // });
   }
 
   //Verificado Envio, ¿Captura?
@@ -41,6 +43,38 @@ export class QuestionsProfileService {
       "toleranciaRiesgo":AnalisisSubjetivo["Tolerancia al riesgo"]
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-subjetivo`, body);
+    const { data } = resp;
+    return data;
+  }
+
+    /*
+    {
+  "oid": 0,
+  "version": 0,
+  "deleted": true,
+  "horizonteTemporal": 0,
+  "toleranciaRiesgo": 0,
+  "tipoPerfilSubjetivo": "CONSERVADOR",
+  "nivelConocimiento": 0,
+  "tipoNivelConocimiento": "PRINCIPIANTE",
+  "perfilInversor": "CONSERVADOR",
+  "usuarioDTO": {
+    "oid": 0,
+    "version": 0,
+    "deleted": true,
+    "nombreUsuario": "string"
+  },
+  "resultadoPerfilado": 0
+}*/
+
+
+  public async TestObjetivoResultados(Analisisobjetivo: Record<string, number>) {
+    const body = {
+      "horizonteTemporal":Analisisobjetivo["horizonteTemporal"],
+      "toleranciaRiesgo":Analisisobjetivo["toleranciaRiesgo"],
+      "nivelConocimiento":Analisisobjetivo["Conocimento"]
+    }
+    const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-inversor`, body);
     const { data } = resp;
     return data;
   }

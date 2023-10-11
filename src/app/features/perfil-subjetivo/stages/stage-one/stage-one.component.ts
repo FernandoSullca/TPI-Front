@@ -20,6 +20,11 @@ export class StageOneComponent implements OnInit {
     preguntas: [],
   };
 
+
+  resCuestionarioAPI: CuestionarioInitial = {
+    preguntas: [],
+  };
+
   ///////Control de paginacion. preguntas Siguiente:
   buttonText: string = 'SIGUIENTE PREGUNTA';
   isLastQuestion: boolean = false;
@@ -57,12 +62,14 @@ export class StageOneComponent implements OnInit {
     this.loadCuestionario();
 
     // Solicitud a json API;
-    // this.getTestPerfil();
+    this.getTestPerfil(); 
   }
+
   loadCuestionario() {
     this.profileService.getCuestionario().subscribe((data) => {
-      console.log("Test Subjetivo Obtenido");
+      console.log("Test Subjetivo Obtenido Local");
       console.log(data);
+      console.log("-----------------------------");
       this.resCuestionario = data;
       this.loadQuestions();
     });
@@ -71,11 +78,12 @@ export class StageOneComponent implements OnInit {
   public getTestPerfil() {
     return this.profileService.obtenerTestSubjetivo()
       .then((testSubjetivo) => {
-        this.testSubjetivo.preguntas = testSubjetivo;
-        console.log("Servicio a questionario inicial");
-        console.log(this.testSubjetivo);
-        this.resCuestionario = this.testSubjetivo;
-        this.loadQuestions();
+        console.log("Servicio a questionario inicial API");
+        console.log(testSubjetivo);
+        // this.resCuestionarioAPI.preguntas = testSubjetivo;
+        // console.log(this.resCuestionarioAPI);
+        console.log("--------------------------------");
+        // this.loadQuestions();
       })
       .catch((error) => console.error(error))
   }
@@ -84,8 +92,12 @@ export class StageOneComponent implements OnInit {
   loadQuestions() {
 
     this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[0];
+    console.log("--------------------------------");
+    console.log(this.cuestionario.preguntas[0]);
     //Metodo para consultar a la API
-    // this.PregSubjetivo.preguntas[0] = this.testSubjetivo.preguntas[0];
+    console.log("--------------------------------");
+    // console.log(this.resCuestionarioAPI.preguntas[0]);
+    //  this.PregSubjetivo.preguntas[0] = this.testSubjetivo.preguntas[0];
   }
 
   loadNextQuestion(): void {
@@ -120,6 +132,8 @@ export class StageOneComponent implements OnInit {
           this.profileService.disparadordemensageResultado.emit({
             data:this.respuestasPerfil.perfilInversor
           });
+          this.localStorageService.setItem('toleranciaRiesgo',this.respuestasPerfil.toleranciaRiesgo);
+          this.localStorageService.setItem('horizonteTemporal',this.respuestasPerfil.horizonteTemporal);
           this.localStorageService.setItem('perfil',this.respuestasPerfil.perfilInversor);
        
           console.log('Entrega de resultados completada.');

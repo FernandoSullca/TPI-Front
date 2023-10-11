@@ -2,17 +2,21 @@
     "pregunta": "¿Qué es un bono y cómo se diferencia de una acción en términos de riesgo y retorno?",
     "valor": 75,
     "tipoContenido": "texto",
-    "descripcion": "A- Un bono es una inversión que representa propiedad en una empresa, mientras que una acción representa una deuda. B- Un bono es una inversión de renta fija con riesgo variable, mientras que una acción es una inversión de renta variable. C- Un bono es una inversión de renta fija que representa una deuda, mientras que una acción representa propiedad en una empresa.",
+    "descripcion": "A- Un bono es una inversión que representa propiedad en una empresa, mientras que una acción representa una deuda.B- Un bono es una inversión de renta fija con riesgo variable, mientras que una acción es una inversión de renta variable. C- Un bono es una inversión de renta fija que representa una deuda, mientras que una acción representa propiedad en una empresa.",
+     
     "opciones": [{
-        "texto": "A.",
+        "texto": "A- Un bono es una inversión que representa propiedad en una empresa, mientras que una acción representa una deuda.",
+        "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "B.",
+        "texto": "B- Un bono es una inversión de renta fija con riesgo variable, mientras que una acción es una inversión de renta variable.",
+        "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "C.",
+        "texto": "C- Un bono es una inversión de renta fija que representa una deuda, mientras que una acción representa propiedad en una empresa.",
+        "valor": 5,
         "esVerdadera": true
       }
     ]
@@ -23,15 +27,18 @@
     "tipoContenido": "texto",
     "descripcion": "A- Maximizar el crecimiento del capital a través de inversiones en acciones de alto riesgo. B- Generar ingresos regulares y proporcionar estabilidad a través de inversiones en bonos y otros valores de renta fija. C- Proporcionar un alto rendimiento a corto plazo a través de inversiones en activos altamente volátiles.",
     "opciones": [{
-        "texto": "A",
+        "texto": "A- Maximizar el crecimiento del capital a través de inversiones en acciones de alto riesgo.",
+        "valor": 0,
         "esVerdadera": false
       },
       {
-        "texto": "B",
+        "texto": "B- Generar ingresos regulares y proporcionar estabilidad a través de inversiones en bonos y otros valores de renta fija.",
+        "valor": 5,
         "esVerdadera": true
       },
       {
-        "texto": "C",
+        "texto": "C- Proporcionar un alto rendimiento a corto plazo a través de inversiones en activos altamente volátiles.",
+        "valor": 0,
         "esVerdadera": false
       }
     ]
@@ -43,14 +50,17 @@
     "descripcion": "A- La diversificación significa concentrar todas las inversiones en un solo activo para maximizar las ganancias. B- La diversificación significa invertir en una sola clase de activos para minimizar los riesgos. C- La diversificación implica invertir en una variedad de activos para reducir el riesgo total de la cartera.",
     "opciones": [{
         "texto": "A",
+        "valor": 1,
         "esVerdadera": false
       },
       {
         "texto": "B",
+        "valor": 0,
         "esVerdadera": false
       },
       {
         "texto": "C",
+        "valor": 5,
         "esVerdadera": true
       }
     ]
@@ -62,14 +72,17 @@
     "descripcion": "A- Las tasas de interés son invariables y no afectan a los bonos. B- Las tasas de interés pueden ser influenciadas por la oferta y la demanda, así como por la política monetaria, y pueden afectar el precio de los bonos. C- Las tasas de interés solo afectan a las acciones, no a los bonos.",
     "opciones": [{
         "texto": "A",
+        "valor": 0,
         "esVerdadera": false
       },
       {
         "texto": "B",
+        "valor": 10,
         "esVerdadera": true
       },
       {
         "texto": "C",
+        "valor": 0,
         "esVerdadera": false
       }
     ]
@@ -81,14 +94,17 @@
     "descripcion": "A- Invertir en activos de alto riesgo para maximizar el crecimiento del capital. B- Mantener una cartera diversificada de bonos y acciones para equilibrar el riesgo y el retorno. C- Mantener una cartera completamente en efectivo para evitar cualquier riesgo.",
     "opciones": [{
         "texto": "A",
+        "valor": 0,
         "esVerdadera": false
       },
       {
         "texto": "B",
+        "valor": 10,
         "esVerdadera": true
       },
       {
         "texto": "C",
+        "valor": 0,
         "esVerdadera": false
       }
     ]
@@ -100,14 +116,17 @@
     "descripcion": "A- Invertir en activos de alto riesgo para maximizar el crecimiento del capital. B- Mantener una cartera diversificada de bonos y acciones para equilibrar el riesgo y el retorno. C- Mantener una cartera completamente en efectivo para evitar cualquier riesgo.",
     "opciones": [{
         "texto": "A",
+        "valor": 0,
         "esVerdadera": false
       },
       {
         "texto": "B",
+        "valor": 0,
         "esVerdadera": false
       },
       {
         "texto": "C",
+        "valor": 5,
         "esVerdadera": true
       }
     ]
