@@ -4,8 +4,6 @@ import { QuestionsTargetService } from 'src/app/core/services/api/target-profile
 import { Pregunta, Respuesta,RespuestaBnt  } from 'src/app/core/models/perfil-objetivo/preguntaObjetivo.model';
 import { PreguntaService } from 'src/app/core/services/api/DataLocalService/pregunta.service';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
-import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
-import { CuestionarioInitial } from 'src/app/core/models/initial-profile/initial-profile.model';
 @Component({
   selector: 'app-stage-two',
   templateUrl: './stage-two.component.html',
@@ -29,8 +27,7 @@ export class StageTwoComponent {
   descripcionFormateada: string[] = [];
 
   valorRecibido: any;
-  constructor(private questionsService: QuestionsTargetService ,
-    private profileService: QuestionsProfileService, 
+  constructor(private questionsService: QuestionsTargetService , 
     private router: Router, private preguntaService: PreguntaService,
     private localStorageService: LocalStorageService) { }
 
@@ -38,72 +35,25 @@ export class StageTwoComponent {
 
     /*********Area Preguntas onjetivas*********/
 
-    this.loadCuestionario()
+    
     const storedProfile = this.localStorageService.getItem('perfil');
     if (storedProfile) {
       this.valorRecibido = storedProfile;
     }
-
     this.preguntaService.getPreguntas(this.valorRecibido).subscribe((data: Pregunta[]) => {
       this.resPreguntas = data;
       this.loadQuestions();
-
     });
 
   }
-/////////////////////
-  resCuestionario: CuestionarioInitial = {
-    preguntas: [],
-  };
 
-  cuestionario: CuestionarioInitial = {
-    preguntas: [],
-  };
-
-  /////////Almacenamiento de las respuestas de las preguntas
-  opcionesSeleccionadas: { seccion: string, pregunta: string, valor: number }[] = [];
-  opcionSeleccionada: number = 0;
-  respuestasSeleccionadasPorInstrumento: Record<string, number> = {};
-
-  loadCuestionario() {
-    this.profileService.getCuestionario().subscribe((data) => {
-      console.log("Test Subjetivo Obtenido");
-      console.log(data);
-      this.resCuestionario = data;
-      this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[0];
-      // this.loadQuestions();
-    });
-  }
-  
-  isArraychek(respuestas: Respuesta[]): respuestas is Respuesta[] {
-    return Array.isArray(respuestas);
-  }
-
-  actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
-
-    // SE actualiza para el cadso de los raidus(unica opcion)
-    this.opcionSeleccionada = valor;
-
-    const index = this.opcionesSeleccionadas.findIndex(opcion => opcion.pregunta === pregunta && opcion.valor === valor);
-    if (index !== -1) {
-      // Eliminar la opción no seleccionada del arreglo de opciones seleccionadas
-      this.opcionesSeleccionadas.splice(index, 1);
-
-    } else {
-      // Si noesta en el grupo de opciones ingresadas se guarda
-      this.opcionesSeleccionadas.push({ seccion, pregunta, valor }); if (index !== -1) {
-      }
-    }
-  }
-///////////////////////////
   loadQuestions() {
     this.preguntas[0] = this.resPreguntas[0];
     if(this.preguntas[0].tipoContenido=="texto")
     {
       this.formatearDescripcion() ;
     }
-
-    // this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[0];
+    
   }
 
   isArray(respuestas: string[] | Respuesta[]): respuestas is string[] {
@@ -126,9 +76,6 @@ export class StageTwoComponent {
       if (this.currentQuestionIndex < this.resPreguntas.length) {
 
         this.preguntas[0] = this.resPreguntas[this.currentQuestionIndex];
-        /////////////////////////
-        this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[this.currentQuestionIndex];
-        ////////////////////////
         if(this.preguntas[0].tipoContenido=="texto")
         {
           this.formatearDescripcion() ;
@@ -147,7 +94,6 @@ export class StageTwoComponent {
     } else {
       console.error('Error: Fin de preguntas válidos- Ultima Vista antes de Volver al home-RoadMap.');
     }
-    
   }
 
   loadSugerencias(): void {
