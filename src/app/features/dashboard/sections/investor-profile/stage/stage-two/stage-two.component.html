@@ -41,7 +41,7 @@
 
 
         <div class="justify-content-md-end mt-5" style="text-align: center;">
-            <button class="btn btn-primary btn btn-primary me-md-2" *ngIf="!isLastQuestion"
+            <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" *ngIf="!isLastQuestion"
                 (click)="loadNextQuestion()">{{ buttonText }}</button>
             <!-- <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p> -->
         </div>
@@ -53,7 +53,7 @@
                 un modesto aumento en el valor de sus inversiones.
                 El inversor tolera algunas volatilidad pero busca afrontar un menor riesgo que el inversor agresivo.
             </p> -->
-            <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadSugerencias()"
+            <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" (click)="loadSugerencias()"
                 *ngIf="!issugerencia ">{{ buttonText }}</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
         </div>
