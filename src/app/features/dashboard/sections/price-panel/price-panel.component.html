@@ -7,7 +7,7 @@
       <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
         <div class="col">Simbolo</div>
         <div class="col">Último Operado</div>
-        <div class="col d-none d-xl-block">Variacion Diaria</div>
+        <div class="col d-none d-xl-block">Variación Diaria</div>
         <div class="col d-none d-xl-block">Cantidad Compra</div>
         <div class="col d-none d-xl-block">Precio Compra</div>
         <div class="col d-none d-xl-block">Precio Venta</div>
@@ -46,7 +46,7 @@
   <div class="row mt-5" style="height: 30vh;">
     <div class="container-fluid ">
       <div class="text-start">
-        <h3>Capturar orden</h3> 
+        <h3>Capturar orden</h3>
         <div class="col d-flex justify-content-around" style="font-weight: 700; font-size: 18px;">
           <message [textMessage]="textMessage" [typeMessage]="typeMessage"></message>
         </div>
@@ -57,7 +57,7 @@
             Especie
           </label>
           <select class="form-control" id="simbolos" name='simbolo' [(ngModel)]="simbolo" placeholder="hola">
-            <option value="" disabled selected>Seleccione un instrumento aca</option>
+            <option value="" disabled selected>Seleccione un instrumento acá</option>
             <option *ngFor="let simbolo of titulosSimbolo" value="{{simbolo}}">{{simbolo}}</option>
           </select>
         </div>
@@ -78,7 +78,7 @@
         </div>
       </div>
 
-      
+
 
     </div>
 
