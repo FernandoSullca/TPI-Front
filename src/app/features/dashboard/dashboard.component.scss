@@ -23,10 +23,13 @@ section {
       .brand-box {
         display: flex;
         align-items: center;
-        margin: 2rem 0 2rem 0;
+        margin: 20%;
         cursor: pointer;
         img {
-          margin-right: .7rem;
+          margin-left: 2px;
+          margin-top: -20px;
+          width: 2.5rem;
+          height: 2.5rem;
         }
   
         h2 {
@@ -59,7 +62,7 @@ section {
             width: 1.7rem;
             height: 1.7rem;
             margin-right: .7rem;
-            color:#1E4176;
+            fill:#1E4176;
           }
   
           .notif {
@@ -81,9 +84,15 @@ section {
   
           &:hover {
             opacity: 1;
+            color: #1E4176;
+          }
+          &:hover img {
+            opacity: 1;
+            fill:#1E4176;
           }
   
           &.active {
+            color: #1E4176;
             background-color: #f7f7f9;
             opacity: 1;
           }
