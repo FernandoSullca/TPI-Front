@@ -1,6 +1,7 @@
 export const mockAcciones = [
     {
         "simbolo": "MOCK",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 999,
         "variacionPorcentual": 999,
         "apertura": 999,
@@ -22,6 +23,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "5913",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 0,
         "variacionPorcentual": 0,
         "apertura": 0,
@@ -43,6 +45,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "7485",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 0,
         "variacionPorcentual": 0,
         "apertura": 0,
@@ -64,6 +67,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "93729",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 0,
         "variacionPorcentual": 0,
         "apertura": 0,
@@ -92,6 +96,7 @@ export const mockAcciones = [
             "precioVenta": 240,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 224.75,
         "variacionPorcentual": -2.28,
         "apertura": 231,
@@ -120,6 +125,7 @@ export const mockAcciones = [
             "precioVenta": 639.5,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 639,
         "variacionPorcentual": 4.15,
         "apertura": 619,
@@ -148,6 +154,7 @@ export const mockAcciones = [
             "precioVenta": 300,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 983,
         "variacionPorcentual": 0.45,
         "apertura": 996.5,
@@ -176,6 +183,7 @@ export const mockAcciones = [
             "precioVenta": 1358,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 1198,
         "variacionPorcentual": -1.03,
         "apertura": 1210,
@@ -204,6 +212,7 @@ export const mockAcciones = [
             "precioVenta": 42.5,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 42.45,
         "variacionPorcentual": 1.42,
         "apertura": 42.85,
@@ -232,6 +241,7 @@ export const mockAcciones = [
             "precioVenta": 1800,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 1702.85,
         "variacionPorcentual": -1.88,
         "apertura": 1749,
@@ -260,6 +270,7 @@ export const mockAcciones = [
             "precioVenta": 18.95,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 17,
         "variacionPorcentual": -2.05,
         "apertura": 17.3,
@@ -288,6 +299,7 @@ export const mockAcciones = [
             "precioVenta": 344,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 342,
         "variacionPorcentual": -1.86,
         "apertura": 348.5,
@@ -309,6 +321,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "BRIO",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 33.5,
         "variacionPorcentual": 0,
         "apertura": 33.85,
@@ -337,6 +350,7 @@ export const mockAcciones = [
             "precioVenta": 541.5,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 540,
         "variacionPorcentual": 2.96,
         "apertura": 524,
@@ -365,6 +379,7 @@ export const mockAcciones = [
             "precioVenta": 255,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 245,
         "variacionPorcentual": 1.84,
         "apertura": 235,
@@ -393,6 +408,7 @@ export const mockAcciones = [
             "precioVenta": 3750,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 3750,
         "variacionPorcentual": 5.47,
         "apertura": 3450,
@@ -421,6 +437,7 @@ export const mockAcciones = [
             "precioVenta": 8.84,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 8.77,
         "variacionPorcentual": -1.35,
         "apertura": 9,
@@ -449,6 +466,7 @@ export const mockAcciones = [
             "precioVenta": 255,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 255,
         "variacionPorcentual": -0.19,
         "apertura": 265,
@@ -477,6 +495,7 @@ export const mockAcciones = [
             "precioVenta": 370,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 373,
         "variacionPorcentual": -3.89,
         "apertura": 400,
@@ -505,6 +524,7 @@ export const mockAcciones = [
             "precioVenta": 506,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 463.75,
         "variacionPorcentual": -1.88,
         "apertura": 477.3,
@@ -533,6 +553,7 @@ export const mockAcciones = [
             "precioVenta": 501,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 483,
         "variacionPorcentual": 2.34,
         "apertura": 500,
@@ -561,6 +582,7 @@ export const mockAcciones = [
             "precioVenta": 52.5,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 47.95,
         "variacionPorcentual": -0.51,
         "apertura": 48.65,
@@ -589,6 +611,7 @@ export const mockAcciones = [
             "precioVenta": 314,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 314,
         "variacionPorcentual": -0.39,
         "apertura": 301,
@@ -617,6 +640,7 @@ export const mockAcciones = [
             "precioVenta": 539,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 538.65,
         "variacionPorcentual": -1.03,
         "apertura": 550,
@@ -645,6 +669,7 @@ export const mockAcciones = [
             "precioVenta": 889,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 881.5,
         "variacionPorcentual": 0.05,
         "apertura": 900,
@@ -673,6 +698,7 @@ export const mockAcciones = [
             "precioVenta": 1849.5,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 1849.5,
         "variacionPorcentual": 0.35,
         "apertura": 1875,
@@ -701,6 +727,7 @@ export const mockAcciones = [
             "precioVenta": 420,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 381.5,
         "variacionPorcentual": -1.16,
         "apertura": 385,
@@ -729,6 +756,7 @@ export const mockAcciones = [
             "precioVenta": 20,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 19.5,
         "variacionPorcentual": -2.56,
         "apertura": 19,
@@ -757,6 +785,7 @@ export const mockAcciones = [
             "precioVenta": 268,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 268,
         "variacionPorcentual": 7.73,
         "apertura": 269,
@@ -778,6 +807,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "EDLH",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 22.5,
         "variacionPorcentual": 0,
         "apertura": 22.5,
@@ -806,6 +836,7 @@ export const mockAcciones = [
             "precioVenta": 488,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 486,
         "variacionPorcentual": 0.23,
         "apertura": 475,
@@ -834,6 +865,7 @@ export const mockAcciones = [
             "precioVenta": 471,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 458,
         "variacionPorcentual": 0,
         "apertura": 458,
@@ -855,6 +887,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "ELAP",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 0,
         "variacionPorcentual": 0,
         "apertura": 0,
@@ -876,6 +909,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "EMAC",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 0,
         "variacionPorcentual": 0,
         "apertura": 0,
@@ -897,6 +931,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "ESME",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 330,
         "variacionPorcentual": 0,
         "apertura": 330,
@@ -925,6 +960,7 @@ export const mockAcciones = [
             "precioVenta": 51.6,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 51.4,
         "variacionPorcentual": 3.01,
         "apertura": 50.5,
@@ -953,6 +989,7 @@ export const mockAcciones = [
             "precioVenta": 100,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 96.3,
         "variacionPorcentual": -2.24,
         "apertura": 98.4,
@@ -981,6 +1018,7 @@ export const mockAcciones = [
             "precioVenta": 127.75,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 127.5,
         "variacionPorcentual": -0.38,
         "apertura": 129.5,
@@ -1009,6 +1047,7 @@ export const mockAcciones = [
             "precioVenta": 387.5,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 379,
         "variacionPorcentual": -2.82,
         "apertura": 388.5,
@@ -1037,6 +1076,7 @@ export const mockAcciones = [
             "precioVenta": 15.2,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 15.2,
         "variacionPorcentual": -0.97,
         "apertura": 15.45,
@@ -1065,6 +1105,7 @@ export const mockAcciones = [
             "precioVenta": 639,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 639.85,
         "variacionPorcentual": -1.18,
         "apertura": 650,
@@ -1093,6 +1134,7 @@ export const mockAcciones = [
             "precioVenta": 1252,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 1167.05,
         "variacionPorcentual": -1.92,
         "apertura": 1194,
@@ -1121,6 +1163,7 @@ export const mockAcciones = [
             "precioVenta": 575,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 519,
         "variacionPorcentual": 0,
         "apertura": 560,
@@ -1149,6 +1192,7 @@ export const mockAcciones = [
             "precioVenta": 693,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 692,
         "variacionPorcentual": -1,
         "apertura": 701,
@@ -1177,6 +1221,7 @@ export const mockAcciones = [
             "precioVenta": 2660,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 2511.5,
         "variacionPorcentual": 0.74,
         "apertura": 2570.5,
@@ -1198,6 +1243,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "HULI",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 1647,
         "variacionPorcentual": 0,
         "apertura": 1647,
@@ -1219,6 +1265,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "INAG",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 270,
         "variacionPorcentual": 0,
         "apertura": 270,
@@ -1247,6 +1294,7 @@ export const mockAcciones = [
             "precioVenta": 113,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 105,
         "variacionPorcentual": -4.4,
         "apertura": 110,
@@ -1275,6 +1323,7 @@ export const mockAcciones = [
             "precioVenta": 171,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 170,
         "variacionPorcentual": -1.15,
         "apertura": 174.75,
@@ -1296,6 +1345,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "IRCP",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 128.9,
         "variacionPorcentual": 0,
         "apertura": 128,
@@ -1324,6 +1374,7 @@ export const mockAcciones = [
             "precioVenta": 421.5,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 368.35,
         "variacionPorcentual": 6.66,
         "apertura": 350,
@@ -1352,6 +1403,7 @@ export const mockAcciones = [
             "precioVenta": 502.3,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 499.45,
         "variacionPorcentual": -2.74,
         "apertura": 510,
@@ -1380,6 +1432,7 @@ export const mockAcciones = [
             "precioVenta": 449,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 449,
         "variacionPorcentual": 2.04,
         "apertura": 430,
@@ -1408,6 +1461,7 @@ export const mockAcciones = [
             "precioVenta": 890,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 887.2,
         "variacionPorcentual": -2.22,
         "apertura": 911,
@@ -1436,6 +1490,7 @@ export const mockAcciones = [
             "precioVenta": 29.95,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 29.1,
         "variacionPorcentual": 0.34,
         "apertura": 29.5,
@@ -1464,6 +1519,7 @@ export const mockAcciones = [
             "precioVenta": 272,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 270.5,
         "variacionPorcentual": 0.36,
         "apertura": 284,
@@ -1492,6 +1548,7 @@ export const mockAcciones = [
             "precioVenta": 8729.5,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 8729,
         "variacionPorcentual": -0.48,
         "apertura": 8770,
@@ -1520,6 +1577,7 @@ export const mockAcciones = [
             "precioVenta": 12840,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 12800,
         "variacionPorcentual": 5.06,
         "apertura": 12185,
@@ -1541,6 +1599,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "MOLA5",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 3307.5,
         "variacionPorcentual": 0,
         "apertura": 3307.5,
@@ -1569,6 +1628,7 @@ export const mockAcciones = [
             "precioVenta": 820,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 820,
         "variacionPorcentual": -1.44,
         "apertura": 850,
@@ -1590,6 +1650,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "MOLI5",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 185,
         "variacionPorcentual": 0,
         "apertura": 185,
@@ -1618,6 +1679,7 @@ export const mockAcciones = [
             "precioVenta": 79,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 50.7,
         "variacionPorcentual": -0.77,
         "apertura": 51.6,
@@ -1646,6 +1708,7 @@ export const mockAcciones = [
             "precioVenta": 700,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 660,
         "variacionPorcentual": -1.49,
         "apertura": 690,
@@ -1674,6 +1737,7 @@ export const mockAcciones = [
             "precioVenta": 405,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 339,
         "variacionPorcentual": 0.43,
         "apertura": 339,
@@ -1702,6 +1766,7 @@ export const mockAcciones = [
             "precioVenta": 1385,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 1198.95,
         "variacionPorcentual": -2.51,
         "apertura": 1232,
@@ -1730,6 +1795,7 @@ export const mockAcciones = [
             "precioVenta": 370,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 334,
         "variacionPorcentual": -0.43,
         "apertura": 346,
@@ -1751,6 +1817,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "PGR",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 24.6,
         "variacionPorcentual": 0,
         "apertura": 25.8,
@@ -1779,6 +1846,7 @@ export const mockAcciones = [
             "precioVenta": 75,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 77,
         "variacionPorcentual": 0,
         "apertura": 77,
@@ -1800,6 +1868,7 @@ export const mockAcciones = [
     },
     {
         "simbolo": "REGE",
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 650,
         "variacionPorcentual": 0,
         "apertura": 650,
@@ -1828,6 +1897,7 @@ export const mockAcciones = [
             "precioVenta": 541,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 544,
         "variacionPorcentual": -0.72,
         "apertura": 568.5,
@@ -1856,6 +1926,7 @@ export const mockAcciones = [
             "precioVenta": 750,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 750,
         "variacionPorcentual": 0,
         "apertura": 750,
@@ -1884,6 +1955,7 @@ export const mockAcciones = [
             "precioVenta": 430,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 431,
         "variacionPorcentual": -2.05,
         "apertura": 438.5,
@@ -1912,6 +1984,7 @@ export const mockAcciones = [
             "precioVenta": 100,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 88.6,
         "variacionPorcentual": -3.88,
         "apertura": 92,
@@ -1940,6 +2013,7 @@ export const mockAcciones = [
             "precioVenta": 386.5,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 385.85,
         "variacionPorcentual": -1.36,
         "apertura": 399.95,
@@ -1968,6 +2042,7 @@ export const mockAcciones = [
             "precioVenta": 770,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 769.25,
         "variacionPorcentual": -3.21,
         "apertura": 796,
@@ -1996,6 +2071,7 @@ export const mockAcciones = [
             "precioVenta": 1000,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 803,
         "variacionPorcentual": -1.6,
         "apertura": 806.5,
@@ -2024,6 +2100,7 @@ export const mockAcciones = [
             "precioVenta": 1875,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 1681.8,
         "variacionPorcentual": -3.94,
         "apertura": 1800,
@@ -2052,6 +2129,7 @@ export const mockAcciones = [
             "precioVenta": 430,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 428.5,
         "variacionPorcentual": -0.58,
         "apertura": 442,
@@ -2080,6 +2158,7 @@ export const mockAcciones = [
             "precioVenta": 597,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 595,
         "variacionPorcentual": 5.75,
         "apertura": 579,
@@ -2108,6 +2187,7 @@ export const mockAcciones = [
             "precioVenta": 150,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 129,
         "variacionPorcentual": 2.77,
         "apertura": 127,
@@ -2136,6 +2216,7 @@ export const mockAcciones = [
             "precioVenta": 9455,
             "deleted": false
         },
+        "categoriaInstrumento": "acciones",
         "ultimoPrecio": 9415.5,
         "variacionPorcentual": -2.3,
         "apertura": 9850,
