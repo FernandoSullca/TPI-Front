@@ -52,8 +52,8 @@
 
             <h3> Perfil final asociado: Moderado</h3>
             <p>El inversor moderado no busca con su cartera de inversión conseguir ingresos corrientes pero si requiere
-                un modesto(Potencial) aumento en el valor de sus inversiones.
-                El inversor tolera algunas volatilidad pero busca afrontar un menor riesgo que el inversos agresivo.
+                un modesto aumento en el valor de sus inversiones.
+                El inversor tolera algunas volatilidad pero busca afrontar un menor riesgo que el inversor agresivo.
             </p>
             <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadSugerencias()"
                 *ngIf="!issugerencia ">{{ buttonText }}</button>
@@ -63,8 +63,8 @@
         <div *ngIf="isLastQuestion && issugerencia" style="text-align: center;">
 
             <h3> Portfolio sugerido acorde a tú perfil</h3>
-            <img src="\assets\image\Group inversiones recomendadas.png" alt="">
-            <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadHome()">{{ buttonText }}</button>
+            <img style="margin-left: 125px;" src="\assets\image\GraficoTorta.png" alt="">
+            <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadHome()">Finalizar</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
         </div>
 
