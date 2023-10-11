@@ -15,23 +15,23 @@
         },
         {
           "nombre": "Fondos Comunes de Inversion (De renta fija)",
-          "valor": 2
+          "valor": 0
         },
         {
           "nombre": "Bonos",
-          "valor": 4
+          "valor": 1
         },
         {
           "nombre": "Acciones",
-          "valor": 6
+          "valor": 2
         },
         {
           "nombre": "Opciones",
-          "valor": 8
+          "valor": 3
         },
         {
           "nombre": "Futuros",
-          "valor": 10
+          "valor": 4
         }
       ]
     },
@@ -53,13 +53,13 @@
         {
           "instrumento": "Fondos Comunes de Inversión",
           "nombre": "MEDIA",
-          "valor": 1,
+          "valor": 0,
           "orden": 2
         },
         {
           "instrumento": "Fondos Comunes de Inversión",
           "nombre": "ALTA",
-          "valor": 2,
+          "valor": 1,
           "orden": 3
         },
         {
@@ -71,67 +71,67 @@
         {
           "instrumento": "Bonos",
           "nombre": "MEDIA",
-          "valor": 2,
+          "valor": 0,
           "orden": 2
         },
         {
           "instrumento": "Bonos",
           "nombre": "ALTA",
-          "valor": 4,
+          "valor": 1,
           "orden": 3
         },
         {
           "instrumento": "Acciones",
+          "nombre": "BAJA",
+          "valor": 0,
+          "orden": 1
+        },
+        {
+          "instrumento": "Acciones",
+          "nombre": "MEDIA",
+          "valor": 1,
+          "orden": 2
+        },
+        {
+          "instrumento": "Acciones",
+          "nombre": "ALTA",
+          "valor": 2,
+          "orden": 3
+        },
+        {
+          "instrumento": "Opciones",
           "nombre": "BAJA",
           "valor": 1,
           "orden": 1
         },
         {
-          "instrumento": "Acciones",
+          "instrumento": "Opciones",
           "nombre": "MEDIA",
+          "valor": 2,
+          "orden": 2
+        },
+        {
+          "instrumento": "Opciones",
+          "nombre": "ALTA",
           "valor": 3,
-          "orden": 2
-        },
-        {
-          "instrumento": "Acciones",
-          "nombre": "ALTA",
-          "valor": 6,
-          "orden": 3
-        },
-        {
-          "instrumento": "Opciones",
-          "nombre": "BAJA",
-          "valor": 2,
-          "orden": 1
-        },
-        {
-          "instrumento": "Opciones",
-          "nombre": "MEDIA",
-          "valor": 4,
-          "orden": 2
-        },
-        {
-          "instrumento": "Opciones",
-          "nombre": "ALTA",
-          "valor": 8,
           "orden": 3
         },
         {
           "instrumento": "Futuros",
           "nombre": "BAJA",
-          "valor": 2,
+          "valor": 1,
           "orden": 1
         },
         {
           "instrumento": "Futuros",
           "nombre": "MEDIA",
-          "valor": 5,
+          "valor": 2,
           "orden": 2
         },
         {
           "instrumento": "Futuros",
           "nombre": "ALTA",
-          "valor": 10,
+          "valor": 3,
           "orden": 3
         }
       ]
