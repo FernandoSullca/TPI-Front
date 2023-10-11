@@ -69,23 +69,6 @@
     align-items: center;
   }
 
-  // ul {
-  //   display: flex;
-  //   align-items: flex-start;
-  //   flex-direction: column;
-  //   align-content: flex-start;
-  //   justify-content: flex-start;
-  //   text-align: start;
-
-  //   li {
-
-  //     display: flex;
-  //     justify-content: flex-start;
-  //     align-content: flex-start;
-  //     align-items: stretch;
-  //   }
-  // }
-
 }
 
 
@@ -95,6 +78,13 @@
   flex-shrink: 0;
   fill: #3261A8;
   filter: drop-shadow(0px 4px 6px rgba(163, 161, 255, 0.16));
+}
+
+.botonera-lg {
+  background-color: #3261A8;
+  color: #FFFFFF;
+  border-radius: 1.5rem;
+  font-weight: bold;
 }
 
 .botonera-lg-opciones {
@@ -146,6 +136,9 @@
     width: 90%;
     font-size: 16px;
     font-weight: 700;
+      }
+      input[type="radio"]{
+        margin-bottom: 1rem;
       }
 }
 .alineacion-botones-opciones-radius{
