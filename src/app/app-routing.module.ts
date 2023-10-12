@@ -10,7 +10,6 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { LandingComponent } from './features/landing/landing.component';
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
 import { DefaultPathComponent } from './default-path/default-path.component';
-import { ContentComponent } from './features/dashboard/sections/content/content.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component'; 

@@ -11,9 +11,7 @@ import { LandingComponent } from './features/landing/landing.component';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
-import { ContentComponent } from './features/dashboard/sections/content/content.component';
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
-import { TriviaComponent } from './features/dashboard/sections/trivia/trivia.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
 // import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
@@ -29,9 +27,7 @@ import { StageTwoComponent } from './features/dashboard/sections/investor-profil
     LoginComponent,
     DashboardComponent,
     LandingComponent,
-    ContentComponent,
     PricePanelComponent,
-    TriviaComponent,
     PerfilSubjetivoComponent,
     StageOneComponent,
     StageTwoComponent,
