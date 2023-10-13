@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
 import { CuestionarioInitial, Pregunta, Respuesta, convertirAPreguntaBotones, PreguntaBotones } from 'src/app/core/models/initial-profile/initial-profile.model';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
-// import { Cuestionario, RespuestaBnt } from 'src/app/core/models/initial-profile/questions-profile.model';
+import { PreguntaApi } from 'src/app/core/models/API/Pregunta-Subjetiva-APi.model';
 import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
 @Component({
   selector: 'app-stage-one',
@@ -12,18 +12,25 @@ import { QuestionsProfileService } from 'src/app/core/services/api/subjective-pr
 })
 export class StageOneComponent implements OnInit {
 
-  cuestionario: CuestionarioInitial = {
-    preguntas: [],
-  };
+  // cuestionario: CuestionarioInitial = {
+  //   preguntas: [],
+  // };
 
   resCuestionario: CuestionarioInitial = {
     preguntas: [],
   };
 
 
-  resCuestionarioAPI: CuestionarioInitial = {
-    preguntas: [],
-  };
+  // resCuestionarioAPI: CuestionarioInitial = {
+  //   preguntas: [],
+  // };
+
+
+  resCuestionarioAPI: PreguntaApi[] = [];
+
+  resPreguntaSubjetivaAPI: PreguntaApi[] = [];
+
+  cuestionario: PreguntaApi[] = [];
 
   ///////Control de paginacion. preguntas Siguiente:
   buttonText: string = 'SIGUIENTE PREGUNTA';
@@ -52,94 +59,90 @@ export class StageOneComponent implements OnInit {
   };
 
   constructor(private profileService: QuestionsProfileService,
-     private router: Router, private route: ActivatedRoute,
-     private localStorageService: LocalStorageService) {
-   
+    private router: Router, private route: ActivatedRoute,
+    private localStorageService: LocalStorageService) {
+
   }
 
   ngOnInit(): void {
-    // Solicitud a json local;
-    this.loadCuestionario();
 
-    // Solicitud a json API;
-    this.getTestPerfil(); 
-  }
-
-  loadCuestionario() {
-    this.profileService.getCuestionario().subscribe((data) => {
-      console.log("Test Subjetivo Obtenido Local");
-      console.log(data);
-      console.log("-----------------------------");
-      this.resCuestionario = data;
-      this.loadQuestions();
-    });
-  }
-
-  public getTestPerfil() {
-    return this.profileService.obtenerTestSubjetivo()
+    this.profileService.obtenerTestSubjetivo()
       .then((testSubjetivo) => {
         console.log("Servicio a questionario inicial API");
-        console.log(testSubjetivo);
-        // this.resCuestionarioAPI.preguntas = testSubjetivo;
-        // console.log(this.resCuestionarioAPI);
-        console.log("--------------------------------");
-        // this.loadQuestions();
+        this.resCuestionarioAPI = testSubjetivo;
+        console.log(this.resCuestionarioAPI);
+        console.log("----------Lectura completa en Componente-------");
+        this.loadQuestions();
       })
-      .catch((error) => console.error(error))
+      .catch(
+        (error) =>
+          console.error("Error al obtener datos del API:", error)
+      )
+
   }
 
-  //Inicializa mi objeto con la primer pregunta
-  loadQuestions() {
+  // public getTestPerfil() {
+  //   return this.profileService.obtenerTestSubjetivo()
+  //     .then((testSubjetivo) => {
+  //       console.log("Servicio a questionario inicial API");
+  //       console.log(testSubjetivo);
+  //       this.resCuestionarioAPI = testSubjetivo;
+  //       console.log(this.resCuestionarioAPI );
+  //       console.log("----------Lectura completa en Componente-------");
+  //       // this.loadQuestions();
 
-    this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[0];
-    console.log("--------------------------------");
-    console.log(this.cuestionario.preguntas[0]);
-    //Metodo para consultar a la API
-    console.log("--------------------------------");
-    // console.log(this.resCuestionarioAPI.preguntas[0]);
-    //  this.PregSubjetivo.preguntas[0] = this.testSubjetivo.preguntas[0];
+  //     })
+  //     .catch((error) => console.error(error))
+  // }
+
+  //Inicializa mi objeto con la primer pregunta
+ 
+  loadQuestions() {
+    console.log("----------Cargar Primer Pregunta-------");
+    this.cuestionario[0] = this.resCuestionarioAPI[0];
+
   }
 
   loadNextQuestion(): void {
 
-    if (this.resCuestionario) {
+    if (this.resCuestionarioAPI) {
 
-      this.guardarrespuestas(this.cuestionario.preguntas[0].seccion.nombre,
-        this.cuestionario.preguntas[0].TipoComponente);
+      this.guardarrespuestas(this.cuestionario[0].seccion.nombre,
+        this.cuestionario[0].tipoComponente);
 
-      // console.log("-Resultado Temporal Guardado");
-      // console.log(this.respuestasDeUsuario);
-      // Incrementa el índice para la próxima pregunta
+      //   // console.log("-Resultado Temporal Guardado");
+      //   // console.log(this.respuestasDeUsuario);
+      //   // Incrementa el índice para la próxima pregunta
       this.currentQuestionIndex++;
 
-      if (this.currentQuestionIndex < this.resCuestionario.preguntas.length) {
+      if (this.currentQuestionIndex < this.resCuestionarioAPI.length) {
 
-        this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[this.currentQuestionIndex];
-
+        this.cuestionario[0] = this.resCuestionarioAPI[this.currentQuestionIndex];
       }
       else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
 
-        console.log('Has respondido todas las preguntas.');
-        console.log(this.AnalisisSubjetivo);
-        console.log('Estos eran tus resultados.');
+        //     console.log('Has respondido todas las preguntas.');
+        //     console.log(this.AnalisisSubjetivo);
+        //     console.log('Estos eran tus resultados.');
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
         this.buttonText = 'FINALIZAR';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
-        //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
-        //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
+        //     //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
+        //     //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
           this.profileService.disparadordemensageResultado.emit({
-            data:this.respuestasPerfil.perfilInversor
+            data: this.respuestasPerfil.perfilInversor
           });
-          this.localStorageService.setItem('toleranciaRiesgo',this.respuestasPerfil.toleranciaRiesgo);
-          this.localStorageService.setItem('horizonteTemporal',this.respuestasPerfil.horizonteTemporal);
-          this.localStorageService.setItem('perfil',this.respuestasPerfil.perfilInversor);
-       
+          this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
+          this.localStorageService.setItem('horizonteTemporal', this.respuestasPerfil.horizonteTemporal);
+          this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
+
           console.log('Entrega de resultados completada.');
         });
       }
-    } else {
+    }
+    else {
       console.error('Error: Fin de preguntas válidos- Ultima Vista antes de Volver al home-RoadMap.');
     }
   }
@@ -149,7 +152,6 @@ export class StageOneComponent implements OnInit {
     let index = -1
     switch (tipo) {
       case 'CHECKBOX':
-
         // console.log('Suma total:Area CHECKBOX');
         index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
         const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
@@ -297,7 +299,7 @@ export class StageOneComponent implements OnInit {
     return respuestasbnts.orden == 1;
   }
 
- 
+
 
 }
 
