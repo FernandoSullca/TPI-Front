@@ -5,7 +5,7 @@
     </div>
     <div class="container-perfil p-4">
 
-        <div *ngIf="!isLastQuestion">
+        <div *ngIf="!isLastQuestion && cuestionario != null">
             <div *ngFor="let pregunta of cuestionario">
                 <!-- Verifica el tipo de pregunta -->
 

@@ -12,20 +12,6 @@ import { QuestionsProfileService } from 'src/app/core/services/api/subjective-pr
 })
 export class StageOneComponent implements OnInit {
 
-  // cuestionario: CuestionarioInitial = {
-  //   preguntas: [],
-  // };
-
-  resCuestionario: CuestionarioInitial = {
-    preguntas: [],
-  };
-
-
-  // resCuestionarioAPI: CuestionarioInitial = {
-  //   preguntas: [],
-  // };
-
-
   resCuestionarioAPI: PreguntaApi[] = [];
 
   resPreguntaSubjetivaAPI: PreguntaApi[] = [];
@@ -51,12 +37,12 @@ export class StageOneComponent implements OnInit {
 
   // instrumentoMostrado: boolean = false;
 
-  public testSubjetivo: CuestionarioInitial = {
-    preguntas: []
-  };
-  public PregSubjetivo: CuestionarioInitial = {
-    preguntas: []
-  };
+  // public testSubjetivo: CuestionarioInitial = {
+  //   preguntas: []
+  // };
+  // public PregSubjetivo: CuestionarioInitial = {
+  //   preguntas: []
+  // };
 
   constructor(private profileService: QuestionsProfileService,
     private router: Router, private route: ActivatedRoute,
@@ -68,39 +54,41 @@ export class StageOneComponent implements OnInit {
 
     this.profileService.obtenerTestSubjetivo()
       .then((testSubjetivo) => {
-        console.log("Servicio a questionario inicial API");
         this.resCuestionarioAPI = testSubjetivo;
         console.log(this.resCuestionarioAPI);
-        console.log("----------Lectura completa en Componente-------");
+        console.log("----------Lectura completa Desde API en Componente-------");  
         this.loadQuestions();
       })
       .catch(
-        (error) =>
-          console.error("Error al obtener datos del API:", error)
-      )
-
+        (error) => {
+          console.error("Error al obtener datos del API:", error),
+         this.loadQuestionsFromLocal()
+        })
+      .finally(() => {
+ 
+      }
+      );
   }
 
-  // public getTestPerfil() {
-  //   return this.profileService.obtenerTestSubjetivo()
-  //     .then((testSubjetivo) => {
-  //       console.log("Servicio a questionario inicial API");
-  //       console.log(testSubjetivo);
-  //       this.resCuestionarioAPI = testSubjetivo;
-  //       console.log(this.resCuestionarioAPI );
-  //       console.log("----------Lectura completa en Componente-------");
-  //       // this.loadQuestions();
-
-  //     })
-  //     .catch((error) => console.error(error))
-  // }
+  public loadQuestionsFromLocal() {
+    return this.profileService.getCuestionario()
+      .subscribe(
+        (testSubjetivo) => {
+          console.log("Servicio a questionario Mock");
+          this.resCuestionarioAPI = testSubjetivo;
+          console.log(this.resCuestionarioAPI);
+          console.log("----------Lectura completa en Componente-------");
+          this.loadQuestions();
+        },
+        (error) => console.error(error))
+  }
 
   //Inicializa mi objeto con la primer pregunta
- 
+
   loadQuestions() {
     console.log("----------Cargar Primer Pregunta-------");
     this.cuestionario[0] = this.resCuestionarioAPI[0];
-
+    console.log( this.cuestionario[0]);
   }
 
   loadNextQuestion(): void {
