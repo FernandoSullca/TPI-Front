@@ -6,11 +6,11 @@
     <div class="container-perfil p-4">
 
         <div *ngIf="!isLastQuestion">
-            <div *ngFor="let pregunta of cuestionario.preguntas">
+            <div *ngFor="let pregunta of cuestionario">
                 <!-- Verifica el tipo de pregunta -->
 
                 <!-- Pregunta de tipo checkbox -->
-                <ng-container *ngIf="pregunta.TipoComponente=== 'CHECKBOX'">
+                <ng-container *ngIf="pregunta.tipoComponente== 'CHECKBOX'">
                     <div class="container-perfil-Questions p-2 pb-0">
                         <p class="">{{ pregunta.descripcion }}</p>
                     </div>
@@ -30,7 +30,7 @@
                 </ng-container>
 
                 <!-- Pregunta de tipo radio -->
-                <ng-container *ngIf="pregunta.TipoComponente === 'RADIO'">
+                <ng-container *ngIf="pregunta.tipoComponente == 'RADIO'">
                     <div class="container-perfil-Questions p-2 pb-0">
                         <p>{{ pregunta.descripcion }}</p>
                     </div>
@@ -47,7 +47,7 @@
                 </ng-container>
 
                 <!-- Pregunta de tipo botones-unica-opcion -->
-                <ng-container *ngIf="pregunta.TipoComponente === 'BOTON'" style="text-align: center;">
+                <ng-container *ngIf="pregunta.tipoComponente == 'BOTON'" style="text-align: center;">
                     <div class="container-perfil-Questions p-2 pb-0">
                         <p>{{ pregunta.descripcion }}</p>
                     </div>

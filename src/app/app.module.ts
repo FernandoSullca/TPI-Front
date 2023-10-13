@@ -11,16 +11,9 @@ import { LandingComponent } from './features/landing/landing.component';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
-import { ContentComponent } from './features/dashboard/sections/content/content.component';
-import { AccionesComponent } from './features/dashboard/sections/acciones/acciones.component';
-import { InteresCompuestoComponent } from './features/dashboard/sections/interes-compuesto/interes-compuesto.component';
-import { InstrumentosComponent } from './features/dashboard/sections/instrumentos/instrumentos.component';
-import { OpcionesComponent } from './features/dashboard/sections/opciones/opciones.component';
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
-import { TriviaComponent } from './features/dashboard/sections/trivia/trivia.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
-import { OtroComponent } from './features/dashboard/sections/otro/otro.component';
 // import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
 import { MessageComponent } from './common/message/message.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component';
@@ -34,13 +27,7 @@ import { StageTwoComponent } from './features/dashboard/sections/investor-profil
     LoginComponent,
     DashboardComponent,
     LandingComponent,
-    ContentComponent,
-    AccionesComponent,
-    InteresCompuestoComponent,
-    InstrumentosComponent,
-    OpcionesComponent,
     PricePanelComponent,
-    TriviaComponent,
     PerfilSubjetivoComponent,
     StageOneComponent,
     StageTwoComponent,
