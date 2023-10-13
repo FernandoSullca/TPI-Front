@@ -8,22 +8,29 @@ import { CantidadPorInstrumento, Cartera } from 'src/app/core/models/cartera/car
   templateUrl: './cartera.component.html',
   styleUrls: ['./cartera.component.scss']
 })
-export class CarteraComponent implements OnInit{
-  
-  constructor(private carteraService : CarteraService, private router: Router) { }
+export class CarteraComponent implements OnInit {
 
-  cartera:Cartera|undefined;
+  constructor(private carteraService: CarteraService, private router: Router) { }
+
+  cartera: Cartera | undefined;
 
   ngOnInit(): void {
     this.getCartera();
   }
-  getCartera(){
+  getCartera() {
     return this.carteraService.getCartera().subscribe((response) => {
-      this.cartera=response
+      const { totalCartera = '', totalInstrumentos = '', totalMonedas = '' } = response;
+      const responseFormated: Cartera = {
+        ...response,
+        totalCartera: Number((Math.round(Number(totalCartera) * 100) / 100).toFixed(2)),
+        totalInstrumentos: Number((Math.round(Number(totalInstrumentos) * 100) / 100).toFixed(2)),
+        totalMonedas: Number((Math.round(Number(totalMonedas) * 100) / 100).toFixed(2)),
+      }
+      this.cartera = responseFormated
     });
   }
-  mostrarValuacionTotalCartera():number{
-    if(this.cartera?.totalCartera)
+  mostrarValuacionTotalCartera(): number {
+    if (this.cartera?.totalCartera)
       return this.cartera?.totalCartera
     else
       return 0

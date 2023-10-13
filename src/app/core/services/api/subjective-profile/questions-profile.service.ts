@@ -27,7 +27,7 @@ export class QuestionsProfileService {
     const resp = await axios.get(`${environment.API}/api/pregunta/listar`);
     const { data } = resp;
     const datos = Array.from(data);
-    console.log(datos);
+    // console.log(datos);
     return data;
     // return datos.map((test) => {
     // return CuestionarioInitial.serializar(test);
