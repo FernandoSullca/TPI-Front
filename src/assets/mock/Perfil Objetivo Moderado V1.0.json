@@ -1,0 +1,145 @@
+[
+  {
+    "descripcion": "¿Qué significa el término \"ratio de Sharpe\" y cómo se utiliza en la evaluación de carteras de inversión?",
+    "tipoComponente": "TEXTO",
+    "categoria": {
+      "nombre": "Test Conocimiento Moderado"
+    },
+    "seccion": {
+      "nombre": "Nivel De Conocimiento"
+    },
+    "respuestas": [
+      {
+        "nombre": "A- El ratio de Sharpe mide la rentabilidad absoluta de una inversión.",
+        "valor": 0
+      },
+      {
+        "nombre": "B- El ratio de Sharpe mide la relación entre el rendimiento y la volatilidad de una inversión y se utiliza para evaluar la eficiencia de una cartera.",
+        "valor": 5
+      },
+      {
+        "nombre": "C- El ratio de Sharpe mide el rendimiento de una inversión sin tener en cuenta el riesgo asociado.",
+        "valor": 0
+      }
+    ]
+  },
+  {
+    "descripcion": "¿Cuáles son los principales tipos de activos que componen una cartera diversificada de inversión moderada?",
+    "tipoComponente": "TEXTO",
+    "categoria": {
+      "nombre": "Test Conocimiento Moderado"
+    },
+    "seccion": {
+      "nombre": "Nivel De Conocimiento"
+    },
+    "respuestas": [
+      {
+        "nombre": "A- Solo bonos corporativos de alto rendimiento.",
+        "valor": 0
+      },
+      {
+        "nombre": "B- Acciones de empresas tecnológicas en crecimiento.",
+        "valor": 0
+      },
+      {
+        "nombre": "C- Una combinación de acciones y bonos de calidad.",
+        "valor": 5
+      }
+    ]
+  },
+  {
+    "descripcion": "¿Cuál es la importancia de establecer un horizonte de inversión a la hora de construir una cartera moderada?",
+    "tipoComponente": "TEXTO",
+    "categoria": {
+      "nombre": "Test Conocimiento Moderado"
+    },
+    "seccion": {
+      "nombre": "Nivel De Conocimiento"
+    },
+    "respuestas": [
+      {
+        "nombre": "A- No es importante tener un horizonte de inversión definido.",
+        "valor": 0
+      },
+      {
+        "nombre": "B- Un horizonte de inversión a largo plazo permite tomar riesgos significativos.",
+        "valor": 0
+      },
+      {
+        "nombre": "C- Un horizonte de inversión a largo plazo ayuda a seleccionar activos y estrategias adecuados.",
+        "valor": 5
+      }
+    ]
+  },
+  {
+    "descripcion": "¿Cómo se calcula el rendimiento compuesto de una inversión a lo largo del tiempo?",
+    "tipoComponente": "TEXTO",
+    "categoria": {
+      "nombre": "Test Conocimiento Moderado"
+    },
+    "seccion": {
+      "nombre": "Nivel De Conocimiento"
+    },
+    "respuestas": [
+      {
+        "nombre": "A- Sumando los rendimientos de cada año.",
+        "valor": 0
+      },
+      {
+        "nombre": "B- Promediando los rendimientos anuales.",
+        "valor": 0
+      },
+      {
+        "nombre": "C- Multiplicando los rendimientos anuales, teniendo en cuenta el interés compuesto.",
+        "valor": 10
+      }
+    ]
+  },
+  {
+    "descripcion": "¿Cuáles son los riesgos asociados con la inversión en acciones y cómo se pueden mitigar en una cartera moderada?",
+    "tipoComponente": "TEXTO",
+    "categoria": {
+      "nombre": "Test Inversor"
+    },
+    "seccion": {
+      "nombre": "Tolerancia al riesgo"
+    },
+    "respuestas": [
+      {
+        "nombre": "A- No hay riesgos asociados con la inversión en acciones.",
+        "valor": 0
+      },
+      {
+        "nombre": "B- Los riesgos incluyen la volatilidad de los precios y la pérdida de capital, y se pueden mitigar mediante la diversificación y la selección de acciones de calidad.",
+        "valor": 10
+      },
+      {
+        "nombre": "C- Los riesgos solo pueden mitigarse mediante la inversión en bonos.",
+        "valor": 0
+      }
+    ]
+  },
+  {
+    "descripcion": "¿Cómo afecta la inflación a las inversiones y cómo puede un inversor moderado proteger su cartera contra la erosión del poder adquisitivo?",
+    "tipoComponente": "TEXTO",
+    "categoria": {
+      "nombre": "Test Conocimiento Moderado"
+    },
+    "seccion": {
+      "nombre": "Nivel De Conocimiento"
+    },
+    "respuestas": [
+      {
+        "nombre": "A- La inflación no afecta a las inversiones.",
+        "valor": 0
+      },
+      {
+        "nombre": "B- La inflación disminuye el valor real de las inversiones a lo largo del tiempo, y un inversor moderado puede proteger su cartera invirtiendo en activos que históricamente han superado la inflación, como acciones y bienes raíces.",
+        "valor": 5
+      },
+      {
+        "nombre": "C- La inflación solo afecta a las inversiones en efectivo.",
+        "valor": 0
+      }
+  ]}
+]
