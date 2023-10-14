@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
-import { CuestionarioInitial, Pregunta, Respuesta, convertirAPreguntaBotones, PreguntaBotones } from 'src/app/core/models/initial-profile/initial-profile.model';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
-import { PreguntaApi } from 'src/app/core/models/API/Pregunta-Subjetiva-APi.model';
+import { PreguntaApi, RespuestaAPI } from 'src/app/core/models/API/Pregunta-APi.model';
 import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
+import { PreguntaSubjetivasService } from 'src/app/core/services/dataLocalSercices/Preguntas-Subjetivas/preguntaSubjetiva.service';
 @Component({
   selector: 'app-stage-one',
   templateUrl: './stage-one.component.html',
@@ -35,16 +35,8 @@ export class StageOneComponent implements OnInit {
 
   respuestasPerfil: any = [];
 
-  // instrumentoMostrado: boolean = false;
-
-  // public testSubjetivo: CuestionarioInitial = {
-  //   preguntas: []
-  // };
-  // public PregSubjetivo: CuestionarioInitial = {
-  //   preguntas: []
-  // };
-
-  constructor(private profileService: QuestionsProfileService,
+  constructor(private profileServiceAPI_: QuestionsProfileService,
+    private preguntaSubjetivasServiceLocal_: PreguntaSubjetivasService,
     private router: Router, private route: ActivatedRoute,
     private localStorageService: LocalStorageService) {
 
@@ -52,26 +44,32 @@ export class StageOneComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.profileService.obtenerTestSubjetivo()
+    this.profileServiceAPI_.obtenerTestSubjetivo()
       .then((testSubjetivo) => {
         this.resCuestionarioAPI = testSubjetivo;
         console.log(this.resCuestionarioAPI);
-        console.log("----------Lectura completa Desde API en Componente-------");  
-        this.loadQuestions();
+        console.log("----------Lectura completa Desde API en Componente-------");
+        //Si vino VAcio y quiero buscar en mi local
+        if (this.resCuestionarioAPI) {
+          this.loadQuestionsFromLocal()
+        }
+        else {
+          this.loadQuestions();
+        }
       })
       .catch(
         (error) => {
           console.error("Error al obtener datos del API:", error),
-         this.loadQuestionsFromLocal()
+            this.loadQuestionsFromLocal()
         })
       .finally(() => {
- 
+
       }
       );
   }
 
   public loadQuestionsFromLocal() {
-    return this.profileService.getCuestionario()
+    return this.preguntaSubjetivasServiceLocal_.getCuestionario()
       .subscribe(
         (testSubjetivo) => {
           console.log("Servicio a questionario Mock");
@@ -88,7 +86,7 @@ export class StageOneComponent implements OnInit {
   loadQuestions() {
     console.log("----------Cargar Primer Pregunta-------");
     this.cuestionario[0] = this.resCuestionarioAPI[0];
-    console.log( this.cuestionario[0]);
+    console.log(this.cuestionario[0]);
   }
 
   loadNextQuestion(): void {
@@ -97,9 +95,6 @@ export class StageOneComponent implements OnInit {
 
       this.guardarrespuestas(this.cuestionario[0].seccion.nombre,
         this.cuestionario[0].tipoComponente);
-
-      //   // console.log("-Resultado Temporal Guardado");
-      //   // console.log(this.respuestasDeUsuario);
       //   // Incrementa el índice para la próxima pregunta
       this.currentQuestionIndex++;
 
@@ -119,7 +114,7 @@ export class StageOneComponent implements OnInit {
         //     //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
-          this.profileService.disparadordemensageResultado.emit({
+          this.profileServiceAPI_.disparadordemensageResultado.emit({
             data: this.respuestasPerfil.perfilInversor
           });
           this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
@@ -216,7 +211,7 @@ export class StageOneComponent implements OnInit {
 
     try {
       console.log("Enviando Resultados...");
-      const data = await from(this.profileService.TestSubjetivoResultados(this.AnalisisSubjetivo)).toPromise();
+      const data = await from(this.profileServiceAPI_.TestSubjetivoResultados(this.AnalisisSubjetivo)).toPromise();
 
       if (data && data.perfilInversor) {
         this.respuestasPerfil = data;
@@ -265,7 +260,7 @@ export class StageOneComponent implements OnInit {
     return this.respuestasSeleccionadasPorInstrumento[instrumento] === valor;
   }
 
-  isArray(respuestas: Respuesta[]): respuestas is Respuesta[] {
+  isArray(respuestas: RespuestaAPI[]): respuestas is RespuestaAPI[] {
     return Array.isArray(respuestas);
   }
 
@@ -275,7 +270,7 @@ export class StageOneComponent implements OnInit {
   }
 
   //Obtiene el refactor de preguntas de botones para que sea visibles
-  opcionesPorInstrumento(respuestasbnts: Respuesta[], instrumento: string): any[] {
+  opcionesPorInstrumento(respuestasbnts: RespuestaAPI[], instrumento: string): any[] {
     // Filtrar y ordenar las opciones por instrumento y orden
     // console.log("Funciones unificar respuestas");
     return respuestasbnts
@@ -283,7 +278,7 @@ export class StageOneComponent implements OnInit {
       .sort((a: { orden: number; }, b: { orden: number; }) => a.orden - b.orden);
   }
 
-  esPrimero(respuestasbnts: Respuesta) {
+  esPrimero(respuestasbnts: RespuestaAPI) {
     return respuestasbnts.orden == 1;
   }
 
