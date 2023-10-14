@@ -38,13 +38,18 @@ export class GraficoComponent {
         display: true,
         position: 'bottom',
         labels:{
-          usePointStyle: true,
-          boxWidth:10,
+          boxWidth:40,
           color:'#00000'
+          
         }
       },
+      tooltip:{
+        enabled:true,
+        
+      }
     },
   };
+  
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
     labels: [], // Etiquetas en formato de arreglo de cadenas
     datasets: [
@@ -55,13 +60,23 @@ export class GraficoComponent {
     ],
   };
   
+ 
 
   public pieChartType: ChartType = 'pie';
   
   ngOnChanges(changes: SimpleChanges) {
     if (changes['cantidadPorInstrumento'] && this.cantidadPorInstrumento) {
+      this.actualizarArray();
       this.pieChartData.labels = Object.keys(this.cantidadPorInstrumento);
       this.pieChartData.datasets[0].data = Object.values(this.cantidadPorInstrumento);
     }
+  }
+  actualizarArray(){
+    const arrayIntrumentos = Object.assign({}, this.cantidadPorInstrumento);
+    for(const key in arrayIntrumentos){
+      if(arrayIntrumentos[key]== 0)
+        delete arrayIntrumentos[key];
+    };
+    this.cantidadPorInstrumento=arrayIntrumentos;
   }
 }
