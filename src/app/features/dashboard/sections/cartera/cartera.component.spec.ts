@@ -4,6 +4,7 @@ import { CarteraComponent } from './cartera.component';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
 import { of } from 'rxjs';
 import { GraficoComponent } from '../grafico/grafico.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CarteraComponent', () => {
   let component: CarteraComponent;
@@ -27,6 +28,7 @@ describe('CarteraComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports:[HttpClientTestingModule],
       declarations: [CarteraComponent],
       providers: [
         { provide: CarteraService, useValue: carteraServiceStub }
