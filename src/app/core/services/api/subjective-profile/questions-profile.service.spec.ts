@@ -5,6 +5,7 @@ import { QuestionsProfileService } from './questions-profile.service';
 
 describe('QuestionsProfileService', () => {
   let service: QuestionsProfileService;
+  let httpTestingController: HttpTestingController;
 
   beforeEach((
     ) => {
@@ -13,6 +14,7 @@ describe('QuestionsProfileService', () => {
       providers:[QuestionsProfileService]
     });
     service = TestBed.inject(QuestionsProfileService);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
