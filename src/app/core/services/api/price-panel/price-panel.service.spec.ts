@@ -18,17 +18,20 @@ describe('PricePanelService', () => {
         return Titulo.serializar(titulo);
     });
 
-    const resp = new Promise<Titulo[]>((resolver, reject) => {
+    const respFuncion = new Promise<Titulo[]>((resolver, reject) => {
         return resolver(resolverSend)
     })
-
+    const mockAxiosResponse = new Promise((resolver) => {
+        return resolver({ data: mockAcciones })
+    })
     it('should be created', () => {
         expect(service).toBeTruthy();
     });
     it('should get titles', () => {
         // probar mockear axios y no funcion entera
-        // spyOn(service, 'obtenerTitulos').and.returnValue(resp);
-        spyOn(service, 'obtenerTitulos').and.returnValue(resp);
+        // spyOn(service, 'obtenerTitulos').and.returnValue(respFuncion);
+
+        spyOn(axios, 'get').and.returnValue(mockAxiosResponse);
 
         return service.obtenerTitulos()
             .then((titulos: Titulo[]) => {
