@@ -47,10 +47,10 @@ export class StageOneComponent implements OnInit {
     this.profileServiceAPI_.obtenerTestSubjetivo()
       .then((testSubjetivo) => {
         this.resCuestionarioAPI = testSubjetivo;
-        console.log(this.resCuestionarioAPI);
-        console.log("----------Lectura completa Desde API en Componente-------");
         //Si vino VAcio y quiero buscar en mi local
+        console.log(this.resCuestionarioAPI)
         if (this.resCuestionarioAPI) {
+          console.log("Buscando en local Host")
           this.loadQuestionsFromLocal()
         }
         else {
@@ -72,16 +72,11 @@ export class StageOneComponent implements OnInit {
     return this.preguntaSubjetivasServiceLocal_.getCuestionario()
       .subscribe(
         (testSubjetivo) => {
-          console.log("Servicio a questionario Mock");
           this.resCuestionarioAPI = testSubjetivo;
-          console.log(this.resCuestionarioAPI);
-          console.log("----------Lectura completa en Componente-------");
           this.loadQuestions();
         },
         (error) => console.error(error))
   }
-
-  //Inicializa mi objeto con la primer pregunta
 
   loadQuestions() {
     console.log("----------Cargar Primer Pregunta-------");
@@ -104,19 +99,12 @@ export class StageOneComponent implements OnInit {
       }
       else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
-
-        //     console.log('Has respondido todas las preguntas.');
-        //     console.log(this.AnalisisSubjetivo);
-        //     console.log('Estos eran tus resultados.');
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
         this.buttonText = 'FINALIZAR';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
         //     //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
         //     //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
-          this.profileServiceAPI_.disparadordemensageResultado.emit({
-            data: this.respuestasPerfil.perfilInversor
-          });
           this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
           this.localStorageService.setItem('horizonteTemporal', this.respuestasPerfil.horizonteTemporal);
           this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
@@ -227,8 +215,9 @@ export class StageOneComponent implements OnInit {
     }
   }
 
-  validateData() {
-    return true;
+  validateData(): boolean {
+
+    return Object.keys(this.AnalisisSubjetivo).length > 0;
   }
 
   actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
@@ -249,10 +238,8 @@ export class StageOneComponent implements OnInit {
   }
 
   actualizarOpcionesSeleccionadasBotonInstrumento(seccion: string, instrumento: string, valor: number) {
-    // Almacena la respuesta seleccionada para este instrumento.
+    
     this.respuestasSeleccionadasPorInstrumento[instrumento] = valor;
-
-    // console.log(this.respuestasSeleccionadasPorInstrumento);
 
   }
 
@@ -281,7 +268,6 @@ export class StageOneComponent implements OnInit {
   esPrimero(respuestasbnts: RespuestaAPI) {
     return respuestasbnts.orden == 1;
   }
-
 
 
 }
