@@ -114,9 +114,9 @@ export class StageOneComponent implements OnInit {
         //     //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
-          this.profileServiceAPI_.disparadordemensageResultado.emit({
-            data: this.respuestasPerfil.perfilInversor
-          });
+          // this.profileServiceAPI_.disparadordemensageResultado.emit({
+          //   data: this.respuestasPerfil.perfilInversor
+          // });
           this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
           this.localStorageService.setItem('horizonteTemporal', this.respuestasPerfil.horizonteTemporal);
           this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
