@@ -1,9 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import axios from 'axios';
-import { eventListeners } from '@popperjs/core';
 import { PreguntaApi } from 'src/app/core/models/API/Pregunta-APi.model';
 
 @Injectable({
