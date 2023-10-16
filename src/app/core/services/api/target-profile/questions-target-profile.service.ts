@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PreguntaApi  } from 'src/app/core/models/API/Pregunta-APi.model';
+import { EventEmitter, Injectable, Output } from '@angular/core';
+
 import { environment } from 'environments/environment';
 import axios from 'axios';
 @Injectable({
@@ -9,15 +10,10 @@ import axios from 'axios';
 })
 export class QuestionsTargetService {
 
-  @Output() disparadordemensageResultado: EventEmitter<any> = new EventEmitter();
+  // @Output() disparadordemensageResultado: EventEmitter<any> = new EventEmitter();
   private preguntasObjetivas = 'Test Conocimiento'; // Ruta al archivo JSON
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  // getPreguntas(): Observable<PreguntaApi[]> {
-  //   return this.http.get<PreguntaApi[]>(this.preguntasUrl);
-  // }
-
-  //Verificado Captura
   public async obtenerTestObjetivo(tipo:string) {
 
     switch(tipo){
@@ -41,7 +37,6 @@ export class QuestionsTargetService {
      return data;
 }
 
-  
   public async TestObjetivoResultados(Analisisobjetivo: Record<string, number>):Promise<any> {
     
     const body = {
@@ -53,5 +48,5 @@ export class QuestionsTargetService {
     const { data } = resp;
     return data;
   }
- 
+
 }
