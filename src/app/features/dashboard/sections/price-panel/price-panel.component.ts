@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { PricePanelService } from 'src/app/core/services/api/price-panel/price-panel.service';
 // import { CommonModule } from '@angular/common';
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
+import { mockAcciones } from 'src/app/core/services/api/price-panel/mock'
 
 @Component({
   selector: 'app-price-panel',
@@ -13,6 +14,7 @@ export class PricePanelComponent implements OnInit {
   public titulosSimbolo: String[] = [];
   public titulosSimboloMapa = new Map<string, string>();
   public simbolo: string = '';
+  public simboloByCartera: string = '';
   public cantidad: number = 0;
   public textMessage: string = '';
   public typeMessage: string = '';
@@ -21,11 +23,13 @@ export class PricePanelComponent implements OnInit {
   constructor(private pricePanelService: PricePanelService) { }
 
   ngOnInit(): void {
-    // const response = this.pricePanelService.obtenerTitulos();
-    // console.log("🚀 ~ file: price-panel.component.ts:16 ~ PricePanelComponent ~ ngOnInit ~ response:", response)
     this.getTitulos();
   }
 
+  public seleccionarInstrumento(instrumento: string) {
+    this.simboloByCartera = instrumento;
+    this.simbolo = instrumento;
+  }
   public getTitulos() {
     return this.pricePanelService.obtenerTitulos()
       .then((titulos) => {
@@ -37,7 +41,17 @@ export class PricePanelComponent implements OnInit {
           }
         });
       })
-      .catch((error) => console.error(error))
+      .catch((error) => {
+        const mockSerializado = mockAcciones.map(m => Titulo.serializar(m));
+        this.titulos = mockSerializado;
+        this.titulosSimbolo = mockSerializado.map((t) => t.simbolo || 'Desconocido')
+        mockSerializado.forEach((titulo) => {
+          if (titulo.simbolo && titulo.categoriaInstrumento) {
+            this.titulosSimboloMapa.set(titulo.simbolo, titulo.categoriaInstrumento);
+          }
+        });
+        console.error(error)
+      })
   }
 
   public vender() {

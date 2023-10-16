@@ -1,48 +1,55 @@
 <section>
   <div class="touch-background" [ngClass]="{'active': menuMobile}" (click)="actionMenuMobile()"></div>
   <div class="menu-mobile" (click)="actionMenuMobile()">
-    <img src="/assets/img/menu_mobile.svg" alt="">
+    <img src="/assets/image/menu_mobile.svg" alt="">
   </div>
   <nav [ngClass]="{'active': menuMobile}">
-    <div class="brand-box">
-      <img src="/assets/image/logo.svg" alt="">
-      <h2>MercadoJr</h2>
+
+    <div class="brand-box" [routerLink]="['/']">      
+      <h2>Mercado<b>JR</b></h2>
+
+      <img style="margin-left: 2px; margin-top: -14px;" src="/assets/image/logo.svg" alt="">
     </div>
     <ul>
       <!-- *ngIf="!enabledAdminMode" -->
       <div>
         <!-- *ngIf="enabledPerfil" -->
-        <li routerLink='/dashboard/aprender' routerLinkActive="active" (click)="actionMenuMobile()">
+        <!-- <li routerLink='/dashboard/aprender' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/aprender.svg" alt="">
           <span>Aprender</span>
-        </li>
-        <li routerLink='/dashboard/perfil-inversor' routerLinkActive="active" (click)="actionMenuMobile()">
-          <img src="/assets/image/campana.svg" alt="">
+        </li> -->
+        <li routerLink='/dashboard/perfil-inversor-questions' routerLinkActive="active" (click)="actionMenuMobile()">
+          <img src="/assets/image/perfil-icon.svg" alt="">
           <span>Perfil inversor</span>
           <p *ngIf="false" class="notif">1</p>
         </li>
-        <li routerLink='/dashboard/foro' routerLinkActive="active" (click)="actionMenuMobile()">
-          <img src="/assets/image/foro.svg" alt=""><span>Foro</span>
+        <!-- <li routerLink='/dashboard/foro' routerLinkActive="active" (click)="actionMenuMobile()">
+          <img src="/assets/image/foro.svg" alt=""><span>Foro</span> -->
           <!--           *ngIf="quantityNotifications > 0"
           {{quantityNotifications}}
  -->
-          <p class="notif">
+          <!-- <p class="notif">
             3
           </p>
-        </li>
+        </li> -->
         <li routerLink='/dashboard/cartera' routerLinkActive="active" (click)="actionMenuMobile()">
-          <img src="/assets/image/perfil.svg" alt=""><span>Cartera</span>
+          <img src="/assets/image/cartera-icon.svg" alt=""><span>Cartera</span>
         </li>
         <li routerLink='/dashboard/precios' routerLinkActive="active" (click)="actionMenuMobile()">
-          <img src="/assets/image/perfil.svg" alt=""><span>Panel Precios</span>
+
+          <img src="/assets/image/panel-precios-icon.svg" alt=""><span>Panel Precios</span>
+        </li>
+        <li routerLinkActive="active" (click)="actionMenuMobile()">
+          <img src="/assets/image/prediccion-icon.svg" alt=""><span>Predicción</span>
         </li>
       </div>
     </ul>
     <!-- (click)="logout()" -->
-    <div class="logout">
-      <span>Nombre</span>
-      <img src="/assets/img/logout.svg" alt="logout">
+    <div class="logout" (click)="cerrarSesion()">
+      <span>Cerrar sesión</span>
+      <img src="/assets/image/logout.svg" alt="logout">
     </div>
+
   </nav>
   <div class="main-content">
     <router-outlet></router-outlet>

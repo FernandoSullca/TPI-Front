@@ -1,3 +1,5 @@
+@import "../../../variables";
+
 section {
     min-height: 100vh;
     width: 100%;
@@ -21,17 +23,17 @@ section {
       .brand-box {
         display: flex;
         align-items: center;
-        white-space: nowrap;
-        margin-bottom: 2rem;
-  
+        margin: 20%;
+        cursor: pointer;
         img {
+          margin-left: 2px;
+          margin-top: -20px;
+          width: 2.5rem;
           height: 2.5rem;
-          margin-right: .7rem;
         }
   
         h2 {
-          margin: 0;
-          font-size: 1.2rem;
+          font-size: 1.5rem;
         }
       }
   
@@ -55,11 +57,12 @@ section {
           position: relative;
           opacity: .7;
           user-select: none;
-  
+        
           img {
             width: 1.7rem;
             height: 1.7rem;
             margin-right: .7rem;
+            fill:#1E4176;
           }
   
           .notif {
@@ -81,9 +84,15 @@ section {
   
           &:hover {
             opacity: 1;
+            color: #1E4176;
+          }
+          &:hover img {
+            opacity: 1;
+            fill:#1E4176;
           }
   
           &.active {
+            color: #1E4176;
             background-color: #f7f7f9;
             opacity: 1;
           }
@@ -161,11 +170,11 @@ section {
         right: .7rem;
         top: .7rem;
         border-radius: 50%;
-        background-color: #000000;
+        background-color: $primary-color;
         width: 2.2rem;
         height: 2.2rem;
         text-align: center;
-        line-height: 2.4rem;
+        line-height: 2.1rem;
         z-index: 5;
   
         img {
