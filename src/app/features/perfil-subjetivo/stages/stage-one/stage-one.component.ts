@@ -16,7 +16,21 @@ export class StageOneComponent implements OnInit {
 
   resPreguntaSubjetivaAPI: PreguntaApi[] = [];
 
-  cuestionario: PreguntaApi[] = [];
+  cuestionario: PreguntaApi = {
+    enunciado: "",
+    descripcion: "",
+    categoria: {
+      nombre: "",
+      descripcion: "",
+    },
+    seccion: {
+      nombre: "",
+      descripcion: "",
+    },
+    orden: 0,
+    tipoComponente: "",
+    respuestas: []
+  };
 
   ///////Control de paginacion. preguntas Siguiente:
   buttonText: string = 'SIGUIENTE PREGUNTA';
@@ -31,13 +45,23 @@ export class StageOneComponent implements OnInit {
   /////////Almacenamiento de las respuestas Calculada
   AnalisisSubjetivo: Record<string, number> = {};
   /////////Almacenamiento de las respuestas calculada y perfil obtenido
-  respuestasDeUsuario: { seccion: string, calculo: number }[] = [];
 
-  respuestasPerfil: any = [];
+  // respuestasDeUsuario: { seccion: string, calculo: number }[] = [];
+
+  // respuestasPerfil: any = [];
+  respuestasPerfil: {
+    toleranciaRiesgo: number;
+    horizonteTemporal: number;
+    perfilInversor: string;
+  } = {
+      toleranciaRiesgo: 0,
+      horizonteTemporal: 0,
+      perfilInversor: ""
+    };
 
   constructor(private profileServiceAPI_: QuestionsProfileService,
     private preguntaSubjetivasServiceLocal_: PreguntaSubjetivasService,
-    private router: Router, private route: ActivatedRoute,
+    private router: Router,
     private localStorageService: LocalStorageService) {
 
   }
@@ -80,37 +104,25 @@ export class StageOneComponent implements OnInit {
 
   loadQuestions() {
     console.log("----------Cargar Primer Pregunta-------");
-    this.cuestionario[0] = this.resCuestionarioAPI[0];
-    console.log(this.cuestionario[0]);
+    this.cuestionario = this.resCuestionarioAPI[0];
+    console.log(this.cuestionario);
   }
 
   loadNextQuestion(): void {
 
     if (this.resCuestionarioAPI) {
 
-      this.guardarrespuestas(this.cuestionario[0].seccion.nombre,
-        this.cuestionario[0].tipoComponente);
+      this.guardarrespuestas(this.cuestionario?.seccion?.nombre, this.cuestionario?.tipoComponente);
       //   // Incrementa el índice para la próxima pregunta
       this.currentQuestionIndex++;
 
       if (this.currentQuestionIndex < this.resCuestionarioAPI.length) {
 
-        this.cuestionario[0] = this.resCuestionarioAPI[this.currentQuestionIndex];
+        this.cuestionario = this.resCuestionarioAPI[this.currentQuestionIndex];
       }
       else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
-        this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
-        this.buttonText = 'FINALIZAR';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
-        //     //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
-        //     //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
-        this.entregarResultados().then((data) => {
-          this.respuestasPerfil = data;
-          this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
-          this.localStorageService.setItem('horizonteTemporal', this.respuestasPerfil.horizonteTemporal);
-          this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
-
-          console.log('Entrega de resultados completada.');
-        });
+        this.FinalizarCargaYEntrega();
       }
     }
     else {
@@ -124,17 +136,11 @@ export class StageOneComponent implements OnInit {
     switch (tipo) {
       case 'CHECKBOX':
         // console.log('Suma total:Area CHECKBOX');
-        index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
+
         const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
         const sumaCheckbox = valoresCheckbox.reduce((total, valor) => total + valor, 0);
         // console.log('Suma total:', sumaCheckbox);
-        if (index !== -1) {
-          // respuestaExistente.calculo += sumaCheckbox;
-          this.respuestasDeUsuario[index].calculo += sumaCheckbox;
-        }
-        else {
-          this.respuestasDeUsuario.push({ seccion, calculo: sumaCheckbox });
-        }
+
         if (!this.AnalisisSubjetivo[seccion]) {
           this.AnalisisSubjetivo[seccion] = 0;
         }
@@ -142,16 +148,8 @@ export class StageOneComponent implements OnInit {
         break;
       case 'RADIO':
         // console.log('Suma total:Area RADIO');
-        index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);//Horizonte o riesgo
         let valorRadio = this.opcionSeleccionada;
 
-        if (index !== -1) {
-          this.respuestasDeUsuario[index].calculo += valorRadio;
-        }
-        else {
-
-          this.respuestasDeUsuario.push({ seccion, calculo: valorRadio });
-        }
         if (!this.AnalisisSubjetivo[seccion]) {
           this.AnalisisSubjetivo[seccion] = 0;
         }
@@ -160,7 +158,6 @@ export class StageOneComponent implements OnInit {
         break;
       case 'BOTON':
         // console.log('Suma total:Area BOTON');
-        index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
         let suma = 0;
         // console.log("Puntaje por respuestas");
         // console.log(this.respuestasSeleccionadasPorInstrumento);
@@ -170,13 +167,7 @@ export class StageOneComponent implements OnInit {
           }
         }
         // console.log('Suma total:', suma);
-        if (index !== -1) {
-          this.respuestasDeUsuario[index].calculo += suma;
-        }
-        else {
 
-          this.respuestasDeUsuario.push({ seccion, calculo: suma });
-        }
         if (!this.AnalisisSubjetivo[seccion]) {
           this.AnalisisSubjetivo[seccion] = 0;
         }
@@ -190,11 +181,31 @@ export class StageOneComponent implements OnInit {
     this.opcionesSeleccionadas = [];
   }
 
-  /**********Post de resultados almacenados**********/
+  public FinalizarCargaYEntrega() {
+    this.isLastQuestion = true; // Habilita Control de pregunta finalizada y habilita boton para volver al home
+    this.buttonText = 'FINALIZAR'; //Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
+    //     //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
+    //     //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
+    this.entregarResultados().then((data) => {
+      this.respuestasPerfil = data;
+      this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
+      this.localStorageService.setItem('horizonteTemporal', this.respuestasPerfil.horizonteTemporal);
+      this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
 
-  public async entregarResultados(): Promise<void> {
+      console.log('Entrega de resultados completada.');
+    });
+  }
+
+
+
+  public async entregarResultados(): Promise<any> {
+    debugger
     if (!this.validateData()) {
-      return;
+      return {
+        toleranciaRiesgo: this.AnalisisSubjetivo["Tolerancia al riesgo"],
+        horizonteTemporal: this.AnalisisSubjetivo["Horizonte Temporal"],
+        perfilInversor: ""
+      };
     }
 
     try {
@@ -202,23 +213,32 @@ export class StageOneComponent implements OnInit {
       const data = await from(this.profileServiceAPI_.TestSubjetivoResultados(this.AnalisisSubjetivo)).toPromise();
 
       if (data && data.perfilInversor) {
-        this.respuestasPerfil = data;
+        // this.respuestasPerfil = data;
         console.log("Resultados enviados correctamente");
-        return this.respuestasPerfil;
+        // return this.respuestasPerfil;
+        data
+        return data;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
+        return {
+          toleranciaRiesgo: 0,
+          horizonteTemporal: 0,
+          perfilInversor: ""
+        };
         // Maneja el error como sea necesario
       }
     } catch (error) {
       console.error('Error al enviar los resultados:', error);
+      return {
+        toleranciaRiesgo: this.AnalisisSubjetivo["Tolerancia al riesgo"],
+        horizonteTemporal: this.AnalisisSubjetivo["Horizonte Temporal"],
+        perfilInversor: ""
+      };
       // Maneja el error como sea necesario
     }
   }
 
-  validateData(): boolean {
 
-    return Object.keys(this.AnalisisSubjetivo).length > 0;
-  }
 
   actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
 
@@ -238,11 +258,15 @@ export class StageOneComponent implements OnInit {
   }
 
   actualizarOpcionesSeleccionadasBotonInstrumento(seccion: string, instrumento: string, valor: number) {
-    
+
     this.respuestasSeleccionadasPorInstrumento[instrumento] = valor;
 
   }
 
+  validateData(): boolean {
+
+    return Object.keys(this.AnalisisSubjetivo).length > 0;
+  }
   esRespuestaSeleccionada(instrumento: string, valor: number, order: number): boolean {
     return this.respuestasSeleccionadasPorInstrumento[instrumento] === valor;
   }

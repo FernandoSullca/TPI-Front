@@ -14,7 +14,7 @@ export class QuestionsProfileService {
   constructor(private http: HttpClient) { }
 
   //Verificado Captura
-  public async obtenerTestSubjetivo() {
+  public async obtenerTestSubjetivo()  {
       const resp = await axios.get(`${environment.API}/api/pregunta/listar-por-categoria?categoria=Test_Inversor`);
       const { data } = resp;
       // const datos = Array.from(data);

@@ -42,7 +42,7 @@ export class QuestionsTargetService {
 }
 
   
-  public async TestObjetivoResultados(Analisisobjetivo: Record<string, number>) {
+  public async TestObjetivoResultados(Analisisobjetivo: Record<string, number>):Promise<any> {
     
     const body = {
       "horizonteTemporal": Analisisobjetivo["horizonteTemporal"],

@@ -13,7 +13,7 @@ export class PreguntaObjetivasService {
 
   private preguntasConservadorUrl = 'assets\\mock\\Perfil Objetivo Conservador V1.0.json'; // Ruta al archivo JSON
   private preguntasModeradoUrl = 'assets\\mock\\Perfil Objetivo Moderado V1.0.json'; // Ruta al archivo JSON
-  private preguntasArriesgadoUrl = 'assets\\mock\\Perfil Objetivo Arriesgado. V1.0json'; // Ruta al archivo JSON
+  private preguntasArriesgadoUrl = 'assets\\mock\\Perfil Objetivo Arriesgado V1.0.json'; // Ruta al archivo JSON
   private Res:PreguntaApi[]=[];
   constructor(private http: HttpClient) {}
 
