@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
-import { CuestionarioInitial, Pregunta, Respuesta, convertirAPreguntaBotones, PreguntaBotones } from 'src/app/core/models/initial-profile/initial-profile.model';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
-// import { Cuestionario, RespuestaBnt } from 'src/app/core/models/initial-profile/questions-profile.model';
+import { PreguntaApi, RespuestaAPI } from 'src/app/core/models/API/Pregunta-APi.model';
 import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
+import { PreguntaSubjetivasService } from 'src/app/core/services/dataLocalServices/Preguntas-Subjetivas/preguntaSubjetiva.service';
 @Component({
   selector: 'app-stage-one',
   templateUrl: './stage-one.component.html',
@@ -12,17 +12,24 @@ import { QuestionsProfileService } from 'src/app/core/services/api/subjective-pr
 })
 export class StageOneComponent implements OnInit {
 
-  cuestionario: CuestionarioInitial = {
-    preguntas: [],
-  };
+  resCuestionarioAPI: PreguntaApi[] = [];
 
-  resCuestionario: CuestionarioInitial = {
-    preguntas: [],
-  };
+  resPreguntaSubjetivaAPI: PreguntaApi[] = [];
 
-
-  resCuestionarioAPI: CuestionarioInitial = {
-    preguntas: [],
+  cuestionario: PreguntaApi = {
+    enunciado: "",
+    descripcion: "",
+    categoria: {
+      nombre: "",
+      descripcion: "",
+    },
+    seccion: {
+      nombre: "",
+      descripcion: "",
+    },
+    orden: 0,
+    tipoComponente: "",
+    respuestas: []
   };
 
   ///////Control de paginacion. preguntas Siguiente:
@@ -38,108 +45,87 @@ export class StageOneComponent implements OnInit {
   /////////Almacenamiento de las respuestas Calculada
   AnalisisSubjetivo: Record<string, number> = {};
   /////////Almacenamiento de las respuestas calculada y perfil obtenido
-  respuestasDeUsuario: { seccion: string, calculo: number }[] = [];
 
-  respuestasPerfil: any = [];
+  // respuestasDeUsuario: { seccion: string, calculo: number }[] = [];
 
-  // instrumentoMostrado: boolean = false;
+  // respuestasPerfil: any = [];
+  respuestasPerfil: {
+    toleranciaRiesgo: number;
+    horizonteTemporal: number;
+    perfilInversor: string;
+  } = {
+      toleranciaRiesgo: 0,
+      horizonteTemporal: 0,
+      perfilInversor: ""
+    };
 
-  public testSubjetivo: CuestionarioInitial = {
-    preguntas: []
-  };
-  public PregSubjetivo: CuestionarioInitial = {
-    preguntas: []
-  };
+  constructor(private profileServiceAPI_: QuestionsProfileService,
+    private preguntaSubjetivasServiceLocal_: PreguntaSubjetivasService,
+    private router: Router,
+    private localStorageService: LocalStorageService) {
 
-  constructor(private profileService: QuestionsProfileService,
-     private router: Router, private route: ActivatedRoute,
-     private localStorageService: LocalStorageService) {
-   
   }
 
   ngOnInit(): void {
-    // Solicitud a json local;
-    this.loadCuestionario();
 
-    // Solicitud a json API;
-    this.getTestPerfil(); 
-  }
-
-  loadCuestionario() {
-    this.profileService.getCuestionario().subscribe((data) => {
-      console.log("Test Subjetivo Obtenido Local");
-      console.log(data);
-      console.log("-----------------------------");
-      this.resCuestionario = data;
-      this.loadQuestions();
-    });
-  }
-
-  public getTestPerfil() {
-    return this.profileService.obtenerTestSubjetivo()
+    this.profileServiceAPI_.obtenerTestSubjetivo()
       .then((testSubjetivo) => {
-        console.log("Servicio a questionario inicial API");
-        console.log(testSubjetivo);
-        // this.resCuestionarioAPI.preguntas = testSubjetivo;
-        // console.log(this.resCuestionarioAPI);
-        console.log("--------------------------------");
-        // this.loadQuestions();
+        this.resCuestionarioAPI = testSubjetivo;
+        //Si vino VAcio y quiero buscar en mi local
+        console.log(this.resCuestionarioAPI)
+        if (this.resCuestionarioAPI) {
+          console.log("Buscando en local Host")
+          this.loadQuestionsFromLocal()
+        }
+        else {
+          this.loadQuestions();
+        }
       })
-      .catch((error) => console.error(error))
+      .catch(
+        (error) => {
+          console.error("Error al obtener datos del API:", error),
+            this.loadQuestionsFromLocal()
+        })
+      .finally(() => {
+
+      }
+      );
   }
 
-  //Inicializa mi objeto con la primer pregunta
-  loadQuestions() {
+  public loadQuestionsFromLocal() {
+    return this.preguntaSubjetivasServiceLocal_.getCuestionario()
+      .subscribe(
+        (testSubjetivo) => {
+          this.resCuestionarioAPI = testSubjetivo;
+          this.loadQuestions();
+        },
+        (error) => console.error(error))
+  }
 
-    this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[0];
-    console.log("--------------------------------");
-    console.log(this.cuestionario.preguntas[0]);
-    //Metodo para consultar a la API
-    console.log("--------------------------------");
-    // console.log(this.resCuestionarioAPI.preguntas[0]);
-    //  this.PregSubjetivo.preguntas[0] = this.testSubjetivo.preguntas[0];
+  loadQuestions() {
+    console.log("----------Cargar Primer Pregunta-------");
+    this.cuestionario = this.resCuestionarioAPI[0];
+    console.log(this.cuestionario);
   }
 
   loadNextQuestion(): void {
 
-    if (this.resCuestionario) {
+    if (this.resCuestionarioAPI) {
 
-      this.guardarrespuestas(this.cuestionario.preguntas[0].seccion.nombre,
-        this.cuestionario.preguntas[0].TipoComponente);
-
-      // console.log("-Resultado Temporal Guardado");
-      // console.log(this.respuestasDeUsuario);
-      // Incrementa el índice para la próxima pregunta
+      this.guardarrespuestas(this.cuestionario?.seccion?.nombre, this.cuestionario?.tipoComponente);
+      //   // Incrementa el índice para la próxima pregunta
       this.currentQuestionIndex++;
 
-      if (this.currentQuestionIndex < this.resCuestionario.preguntas.length) {
+      if (this.currentQuestionIndex < this.resCuestionarioAPI.length) {
 
-        this.cuestionario.preguntas[0] = this.resCuestionario.preguntas[this.currentQuestionIndex];
-
+        this.cuestionario = this.resCuestionarioAPI[this.currentQuestionIndex];
       }
       else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
-
-        console.log('Has respondido todas las preguntas.');
-        console.log(this.AnalisisSubjetivo);
-        console.log('Estos eran tus resultados.');
-        this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
-        this.buttonText = 'FINALIZAR';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
-        //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
-        //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
-        this.entregarResultados().then((data) => {
-          this.respuestasPerfil = data;
-          this.profileService.disparadordemensageResultado.emit({
-            data:this.respuestasPerfil.perfilInversor
-          });
-          this.localStorageService.setItem('toleranciaRiesgo',this.respuestasPerfil.toleranciaRiesgo);
-          this.localStorageService.setItem('horizonteTemporal',this.respuestasPerfil.horizonteTemporal);
-          this.localStorageService.setItem('perfil',this.respuestasPerfil.perfilInversor);
-       
-          console.log('Entrega de resultados completada.');
-        });
+        this.FinalizarCargaYEntrega();
       }
-    } else {
+    }
+    else {
       console.error('Error: Fin de preguntas válidos- Ultima Vista antes de Volver al home-RoadMap.');
     }
   }
@@ -149,19 +135,12 @@ export class StageOneComponent implements OnInit {
     let index = -1
     switch (tipo) {
       case 'CHECKBOX':
-
         // console.log('Suma total:Area CHECKBOX');
-        index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
+
         const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
         const sumaCheckbox = valoresCheckbox.reduce((total, valor) => total + valor, 0);
         // console.log('Suma total:', sumaCheckbox);
-        if (index !== -1) {
-          // respuestaExistente.calculo += sumaCheckbox;
-          this.respuestasDeUsuario[index].calculo += sumaCheckbox;
-        }
-        else {
-          this.respuestasDeUsuario.push({ seccion, calculo: sumaCheckbox });
-        }
+
         if (!this.AnalisisSubjetivo[seccion]) {
           this.AnalisisSubjetivo[seccion] = 0;
         }
@@ -169,16 +148,8 @@ export class StageOneComponent implements OnInit {
         break;
       case 'RADIO':
         // console.log('Suma total:Area RADIO');
-        index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);//Horizonte o riesgo
         let valorRadio = this.opcionSeleccionada;
 
-        if (index !== -1) {
-          this.respuestasDeUsuario[index].calculo += valorRadio;
-        }
-        else {
-
-          this.respuestasDeUsuario.push({ seccion, calculo: valorRadio });
-        }
         if (!this.AnalisisSubjetivo[seccion]) {
           this.AnalisisSubjetivo[seccion] = 0;
         }
@@ -187,7 +158,6 @@ export class StageOneComponent implements OnInit {
         break;
       case 'BOTON':
         // console.log('Suma total:Area BOTON');
-        index = this.respuestasDeUsuario.findIndex(respuesta => respuesta.seccion === seccion);
         let suma = 0;
         // console.log("Puntaje por respuestas");
         // console.log(this.respuestasSeleccionadasPorInstrumento);
@@ -197,13 +167,7 @@ export class StageOneComponent implements OnInit {
           }
         }
         // console.log('Suma total:', suma);
-        if (index !== -1) {
-          this.respuestasDeUsuario[index].calculo += suma;
-        }
-        else {
 
-          this.respuestasDeUsuario.push({ seccion, calculo: suma });
-        }
         if (!this.AnalisisSubjetivo[seccion]) {
           this.AnalisisSubjetivo[seccion] = 0;
         }
@@ -217,34 +181,64 @@ export class StageOneComponent implements OnInit {
     this.opcionesSeleccionadas = [];
   }
 
-  /**********Post de resultados almacenados**********/
+  public FinalizarCargaYEntrega() {
+    this.isLastQuestion = true; // Habilita Control de pregunta finalizada y habilita boton para volver al home
+    this.buttonText = 'FINALIZAR'; //Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
+    //     //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
+    //     //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
+    this.entregarResultados().then((data) => {
+      this.respuestasPerfil = data;
+      this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
+      this.localStorageService.setItem('horizonteTemporal', this.respuestasPerfil.horizonteTemporal);
+      this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
 
-  public async entregarResultados(): Promise<void> {
+      console.log('Entrega de resultados completada.');
+    });
+  }
+
+
+
+  public async entregarResultados(): Promise<any> {
+    // debugger
     if (!this.validateData()) {
-      return;
+      return {
+        toleranciaRiesgo: this.AnalisisSubjetivo["Tolerancia al riesgo"],
+        horizonteTemporal: this.AnalisisSubjetivo["Horizonte Temporal"],
+        perfilInversor: ""
+      };
     }
 
     try {
       console.log("Enviando Resultados...");
-      const data = await from(this.profileService.TestSubjetivoResultados(this.AnalisisSubjetivo)).toPromise();
+      const data = await from(this.profileServiceAPI_.TestSubjetivoResultados(this.AnalisisSubjetivo)).toPromise();
 
       if (data && data.perfilInversor) {
-        this.respuestasPerfil = data;
+        // this.respuestasPerfil = data;
         console.log("Resultados enviados correctamente");
-        return this.respuestasPerfil;
+        // return this.respuestasPerfil;
+        data
+        return data;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
+        return {
+          toleranciaRiesgo: 0,
+          horizonteTemporal: 0,
+          perfilInversor: ""
+        };
         // Maneja el error como sea necesario
       }
     } catch (error) {
       console.error('Error al enviar los resultados:', error);
+      return {
+        toleranciaRiesgo: this.AnalisisSubjetivo["Tolerancia al riesgo"],
+        horizonteTemporal: this.AnalisisSubjetivo["Horizonte Temporal"],
+        perfilInversor: ""
+      };
       // Maneja el error como sea necesario
     }
   }
 
-  validateData() {
-    return true;
-  }
+
 
   actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
 
@@ -264,18 +258,20 @@ export class StageOneComponent implements OnInit {
   }
 
   actualizarOpcionesSeleccionadasBotonInstrumento(seccion: string, instrumento: string, valor: number) {
-    // Almacena la respuesta seleccionada para este instrumento.
-    this.respuestasSeleccionadasPorInstrumento[instrumento] = valor;
 
-    // console.log(this.respuestasSeleccionadasPorInstrumento);
+    this.respuestasSeleccionadasPorInstrumento[instrumento] = valor;
 
   }
 
+  validateData(): boolean {
+
+    return Object.keys(this.AnalisisSubjetivo).length > 0;
+  }
   esRespuestaSeleccionada(instrumento: string, valor: number, order: number): boolean {
     return this.respuestasSeleccionadasPorInstrumento[instrumento] === valor;
   }
 
-  isArray(respuestas: Respuesta[]): respuestas is Respuesta[] {
+  isArray(respuestas: RespuestaAPI[]): respuestas is RespuestaAPI[] {
     return Array.isArray(respuestas);
   }
 
@@ -285,7 +281,7 @@ export class StageOneComponent implements OnInit {
   }
 
   //Obtiene el refactor de preguntas de botones para que sea visibles
-  opcionesPorInstrumento(respuestasbnts: Respuesta[], instrumento: string): any[] {
+  opcionesPorInstrumento(respuestasbnts: RespuestaAPI[], instrumento: string): any[] {
     // Filtrar y ordenar las opciones por instrumento y orden
     // console.log("Funciones unificar respuestas");
     return respuestasbnts
@@ -293,11 +289,10 @@ export class StageOneComponent implements OnInit {
       .sort((a: { orden: number; }, b: { orden: number; }) => a.orden - b.orden);
   }
 
-  esPrimero(respuestasbnts: Respuesta) {
+  esPrimero(respuestasbnts: RespuestaAPI) {
     return respuestasbnts.orden == 1;
   }
 
- 
 
 }
 

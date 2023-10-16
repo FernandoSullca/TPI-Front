@@ -11,21 +11,21 @@
         <div *ngIf="!isLastQuestion">
             <div class="container-perfil-Quest-descr-opt" *ngFor="let pregunta of preguntas">
                 <div class="container-perfil-Questions ">
-                    <p>{{ pregunta.pregunta }}</p>
+                    <p>{{ pregunta.descripcion }}</p>
                 </div>
 
                 <div class="container-perfil-Descripcion">  
                     <!-- <p class="alinea-descripcion-pregunta-radius">Elegir solo una opción</p> -->
-                    <ng-container *ngIf="pregunta.tipoContenido =='texto'; else imgContenido">
+                    <ng-container *ngIf="pregunta.tipoComponente =='TEXTO'; else imgContenido">
 
                             <!-- <div *ngIf="isArray(pregunta.respuestas)" class="alinea-pregunta-radius"> -->
                                 <div class="row">  
-                                <div class="alineacion-radios alineacion-botones-opciones-radius"   *ngFor="let opcion of pregunta.opciones " >
+                                <div class="alineacion-radios alineacion-botones-opciones-radius"   *ngFor="let opcion of pregunta.respuestas " >
                                       <!-- <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label> -->
-                                      <input class="col-auto" type="radio" id="{{ opcion.texto }}" name="{{opcion.texto}}"
+                                      <input class="col-auto" type="radio" id="{{ opcion.nombre }}" name="{{opcion.nombre}}"
                                         value="{{opcion.valor}}" [(ngModel)]="opcionSeleccionada"
-                                        (change)="actualizarOpcionesSeleccionadas(opcion.texto,opcion.valor)">
-                                     <label class="col-auto enunciado-radio" for="{{ opcion.texto}}">{{ opcion.texto }}</label>
+                                        (change)="actualizarOpcionesSeleccionadas(opcion.nombre,opcion.valor)">
+                                     <label class="col-auto enunciado-radio" for="{{ opcion.nombre}}">{{ opcion.nombre }}</label>
                                 </div>
                             </div>
                         <!-- </div> -->

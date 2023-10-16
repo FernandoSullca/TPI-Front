@@ -1,17 +1,18 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { QuestionsTargetService} from './questions-target-profile.service'
 
-describe('QuestionsTargetProfileService', () => {
-  let service:QuestionsTargetService;
+import { PreguntaObjetivasService, } from './preguntaObjetiva.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
+describe('PreguntaObjetivaService', () => {
+  let service: PreguntaObjetivasService;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[HttpClientTestingModule],
-      providers:[QuestionsTargetService]
+      providers:[PreguntaObjetivasService]
     });
-    service = TestBed.inject(QuestionsTargetService);
+    service = TestBed.inject(PreguntaObjetivasService);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
