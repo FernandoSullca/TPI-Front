@@ -14,7 +14,6 @@ export class InvestorProfileComponent {
 
   loadStages() { 
     let url: string = './dashboard/perfil-inversor-questions';
-    // let fullUrl = url.concat((this.tematica).toLocaleLowerCase());
     this.router.navigate([url]);
   }
 }
