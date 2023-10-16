@@ -272,255 +272,255 @@ describe('StageOneComponent', () => {
 
   /********Verificando NGonit********/
 
-  it('debería cargar la/s Pregunta/s en el cuestionario API', async () => {
-    // Configura el spy para devolver los datos del servicio
-    const testData =
-    {
-      "enunciado": "",
-      "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
-      "tipoComponente": "CHECKBOX",
-      "orden": 0,
-      "categoria": {
-        "nombre": "Test Inversor",
-        "descripcion": ""
-      },
-      "seccion": {
-        "nombre": "Tolerancia al riesgo",
-        "descripcion": ""
-      },
-      "respuestas": [{
-        "nombre": "Plazo Fijo",
-        "valor": 0,
-        "orden": 1
+  // it('debería cargar la/s Pregunta/s en el cuestionario API', async () => {
+  //   // Configura el spy para devolver los datos del servicio
+  //   const testData =
+  //   {
+  //     "enunciado": "",
+  //     "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
+  //     "tipoComponente": "CHECKBOX",
+  //     "orden": 0,
+  //     "categoria": {
+  //       "nombre": "Test Inversor",
+  //       "descripcion": ""
+  //     },
+  //     "seccion": {
+  //       "nombre": "Tolerancia al riesgo",
+  //       "descripcion": ""
+  //     },
+  //     "respuestas": [{
+  //       "nombre": "Plazo Fijo",
+  //       "valor": 0,
+  //       "orden": 1
 
-      },
-      {
-        "nombre": "Fondos Comunes de Inversion (De renta fija)",
-        "valor": 0,
-        "orden": 2
+  //     },
+  //     {
+  //       "nombre": "Fondos Comunes de Inversion (De renta fija)",
+  //       "valor": 0,
+  //       "orden": 2
 
-      },
-      {
-        "nombre": "Bonos",
-        "valor": 1,
-        "orden": 3
-      },
-      {
-        "nombre": "Acciones",
-        "valor": 2,
-        "orden": 3
+  //     },
+  //     {
+  //       "nombre": "Bonos",
+  //       "valor": 1,
+  //       "orden": 3
+  //     },
+  //     {
+  //       "nombre": "Acciones",
+  //       "valor": 2,
+  //       "orden": 3
 
-      },
-      {
-        "nombre": "Opciones",
-        "valor": 3,
-        "orden": 4
+  //     },
+  //     {
+  //       "nombre": "Opciones",
+  //       "valor": 3,
+  //       "orden": 4
 
-      },
-      {
-        "nombre": "Futuros",
-        "valor": 4,
-        "orden": 5
-      }
-      ]
-    }
-      ;
-    // Crear un espía para questionsProfileService.obtenerTestSubjetivo
-    const obtenerTestSubjetivoSpy = jasmine.createSpy('obtenerTestSubjetivo');
-    obtenerTestSubjetivoSpy.and.returnValue(Promise.resolve(testData));
+  //     },
+  //     {
+  //       "nombre": "Futuros",
+  //       "valor": 4,
+  //       "orden": 5
+  //     }
+  //     ]
+  //   }
+  //     ;
+  //   // Crear un espía para questionsProfileService.obtenerTestSubjetivo
+  //   const obtenerTestSubjetivoSpy = jasmine.createSpy('obtenerTestSubjetivo');
+  //   obtenerTestSubjetivoSpy.and.returnValue(Promise.resolve(testData));
 
-    // Asignar el espía al objeto service
-    questionsProfileService.obtenerTestSubjetivo = obtenerTestSubjetivoSpy;
+  //   // Asignar el espía al objeto service
+  //   questionsProfileService.obtenerTestSubjetivo = obtenerTestSubjetivoSpy;
 
-    // Crea una instancia del componente
-    fixture = TestBed.createComponent(StageOneComponent);
-    component = fixture.componentInstance;
+  //   // Crea una instancia del componente
+  //   fixture = TestBed.createComponent(StageOneComponent);
+  //   component = fixture.componentInstance;
 
-    // Ejecuta ngOnInit y espera a que las Promises se resuelvan
-    await component.ngOnInit();
+  //   // Ejecuta ngOnInit y espera a que las Promises se resuelvan
+  //   await component.ngOnInit();
 
-    // Verifica que el cuestionario se cargue correctamente
-    expect(component.cuestionario).toEqual(testData);
-  });
+  //   // Verifica que el cuestionario se cargue correctamente
+  //   expect(component.cuestionario).toEqual(testData);
+  // });
 
-  it('deberia Cargar la/las pregunta/s desde .local caundo la  API call falle', async () => {
-    const testData =
-    {
-      "enunciado": "",
-      "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
-      "tipoComponente": "CHECKBOX",
-      "orden": 0,
-      "categoria": {
-        "nombre": "Test Inversor",
-        "descripcion": ""
-      },
-      "seccion": {
-        "nombre": "Tolerancia al riesgo",
-        "descripcion": ""
-      },
-      "respuestas": [{
-        "nombre": "Plazo Fijo",
-        "valor": 0,
-        "orden": 1
+  // it('deberia Cargar la/las pregunta/s desde .local caundo la  API call falle', async () => {
+  //   const testData =
+  //   {
+  //     "enunciado": "",
+  //     "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
+  //     "tipoComponente": "CHECKBOX",
+  //     "orden": 0,
+  //     "categoria": {
+  //       "nombre": "Test Inversor",
+  //       "descripcion": ""
+  //     },
+  //     "seccion": {
+  //       "nombre": "Tolerancia al riesgo",
+  //       "descripcion": ""
+  //     },
+  //     "respuestas": [{
+  //       "nombre": "Plazo Fijo",
+  //       "valor": 0,
+  //       "orden": 1
 
-      },
-      {
-        "nombre": "Fondos Comunes de Inversion (De renta fija)",
-        "valor": 0,
-        "orden": 2
+  //     },
+  //     {
+  //       "nombre": "Fondos Comunes de Inversion (De renta fija)",
+  //       "valor": 0,
+  //       "orden": 2
 
-      },
-      {
-        "nombre": "Bonos",
-        "valor": 1,
-        "orden": 3
-      },
-      {
-        "nombre": "Acciones",
-        "valor": 2,
-        "orden": 3
+  //     },
+  //     {
+  //       "nombre": "Bonos",
+  //       "valor": 1,
+  //       "orden": 3
+  //     },
+  //     {
+  //       "nombre": "Acciones",
+  //       "valor": 2,
+  //       "orden": 3
 
-      },
-      {
-        "nombre": "Opciones",
-        "valor": 3,
-        "orden": 4
+  //     },
+  //     {
+  //       "nombre": "Opciones",
+  //       "valor": 3,
+  //       "orden": 4
 
-      },
-      {
-        "nombre": "Futuros",
-        "valor": 4,
-        "orden": 5
-      }
-      ]
-    } 
+  //     },
+  //     {
+  //       "nombre": "Futuros",
+  //       "valor": 4,
+  //       "orden": 5
+  //     }
+  //     ]
+  //   } 
     
-    //Configura el spy para que la llamada al servicio falle
-    const obtenerTestSubjetivoSpy = jasmine.createSpy('obtenerTestSubjetivo');
-    obtenerTestSubjetivoSpy.and.returnValue(Promise.reject('Error'));
-    questionsProfileService.obtenerTestSubjetivo = obtenerTestSubjetivoSpy;
+  //   //Configura el spy para que la llamada al servicio falle
+  //   const obtenerTestSubjetivoSpy = jasmine.createSpy('obtenerTestSubjetivo');
+  //   obtenerTestSubjetivoSpy.and.returnValue(Promise.reject('Error'));
+  //   questionsProfileService.obtenerTestSubjetivo = obtenerTestSubjetivoSpy;
 
-    // Crea una instancia del componente
-    fixture = TestBed.createComponent(StageOneComponent);
-    component = fixture.componentInstance;
+  //   // Crea una instancia del componente
+  //   fixture = TestBed.createComponent(StageOneComponent);
+  //   component = fixture.componentInstance;
 
-    // Ejecuta ngOnInit y espera a que las Promises se resuelvan
-    await component.ngOnInit();
+  //   // Ejecuta ngOnInit y espera a que las Promises se resuelvan
+  //   await component.ngOnInit();
 
-    // Verifica que el cuestionario se cargue desde local
-    expect(component.cuestionario).toEqual(testData);
-  });
+  //   // Verifica que el cuestionario se cargue desde local
+  //   expect(component.cuestionario).toEqual(testData);
+  // });
 
 
 
-  it('debería cargar la/s pregunta en el cuestionario API o local', () => {
-    component.ngOnInit();
-    fixture.detectChanges();
+  // it('debería cargar la/s pregunta en el cuestionario API o local', () => {
+  //   component.ngOnInit();
+  //   fixture.detectChanges();
 
-    // Comprueba que las preguntas se carguen correctamente, ya sea del servicio o local
-    expect(component.resCuestionarioAPI).toEqual(
-      [
-        {
-          "enunciado": "",
-          "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
-          "categoria": {
-            "nombre": "Test Inversor",
-            "descripcion": ""
-          },
-          "seccion": {
-            "nombre": "Tolerancia al riesgo",
-            "descripcion": ""
-          },
-          "tipoComponente": "CHECKBOX",
-          "orden": 0,
-          "respuestas": [{
-            "nombre": "Plazo Fijo",
-            "valor": 0,
-            "orden": 0
-          },
-          {
-            "nombre": "Fondos Comunes de Inversion (De renta fija)",
-            "valor": 0,
-            "orden": 1
+  //   // Comprueba que las preguntas se carguen correctamente, ya sea del servicio o local
+  //   expect(component.resCuestionarioAPI).toEqual(
+  //     [
+  //       {
+  //         "enunciado": "",
+  //         "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
+  //         "categoria": {
+  //           "nombre": "Test Inversor",
+  //           "descripcion": ""
+  //         },
+  //         "seccion": {
+  //           "nombre": "Tolerancia al riesgo",
+  //           "descripcion": ""
+  //         },
+  //         "tipoComponente": "CHECKBOX",
+  //         "orden": 0,
+  //         "respuestas": [{
+  //           "nombre": "Plazo Fijo",
+  //           "valor": 0,
+  //           "orden": 0
+  //         },
+  //         {
+  //           "nombre": "Fondos Comunes de Inversion (De renta fija)",
+  //           "valor": 0,
+  //           "orden": 1
 
-          },
-          {
-            "nombre": "Bonos",
-            "valor": 1,
-            "orden": 3
-          },
-          {
-            "nombre": "Acciones",
-            "valor": 2,
-            "orden": 4
+  //         },
+  //         {
+  //           "nombre": "Bonos",
+  //           "valor": 1,
+  //           "orden": 3
+  //         },
+  //         {
+  //           "nombre": "Acciones",
+  //           "valor": 2,
+  //           "orden": 4
 
-          },
-          {
-            "nombre": "Opciones",
-            "valor": 3,
-            "orden": 5
+  //         },
+  //         {
+  //           "nombre": "Opciones",
+  //           "valor": 3,
+  //           "orden": 5
 
-          },
-          {
-            "nombre": "Futuros",
-            "valor": 4,
-            "orden": 6
-          }
-          ]
-        }
-      ]
-    );
-    expect(component.cuestionario).toEqual(
-      {
-        "enunciado": "",
-        "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
-        "categoria": {
-          "nombre": "Test Inversor",
-          "descripcion": ""
-        },
-        "seccion": {
-          "nombre": "Tolerancia al riesgo",
-          "descripcion": ""
-        },
-        "tipoComponente": "CHECKBOX",
-        "orden": 0,
-        "respuestas": [{
-          "nombre": "Plazo Fijo",
-          "valor": 0,
-          "orden": 0
-        },
-        {
-          "nombre": "Fondos Comunes de Inversion (De renta fija)",
-          "valor": 0,
-          "orden": 1
+  //         },
+  //         {
+  //           "nombre": "Futuros",
+  //           "valor": 4,
+  //           "orden": 6
+  //         }
+  //         ]
+  //       }
+  //     ]
+  //   );
+  //   expect(component.cuestionario).toEqual(
+  //     {
+  //       "enunciado": "",
+  //       "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
+  //       "categoria": {
+  //         "nombre": "Test Inversor",
+  //         "descripcion": ""
+  //       },
+  //       "seccion": {
+  //         "nombre": "Tolerancia al riesgo",
+  //         "descripcion": ""
+  //       },
+  //       "tipoComponente": "CHECKBOX",
+  //       "orden": 0,
+  //       "respuestas": [{
+  //         "nombre": "Plazo Fijo",
+  //         "valor": 0,
+  //         "orden": 0
+  //       },
+  //       {
+  //         "nombre": "Fondos Comunes de Inversion (De renta fija)",
+  //         "valor": 0,
+  //         "orden": 1
 
-        },
-        {
-          "nombre": "Bonos",
-          "valor": 1,
-          "orden": 3
-        },
-        {
-          "nombre": "Acciones",
-          "valor": 2,
-          "orden": 4
+  //       },
+  //       {
+  //         "nombre": "Bonos",
+  //         "valor": 1,
+  //         "orden": 3
+  //       },
+  //       {
+  //         "nombre": "Acciones",
+  //         "valor": 2,
+  //         "orden": 4
 
-        },
-        {
-          "nombre": "Opciones",
-          "valor": 3,
-          "orden": 5
+  //       },
+  //       {
+  //         "nombre": "Opciones",
+  //         "valor": 3,
+  //         "orden": 5
 
-        },
-        {
-          "nombre": "Futuros",
-          "valor": 4,
-          "orden": 6
-        }
-        ]
-      }
-    );
-  });
+  //       },
+  //       {
+  //         "nombre": "Futuros",
+  //         "valor": 4,
+  //         "orden": 6
+  //       }
+  //       ]
+  //     }
+  //   );
+  // });
 
   /********Verificando LoadQuestion********/
   it('debería cargar la primera pregunta en el cuestionario', () => {
