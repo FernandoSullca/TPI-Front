@@ -4,7 +4,7 @@ import { from } from 'rxjs';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { PreguntaApi, RespuestaAPI } from 'src/app/core/models/API/Pregunta-APi.model';
 import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
-import { PreguntaSubjetivasService } from 'src/app/core/services/dataLocalSercices/Preguntas-Subjetivas/preguntaSubjetiva.service';
+import { PreguntaSubjetivasService } from 'src/app/core/services/dataLocalServices/Preguntas-Subjetivas/preguntaSubjetiva.service';
 @Component({
   selector: 'app-stage-one',
   templateUrl: './stage-one.component.html',
@@ -199,7 +199,7 @@ export class StageOneComponent implements OnInit {
 
 
   public async entregarResultados(): Promise<any> {
-    debugger
+    // debugger
     if (!this.validateData()) {
       return {
         toleranciaRiesgo: this.AnalisisSubjetivo["Tolerancia al riesgo"],

@@ -2,7 +2,7 @@ export interface Cartera{
    totalCartera?:number;
    totalInstrumentos?:number;
    totalMonedas?:number;
-   cantidadPorInstrumento?:CantidadPorInstrumento[];
+   cantidadPorInstrumento:CantidadPorInstrumento[];
    
 }
 
