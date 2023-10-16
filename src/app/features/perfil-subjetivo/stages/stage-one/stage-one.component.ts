@@ -199,7 +199,7 @@ export class StageOneComponent implements OnInit {
 
 
   public async entregarResultados(): Promise<any> {
-    debugger
+    // debugger
     if (!this.validateData()) {
       return {
         toleranciaRiesgo: this.AnalisisSubjetivo["Tolerancia al riesgo"],
