@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
@@ -17,10 +17,11 @@ import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/
 // import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
 import { MessageComponent } from './common/message/message.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component';
-import { GraficoComponent } from './features/dashboard/sections/grafico/grafico.component';
+import { GraficoComponent } from './common/grafico/grafico.component';
 import { StageResultComponent } from './features/perfil-subjetivo/stages/stage-result/stage-result.component';
 import { InvestorProfileComponent } from './features/dashboard/sections/investor-profile/investor-profile.component'; 
 import { StageTwoComponent } from './features/dashboard/sections/investor-profile/stage/stage-two/stage-two.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ import { StageTwoComponent } from './features/dashboard/sections/investor-profil
     NgChartsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StageTwoComponent } from './stage-two.component';
-import { PreguntaObjetivasService } from 'src/app/core/services/dataLocalSercices/Preguntas-Objetivas/preguntaObjetiva.service';
+import { PreguntaObjetivasService } from 'src/app/core/services/dataLocalServices/Preguntas-Objetivas/preguntaObjetiva.service';
 import { QuestionsTargetService } from 'src/app/core/services/api/target-profile/questions-target-profile.service';
 import { of } from 'rxjs';
 

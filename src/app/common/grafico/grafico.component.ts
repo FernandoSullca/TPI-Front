@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 
 @Component({
@@ -6,7 +6,11 @@ import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
   templateUrl: './grafico.component.html',
   styleUrls: ['./grafico.component.scss']
 })
-export class GraficoComponent {
+export class GraficoComponent implements OnInit{
+  
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   @Input() cantidadPorInstrumento: any; 
   colores = [

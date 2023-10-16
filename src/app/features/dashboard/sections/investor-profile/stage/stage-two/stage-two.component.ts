@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuestionsTargetService } from 'src/app/core/services/api/target-profile/questions-target-profile.service';
 import { PreguntaApi, RespuestaAPI } from 'src/app/core/models/API/Pregunta-APi.model';
-import { PreguntaObjetivasService } from 'src/app/core/services/dataLocalSercices/Preguntas-Objetivas/preguntaObjetiva.service';
+import { PreguntaObjetivasService } from 'src/app/core/services/dataLocalServices/Preguntas-Objetivas/preguntaObjetiva.service';
 // import { QuestionsTargetService} from 'src/app/core/services/api/target-profile/questions-target-profile.service';
 
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
