@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
-import { CantidadPorInstrumento, Cartera } from 'src/app/core/models/cartera/cartera';
+import { Cartera } from 'src/app/core/models/cartera/cartera';
 // import { GraficoComponent } from '../grafico/grafico.component';
 
 

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PreguntaApi  } from 'src/app/core/models/API/Pregunta-APi.model';
-import { environment } from 'src/environments/environment';
+import { environment } from 'environments/environment';
 import axios from 'axios';
 @Injectable({
   providedIn: 'root'
