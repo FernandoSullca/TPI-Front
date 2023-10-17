@@ -50,10 +50,10 @@ describe('StageResultComponent', () => {
   });
 
   //Navegavilidad
-  it('deberia navegar a "./dashboard/perfil-inversor-questions" Cuando llama a loadStages()"Cargar Etapas"', () => {
+  it('deberia navegar a "./dashboard/perfil-inversor-cuestionario" Cuando llama a loadStages()"Cargar Etapas"', () => {
     component.loadStages();
 
-    expect(router.navigate).toHaveBeenCalledWith(['./dashboard/perfil-inversor-questions']);
+    expect(router.navigate).toHaveBeenCalledWith(['./dashboard/perfil-inversor-cuestionario']);
   });
 
   it('eberia navegar a  "/dashboard/precios" Cuando llama a loadHome(),por defecto, panel de precios ', () => {

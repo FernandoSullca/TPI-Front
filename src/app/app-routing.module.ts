@@ -17,6 +17,8 @@ import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.
 import { StageResultComponent } from './features/perfil-subjetivo/stages/stage-result/stage-result.component';
 import { InvestorProfileComponent } from './features/dashboard/sections/investor-profile/investor-profile.component';
 import { StageTwoComponent } from './features/dashboard/sections/investor-profile/stage/stage-two/stage-two.component';
+import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
+import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
 
 const routes: Routes = [
   // Rutas de las páginas
@@ -37,9 +39,11 @@ const routes: Routes = [
       // { path: 'tutorial', component: ContentComponent },
       // { path: "perfil-inversor", component: PerfilInversorComponent},
       { path: "perfil-inversor", component: InvestorProfileComponent},
-      { path: "perfil-inversor-questions", component: StageTwoComponent},
+      { path: "perfil-inversor-cuestionario", component: StageTwoComponent},
+      { path: "Administrar", component: AdministrarComponent},
+      { path: "Administrar-Preguntas", component: AdministrarPreguntasComponent},
       { path: "cartera", component: CarteraComponent}
-      // { path: "perfil-inversor-questions", component: StageTwoComponent},
+      // { path: "perfil-inversor-cuestionario", component: StageTwoComponent},
     ],
   },
   // Otras rutas o manejo de errores
