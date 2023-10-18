@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
 import { Cartera } from 'src/app/core/models/cartera/cartera';
+import { DolarBolsa } from 'src/app/core/models/dolar-bolsa/dolar-bolsa';
+import { DatePipe } from '@angular/common';
 // import { GraficoComponent } from '../grafico/grafico.component';
 
 
@@ -12,12 +14,15 @@ import { Cartera } from 'src/app/core/models/cartera/cartera';
 })
 export class CarteraComponent implements OnInit {
 
-  constructor(private carteraService: CarteraService, private router: Router) { }
+  constructor(private datePipe: DatePipe,private carteraService: CarteraService, private router: Router) { }
   totalValorizadoNulo: number = 20000;
   cartera: Cartera | undefined;
+  valorActualDolarMEP: DolarBolsa | undefined;
+  fechaCompletaDolarMEP:string='';
 
   ngOnInit(): void {
     this.getCartera();
+    this.obtenerPrecioDolarMEP()
   }
   getCartera() {
     return this.carteraService.getCartera().subscribe((response) => {
@@ -39,5 +44,13 @@ export class CarteraComponent implements OnInit {
   }
   direccionar(componente:string){
     this.router.navigate([`/dashboard/${componente}`]);
+  }
+  obtenerPrecioDolarMEP(){
+    return this.carteraService.getPrecioDolarMEP().subscribe((response)=>{
+    this.valorActualDolarMEP=response;
+    // Convierte la cadena en un objeto Date
+    const fecha = (new Date(this.valorActualDolarMEP.fechaActualizacion)).toLocaleString();
+    this.fechaCompletaDolarMEP = fecha;
+    })
   }
 }

@@ -48,18 +48,18 @@
                 <b>
                     <h3>Dolar MEP</h3>
                 </b>
-                <h2 *ngIf="cartera; else elseBlock">$ {{cartera.totalCartera}}</h2>
-                <ng-template #elseBlock><h2>$ {{totalValorizadoNulo}}</h2></ng-template>
+                <h2 *ngIf="cartera; else elseBlock">$ {{valorActualDolarMEP?.compra}}</h2>
+                <ng-template #elseBlock><h2>$ {{valorActualDolarMEP?.compra}}</h2></ng-template>
                 <button type="button" class="boton btn btn-sm mx-auto custom-button">COMPRA</button>
             </div>
             <div class="venta">
                 <b>
                     <h3>Dolar MEP</h3>
                 </b>
-                <h2 *ngIf="cartera; else elseBlock">$ {{cartera.totalCartera}}</h2>
-                <ng-template #elseBlock><h2>$ {{totalValorizadoNulo}}</h2></ng-template>
+                <h2 *ngIf="cartera; else elseBlock">$ {{valorActualDolarMEP?.venta}}</h2>
+                <ng-template #elseBlock><h2>$ {{valorActualDolarMEP?.venta}}</h2></ng-template>
                 <button type="button" class="boton btn btn-sm mx-auto custom-button">VENTA</button>
             </div>
-            <div class="fecha">Actualizado fecha y hora</div>
+            <div class="fecha">{{fechaCompletaDolarMEP}}</div>
         </div>    
 </div>
