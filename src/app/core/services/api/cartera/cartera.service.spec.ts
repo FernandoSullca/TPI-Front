@@ -31,7 +31,7 @@ describe('CarteraService', () => {
         done();
       });
   });
-  it('Verify response', (done: DoneFn) => {
+  it('Verify response Not Found', (done: DoneFn) => {
     httpClientSpy.get.and.returnValue(throwError({ status: 404, statusText: 'Not Found' }));
   
     service.getCartera()

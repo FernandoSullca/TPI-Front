@@ -31,10 +31,10 @@ describe('InvestorProfileComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('deberia navegar a  "/dashboard/perfil-inversor-questions" Cuando llama a loadstage(),Empezar con el Test', () => {
+  it('deberia navegar a  "/dashboard/perfil-inversor-cuestionario" Cuando llama a loadstage(),Empezar con el Test', () => {
     component.loadStages();
 
-    expect(router.navigate).toHaveBeenCalledWith(['./dashboard/perfil-inversor-questions']);
+    expect(router.navigate).toHaveBeenCalledWith(['./dashboard/perfil-inversor-cuestionario']);
   });
 
 });

@@ -15,9 +15,11 @@ export class QuestionsProfileService {
 
   //Verificado Captura
   public async obtenerTestSubjetivo()  {
-      const resp = await axios.get(`${environment.API}/api/pregunta/listar-por-categoria?categoria=Test_Inversor`);
+      const resp = await axios.get(`${environment.API}/api/pregunta/listar-por-categoria?categoria=Test Inversor`);
+      console.log( resp)
       const { data } = resp;
       // const datos = Array.from(data);
+      console.log(data)
       return data;
   }
 

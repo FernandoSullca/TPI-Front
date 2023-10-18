@@ -1,5 +1,7 @@
-[{
-    "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
+[
+  {
+    "enunciado": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
+    "descripcion": "",
     "tipoComponente": "CHECKBOX",
     "categoria": {
       "nombre": "Test Inversor"
@@ -39,7 +41,8 @@
     ]
   },
   {
-    "descripcion": "¿Cuál es tu grado de conocimiento de cada instrumento?",
+    "enunciado": "¿Cuál es tu grado de conocimiento de cada instrumento?",
+    "descripcion": "",
     "tipoComponente": "BOTON",
     "categoria": {
       "nombre": "Test Inversor"
@@ -140,7 +143,8 @@
     ]
   },
   {
-    "descripcion": "¿Cuál es el plazo máximo que estarías dispuesto a mantener tus inversiones?",
+    "enunciado":"¿Cuál es el plazo máximo que estarías dispuesto a mantener tus inversiones?",
+    "descripcion": "",
     "tipoComponente": "RADIO",
     "categoria": {
       "nombre": "Test Inversor"
@@ -167,7 +171,8 @@
     ]
   },
   {
-    "descripcion": "¿Cuántos años tenés?",
+    "enunciado":"¿Cuántos años tenés?",
+    "descripcion": "",
     "tipoComponente": "RADIO",
     "categoria": {
       "nombre": "Test Inversor"
@@ -193,8 +198,8 @@
       }
     ]
   },
-  {
-    "descripcion": "Al momento de realizar una inversión, buscas:",
+  { "enunciado":"Al momento de realizar una inversión, buscas:",
+    "descripcion": "",
     "tipoComponente": "RADIO",
     "categoria": {
       "nombre": "Test Inversor"
@@ -216,8 +221,8 @@
       }
     ]
   },
-  {
-    "descripcion": "Dirías que tu actual capacidad de ahorro es de:",
+  { "enunciado":"Dirías que tu actual capacidad de ahorro es de:",
+    "descripcion": "",
     "tipoComponente": "RADIO",
     "categoria": {
       "nombre": "Test Inversor"

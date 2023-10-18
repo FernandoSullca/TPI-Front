@@ -1,5 +1,6 @@
-[
-  {
+[{
+    "enunciado": "¿Qué significa el término \"ratio de Sharpe\" y cómo se utiliza en la evaluación de carteras de inversión?",
+
     "descripcion": "¿Qué significa el término \"ratio de Sharpe\" y cómo se utiliza en la evaluación de carteras de inversión?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -8,8 +9,7 @@
     "seccion": {
       "nombre": "Nivel De Conocimiento"
     },
-    "respuestas": [
-      {
+    "respuestas": [{
         "nombre": "A- El ratio de Sharpe mide la rentabilidad absoluta de una inversión.",
         "valor": 0
       },
@@ -24,6 +24,8 @@
     ]
   },
   {
+    "enunciado": "¿Cuáles son los principales tipos de activos que componen una cartera diversificada de inversión moderada?",
+
     "descripcion": "¿Cuáles son los principales tipos de activos que componen una cartera diversificada de inversión moderada?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -32,8 +34,7 @@
     "seccion": {
       "nombre": "Nivel De Conocimiento"
     },
-    "respuestas": [
-      {
+    "respuestas": [{
         "nombre": "A- Solo bonos corporativos de alto rendimiento.",
         "valor": 0
       },
@@ -48,6 +49,8 @@
     ]
   },
   {
+    "enunciado": "¿Cuál es la importancia de establecer un horizonte de inversión a la hora de construir una cartera moderada?",
+
     "descripcion": "¿Cuál es la importancia de establecer un horizonte de inversión a la hora de construir una cartera moderada?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -56,8 +59,7 @@
     "seccion": {
       "nombre": "Nivel De Conocimiento"
     },
-    "respuestas": [
-      {
+    "respuestas": [{
         "nombre": "A- No es importante tener un horizonte de inversión definido.",
         "valor": 0
       },
@@ -72,6 +74,8 @@
     ]
   },
   {
+    "enunciado": "¿Cómo se calcula el rendimiento compuesto de una inversión a lo largo del tiempo?",
+
     "descripcion": "¿Cómo se calcula el rendimiento compuesto de una inversión a lo largo del tiempo?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -80,8 +84,7 @@
     "seccion": {
       "nombre": "Nivel De Conocimiento"
     },
-    "respuestas": [
-      {
+    "respuestas": [{
         "nombre": "A- Sumando los rendimientos de cada año.",
         "valor": 0
       },
@@ -96,6 +99,8 @@
     ]
   },
   {
+    "enunciado": "¿Cuáles son los riesgos asociados con la inversión en acciones y cómo se pueden mitigar en una cartera moderada?",
+
     "descripcion": "¿Cuáles son los riesgos asociados con la inversión en acciones y cómo se pueden mitigar en una cartera moderada?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -104,8 +109,7 @@
     "seccion": {
       "nombre": "Tolerancia al riesgo"
     },
-    "respuestas": [
-      {
+    "respuestas": [{
         "nombre": "A- No hay riesgos asociados con la inversión en acciones.",
         "valor": 0
       },
@@ -120,6 +124,7 @@
     ]
   },
   {
+    "enunciado": "¿Cómo afecta la inflación a las inversiones y cómo puede un inversor moderado proteger su cartera contra la erosión del poder adquisitivo?",
     "descripcion": "¿Cómo afecta la inflación a las inversiones y cómo puede un inversor moderado proteger su cartera contra la erosión del poder adquisitivo?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -128,8 +133,7 @@
     "seccion": {
       "nombre": "Nivel De Conocimiento"
     },
-    "respuestas": [
-      {
+    "respuestas": [{
         "nombre": "A- La inflación no afecta a las inversiones.",
         "valor": 0
       },
@@ -141,5 +145,6 @@
         "nombre": "C- La inflación solo afecta a las inversiones en efectivo.",
         "valor": 0
       }
-  ]}
+    ]
+  }
 ]

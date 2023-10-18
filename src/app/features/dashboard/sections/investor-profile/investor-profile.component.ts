@@ -13,7 +13,7 @@ export class InvestorProfileComponent {
   }
 
   loadStages() { 
-    let url: string = './dashboard/perfil-inversor-questions';
+    let url: string = './dashboard/perfil-inversor-cuestionario';
     this.router.navigate([url]);
   }
 }
