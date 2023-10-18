@@ -20,6 +20,7 @@ import { StageTwoComponent } from './features/dashboard/sections/investor-profil
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
 
+
 const routes: Routes = [
   // Rutas de las páginas
   { path: '', component: LandingComponent }, // Redirección por defecto
@@ -42,8 +43,11 @@ const routes: Routes = [
       { path: "perfil-inversor-cuestionario", component: StageTwoComponent},
       { path: "Administrar", component: AdministrarComponent},
       { path: "Administrar-Preguntas", component: AdministrarPreguntasComponent},
-      { path: "cartera", component: CarteraComponent}
+      { path: "cartera", component: CarteraComponent},
       // { path: "perfil-inversor-cuestionario", component: StageTwoComponent},
+      // { path: "perfil-inversor-questions", component: StageTwoComponent},
+      { path: "cartera", component: CarteraComponent},
+      // { path: "perfil-inversor-questions", component: StageTwoComponent},
     ],
   },
   // Otras rutas o manejo de errores
