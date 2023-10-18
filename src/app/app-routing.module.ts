@@ -18,6 +18,7 @@ import { StageResultComponent } from './features/perfil-subjetivo/stages/stage-r
 import { InvestorProfileComponent } from './features/dashboard/sections/investor-profile/investor-profile.component';
 import { StageTwoComponent } from './features/dashboard/sections/investor-profile/stage/stage-two/stage-two.component';
 
+
 const routes: Routes = [
   // Rutas de las páginas
   { path: '', component: LandingComponent }, // Redirección por defecto
@@ -38,7 +39,7 @@ const routes: Routes = [
       // { path: "perfil-inversor", component: PerfilInversorComponent},
       { path: "perfil-inversor", component: InvestorProfileComponent},
       { path: "perfil-inversor-questions", component: StageTwoComponent},
-      { path: "cartera", component: CarteraComponent}
+      { path: "cartera", component: CarteraComponent},
       // { path: "perfil-inversor-questions", component: StageTwoComponent},
     ],
   },
