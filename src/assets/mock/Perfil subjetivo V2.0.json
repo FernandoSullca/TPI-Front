@@ -1,4 +1,5 @@
-[{
+[
+  {
     "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
     "tipoComponente": "CHECKBOX",
     "categoria": {
