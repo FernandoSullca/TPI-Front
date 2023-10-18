@@ -55,7 +55,7 @@
             </p> -->
             <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" (click)="loadSugerencias()"
                 *ngIf="!issugerencia ">{{ buttonText }}</button>
-            <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
+            <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas! Ya podes ver tu credito de premio en tu cartera</p>
         </div>
 
         <div *ngIf="isLastQuestion && issugerencia" style="text-align: center;">

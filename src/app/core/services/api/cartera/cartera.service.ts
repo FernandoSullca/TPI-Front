@@ -5,6 +5,7 @@ import { Observable, catchError } from 'rxjs';
 import { Cartera } from 'src/app/core/models/cartera/cartera';
 import { environment } from '../../../../../../environments/environment';
 import { HandleErrorApiService } from '../../manejo-errores/handle-error-api.service';
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +22,13 @@ export class CarteraService {
       })
     );
   }
+
+  public async acreditarDinero(cantidad : number, concepto : string) {
+    const body = {
+      "cantidadPorAcreditar": cantidad,
+      "concepto": concepto
+    }
+    const resp = await axios.post(`${environment.API}/cartera/acreditar/dinero`, body);
+    debugger;
+  } 
 }
