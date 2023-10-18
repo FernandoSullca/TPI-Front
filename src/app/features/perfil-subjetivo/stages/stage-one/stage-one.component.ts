@@ -70,10 +70,11 @@ export class StageOneComponent implements OnInit {
 
     this.profileServiceAPI_.obtenerTestSubjetivo()
       .then((testSubjetivo) => {
+        console.log(testSubjetivo)
         this.resCuestionarioAPI = testSubjetivo;
-        //Si vino VAcio y quiero buscar en mi local
+        //Si vino Vacio y quiero buscar en mi local
         console.log(this.resCuestionarioAPI)
-        if (this.resCuestionarioAPI) {
+        if (this.resCuestionarioAPI==null) {
           console.log("Buscando en local Host")
           this.loadQuestionsFromLocal()
         }

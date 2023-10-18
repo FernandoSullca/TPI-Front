@@ -12,7 +12,7 @@
                 <!-- Pregunta de tipo checkbox -->
                 <ng-container *ngIf="cuestionario.tipoComponente== 'CHECKBOX'">
                     <div class="container-perfil-Questions p-2 pb-0">
-                        <p class="">{{ cuestionario.descripcion }}</p>
+                        <p class="">{{ cuestionario.enunciado }}</p>
                     </div>
                     <p class="alinea-descripcion-pregunta-check"> Podés elegir más de una opción o ninguna</p>
                     <div *ngIf="isArray(cuestionario.respuestas)">
@@ -32,7 +32,7 @@
                 <!-- Pregunta de tipo radio -->
                 <ng-container *ngIf="cuestionario.tipoComponente == 'RADIO'">
                     <div class="container-perfil-Questions p-2 pb-0">
-                        <p>{{ cuestionario.descripcion }}</p>
+                        <p>{{ cuestionario.enunciado  }}</p>
                     </div>
                     <p class="alinea-descripcion-pregunta-radius">Elegir solo una opción</p>
                     <div *ngIf="isArray(cuestionario.respuestas)" class="alinea-pregunta-radius">
@@ -49,7 +49,7 @@
                 <!-- Pregunta de tipo botones-unica-opcion -->
                 <ng-container *ngIf="cuestionario.tipoComponente == 'BOTON'" style="text-align: center;">
                     <div class="container-perfil-Questions p-2 pb-0">
-                        <p>{{ cuestionario.descripcion }}</p>
+                        <p>{{ cuestionario.enunciado }}</p>
                     </div>
                     <p class="alinea-descripcion-pregunta-boton"> Elige el nivel de conocimiento por cada instrumento</p>
 

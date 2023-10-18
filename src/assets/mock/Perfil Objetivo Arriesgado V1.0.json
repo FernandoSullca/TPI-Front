@@ -1,5 +1,6 @@
 [
   {
+    "enunciado":"¿Puede explicar el concepto de apalancamiento financiero y cómo puede afectar a la rentabilidad y el riesgo de una inversión?",
     "descripcion": "¿Puede explicar el concepto de apalancamiento financiero y cómo puede afectar a la rentabilidad y el riesgo de una inversión?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -24,6 +25,8 @@
     ]
   },
   {
+    "enunciado":"¿Qué son las opciones y cómo se pueden utilizar en una estrategia de inversión arriesgada?",
+
     "descripcion": "¿Qué son las opciones y cómo se pueden utilizar en una estrategia de inversión arriesgada?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -48,6 +51,8 @@
     ]
   },
   {
+    "enunciado":"¿Cómo afectan los eventos económicos y políticos globales a la volatilidad del mercado, y cómo puede un inversor arriesgado aprovechar estas situaciones?",
+
     "descripcion": "¿Cómo afectan los eventos económicos y políticos globales a la volatilidad del mercado, y cómo puede un inversor arriesgado aprovechar estas situaciones?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -72,6 +77,8 @@
     ]
   },
   {
+    "enunciado":"¿Qué significa el término \"volatilidad\" en el contexto de las inversiones y por qué es importante para un inversor arriesgado?",
+
     "descripcion": "¿Qué significa el término \"volatilidad\" en el contexto de las inversiones y por qué es importante para un inversor arriesgado?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -96,6 +103,8 @@
     ]
   },
   {
+    "enunciado":"¿Cuál es el propósito principal de utilizar una opción de compra (call option) en una estrategia de inversión arriesgada?",
+
     "descripcion": "¿Cuál es el propósito principal de utilizar una opción de compra (call option) en una estrategia de inversión arriesgada?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -120,6 +129,8 @@
     ]
   },
   {
+    "enunciado":"¿Qué es el análisis técnico en el contexto de la inversión y cómo puede ser útil para un inversor arriesgado?",
+
     "descripcion": "¿Qué es el análisis técnico en el contexto de la inversión y cómo puede ser útil para un inversor arriesgado?",
     "tipoComponente": "TEXTO",
     "categoria": {

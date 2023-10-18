@@ -1,5 +1,6 @@
 [
   {
+    "enunciado": "¿Qué es un bono y cómo se diferencia de una acción en términos de riesgo y retorno?",
     "descripcion": "¿Qué es un bono y cómo se diferencia de una acción en términos de riesgo y retorno?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -24,6 +25,7 @@
     ]
   },
   {
+    "enunciado": "¿Cuál es el propósito principal de un fondo de inversión de renta fija?",
     "descripcion": "¿Cuál es el propósito principal de un fondo de inversión de renta fija?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -48,6 +50,7 @@
     ]
   },
   {
+    "enunciado": "¿Puede explicar qué es la diversificación y por qué es importante para un inversor conservador?",
     "descripcion": "¿Puede explicar qué es la diversificación y por qué es importante para un inversor conservador?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -72,6 +75,7 @@
     ]
   },
   {
+    "enunciado": "¿Qué factores pueden afectar las tasas de interés y cómo pueden influir en los bonos?",
     "descripcion": "¿Qué factores pueden afectar las tasas de interés y cómo pueden influir en los bonos?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -96,6 +100,7 @@
     ]
   },
   {
+    "enunciado": "¿Qué estrategia de inversión consideraría más apropiada para alguien con un perfil conservador a largo plazo?",
     "descripcion": "¿Qué estrategia de inversión consideraría más apropiada para alguien con un perfil conservador a largo plazo?",
     "tipoComponente": "TEXTO",
     "categoria": {
@@ -120,7 +125,8 @@
     ]
   },
   {
-    "descripcion": "¿Qué estrategia de inversión consideraría más apropiada para alguien con un perfil conservador a largo plazo?",
+    "enunciado": "¿Cuál es la ventaja fiscal de invertir en cuentas de ahorro o inversiones de bajo riesgo?",
+    "descripcion": "¿Cuál es la ventaja fiscal de invertir en cuentas de ahorro o inversiones de bajo riesgo?",
     "tipoComponente": "TEXTO",
     "categoria": {
       "nombre": "Test Conocimiento"
@@ -130,15 +136,15 @@
     },
     "respuestas": [
       {
-        "nombre": "A- Invertir en activos de alto riesgo para maximizar el crecimiento del capital.",
+        "nombre": "A- Las ganancias de capital en estas inversiones están sujetas a una tasa de impuesto más alta.",
         "valor": 0
       },
       {
-        "nombre": "B- Mantener una cartera diversificada de bonos y acciones para equilibrar el riesgo y el retorno.",
+        "nombre": "B- Las ganancias de capital en estas inversiones están exentas de impuestos.",
         "valor": 0
       },
       {
-        "nombre": "C- Mantener una cartera completamente en efectivo para evitar cualquier riesgo.",
+        "nombre": "C- Las ganancias de capital en estas inversiones pueden estar sujetas a tasas de impuesto más bajas en comparación con otros activos.",
         "valor": 5
       }
     ]
