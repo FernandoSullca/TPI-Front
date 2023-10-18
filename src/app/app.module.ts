@@ -36,7 +36,7 @@ import { StageTwoComponent } from './features/dashboard/sections/investor-profil
     CarteraComponent,
     GraficoComponent,
     StageResultComponent,
-    InvestorProfileComponent
+    InvestorProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@ import { Cartera } from 'src/app/core/models/cartera/cartera';
 export class CarteraComponent implements OnInit {
 
   constructor(private carteraService: CarteraService, private router: Router) { }
-
+  totalValorizadoNulo: number = 20000;
   cartera: Cartera | undefined;
 
   ngOnInit(): void {
@@ -36,5 +36,8 @@ export class CarteraComponent implements OnInit {
       return this.cartera?.totalCartera
     else
       return 0
+  }
+  direccionar(componente:string){
+    this.router.navigate([`/dashboard/${componente}`]);
   }
 }
