@@ -46,7 +46,7 @@ const routes: Routes = [
       { path: "cartera", component: CarteraComponent},
       // { path: "perfil-inversor-cuestionario", component: StageTwoComponent},
       // { path: "perfil-inversor-questions", component: StageTwoComponent},
-      { path: "cartera", component: CarteraComponent},
+      // { path: "cartera", component: CarteraComponent},
       // { path: "perfil-inversor-questions", component: StageTwoComponent},
     ],
   },
