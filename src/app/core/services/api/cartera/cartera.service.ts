@@ -6,6 +6,7 @@ import { Cartera } from 'src/app/core/models/cartera/cartera';
 import { environment } from '../../../../../../environments/environment';
 import { HandleErrorApiService } from '../../manejo-errores/handle-error-api.service';
 import axios from 'axios';
+import { DolarBolsa } from 'src/app/core/models/dolar-bolsa/dolar-bolsa';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +32,12 @@ export class CarteraService {
     const resp = await axios.post(`${environment.API}/cartera/acreditar/dinero`, body);
     debugger;
   } 
+  getPrecioDolarMEP(): Observable<DolarBolsa>{
+    const urlBolsa ='https://dolarapi.com/v1/dolares/bolsa';
+    return this.http.get<DolarBolsa>(urlBolsa).pipe(
+      catchError((error)=>{
+        return this.handleErrorService.errorHandler(error);
+      })
+    )
+  }
 }

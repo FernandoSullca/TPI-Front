@@ -6,12 +6,8 @@ import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
   templateUrl: './grafico.component.html',
   styleUrls: ['./grafico.component.scss']
 })
-export class GraficoComponent implements OnInit{
+export class GraficoComponent{
   
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
   @Input() cantidadPorInstrumento: any; 
   colores = [
     '#669900',

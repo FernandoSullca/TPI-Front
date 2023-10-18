@@ -8,7 +8,7 @@ import { PreguntaApi } from 'src/app/core/models/API/Pregunta-APi.model';
 })
 export class PreguntaSubjetivasService  {
 
-  public apiUrlMOCK = 'assets\\mock\\Perfil subjetivo V2.0.json'; // Reemplaza con la URL real de tu JSON
+  public apiUrlMOCK = 'assets\\mock\\Perfil subjetivo V2.0.json'; // JSON
   constructor(private http: HttpClient) { }
 
   public getCuestionario(): Observable<PreguntaApi[]> {
