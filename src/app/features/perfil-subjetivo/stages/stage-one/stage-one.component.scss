@@ -3,9 +3,11 @@
   flex-direction: column;
   align-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  background-color: rgb(255, 255, 255);
 }
 
+/*********Contenerdor de texto MercadoJR para Regular y Bold*********/
 .brand-box {
   display: flex;
   align-items: center;
@@ -44,12 +46,14 @@
   align-items: center;
 }
 
+///*********/////
 
 .container-perfil {
-  width: 80%;
+  width: 95%;
   height: auto;
   flex-shrink: 0;
   border-radius: 30px;
+  background-color: antiquewhite;
   // border: 2px solid #3261A8;
 }
 
@@ -63,14 +67,6 @@
   // padding-top: 1rem;
   font-weight: 700;
   font-size: 1.2rem;
-}
-
-.btn-Iniciar {
-  width: 253px;
-  height: 57px;
-  flex-shrink: 0;
-  fill: #3261A8;
-  filter: drop-shadow(0px 4px 6px rgba(163, 161, 255, 0.16));
 }
 
 .alinea-descripcion-pregunta-check {
@@ -107,12 +103,6 @@
   align-items: center;
 }
 
-// .alineacion-botones-opciones-checks {
-//   display: flex;
-//   justify-content: space-between;
-//   // width: 9rem;
-//   max-width: 35rem;
-// }
 
 .alineacion-botones-opciones-radius {
   display: flex;
@@ -121,16 +111,20 @@
   // max-width: 35rem;
   padding-bottom: 1em;
 
-  // input[type='radio'] {
-  //   // box-shadow: 0px 1px 1px 0px rgba(109, 108, 155, 0.25);
-  // }
-
   label {
     padding-right: 2em;
     width: 100%;
     text-align: center;
     font-weight: 700;
   }
+}
+
+/***********************************/
+.contenedor-opciones-preguntas-botones {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+
 }
 
 .alinea-descripcion-pregunta-boton {
@@ -163,16 +157,19 @@
 }
 
 .botonera-lg-opciones {
-  background-color: #3261A8;
+  button{
+      background-color: #3261A8;
   color: #FFFFFF;
   border-radius: 1.5rem;
   font-weight: bold;
   width: 6rem;
+  }
+
 }
 
 /* Estilo para botones no seleccionados */
-.botonera-lg-opciones:not(.selected) {
-
+.botonera-lg-opciones {
+  button:not(.selected){
   background-color: #f9f9f9;
   color: #000000;
   border-radius: 1.5rem;
@@ -180,6 +177,7 @@
   width: 6rem;
   box-shadow: 0px 8px 8px 0px rgb(109 108 155 / 25%);
   /* Estilos para botones no seleccionados */
+}
 }
 
 .container-botonera-lg {
@@ -207,4 +205,148 @@
 
 svg {
   margin-left: 0.5rem;
+}
+
+/* Estilos para dispositivos de pantalla grande (por ejemplo, computadoras de escritorio) */
+@media (min-width: 992px) {}
+
+/* Estilos para dispositivos medianos (por ejemplo, tablets) */
+@media (min-width: 768px) and (max-width: 991px) {}
+
+/* Estilos para dispositivos pequeños (por ejemplo, teléfonos móviles) */
+@media (max-width: 767px) {
+
+
+  .container-perfil {
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 30px;
+    // border: 1px solid #3261A8;
+
+    .container-perfil-Questions {
+      height: auto;
+      flex-shrink: 0;
+      border-radius: 30px;
+      border: 1px solid #3261A8;
+
+      p {
+        font-size: 1rem;
+      }
+
+    }
+
+    /******************Primer Tipo***************************/
+    .alinea-descripcion-pregunta-check {
+      padding-left: 0rem;
+      text-align: center;
+
+      label {
+        font-size: 0.5rem;
+      }
+    }
+
+    .alinea-pregunta-check {
+      padding-left: 1rem;
+      display: flex;
+      align-items: center;
+      /* Centra verticalmente */
+    }
+
+    .alinea-pregunta-check label {
+      flex: 1;
+      /* Permite que el texto ocupe todo el espacio disponible */
+      // white-space: nowrap; /* Evita el salto de línea */
+      // overflow: hidden; /* Oculta el texto que desborda */
+      text-overflow: ellipsis;
+      /* Agrega puntos suspensivos (...) al texto desbordado */
+    }
+
+    .alinea-pregunta-check input[type="checkbox"] {
+      margin-right: 10px;
+      /* Espacio entre el checkbox y el texto */
+    }
+
+    /*****************************************/
+
+    /******************Segundo Tipo***************************/
+
+    .alinea-descripcion-pregunta-radius {}
+
+    .alinea-pregunta-radius {}
+
+    .alineacion-botones-opciones-radius {}
+
+
+    /******************tercer Tipo***************************/
+    .alinea-descripcion-pregunta-boton {
+      
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+
+  .alinea-pregunta-boton {
+    // background-color: aquamarine;
+
+  }
+
+  .nombre-instrumento-boton {}
+
+  .botonera-lg-opciones {
+    width: rem;
+  }
+
+  .alinea-botones-opciones {
+    // background-color: antiquewhite;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+
+  }
+ .botonera-lg-opciones {
+
+    button{
+      // background-color: #3261A8;
+      // color: #FFFFFF;
+      border-radius: 1.5rem;
+      font-weight: bold;
+      width: 4.5rem;
+    }
+
+  }
+   /* Estilo para botones no seleccionados */
+  .botonera-lg-opciones:not(.selected) {
+    button{
+      font-size: small;
+      font-weight: bold;
+      width: 4rem;   
+    }
+   
+
+  }
+ 
+
+ 
+
+  .container-botonera-lg {
+
+    color: #FFFFFF;
+    border-radius: 1.5rem;
+    font-weight: bold;
+    padding-top: 2rem;
+    text-align: center;
+    ;
+
+    .botonera-lg {
+
+      width: 70%;
+      font-size: 0.7rem;
+
+      svg {
+        margin-left: 0.4rem;
+      }
+
+    }
+  }
 }
