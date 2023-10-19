@@ -221,7 +221,7 @@ svg {
     height: auto;
     flex-shrink: 0;
     border-radius: 30px;
-    border: 1px solid #3261A8;
+    // border: 1px solid #3261A8;
 
     .container-perfil-Questions {
       height: auto;
@@ -280,11 +280,13 @@ svg {
     /******************tercer Tipo***************************/
     .alinea-descripcion-pregunta-boton {
       
+      font-weight: 400;
+      text-align: center;
     }
   }
 
   .alinea-pregunta-boton {
-    background-color: aquamarine;
+    // background-color: aquamarine;
 
   }
 
@@ -295,7 +297,7 @@ svg {
   }
 
   .alinea-botones-opciones {
-    background-color: antiquewhite;
+    // background-color: antiquewhite;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
