@@ -4,7 +4,7 @@
   align-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: aqua;
+  background-color: rgb(255, 255, 255);
 }
 
 /*********Contenerdor de texto MercadoJR para Regular y Bold*********/
@@ -157,16 +157,19 @@
 }
 
 .botonera-lg-opciones {
-  background-color: #3261A8;
+  button{
+      background-color: #3261A8;
   color: #FFFFFF;
   border-radius: 1.5rem;
   font-weight: bold;
   width: 6rem;
+  }
+
 }
 
 /* Estilo para botones no seleccionados */
-.botonera-lg-opciones:not(.selected) {
-
+.botonera-lg-opciones {
+  button:not(.selected){
   background-color: #f9f9f9;
   color: #000000;
   border-radius: 1.5rem;
@@ -174,6 +177,7 @@
   width: 6rem;
   box-shadow: 0px 8px 8px 0px rgb(109 108 155 / 25%);
   /* Estilos para botones no seleccionados */
+}
 }
 
 .container-botonera-lg {
@@ -287,7 +291,7 @@ svg {
   .nombre-instrumento-boton {}
 
   .botonera-lg-opciones {
-    width: 3.5rem;
+    width: rem;
   }
 
   .alinea-botones-opciones {
@@ -296,26 +300,32 @@ svg {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-around;
-    // gap: 1rem;
+
   }
+ .botonera-lg-opciones {
 
+    button{
+      // background-color: #3261A8;
+      // color: #FFFFFF;
+      border-radius: 1.5rem;
+      font-weight: bold;
+      width: 4.5rem;
+    }
 
-  .botonera-lg-opciones {
-    background-color: #3261A8;
-    color: #FFFFFF;
-    border-radius: 1.5rem;
-    font-weight: bold;
-    width: 4.5rem;
   }
-
-  /* Estilo para botones no seleccionados */
+   /* Estilo para botones no seleccionados */
   .botonera-lg-opciones:not(.selected) {
-
-    font-size: small;
-    font-weight: bold;
-    width: 4rem;
+    button{
+      font-size: small;
+      font-weight: bold;
+      width: 4rem;   
+    }
+   
 
   }
+ 
+
+ 
 
   .container-botonera-lg {
 

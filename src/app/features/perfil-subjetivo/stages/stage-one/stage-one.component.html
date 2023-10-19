@@ -56,12 +56,12 @@
                     <div class="row">
 
                         <div *ngIf="esPrimero(respuesta)">
-                            <p class="pb-0 mb-1 nombre-instrumento-boton bg-white">{{ respuesta.instrumento }}</p>
+                            <p class="pb-0 mb-1 nombre-instrumento-boton">{{ respuesta.instrumento }}</p>
                             <ng-container *ngIf="respuesta.instrumento;">
                                 <div class="row alinea-botones-opciones">
 
                                     <div *ngFor="let opcion of opcionesPorInstrumento(cuestionario.respuestas,respuesta.instrumento)"
-                                        class="col-4 bg-info">
+                                        class="col-4 ">
                                         <div class="botonera-lg-opciones">
                                             <button class=" col" type="button" id="{{ opcion.orden}}"
                                                 name="{{ respuesta.instrumento }}"
