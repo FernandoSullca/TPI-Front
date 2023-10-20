@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalComponent } from 'src/app/common/modal/modal/modal.component';
+import { ModalComponent } from 'src/app/common/modal/modal.component';
 import { Cuestionario, Respuesta, RespuestaBnt } from 'src/app/core/models/initial-profile/questions-profile.model';
 import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
 @Component({
