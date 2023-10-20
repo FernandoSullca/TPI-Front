@@ -2,6 +2,7 @@
   <div class="row text-center table-price">
     <div class="text-start">
       <h3>Panel de Acciones</h3>
+
     </div>
     <div class="col-sm-12">
       <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
@@ -28,11 +29,17 @@
                 </strong>
               </div>
               <div class="col overflow-hidden">{{titulo.ultimoPrecio || '-'}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{titulo.variacionPorcentual || '-'}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.cantidadCompra || '-'}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.precioCompra || '-'}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.precioVenta || '-'}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{titulo.puntas?.cantidadVenta || '-'}}</div>
+              <div class="col overflow-hidden d-none d-xl-block">
+                <i *ngIf="titulo && titulo.variacionPorcentual && titulo.variacionPorcentual > 0"
+                  class="fa-solid fa-caret-up text-success"></i>
+                <i *ngIf="titulo && titulo.variacionPorcentual && titulo.variacionPorcentual < 0"
+                  class="fa-solid fa-caret-down text-danger"></i>
+                {{titulo.variacionPorcentual || '-'}} %
+              </div>
+              <div class="col overflow-hidden d-none d-xl-block bg-success-subtle">{{titulo.puntas?.cantidadCompra || '-'}}</div>
+              <div class="col overflow-hidden d-none d-xl-block bg-success-subtle">{{titulo.puntas?.precioCompra || '-'}}</div>
+              <div class="col overflow-hidden d-none d-xl-block bg-danger-subtle">{{titulo.puntas?.precioVenta || '-'}}</div>
+              <div class="col overflow-hidden d-none d-xl-block bg-danger-subtle">{{titulo.puntas?.cantidadVenta || '-'}}</div>
               <div class="col overflow-hidden d-none d-xl-block">{{titulo.apertura || '-'}}</div>
               <div class="col overflow-hidden d-none d-xl-block">{{titulo.minimo || '-'}}</div>
               <div class="col overflow-hidden d-none d-xl-block">{{titulo.maximo || '-'}}</div>
@@ -42,6 +49,7 @@
           </div>
         </div>
       </div>
+      <div class="row float-end" *ngIf="lastUpdatePanel">Ultima actualización: {{lastUpdatePanel}}</div>
 
       <ng-template #loading>
         <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">

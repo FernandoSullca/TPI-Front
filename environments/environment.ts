@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API:'http://localhost:8080'
+  API:'http://localhost:8080',
+  UPDATE_PRICE_PANEL_EVERY_SECONDS: 0
 };
 
 /*

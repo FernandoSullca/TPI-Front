@@ -3,6 +3,7 @@ import { PricePanelService } from 'src/app/core/services/api/price-panel/price-p
 // import { CommonModule } from '@angular/common';
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 import { mockAcciones } from 'src/app/core/services/api/price-panel/mock'
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-price-panel',
@@ -18,18 +19,30 @@ export class PricePanelComponent implements OnInit {
   public cantidad: number = 0;
   public textMessage: string = '';
   public typeMessage: string = '';
+  public lastUpdatePanel: string = '';
 
 
   constructor(private pricePanelService: PricePanelService) { }
 
   ngOnInit(): void {
     this.getTitulos();
+    this.updateTitulosEvery(environment.UPDATE_PRICE_PANEL_EVERY_SECONDS);
+
   }
 
   public seleccionarInstrumento(instrumento: string) {
     this.simboloByCartera = instrumento;
     this.simbolo = instrumento;
   }
+
+  public updateTitulosEvery(segundos: number) {
+    if (segundos > 0) {
+      setInterval(() => {
+        return this.getTitulos()
+      }, segundos * 1000)
+    }
+  }
+
   public getTitulos() {
     return this.pricePanelService.obtenerTitulos()
       .then((titulos) => {
@@ -52,6 +65,9 @@ export class PricePanelComponent implements OnInit {
         });
         console.error(error)
       })
+      .finally(() => {
+        this.lastUpdatePanel = new Date().toLocaleDateString('es-es', { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }) + " hs."
+      });
   }
 
   public vender() {

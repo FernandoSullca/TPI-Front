@@ -1,17 +1,22 @@
 .main-container{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    padding-bottom: 1rem;
-    border-radius: 1rem;
-    height: 700px;
+  position: relative;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-radius: 1rem;
+  min-height: 100vh;
+  justify-content: space-around;
+  row-gap: 1rem;
 }
+/*********Contenerdor de texto MercadoJR para Regular y Bold*********/
 .brand-box {
     display: flex;
     align-items: center;
     white-space: nowrap;
-    margin-top: 2rem;
+    margin-top: 1rem;
 
     img {
       height: 3.8rem;
@@ -42,13 +47,23 @@
  } 
 ///*********/////
  
+.container-presentacion{
+  display: flex;
+  justify-content: center;
+  height: auto;
+  row-gap: 2rem;
+}
 .container-perfil {
   // width: 1179px;
   height: auto;
   flex-shrink: 0;
   border-radius: 30px;
   border: 2px solid #3261A8;
+  div h3{
+    font-size: 1.5rem;
+  }
 }
+
 .botonera-lg{
   background-color: #3261A8;
     color: #FFFFFF;
@@ -57,19 +72,57 @@
 }
 
 
+.ilustracion{
+  width: 12rem;
+  height: auto;
+}
+
+.botonera{
+  width: 17rem;
+  // height: 200px;
+  bottom: 5rem;
+  // position: absolute;
+}
+
+
 .btn-Iniciar {
-  width: 253px;
+  // width: 253px;
   height: 57px;
   flex-shrink: 0;
   fill: #3261A8;
   filter: drop-shadow(0px 4px 6px rgba(163, 161, 255, 0.16));
 }
-.botonera{
-  width: 200px;
-  height: 200px;
+/* Estilos para dispositivos de pantalla grande (por ejemplo, computadoras de escritorio) */
+@media (min-width: 992px) {
+
 }
-@media (min-width: 690px) {
-  #meta {
-    width: 40%;
+
+/* Estilos para dispositivos medianos (por ejemplo, tablets) */
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Estilos para dispositivos pequeños (por ejemplo, teléfonos móviles) */
+@media (max-width: 767px) {
+
+  .container-perfil{
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 30px;
+    border: 1px solid #3261A8;
+    div h3{
+      font-size: 0.9rem;
+    }
+
   }
+  .ilustracion{
+    width: 9rem;
+    height: auto;
+  }
+  
+  .botonera{
+    width: 10rem;
+ 
+  }
+ 
 }
