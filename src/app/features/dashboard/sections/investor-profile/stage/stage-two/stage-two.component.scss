@@ -119,6 +119,13 @@
   
 }
 
+.contenedor-sugerencias{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    row-gap: 1rem;
+}
 
 .btn-Iniciar {
   width: 253px;
