@@ -40,20 +40,21 @@
         </div>
 
         <!-- Botón Siguiente Pregunta aquí -->
-        <div class="justify-content-md-end mt-5" style="text-align: center;">
+        <div  *ngIf="!isLastQuestion" class="justify-content-md-end mt-5" style="text-align: center;">
             <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" *ngIf="!isLastQuestion"
                 (click)="loadNextQuestion()">{{ buttonText }}</button>
             <!-- <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p> -->
         </div>
 
         <!-- Area Resultados de Perfilamiento Onjetivos -->
-        <div *ngIf="isLastQuestion " style="text-align: center;">
-
+        <div *ngIf="isLastQuestion " class="resultados-test"  style="text-align: center;">
             <h3> Perfil final asociado: {{ResultadoPerfilObjetivo}}</h3>
-            <!-- <p>El inversor {{ResultadoPerfilObjetivo}}no busca con su cartera de inversión conseguir ingresos corrientes pero si requiere
-                un modesto aumento en el valor de sus inversiones.
-                El inversor tolera algunas volatilidad pero busca afrontar un menor riesgo que el inversor agresivo.
-            </p> -->
+            <div class="row contenedor-resultado-perfil">
+            <img class="img-fluid imagen-Perfil col-3" src="{{urlperfilimage}}" alt="">
+            <p class="col-8" >{{descripcionperfil}}
+            </p> 
+            </div>
+            
             <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" (click)="loadSugerencias()"
                 *ngIf="!issugerencia ">{{ buttonText }}</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
@@ -65,7 +66,7 @@
             <h3> Portfolio sugerido acorde a tú perfil</h3>
             <img src="\assets\image\GraficoTorta.png" alt="">
             <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadHome()">Finalizar</button>
-            <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
+         
         </div>
 
     </div>

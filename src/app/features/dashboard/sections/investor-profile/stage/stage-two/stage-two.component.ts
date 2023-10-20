@@ -32,13 +32,23 @@ export class StageTwoComponent {
   opcionSeleccionada: number = 0;
   AnalisisObjetivo: Record<string, number> = {};
   ResultadoPerfilObjetivo: string = "";
-  valorRecibido: string="";
-  
-  dataPrefil={
-    conservador:"Se caracteriza por buscar inversiones que representen un crecimiento moderado, sin asumir riesgos importantes, priorizando tener una disponibilidad inmediata de sus inversiones y buscando minimizar la incidencia de las fluctuaciones del mercado.",
-    moderado:"Se encuentra dispuesto a asumir ciertas oscilaciones en sus inversiones, esperando que en un mediano largo plazo pueda obtener una mayor rentabilidad. Es un perfil intermedio, tratándose de personas que pueden tolerar cierto riesgo en sus inversiones a cambio de una mayor rentabilidad.",
-    Arriesgado:"Se caracteriza por inversores cuyo objetivo principal es maximizar el rendimiento de su cartera, asumiendo para ello un alto componente de riesgo. Están dispuestos a mantener sus inversiones por períodos largos, sin asignarle una alta prioridad a la disponibilidad inmediata de sus activos.",
-  }
+  valorRecibido: string = "";
+
+  dataPerfil = [
+    {
+      descripcion: "Se caracteriza por buscar inversiones que representen un crecimiento moderado, sin asumir riesgos importantes, priorizando tener una disponibilidad inmediata de sus inversiones y buscando minimizar la incidencia de las fluctuaciones del mercado.",
+      url:"assets\\image\\perfil-conservador.jpeg",
+    }, {
+      descripcion: "Se encuentra dispuesto a asumir ciertas oscilaciones en sus inversiones, esperando que en un mediano largo plazo pueda obtener una mayor rentabilidad. Es un perfil intermedio, tratándose de personas que pueden tolerar cierto riesgo en sus inversiones a cambio de una mayor rentabilidad.",
+      url:"assets\\image\\perfil-moderado.jpeg",
+    }, {
+      descripcion: "Se caracteriza por inversores cuyo objetivo principal es maximizar el rendimiento de su cartera, asumiendo para ello un alto componente de riesgo. Están dispuestos a mantener sus inversiones por períodos largos, sin asignarle una alta prioridad a la disponibilidad inmediata de sus activos.",
+      url:"assets\\image\\perfil-agresivo.jpeg",
+    }
+  ]
+  urlperfilimage:string="";
+  descripcionperfil:string="";
+ 
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
     private localStorageService: LocalStorageService) {
@@ -60,10 +70,10 @@ export class StageTwoComponent {
         this.resPreguntas = testSubjetivo;
         if (this.resPreguntas) {
           this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
-          subscribe((data: PreguntaApi[]) => {
-            this.resPreguntas = data;
-            this.loadQuestions();
-          });
+            subscribe((data: PreguntaApi[]) => {
+              this.resPreguntas = data;
+              this.loadQuestions();
+            });
         }
         else {
           this.loadQuestions();
@@ -73,10 +83,10 @@ export class StageTwoComponent {
         (error) => {
           console.error("Error al obtener datos del API:", error),
             this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
-            subscribe((data: PreguntaApi[]) => {
-              this.resPreguntas = data;
-              this.loadQuestions();
-            });
+              subscribe((data: PreguntaApi[]) => {
+                this.resPreguntas = data;
+                this.loadQuestions();
+              });
         }
       )
       .finally(() => {
@@ -109,6 +119,7 @@ export class StageTwoComponent {
           this.respuestasPerfil = data;
           this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
+          this.armardescripcion();
           console.log('Entrega de resultados completada.');
         });
         ////////////////////////
@@ -134,6 +145,7 @@ export class StageTwoComponent {
       if (data && data.perfilInversor) {
         this.respuestasPerfil = data;
         console.log("Resultados enviados correctamente");
+   
         return this.respuestasPerfil;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
@@ -145,6 +157,27 @@ export class StageTwoComponent {
     }
   }
 
+  armardescripcion(){
+    switch(this.ResultadoPerfilObjetivo){
+      case "CONSERVADOR":
+        this.urlperfilimage=this.dataPerfil[0].url;
+        this.descripcionperfil=this.dataPerfil[0].descripcion;
+        break;
+      case "MODERADO":
+        this.urlperfilimage=this.dataPerfil[1].url;
+        this.descripcionperfil=this.dataPerfil[1].descripcion;
+        break;
+      case "AGRESIVO":
+        this.urlperfilimage=this.dataPerfil[2].url;
+        this.descripcionperfil=this.dataPerfil[2].descripcion;
+        break;
+      default:
+          this.urlperfilimage=this.dataPerfil[0].url; 
+          this.descripcionperfil=this.dataPerfil[0].descripcion;
+        break; 
+    }
+
+  }
   validateData() {
     return true;
   }
