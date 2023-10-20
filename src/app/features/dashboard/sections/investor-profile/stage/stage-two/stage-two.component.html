@@ -1,4 +1,4 @@
-<div class="container main-container bg-white">
+<div class="container main-container ">
     <div class="row brand-box pt-2">
         <div class="col-sm-12 d-flex">
             <h2><span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h2>
@@ -7,7 +7,7 @@
     </div>
     <div class="container-perfil p-4">
 
-        <!-- Botón Siguiente Pregunta aquí -->
+     
         <div *ngIf="!isLastQuestion">
             <div class="container-perfil-Quest-descr-opt" *ngFor="let pregunta of preguntas">
                 <div class="container-perfil-Questions ">
@@ -19,7 +19,7 @@
                     <ng-container *ngIf="pregunta.tipoComponente =='TEXTO'; else imgContenido">
 
                             <!-- <div *ngIf="isArray(pregunta.respuestas)" class="alinea-pregunta-radius"> -->
-                                <div class="row">  
+                                <div class="row contenedor-opciones">  
                                 <div class="alineacion-radios alineacion-botones-opciones-radius"   *ngFor="let opcion of pregunta.respuestas " >
                                       <!-- <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label> -->
                                       <input class="col-auto" type="radio" id="{{ opcion.nombre }}" name="{{opcion.nombre}}"
@@ -39,13 +39,14 @@
             </div>
         </div>
 
-
+        <!-- Botón Siguiente Pregunta aquí -->
         <div class="justify-content-md-end mt-5" style="text-align: center;">
             <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" *ngIf="!isLastQuestion"
                 (click)="loadNextQuestion()">{{ buttonText }}</button>
             <!-- <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p> -->
         </div>
 
+        <!-- Area Resultados de Perfilamiento Onjetivos -->
         <div *ngIf="isLastQuestion " style="text-align: center;">
 
             <h3> Perfil final asociado: {{ResultadoPerfilObjetivo}}</h3>
@@ -57,7 +58,8 @@
                 *ngIf="!issugerencia ">{{ buttonText }}</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
         </div>
-
+        
+        <!-- Area  Sugerencia de Resultados de Perfilamiento Onjetivos -->
         <div *ngIf="isLastQuestion && issugerencia" style="text-align: center;">
 
             <h3> Portfolio sugerido acorde a tú perfil</h3>
@@ -65,8 +67,6 @@
             <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadHome()">Finalizar</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
         </div>
-
-
 
     </div>
 

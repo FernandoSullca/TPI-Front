@@ -1,9 +1,11 @@
 .main-container {
+  background-color:aqua;
   display: flex;
   flex-direction: column;
   align-content: center;
   align-items: center;
   // height: 95vh;
+  min-height: 100vh;
 }
 
 .brand-box {
@@ -26,15 +28,33 @@
   }
 }
 
+/*********correcion de texto MercadoJR para Regular y Bold*********/
+.bold-text-Marca {
+  font-weight: normal;
+  /* Establece la fuente regular para "Mercado" */
+}
+
+.bold-Marca {
+  font-weight: bold;
+  /* Establece la fuente en negrita para "JR" */
+}
+
+.alinearcion-logotipo {
+  display: flex !important;
+  align-content: flex-end;
+  align-items: center;
+}
+/******************************************************************/
 .container-perfil {
-  width: 85%;
-  height: auto;
+  min-width: 95%;
+  min-height: 100vh;
   flex-shrink: 0;
   border-radius: 30px;
   // border: 2px solid #3261A8;
 }
 
 .container-perfil-Quest-descr-opt {
+  min-height:auto;
   row-gap: 2em;
   display: flex;
   flex-direction: column;
@@ -50,12 +70,13 @@
   font-weight: 700;
   font-size: 1.2rem;
   // margin-bottom: 2em;
+  p{  margin-bottom: 0;}
 }
 
 .container-perfil-Descripcion {
   // height: auto;
   display: flex;
-  height: 20em;
+  // min-height: 100vh;
   flex-shrink: 0;
   border-radius: 30px;
   border: 2px solid #3261A8;
@@ -64,11 +85,38 @@
   font-weight: 700;
   // font-size: 1.2rem;
   padding: 2em;
-
+  min-height: auto;
   img {
     align-items: center;
   }
 
+}
+
+.centrar-opciones {
+  display: flex;
+  /* flex-wrap: nowrap; */
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+
+
+.alineacion-radios{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  label {
+    width: 90%;
+    font-size: 16px;
+    font-weight: 700;
+      }
+      input[type="radio"]{
+        margin-bottom: 1rem;
+      }
+}
+.alineacion-botones-opciones-radius{
+  
 }
 
 
@@ -103,28 +151,52 @@
   /* Rompe palabras largas en líneas si es necesario */
 }
 
-.centrar-opciones {
+
+///*********/////
+@media (min-width: 992px) {}
+
+/* Estilos para dispositivos medianos (por ejemplo, tablets) */
+@media (min-width: 768px) and (max-width: 991px) {}
+
+/* Estilos para dispositivos pequeños (por ejemplo, teléfonos móviles) */
+@media (max-width: 767px) {
+
+  .container-perfil {
+    width: auto;
+  }
+
+  
+.container-perfil-Questions {
+  border: 1px solid #3261A8;
+  text-align: center;
+  padding: 1rem !important;
+  p{
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+
+}
+
+.container-perfil-Descripcion {
   display: flex;
-  /* flex-wrap: nowrap; */
-  justify-content: space-evenly;
-  flex-direction: row;
+
+  flex-shrink: 0;
+  border-radius: 30px;
+  border: 0px solid #3261A8;
+  font-weight: 600;
+  padding: 0.75rem;
+
+  img {
+    align-items: center;
+  }
+
 }
 
-/*********correcion de texto MercadoJR para Regular y Bold*********/
-.bold-text-Marca {
-  font-weight: normal;
-  /* Establece la fuente regular para "Mercado" */
-}
-
-.bold-Marca {
-  font-weight: bold;
-  /* Establece la fuente en negrita para "JR" */
-}
-
-.alinearcion-logotipo {
-  display: flex !important;
-  align-content: flex-end;
-  align-items: center;
+.contenedor-opciones{
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
 }
 
 .alineacion-radios{
@@ -133,16 +205,13 @@
   align-items: center;
 
   label {
-    width: 90%;
-    font-size: 16px;
+    width: 100%;
+    font-size: .9rem;
     font-weight: 700;
       }
       input[type="radio"]{
         margin-bottom: 1rem;
       }
 }
-.alineacion-botones-opciones-radius{
   
 }
-
-///*********/////
