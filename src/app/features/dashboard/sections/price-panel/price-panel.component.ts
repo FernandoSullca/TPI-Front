@@ -19,6 +19,7 @@ export class PricePanelComponent implements OnInit {
   public cantidad: number = 0;
   public textMessage: string = '';
   public typeMessage: string = '';
+  public lastUpdatePanel: string = '';
 
 
   constructor(private pricePanelService: PricePanelService) { }
@@ -37,7 +38,7 @@ export class PricePanelComponent implements OnInit {
   public updateTitulosEvery(segundos: number) {
     if (segundos > 0) {
       setInterval(() => {
-        return this.getTitulos();
+        return this.getTitulos()
       }, segundos * 1000)
     }
   }
@@ -64,6 +65,9 @@ export class PricePanelComponent implements OnInit {
         });
         console.error(error)
       })
+      .finally(() => {
+        this.lastUpdatePanel = new Date().toLocaleDateString('es-es', { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }) + " hs."
+      });
   }
 
   public vender() {
