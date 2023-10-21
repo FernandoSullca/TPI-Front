@@ -32,6 +32,7 @@ export class StageOneComponent implements OnInit {
     respuestas: []
   };
 
+  loading: boolean = false;
   ///////Control de paginacion. preguntas Siguiente:
   buttonText: string = 'SIGUIENTE PREGUNTA';
   isLastQuestion: boolean = false;
@@ -67,15 +68,12 @@ export class StageOneComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.loading = true;
     this.profileServiceAPI_.obtenerTestSubjetivo()
       .then((testSubjetivo) => {
-        console.log(testSubjetivo)
         this.resCuestionarioAPI = testSubjetivo;
         //Si vino Vacio y quiero buscar en mi local
-        console.log(this.resCuestionarioAPI)
-        if (this.resCuestionarioAPI==null) {
-          console.log("Buscando en local Host")
+        if (this.resCuestionarioAPI == null) {
           this.loadQuestionsFromLocal()
         }
         else {
@@ -88,9 +86,8 @@ export class StageOneComponent implements OnInit {
             this.loadQuestionsFromLocal()
         })
       .finally(() => {
-
-      }
-      );
+        this.loading = false;
+      })
   }
 
   public loadQuestionsFromLocal() {
