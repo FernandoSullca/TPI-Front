@@ -11,6 +11,7 @@ import axios from 'axios';
 export class QuestionsTargetService {
 
 
+
   // @Output() disparadordemensageResultado: EventEmitter<any> = new EventEmitter();
   private preguntasObjetivas = 'Test Conocimiento'; // Ruta al archivo JSON
   constructor() {}
@@ -62,5 +63,9 @@ export class QuestionsTargetService {
   window.open(url);
   }
 
+  solicitarlinkCertificado(usuario: string) {
+    const url=`${environment.API}/api/perfil-inversor/obtener-certificado?nombreUsuario=${usuario}`;
+    return url;
+  }
 
 }

@@ -51,7 +51,7 @@ export class StageTwoComponent {
   urlperfilimage: string = "";
   descripcionperfil: string = "";
 
-  dataurlcertificado="https://www.youtube.com/"
+  dataurlcertificado=""
   // dataurlcertificado=`${environment.API}/api/perfil-inversor/obtener-certificado?nombreUsuario=lito`
   public qrCodeDownloadLink: SafeUrl = "";
   public myAngularxQrCode: string = "My QR";
@@ -128,7 +128,9 @@ export class StageTwoComponent {
           console.log('Entrega de resultados completada.');
         });
         ////////////////////////
-        console.log('Has respondido todas las preguntas.');
+        console.log('Has respondido todas las preguntas.');  
+        const usuario = 'Lito';
+        this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(usuario);
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
         this.buttonText = 'Obtener portfolio sugerido';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
 
@@ -163,6 +165,7 @@ export class StageTwoComponent {
   }
 
   armardescripcion() {
+
     switch (this.ResultadoPerfilObjetivo) {
       case "CONSERVADOR":
         this.urlperfilimage = this.dataPerfil[0].url;
@@ -177,6 +180,7 @@ export class StageTwoComponent {
         this.descripcionperfil = this.dataPerfil[2].descripcion;
         break;
       default:
+ 
         this.urlperfilimage = this.dataPerfil[0].url;
         this.descripcionperfil = this.dataPerfil[0].descripcion;
         break;
@@ -197,12 +201,12 @@ export class StageTwoComponent {
   }
 
   async solicitarcertificado() {
-    this.preguntaObjetivasServiceAPI_.verinforme("Lito");
+    const usuario = 'Lito';
+    this.preguntaObjetivasServiceAPI_.verinforme(usuario);
   }
 
-
   async descargarCertificado() {
-    const usuario = 'Lito'; // Cambia por el usuario que necesitas
+    const usuario = 'Lito'; 
     const respuestaAxios = await this.preguntaObjetivasServiceAPI_.obtenerinforme(usuario);
 
 
@@ -213,7 +217,7 @@ export class StageTwoComponent {
       document.body.appendChild(a);
       a.style.display = 'none';
       a.href = url;
-      a.download = 'certificado.pdf'; // Puedes definir el nombre del archivo de descarga
+      a.download = 'Certificado Mercado Junior.pdf'; 
       a.click();
       window.URL.revokeObjectURL(url);
     }
