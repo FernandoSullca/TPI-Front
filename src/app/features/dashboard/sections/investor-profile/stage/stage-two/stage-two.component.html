@@ -55,6 +55,12 @@
             </p> 
             </div>
             
+            <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" (click)="solicitarcertificado()"
+            *ngIf="!issugerencia ">Obtenga su certificado</button>
+
+            <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" (click)="descargarCertificado()"
+            *ngIf="!issugerencia ">Descargar Certificado</button>
+
             <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" (click)="loadSugerencias()"
                 *ngIf="!issugerencia ">{{ buttonText }}</button>
             <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p>
