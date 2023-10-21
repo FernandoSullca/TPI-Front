@@ -1,24 +1,31 @@
 <div class="container main-container ">
+
     <div class="row brand-box pt-2">
         <div class="col-sm-12 d-flex">
             <h2><span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h2>
             <img src="/assets/image/logo.svg" alt="">
         </div>
     </div>
+   
+    <div *ngIf="loading">
+        <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
+            <div class="spinner-border loading-spiner" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <h3>Cargando preguntas objetivas ...</h3>
+        </div>
+    </div>
+
     <div class="container-perfil p-4">
-
-
-        <div *ngIf="!isLastQuestion">
+        <div *ngIf="!isLastQuestion && preguntas!= null">
             <div class="container-perfil-Quest-descr-opt" *ngFor="let pregunta of preguntas">
                 <div class="container-perfil-Questions ">
                     <p>{{ pregunta.enunciado }}</p>
                 </div>
 
                 <div class="container-perfil-Descripcion">
-                    <!-- <p class="alinea-descripcion-pregunta-radius">Elegir solo una opción</p> -->
                     <ng-container *ngIf="pregunta.tipoComponente =='TEXTO'; else imgContenido">
 
-                        <!-- <div *ngIf="isArray(pregunta.respuestas)" class="alinea-pregunta-radius"> -->
                         <div class="row contenedor-opciones">
                             <div class="alineacion-radios alineacion-botones-opciones-radius"
                                 *ngFor="let opcion of pregunta.respuestas ">
@@ -30,7 +37,6 @@
                                     }}</label>
                             </div>
                         </div>
-                        <!-- </div> -->
                     </ng-container>
 
                     <ng-template #imgContenido>
@@ -42,10 +48,9 @@
         </div>
 
         <!-- Botón Siguiente Pregunta aquí -->
-        <div *ngIf="!isLastQuestion" class="justify-content-md-end mt-5" style="text-align: center;">
-            <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" *ngIf="!isLastQuestion"
+        <div *ngIf="!isLastQuestion && preguntas!= null && !loading" class="justify-content-md-end mt-5" style="text-align: center;">
+            <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg"
                 (click)="loadNextQuestion()">{{ buttonText }}</button>
-            <!-- <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas!</p> -->
         </div>
 
         <!-- Area Resultados de Perfilamiento Onjetivos -->
@@ -103,5 +108,6 @@
         </div>
 
     </div>
+
 
 </div>

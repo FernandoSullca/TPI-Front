@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuestionsTargetService } from 'src/app/core/services/api/target-profile/questions-target-profile.service';
 import { PreguntaApi, RespuestaAPI } from 'src/app/core/models/API/Pregunta-APi.model';
@@ -15,7 +15,7 @@ import { CarteraService } from 'src/app/core/services/api/cartera/cartera.servic
   templateUrl: './stage-two.component.html',
   styleUrls: ['./stage-two.component.scss']
 })
-export class StageTwoComponent {
+export class StageTwoComponent implements OnInit{
 
   // @Input() tematica: string | undefined;// Texto entrada para filtrar las preguntas-respuestas por tematica
 
@@ -56,13 +56,15 @@ export class StageTwoComponent {
   // dataurlcertificado=`${environment.API}/api/perfil-inversor/obtener-certificado?nombreUsuario=lito`
   public qrCodeDownloadLink: SafeUrl = "";
   public myAngularxQrCode: string = "My QR";
+
+  loading: boolean = false;
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
     private localStorageService: LocalStorageService, private carteraService : CarteraService) {
   }
 
   ngOnInit(): void {
-
+    this.loading = true;
     /*********Area Preguntas onjetivas*********/
     const storedProfile = this.localStorageService.getItem('perfil');
     this.AnalisisObjetivo["toleranciaRiesgo"] = this.localStorageService.getItem('toleranciaRiesgo');
@@ -96,6 +98,7 @@ export class StageTwoComponent {
         }
       )
       .finally(() => {
+        this.loading = false;
       }
       );
 
