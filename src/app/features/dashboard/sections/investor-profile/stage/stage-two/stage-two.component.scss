@@ -157,9 +157,35 @@
   word-wrap: break-word;
   /* Rompe palabras largas en líneas si es necesario */
 }
-
-
+.resultados-test{
+    display: flex;
+    row-gap: 2rem;
+    flex-direction: column;
+    align-items: center;
+}
+.contenedor-resultado-perfil{
+  display: flex;
+    justify-content: space-evenly;
+}
+.imagen-Perfil{
+  max-height: 19rem;
+}
 ///*********/////
+/* Put this code in your CSS file */
+
+/* The div container */
+.qrcodeImage {
+  display: flex;
+  flex: 1;
+}
+
+/* Add custom styles here */
+.center {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+/// 
 @media (min-width: 992px) {}
 
 /* Estilos para dispositivos medianos (por ejemplo, tablets) */
@@ -220,5 +246,18 @@
         margin-bottom: 1rem;
       }
 }
-  
+
+.resultados-test{
+  display: flex;
+  row-gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+}
+.contenedor-resultado-perfil{
+display: flex;
+  justify-content: space-evenly;
+}
+.imagen-Perfil{
+max-height: 10rem;
+}
 }

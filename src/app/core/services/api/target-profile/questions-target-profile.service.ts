@@ -10,6 +10,8 @@ import axios from 'axios';
 })
 export class QuestionsTargetService {
 
+
+
   // @Output() disparadordemensageResultado: EventEmitter<any> = new EventEmitter();
   private preguntasObjetivas = 'Test Conocimiento'; // Ruta al archivo JSON
   constructor() {}
@@ -47,6 +49,23 @@ export class QuestionsTargetService {
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-inversor`, body);
     const { data } = resp;
     return data;
+  }
+
+
+  public async obtenerinforme(usuario:string) {
+
+    const resp = await axios.get(`${environment.API}/api/perfil-inversor/obtener-certificado?nombreUsuario=${usuario}`,{ responseType: 'blob' });
+    return resp.data;
+}
+
+  public verinforme(usuario: string) {
+  const url=`${environment.API}/api/perfil-inversor/obtener-certificado?nombreUsuario=${usuario}`;
+  window.open(url);
+  }
+
+  solicitarlinkCertificado(usuario: string) {
+    const url=`${environment.API}/api/perfil-inversor/obtener-certificado?nombreUsuario=${usuario}`;
+    return url;
   }
 
 }

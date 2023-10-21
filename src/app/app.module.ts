@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientMo
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
-// import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
 import { MessageComponent } from './common/message/message.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component';
 import { GraficoComponent } from './common/grafico/grafico.component';
@@ -23,6 +22,7 @@ import { InvestorProfileComponent } from './features/dashboard/sections/investor
 import { StageTwoComponent } from './features/dashboard/sections/investor-profile/stage/stage-two/stage-two.component';
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,8 @@ import { AdministrarPreguntasComponent } from './features/dashboard/sections/adm
     HttpClientModule,
     CommonModule,
     FormsModule,
-    NgChartsModule
+    NgChartsModule,
+    QRCodeModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

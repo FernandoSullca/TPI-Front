@@ -14,11 +14,8 @@ export class AdministrarPreguntasService {
   //Verificado Envio, ¿Captura?
   public async CargarExcelDePreguntas(excelPreg: File){
 
-  
-
     const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
     headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type'
-
 
      try {
        await this.CargarSeccion(excelPreg, headers);
@@ -46,14 +43,13 @@ export class AdministrarPreguntasService {
 
   }
 
-
   public async CargarSeccion(excelPreg: File, headers: HttpHeaders) {
     console.log("Cargando Seccion....");
     const formData = new FormData();
     formData.append('excelSeccion', excelPreg, excelPreg.name);
  
     this.http
-      .post<FormData>("http://localhost:8080/api/seccion/carga-seccion-excel", formData, { headers: headers })
+      .post<FormData>(`${environment.API}/api/seccion/carga-seccion-excel`, formData, { headers: headers })
 
       .subscribe((response) => {
         console.log('Archivo Seccion subido exitosamente', response);
@@ -69,7 +65,7 @@ export class AdministrarPreguntasService {
     formData.append('excelCategoria', excelPreg, excelPreg.name);
     console.log("Cargando Categoria....");
     this.http
-      .post<FormData>("http://localhost:8080/api/categoria/carga-categoria-excel", formData, { headers: headers })
+      .post<FormData>(`${environment.API}/api/categoria/carga-categoria-excel`, formData, { headers: headers })
 
       .subscribe((response) => {
         console.log('Archivo  Categorias subido exitosamente', response);
@@ -86,7 +82,7 @@ export class AdministrarPreguntasService {
     formData.append('excelPregunta', excelPreg, excelPreg.name);
     
     this.http
-      .post<FormData>("http://localhost:8080/api/pregunta/carga-pregunta-excel", formData, { headers: headers })
+      .post<FormData>(`${environment.API}/api/pregunta/carga-pregunta-excel`, formData, { headers: headers })
 
       .subscribe((response) => {
         console.log('Archivo Preguntas subido exitosamente', response);
@@ -104,7 +100,7 @@ export class AdministrarPreguntasService {
     formData.append('excelRespuesta', excelPreg, excelPreg.name);
  
     this.http
-      .post<FormData>("http://localhost:8080/api/respuesta/carga-respuesta-excel", formData, { headers: headers })
+      .post<FormData>(`${environment.API}/api/respuesta/carga-respuesta-excel`, formData, { headers: headers })
 
       .subscribe((response) => {
         console.log('Archivo Respuestas subido exitosamente', response);
