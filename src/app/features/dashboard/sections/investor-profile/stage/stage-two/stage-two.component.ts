@@ -7,6 +7,7 @@ import { PreguntaObjetivasService } from 'src/app/core/services/dataLocalService
 
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { from } from 'rxjs';
+import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
 @Component({
   selector: 'app-stage-two',
   templateUrl: './stage-two.component.html',
@@ -41,7 +42,7 @@ export class StageTwoComponent {
   }
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
-    private localStorageService: LocalStorageService) {
+    private localStorageService: LocalStorageService, private carteraService : CarteraService) {
 
   }
 
@@ -109,9 +110,14 @@ export class StageTwoComponent {
           this.respuestasPerfil = data;
           this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
+          this.acreditarDinero();
+          debugger;
           console.log('Entrega de resultados completada.');
         });
-        ////////////////////////
+       
+
+        
+
         console.log('Has respondido todas las preguntas.');
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
         this.buttonText = 'Obtener portfolio sugerido';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
@@ -120,6 +126,10 @@ export class StageTwoComponent {
     } else {
       console.error('Error: Fin de preguntas válidos- Ultima Vista antes de Volver al home-RoadMap.');
     }
+  }
+
+  public acreditarDinero(){
+    this.carteraService.acreditarDinero(5000, "premio preguntas objetivas");
   }
 
   public async entregarResultados(): Promise<any> {

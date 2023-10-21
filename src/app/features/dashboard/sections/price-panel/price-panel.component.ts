@@ -12,22 +12,34 @@ import { environment } from 'environments/environment';
 })
 export class PricePanelComponent implements OnInit {
   public titulos: Titulo[] = [];
-  public titulosSimbolo: String[] = [];
   public titulosSimboloMapa = new Map<string, string>();
-  public simbolo: string = '';
   public simboloByCartera: string = '';
   public cantidad: number = 0;
   public textMessage: string = '';
   public typeMessage: string = '';
   public lastUpdatePanel: string = '';
-
+  titulosSimbolo: string[] = []; 
+  simbolo: string = ''; 
+  filteredTitulos: string[] = [];
 
   constructor(private pricePanelService: PricePanelService) { }
 
   ngOnInit(): void {
     this.getTitulos();
     this.updateTitulosEvery(environment.UPDATE_PRICE_PANEL_EVERY_SECONDS);
+    this.titulosSimbolo = this.pricePanelService.getSimbolosEnMemoria();
 
+  }
+
+  onInputChange() {
+    this.filteredTitulos = this.titulosSimbolo.filter(simbolo =>
+      simbolo.toLowerCase().includes(this.simbolo.toLowerCase())
+    );
+  }
+
+  selectSymbol(simbolo: string) {
+    this.simbolo = simbolo;
+    this.filteredTitulos = [];
   }
 
   public seleccionarInstrumento(instrumento: string) {

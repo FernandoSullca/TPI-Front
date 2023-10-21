@@ -10,16 +10,24 @@ import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 })
 export class PricePanelService {
 
+  private simbolos: string[] = [];
+
   constructor() { }
 
   public async obtenerTitulos() {
     const resp = await axios.get(`${environment.API}/panel/acciones`);
     const { data } = resp;
     const datos = Array.from(data);
-    return datos.map((titulo) => {
+    return datos.map((titulo: any) => {
+      this.simbolos.push(titulo.simbolo);
       return Titulo.serializar(titulo);
     });
+  }
 
+
+  public getSimbolosEnMemoria(): string[] {
+    console.log(this.simbolos);
+    return this.simbolos;
   }
 
   public async capturarOrden(sentido: string, simbolo: string, cantidad: number, mapa: Map<string, string>) {
