@@ -4,9 +4,11 @@ import { QuestionsTargetService } from 'src/app/core/services/api/target-profile
 import { PreguntaApi, RespuestaAPI } from 'src/app/core/models/API/Pregunta-APi.model';
 import { PreguntaObjetivasService } from 'src/app/core/services/dataLocalServices/Preguntas-Objetivas/preguntaObjetiva.service';
 // import { QuestionsTargetService} from 'src/app/core/services/api/target-profile/questions-target-profile.service';
-
+import { QRCodeModule } from 'angularx-qrcode';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { from } from 'rxjs';
+import { environment } from 'environments/environment';
+import { SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-stage-two',
   templateUrl: './stage-two.component.html',
@@ -49,10 +51,13 @@ export class StageTwoComponent {
   urlperfilimage: string = "";
   descripcionperfil: string = "";
 
+  dataurlcertificado="https://www.youtube.com/"
+  // dataurlcertificado=`${environment.API}/api/perfil-inversor/obtener-certificado?nombreUsuario=lito`
+  public qrCodeDownloadLink: SafeUrl = "";
+  public myAngularxQrCode: string = "My QR";
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
     private localStorageService: LocalStorageService) {
-
   }
 
   ngOnInit(): void {
@@ -213,6 +218,10 @@ export class StageTwoComponent {
       window.URL.revokeObjectURL(url);
     }
 
+  }
+
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
   }
 
   loadSugerencias(): void {
