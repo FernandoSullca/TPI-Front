@@ -74,11 +74,12 @@
           <label for="simbolos" class="form-label">
             Especie
           </label>
-          <select class="form-control" id="simbolos" name='simbolo' [(ngModel)]="simbolo">
-            <option *ngIf="simboloByCartera ===''" value="" disabled selected>Seleccione un instrumento acá</option>
-            <option *ngFor="let simbolo of titulosSimbolo" value="{{simbolo}}"
-              [selected]="simboloByCartera === simbolo">{{simbolo}}</option>
-          </select>
+          <div style="align-items: flex-start;">
+            <input type="text" class="form-control" [(ngModel)]="simbolo" (input)="onInputChange()">
+              <ul style="padding-left: 0.7rem;" *ngIf="filteredTitulos.length > 0">
+                <div *ngFor="let simbolo of filteredTitulos" (click)="selectSymbol(simbolo)">{{simbolo}}</div>
+              </ul>
+          </div>
         </div>
 
         <div class="col-md-12">

@@ -9,6 +9,7 @@ import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-st
 import { from } from 'rxjs';
 import { environment } from 'environments/environment';
 import { SafeUrl } from '@angular/platform-browser';
+import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
 @Component({
   selector: 'app-stage-two',
   templateUrl: './stage-two.component.html',
@@ -57,7 +58,7 @@ export class StageTwoComponent {
   public myAngularxQrCode: string = "My QR";
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
-    private localStorageService: LocalStorageService) {
+    private localStorageService: LocalStorageService, private carteraService : CarteraService) {
   }
 
   ngOnInit(): void {
@@ -124,6 +125,8 @@ export class StageTwoComponent {
           this.respuestasPerfil = data;
           this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
+          this.acreditarDinero();
+          debugger;
           this.armardescripcion();
           console.log('Entrega de resultados completada.');
         });
@@ -138,6 +141,10 @@ export class StageTwoComponent {
     } else {
       console.error('Error: Fin de preguntas válidos- Ultima Vista antes de Volver al home-RoadMap.');
     }
+  }
+
+  public acreditarDinero(){
+    this.carteraService.acreditarDinero(5000, "premio preguntas objetivas");
   }
 
   public async entregarResultados(): Promise<any> {
