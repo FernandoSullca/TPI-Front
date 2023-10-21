@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
@@ -23,6 +23,8 @@ import { InvestorProfileComponent } from './features/dashboard/sections/investor
 import { StageTwoComponent } from './features/dashboard/sections/investor-profile/stage/stage-two/stage-two.component';
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
+import { ModalComponent } from './common/modal/modal.component';
+import { GraficoVelasComponent } from './common/grafico-velas/grafico-velas.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { AdministrarPreguntasComponent } from './features/dashboard/sections/adm
     StageResultComponent,
     InvestorProfileComponent,
     AdministrarComponent,
-    AdministrarPreguntasComponent
+    AdministrarPreguntasComponent,
+    ModalComponent,
+    GraficoVelasComponent
   ],
   imports: [
     BrowserModule,
@@ -51,8 +55,8 @@ import { AdministrarPreguntasComponent } from './features/dashboard/sections/adm
     FormsModule,
     NgChartsModule
   ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [DatePipe],
   bootstrap: [AppComponent],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

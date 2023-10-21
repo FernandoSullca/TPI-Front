@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
 import { Cartera } from 'src/app/core/models/cartera/cartera';
 import { environment } from '../../../../../../environments/environment';
