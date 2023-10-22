@@ -1,7 +1,7 @@
 export interface DolarBolsa{
-  compra: Number,
-  venta: Number,
-  casa: String,
-  nombre: String,
+  compra: number,
+  venta: number,
+  casa: string,
+  nombre: string,
   fechaActualizacion: Date
 }

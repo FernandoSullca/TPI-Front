@@ -21,7 +21,7 @@
       </div>
       <div class="row filas" *ngIf="titulos.length > 1; else loading">
         <div *ngFor="let titulo of titulos; index as i;">
-          <div class="fila-instrumento" (click)="seleccionarInstrumento(''+titulo.simbolo+'')">
+          <div class="fila-instrumento"(click)="openModal(''+titulo.simbolo+'')" data-toggle="modal" [attr.data-target]="'#myModal'">
             <div class="row" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
               <div class="col overflow-hidden text-start mobile-col">
                 <strong>
