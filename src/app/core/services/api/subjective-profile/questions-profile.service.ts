@@ -24,10 +24,13 @@ export class QuestionsProfileService {
   }
 
   //Verificado Envio, ¿Captura?
-  public async TestSubjetivoResultados(AnalisisSubjetivo: Record<string, number>) {
+  public async TestSubjetivoResultados(AnalisisSubjetivo: Record<string, number>,username:String) {
     const body = {
       "horizonteTemporal": AnalisisSubjetivo["Horizonte Temporal"],
-      "toleranciaRiesgo": AnalisisSubjetivo["Tolerancia al riesgo"]
+      "toleranciaRiesgo": AnalisisSubjetivo["Tolerancia al riesgo"],
+      "usuarioDTO": {
+        "nombreUsuario": username
+      },
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-subjetivo`, body);
     const { data } = resp;

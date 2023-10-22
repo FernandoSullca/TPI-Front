@@ -28,15 +28,15 @@
   }
 }
 
-
-/*********correcion de texto MercadoJR para Regular y Bold*********/
 .bold-text-Marca {
   font-weight: normal;
+  font-family: 'Poppins';
   /* Establece la fuente regular para "Mercado" */
 }
 
 .bold-Marca {
   font-weight: bold;
+  font-family: 'Poppins';
   /* Establece la fuente en negrita para "JR" */
 }
 
@@ -46,28 +46,41 @@
   align-items: center;
 }
 
-///*********/////
+/*********************************************************************/
 
-.container-perfil {
+.container-render-test {
   width: 95%;
   height: auto;
   flex-shrink: 0;
   border-radius: 30px;
   background-color: antiquewhite;
-  // border: 2px solid #3261A8;
+
+  .container-test {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    row-gap: 1rem;
+  }
+
 }
 
-.container-perfil-Questions {
+.container-render-test-Questions {
   height: auto;
   flex-shrink: 0;
   border-radius: 30px;
   border: 2px solid #3261A8;
   text-align: center;
-  padding-bottom: 0rem;
   // padding-top: 1rem;
   font-weight: 700;
   font-size: 1.2rem;
+
+  p {
+    margin-bottom: 0;
+  }
 }
+
+/*********************************************************************/
 
 .alinea-descripcion-pregunta-check {
   padding-left: 2rem;
@@ -82,41 +95,34 @@
   }
 
   label {
-
-    padding-left: 0.5rem;
+    font-size: 1.12rem;
+    padding-left: 1rem;
   }
 }
 
+/*********************************************************************/
 
 .alinea-descripcion-pregunta-radius {
-  // padding-left: 2rem;
+  padding-left: 2rem;
   font-weight: 700;
-  text-align: center;
+  // text-align: center;
 }
 
 .alinea-pregunta-radius {
-  /* padding-left: 4rem; */
+  padding-left: 4rem;
   display: flex;
-  flex-direction: column;
-  align-content: center;
-  flex-wrap: nowrap;
-  align-items: center;
-}
-
-
-.alineacion-botones-opciones-radius {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  // max-width: 35rem;
   padding-bottom: 1em;
+  flex-direction: row;
 
   label {
-    padding-right: 2em;
-    width: 100%;
-    text-align: center;
-    font-weight: 700;
+    font-size: 1.12rem;
+    padding-left: 1rem;
+    margin-bottom: 0;
   }
+  input[type='radio'] {
+    box-shadow: 0px 1px 1px 0px rgb(109 108 155 / 25%);
+  }
+
 }
 
 /***********************************/
@@ -148,7 +154,7 @@
 }
 
 ///*********/////
-/// 
+
 .botonera-lg {
   background-color: #3261A8;
   color: #FFFFFF;
@@ -157,31 +163,26 @@
 }
 
 .botonera-lg-opciones {
-  button{
-      background-color: #3261A8;
-  color: #FFFFFF;
-  border-radius: 1.5rem;
-  font-weight: bold;
-  width: 6rem;
+  button {
+    background-color: #3261A8;
+    color: #FFFFFF;
+    border-radius: 1.5rem;
+    font-weight: bold;
+    width: 6rem;
   }
 
-}
-
-/* Estilo para botones no seleccionados */
-.botonera-lg-opciones {
-  button:not(.selected){
-  background-color: #f9f9f9;
-  color: #000000;
-  border-radius: 1.5rem;
-  font-weight: bold;
-  width: 6rem;
-  box-shadow: 0px 8px 8px 0px rgb(109 108 155 / 25%);
-  /* Estilos para botones no seleccionados */
-}
+  button:not(.selected) {
+    background-color: #f9f9f9;
+    color: #000000;
+    border-radius: 1.5rem;
+    font-weight: bold;
+    width: 6rem;
+    box-shadow: 0px 8px 8px 0px rgb(109 108 155 / 25%);
+    /* Estilos para botones no seleccionados */
+  }
 }
 
 .container-botonera-lg {
-  /*background-color: #3261A8; */
   color: #FFFFFF;
   border-radius: 1.5rem;
   font-weight: bold;
@@ -217,13 +218,13 @@ svg {
 @media (max-width: 767px) {
 
 
-  .container-perfil {
+  .container-render-test {
     height: auto;
     flex-shrink: 0;
     border-radius: 30px;
     // border: 1px solid #3261A8;
 
-    .container-perfil-Questions {
+    .container-render-test-Questions {
       height: auto;
       flex-shrink: 0;
       border-radius: 30px;
@@ -239,6 +240,7 @@ svg {
     .alinea-descripcion-pregunta-check {
       padding-left: 0rem;
       text-align: center;
+      font-size: .85rem;
 
       label {
         font-size: 0.5rem;
@@ -259,6 +261,7 @@ svg {
       // overflow: hidden; /* Oculta el texto que desborda */
       text-overflow: ellipsis;
       /* Agrega puntos suspensivos (...) al texto desbordado */
+      margin-bottom: 0;
     }
 
     .alinea-pregunta-check input[type="checkbox"] {
@@ -270,27 +273,16 @@ svg {
 
     /******************Segundo Tipo***************************/
 
-    .alinea-descripcion-pregunta-radius {}
-
-    .alinea-pregunta-radius {}
-
-    .alineacion-botones-opciones-radius {}
-
+    
 
     /******************tercer Tipo***************************/
     .alinea-descripcion-pregunta-boton {
-      
+
       font-weight: 400;
       text-align: center;
     }
   }
 
-  .alinea-pregunta-boton {
-    // background-color: aquamarine;
-
-  }
-
-  .nombre-instrumento-boton {}
 
   .botonera-lg-opciones {
     width: rem;
@@ -304,9 +296,10 @@ svg {
     justify-content: space-around;
 
   }
- .botonera-lg-opciones {
 
-    button{
+  .botonera-lg-opciones {
+
+    button {
       // background-color: #3261A8;
       // color: #FFFFFF;
       border-radius: 1.5rem;
@@ -315,19 +308,17 @@ svg {
     }
 
   }
-   /* Estilo para botones no seleccionados */
+
+  /* Estilo para botones no seleccionados */
   .botonera-lg-opciones:not(.selected) {
-    button{
+    button {
       font-size: small;
       font-weight: bold;
-      width: 4rem;   
+      width: 4rem;
     }
-   
+
 
   }
- 
-
- 
 
   .container-botonera-lg {
 
@@ -349,4 +340,5 @@ svg {
 
     }
   }
+
 }

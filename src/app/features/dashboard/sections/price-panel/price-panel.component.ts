@@ -15,22 +15,23 @@ import { DatosGraficoVelas, DetalleInstrumento } from 'src/app/core/models/detal
 })
 export class PricePanelComponent implements OnInit {
   public titulos: Titulo[] = [];
-  public titulosSimbolo: String[] = [];
   public titulosSimboloMapa = new Map<string, string>();
-  public simbolo: string = '';
   public simboloByCartera: string = '';
   public cantidad: number = 0;
   public textMessage: string = '';
   public typeMessage: string = '';
   public lastUpdatePanel: string = '';
   public instrumento : string=''
-
+  titulosSimbolo: string[] = []; 
+  simbolo: string = ''; 
+  filteredTitulos: string[] = [];
 
   constructor(private pricePanelService: PricePanelService,private modalService : NgbModal) { }
 
   ngOnInit(): void {
     this.getTitulos();
     this.updateTitulosEvery(environment.UPDATE_PRICE_PANEL_EVERY_SECONDS);
+    this.titulosSimbolo = this.pricePanelService.getSimbolosEnMemoria();
 
   }
 
@@ -46,10 +47,26 @@ export class PricePanelComponent implements OnInit {
   public filtrarPorInstrumento(instrumento:string){
     return this.titulos.find(titulo => titulo.simbolo === instrumento);
   }
+  onInputChange() {
+    this.filteredTitulos = this.titulosSimbolo.filter(simbolo =>
+      simbolo.toLowerCase().includes(this.simbolo.toLowerCase())
+    );
+  }
+
+  selectSymbol(simbolo: string) {
+    this.simbolo = simbolo;
+    this.filteredTitulos = [];
+  }
+
+  public seleccionarInstrumento(instrumento: string) {
+    this.simboloByCartera = instrumento;
+    this.simbolo = instrumento;
+  }
 
   public updateTitulosEvery(segundos: number) {
     if (segundos > 0) {
       setInterval(() => {
+        console.log("🚀 ~ file: price-panel.component.ts:52 ~ PricePanelComponent ~ updateTitulosEvery ~ this.titulos:", this.titulos)
         return this.getTitulos()
       }, segundos * 1000)
     }

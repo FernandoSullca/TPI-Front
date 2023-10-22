@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientMo
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
-// import { StageTwoComponent } from './features/dashboard/sections/perfil-inversor/stage/stage-two/stage-two.component';
 import { MessageComponent } from './common/message/message.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component';
 import { GraficoComponent } from './common/grafico/grafico.component';
@@ -25,6 +24,8 @@ import { AdministrarComponent } from './features/dashboard/sections/administrar/
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
 import { ModalComponent } from './common/modal/modal.component';
 import { GraficoVelasComponent } from './common/grafico-velas/grafico-velas.component';
+import { QRCodeModule } from 'angularx-qrcode';
+import { RegistroComponent } from './features/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { GraficoVelasComponent } from './common/grafico-velas/grafico-velas.comp
     AdministrarComponent,
     AdministrarPreguntasComponent,
     ModalComponent,
-    GraficoVelasComponent
+    GraficoVelasComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { GraficoVelasComponent } from './common/grafico-velas/grafico-velas.comp
     HttpClientModule,
     CommonModule,
     FormsModule,
-    NgChartsModule
+    NgChartsModule,
+    QRCodeModule
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [DatePipe],
