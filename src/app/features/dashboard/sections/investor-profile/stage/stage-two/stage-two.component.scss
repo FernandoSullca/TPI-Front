@@ -173,27 +173,50 @@
 .contenedor-resultado-perfil {
   display: flex;
   justify-content: space-evenly;
+
+  .imagen-Perfil {
+    max-height: 19rem;
+  }
+
+  p {
+    font-size: larger;
+  }
 }
 
-.imagen-Perfil {
-  max-height: 19rem;
-}
 
 ///*********/////
 /* Put this code in your CSS file */
-
-/* The div container */
-.qrcodeImage {
+.AreaQR {
   display: flex;
-  flex: 1;
+  // flex-direction: row;
+  flex-direction: column;
+
+  /* The div container */
+  .qrcodeImage {
+    display: flex;
+    flex: 1;
+    height: 10rem;
+  }
+
+  /* Add custom styles here */
+  .qrStyle {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    height: 8rem;
+    width: 200px;
+  }
+
+  .AreaQRLINKS {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
 }
 
-/* Add custom styles here */
-.center {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-}
+
 
 /// 
 @media (min-width: 992px) {}
@@ -268,9 +291,18 @@
   .contenedor-resultado-perfil {
     display: flex;
     justify-content: space-evenly;
+
+    .imagen-Perfil {
+      max-height: 10rem;
+      /* flex: 2 0 auto; */
+      width: 50%;
+    }
+
+    p {
+      width: 85%;
+      font-size: medium;
+    }
   }
 
-  .imagen-Perfil {
-    max-height: 10rem;
-  }
+
 }

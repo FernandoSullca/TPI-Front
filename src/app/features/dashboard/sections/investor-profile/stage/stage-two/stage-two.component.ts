@@ -129,10 +129,12 @@ export class StageTwoComponent implements OnInit{
           this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
           this.acreditarDinero();
-          debugger;
-          this.armardescripcion();
           console.log('Entrega de resultados completada.');
-        });
+        }).finally(() => {
+          this.armardescripcion();
+        }
+        );;
+
         ////////////////////////
         console.log('Has respondido todas las preguntas.');  
         const usuario = 'Lito';
@@ -190,7 +192,7 @@ export class StageTwoComponent implements OnInit{
         this.descripcionperfil = this.dataPerfil[2].descripcion;
         break;
       default:
- 
+        this.ResultadoPerfilObjetivo="Conservador"
         this.urlperfilimage = this.dataPerfil[0].url;
         this.descripcionperfil = this.dataPerfil[0].descripcion;
         break;

@@ -6,7 +6,7 @@
             <img src="/assets/image/logo.svg" alt="">
         </div>
     </div>
-   
+
     <div *ngIf="loading">
         <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
             <div class="spinner-border loading-spiner" role="status">
@@ -29,7 +29,6 @@
                         <div class="row contenedor-opciones">
                             <div class="alineacion-radios alineacion-botones-opciones-radius"
                                 *ngFor="let opcion of pregunta.respuestas ">
-                                <!-- <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label> -->
                                 <input class="col-auto" type="radio" id="{{ opcion.nombre }}" name="{{opcion.nombre}}"
                                     value="{{opcion.valor}}" [(ngModel)]="opcionSeleccionada"
                                     (change)="actualizarOpcionesSeleccionadas(opcion.nombre,opcion.valor)">
@@ -48,7 +47,8 @@
         </div>
 
         <!-- Botón Siguiente Pregunta aquí -->
-        <div *ngIf="!isLastQuestion && preguntas!= null && !loading" class="justify-content-md-end mt-5" style="text-align: center;">
+        <div *ngIf="!isLastQuestion && preguntas!= null && !loading" class="justify-content-md-end mt-5"
+            style="text-align: center;">
             <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg"
                 (click)="loadNextQuestion()">{{ buttonText }}</button>
         </div>
@@ -61,41 +61,30 @@
                 <p class="col-8">{{descripcionperfil}}
                 </p>
             </div>
-       
-              <div class="qrcodeImage"> 
-              <qrcode 
-              (qrCodeURL)="onChangeURL($event)" 
-              [qrdata]="dataurlcertificado"
-              [allowEmptyString]="true"
-              [cssClass]="'center'"
-              [colorDark]="'#000000ff'"
-              [colorLight]="'#ffffffff'"
-              [elementType]="'canvas'"
-              [errorCorrectionLevel]="'M'"
-              [imageSrc]="'./assets/image/logo.ico'"
-              [imageHeight]="40"
-              [imageWidth]="40"
-              [margin]="4"
-              [scale]="1"
-              [title]="'Certificado Mercado Junior'"
-              [width]="300"
-              >  </qrcode>
-            </div>
-            <a [href]="qrCodeDownloadLink" download="Certificado Mercado Junior">Download QR</a>
-            <!-- <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg"
-                (click)="solicitarcertificado()" *ngIf="!issugerencia ">Obtenga su certificado</button> 
-                 -->
-            <a href="javascript:void(0);" (click)="solicitarcertificado()" *ngIf="!issugerencia">
-                Obtenga su certificado </a>
+            <div class="AreaQR">
+                <div class="qrcodeImage">
+                    <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="dataurlcertificado" [allowEmptyString]="true"
+                        [cssClass]="'qrStyle'" [colorDark]="'#000000ff'" [colorLight]="'#ffffffff'"
+                        [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageSrc]="'./assets/image/logo.ico'"
+                        [imageHeight]="40" [imageWidth]="40" [margin]="4" [scale]="1"
+                        [width]="150"
+                        [title]="'Certificado Mercado Junior'"> </qrcode>
+                </div>
+                <div class="AreaQRLINKS">
+                <!-- <a [href]="qrCodeDownloadLink" download="Certificado Mercado Junior">Download QR</a> -->
+                <!-- <a href="javascript:void(0);" (click)="solicitarcertificado()" *ngIf="!issugerencia">
+                    Obtenga su certificado </a> -->
 
-            <a href="javascript:void(0);" (click)="descargarCertificado()" *ngIf="!issugerencia">
+                <a href="javascript:void(0);" (click)="descargarCertificado()" *ngIf="!issugerencia">
                     Descargar Certificado </a>
-            <!-- <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg"
-                (click)="descargarCertificado()" *ngIf="!issugerencia ">Descargar Certificado</button> -->
+                </div>
+          
+            </div>
 
             <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" (click)="loadSugerencias()"
                 *ngIf="!issugerencia ">{{ buttonText }}</button>
-            <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas! Ya podes ver tu credito de premio en tu cartera</p>
+            <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas! Ya podes ver tu credito de premio en tu
+                cartera</p>
         </div>
 
         <!-- Area  Sugerencia de Resultados de Perfilamiento Onjetivos -->
