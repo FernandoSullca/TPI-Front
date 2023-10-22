@@ -44,7 +44,7 @@ export class ModalComponent implements OnInit {
       const ultimoCierre = this.detalleInstrumento.ultimoCierre;
       const valorFinal = ((ultimoCierre * variacion) / 100).toFixed(2);
       const textoPorcentual = `(${variacion.toFixed(2)}%)`; 
-      this.textMessage = valorFinal.toString().concat(textoPorcentual);
+      this.textMessage = '$'+valorFinal.toString().concat(textoPorcentual);
       if (this.detalleInstrumento.variacionPorcentual > 0)
         this.typeMessage = 'success';
       else
