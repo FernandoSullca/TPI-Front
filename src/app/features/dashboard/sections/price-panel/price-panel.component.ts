@@ -50,6 +50,7 @@ export class PricePanelComponent implements OnInit {
   public updateTitulosEvery(segundos: number) {
     if (segundos > 0) {
       setInterval(() => {
+        console.log("🚀 ~ file: price-panel.component.ts:52 ~ PricePanelComponent ~ updateTitulosEvery ~ this.titulos:", this.titulos)
         return this.getTitulos()
       }, segundos * 1000)
     }
