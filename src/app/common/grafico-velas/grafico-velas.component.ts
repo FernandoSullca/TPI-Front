@@ -14,8 +14,8 @@ export class GraficoVelasComponent {
 
   ngOnInit() {
     this.chart = createChart('tv_test', {
-      width: 1200,
-      height: 450,
+      width:1000,
+      height:400,
       timeScale: {
         visible: true,
         timeVisible: true,
@@ -35,7 +35,6 @@ export class GraficoVelasComponent {
       low: parseFloat(detalle.minimo),
       close: parseFloat(detalle.precioDeCierre),
     })));
-
     this.chart.timeScale().fitContent();
   }
 }
