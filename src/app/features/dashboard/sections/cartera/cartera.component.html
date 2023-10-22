@@ -50,6 +50,7 @@
                 </b>
                 <h2 *ngIf="cartera; else elseBlock">$ {{valorActualDolarMEP?.compra}}</h2>
                 <ng-template #elseBlock><h2>$ {{valorActualDolarMEP?.compra}}</h2></ng-template>
+                <button type="button" class="boton btn btn-sm mx-auto custom-button">COMPRA</button>
             </div>
             <div class="venta">
                 <b>

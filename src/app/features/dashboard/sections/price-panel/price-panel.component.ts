@@ -4,6 +4,9 @@ import { PricePanelService } from 'src/app/core/services/api/price-panel/price-p
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 import { mockAcciones } from 'src/app/core/services/api/price-panel/mock'
 import { environment } from 'environments/environment';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from 'src/app/common/modal/modal.component';
+import { DatosGraficoVelas, DetalleInstrumento } from 'src/app/core/models/detalle-instrumento/detalle-instrumento';
 
 @Component({
   selector: 'app-price-panel',
@@ -20,9 +23,10 @@ export class PricePanelComponent implements OnInit {
   public textMessage: string = '';
   public typeMessage: string = '';
   public lastUpdatePanel: string = '';
+  public instrumento : string=''
 
 
-  constructor(private pricePanelService: PricePanelService) { }
+  constructor(private pricePanelService: PricePanelService,private modalService : NgbModal) { }
 
   ngOnInit(): void {
     this.getTitulos();
@@ -30,9 +34,17 @@ export class PricePanelComponent implements OnInit {
 
   }
 
-  public seleccionarInstrumento(instrumento: string) {
-    this.simboloByCartera = instrumento;
-    this.simbolo = instrumento;
+  public openModal(instrumento: string) {
+    let detalleInstrumento = this.filtrarPorInstrumento(instrumento);
+    if (detalleInstrumento) {
+      const modalRef = this.modalService.open(ModalComponent);
+      modalRef.componentInstance.detalleInstrumento = detalleInstrumento;
+    } else {
+      console.log('Instrumento no encontrado');
+    }
+  } 
+  public filtrarPorInstrumento(instrumento:string){
+    return this.titulos.find(titulo => titulo.simbolo === instrumento);
   }
 
   public updateTitulosEvery(segundos: number) {

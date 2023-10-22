@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
 import { Cartera } from 'src/app/core/models/cartera/cartera';
 import { DolarBolsa } from 'src/app/core/models/dolar-bolsa/dolar-bolsa';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from 'src/app/common/modal/modal.component';
 
 
 @Component({
@@ -12,7 +14,7 @@ import { DolarBolsa } from 'src/app/core/models/dolar-bolsa/dolar-bolsa';
 })
 export class CarteraComponent implements OnInit {
 
-  constructor(private carteraService: CarteraService, private router: Router) { }
+  constructor(private carteraService: CarteraService, private router: Router,private modalService : NgbModal) { }
   
   totalValorizadoNulo: number = 20000;
   cartera: Cartera | undefined;
