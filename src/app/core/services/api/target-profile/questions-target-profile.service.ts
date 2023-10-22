@@ -20,13 +20,13 @@ export class QuestionsTargetService {
 
     switch(tipo){
       case 'CONSERVADOR':
-        this.preguntasObjetivas = 'Test Conocimiento'; // Ruta al archivo JSON
+        this.preguntasObjetivas ='Test Conocimiento'; // Ruta al archivo JSON
         break;
       case 'MODERADO': 
         this.preguntasObjetivas ='Test Conocimiento Moderado'; 
         break;
       case 'AGRESIVO':
-        this.preguntasObjetivas = 'Test Conocimiento Arriesgado';
+        this.preguntasObjetivas ='Test Conocimiento Arriesgado';
         break;
       default:
         console.log("Tipo de perfil no existente");

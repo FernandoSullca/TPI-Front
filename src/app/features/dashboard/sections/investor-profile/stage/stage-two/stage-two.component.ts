@@ -77,7 +77,7 @@ export class StageTwoComponent implements OnInit{
     this.preguntaObjetivasServiceAPI_.obtenerTestObjetivo(this.valorRecibido)
       .then((testSubjetivo) => {
         this.resPreguntas = testSubjetivo;
-        if (this.resPreguntas) {
+        if (this.resPreguntas  == null ||this.resPreguntas .length==0) {
           this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
             subscribe((data: PreguntaApi[]) => {
               this.resPreguntas = data;
