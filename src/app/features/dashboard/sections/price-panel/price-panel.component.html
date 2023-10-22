@@ -74,10 +74,10 @@
           <label for="simbolos" class="form-label">
             Especie
           </label>
-          <div style="align-items: flex-start;">
+          <div>
             <input type="text" class="form-control" [(ngModel)]="simbolo" (input)="onInputChange()">
-              <ul style="padding-left: 0.7rem;" *ngIf="filteredTitulos.length > 0">
-                <div *ngFor="let simbolo of filteredTitulos" (click)="selectSymbol(simbolo)">{{simbolo}}</div>
+              <ul class="desplegableSimbolos" *ngIf="filteredTitulos.length > 0">
+                <div class="simboloBuscador" *ngFor="let simbolo of filteredTitulos" (click)="selectSymbol(simbolo)">{{simbolo}}</div>
               </ul>
           </div>
         </div>

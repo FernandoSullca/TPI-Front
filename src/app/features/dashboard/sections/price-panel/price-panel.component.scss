@@ -60,6 +60,50 @@
     height: 3rem;
     margin: 2rem;
 }
-/* .container-loading{
-    height: 100%;
-} */
+
+.autocomplete {
+    position: relative;
+  }
+  
+  .autocomplete .suggestions {
+    /* ... (otros estilos) */
+    cursor: pointer;
+  }
+  
+  .autocomplete .suggestions li {
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s; /* Agregamos una transición para el cambio de color de fondo */
+  }
+  
+  .autocomplete .suggestions li:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Agregamos un estilo para resaltar la opción seleccionada */
+  .autocomplete .suggestions li.selected {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .desplegableSimbolos{
+    padding-left: 0.2rem;
+    border: 0.1px solid;
+    margin-top: 2px;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .simboloBuscador{
+    color: #3261A8;
+    font-weight: bold;
+    margin-left: -5px;
+    padding-left: 0.5rem;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .simboloBuscador:hover{
+    background-color: #3261A8; 
+     color: #fff;
+  }
+  
+  
