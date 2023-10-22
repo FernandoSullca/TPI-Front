@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
 import { Cartera } from 'src/app/core/models/cartera/cartera';
 import { DolarBolsa } from 'src/app/core/models/dolar-bolsa/dolar-bolsa';
-import { DatePipe } from '@angular/common';
-// import { GraficoComponent } from '../grafico/grafico.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from 'src/app/common/modal/modal.component';
 
 
 @Component({
@@ -14,7 +14,8 @@ import { DatePipe } from '@angular/common';
 })
 export class CarteraComponent implements OnInit {
 
-  constructor(private datePipe: DatePipe,private carteraService: CarteraService, private router: Router) { }
+  constructor(private carteraService: CarteraService, private router: Router,private modalService : NgbModal) { }
+  
   totalValorizadoNulo: number = 20000;
   cartera: Cartera | undefined;
   valorActualDolarMEP: DolarBolsa | undefined;
