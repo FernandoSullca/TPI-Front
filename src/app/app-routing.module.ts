@@ -16,12 +16,14 @@ import { InvestorProfileComponent } from './features/dashboard/sections/investor
 import { StageTwoComponent } from './features/dashboard/sections/investor-profile/stage/stage-two/stage-two.component';
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
+import { RegistroComponent } from './features/registro/registro.component';
 
 
 const routes: Routes = [
   // Rutas de las páginas
   { path: '', component: LandingComponent }, // Redirección por defecto
   { path: 'login', component: LoginComponent },
+  { path: "registro", component:  RegistroComponent},
   { path: "perfil", component:  PerfilSubjetivoComponent},
   { path: "perfil-inversor", component:  StageOneComponent},
   { path: 'perfil-inversor-resultado', component:  StageResultComponent},

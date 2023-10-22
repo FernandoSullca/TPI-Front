@@ -23,6 +23,7 @@ import { StageTwoComponent } from './features/dashboard/sections/investor-profil
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { RegistroComponent } from './features/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     StageResultComponent,
     InvestorProfileComponent,
     AdministrarComponent,
-    AdministrarPreguntasComponent
+    AdministrarPreguntasComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

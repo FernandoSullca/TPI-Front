@@ -18,6 +18,7 @@ import { CarteraService } from 'src/app/core/services/api/cartera/cartera.servic
 export class StageTwoComponent implements OnInit{
 
   // @Input() tematica: string | undefined;// Texto entrada para filtrar las preguntas-respuestas por tematica
+  Username:string="";
 
   buttonText: string = 'Siguiente Pregunta'; // Texto del botón por defecto
 
@@ -76,7 +77,7 @@ export class StageTwoComponent implements OnInit{
     this.preguntaObjetivasServiceAPI_.obtenerTestObjetivo(this.valorRecibido)
       .then((testSubjetivo) => {
         this.resPreguntas = testSubjetivo;
-        if (this.resPreguntas) {
+        if (this.resPreguntas  == null ||this.resPreguntas .length==0) {
           this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
             subscribe((data: PreguntaApi[]) => {
               this.resPreguntas = data;
@@ -98,6 +99,7 @@ export class StageTwoComponent implements OnInit{
         }
       )
       .finally(() => {
+        this.Username=this.localStorageService.getItem("Username");
         this.loading = false;
       }
       );
@@ -129,13 +131,17 @@ export class StageTwoComponent implements OnInit{
           this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
           this.acreditarDinero();
-          debugger;
-          this.armardescripcion();
           console.log('Entrega de resultados completada.');
-        });
+        }).finally(() => {
+          this.armardescripcion();
+        }
+        );;
+
         ////////////////////////
-        console.log('Has respondido todas las preguntas.');  
-        const usuario = 'Lito';
+        console.log('Has respondido todas las preguntas.');
+          
+        // const usuario = 'Lito';
+        const usuario = this.Username;
         this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(usuario);
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
         this.buttonText = 'Obtener portfolio sugerido';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
@@ -157,7 +163,8 @@ export class StageTwoComponent implements OnInit{
 
     try {
       console.log("Enviando Resultados...");
-      const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo)).toPromise();
+      const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
+
 
       if (data && data.perfilInversor) {
         this.respuestasPerfil = data;
@@ -190,7 +197,7 @@ export class StageTwoComponent implements OnInit{
         this.descripcionperfil = this.dataPerfil[2].descripcion;
         break;
       default:
- 
+        this.ResultadoPerfilObjetivo="Conservador"
         this.urlperfilimage = this.dataPerfil[0].url;
         this.descripcionperfil = this.dataPerfil[0].descripcion;
         break;
@@ -211,12 +218,14 @@ export class StageTwoComponent implements OnInit{
   }
 
   async solicitarcertificado() {
-    const usuario = 'Lito';
+    const usuario = this.Username;
+    // const usuario = 'Lito';
     this.preguntaObjetivasServiceAPI_.verinforme(usuario);
   }
 
   async descargarCertificado() {
-    const usuario = 'Lito'; 
+    const usuario = this.Username;
+    // const usuario = 'Lito'; 
     const respuestaAxios = await this.preguntaObjetivasServiceAPI_.obtenerinforme(usuario);
 
 

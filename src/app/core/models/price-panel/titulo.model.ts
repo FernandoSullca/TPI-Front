@@ -26,6 +26,8 @@ export class Titulo {
         public plazo?: string,
         public laminaMinima?: number,
         public lote?: number,
+        public flashCompra?: number,
+        public flashVenta?: number
     ) {}
 
     // Método para serializar el objeto JSON recibido desde la API
@@ -51,7 +53,9 @@ export class Titulo {
             json.descripcion,
             json.plazo,
             json.laminaMinima,
-            json.lote
+            json.lote,
+            json.flashCompra || 0,
+            json.flashVenta || 0
         );
     }
 }

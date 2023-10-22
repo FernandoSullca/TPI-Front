@@ -1,5 +1,5 @@
 .main-container {
-  background-color:rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -44,6 +44,7 @@
   align-content: flex-end;
   align-items: center;
 }
+
 /******************************************************************/
 .container-perfil {
   min-width: 95%;
@@ -54,7 +55,7 @@
 }
 
 .container-perfil-Quest-descr-opt {
-  min-height:auto;
+  min-height: auto;
   row-gap: 2em;
   display: flex;
   flex-direction: column;
@@ -69,8 +70,11 @@
   /* padding-bottom: 3rem; */
   font-weight: 700;
   font-size: 1.2rem;
+
   // margin-bottom: 2em;
-  p{  margin-bottom: 0;}
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .container-perfil-Descripcion {
@@ -86,6 +90,7 @@
   // font-size: 1.2rem;
   padding: 2em;
   min-height: auto;
+
   img {
     align-items: center;
   }
@@ -101,7 +106,7 @@
 
 
 
-.alineacion-radios{
+.alineacion-radios {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -110,21 +115,21 @@
     width: 90%;
     font-size: 16px;
     font-weight: 700;
-      }
-      input[type="radio"]{
-        margin-bottom: 1rem;
-      }
-}
-.alineacion-botones-opciones-radius{
-  
+  }
+
+  input[type="radio"] {
+    margin-bottom: 1rem;
+  }
 }
 
-.contenedor-sugerencias{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
-    row-gap: 1rem;
+.alineacion-botones-opciones-radius {}
+
+.contenedor-sugerencias {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  row-gap: 1rem;
 }
 
 .btn-Iniciar {
@@ -157,34 +162,62 @@
   word-wrap: break-word;
   /* Rompe palabras largas en líneas si es necesario */
 }
-.resultados-test{
-    display: flex;
-    row-gap: 2rem;
-    flex-direction: column;
-    align-items: center;
-}
-.contenedor-resultado-perfil{
+
+.resultados-test {
   display: flex;
-    justify-content: space-evenly;
+  row-gap: 2rem;
+  flex-direction: column;
+  align-items: center;
 }
-.imagen-Perfil{
-  max-height: 19rem;
+
+.contenedor-resultado-perfil {
+  display: flex;
+  justify-content: space-evenly;
+
+  .imagen-Perfil {
+    max-height: 19rem;
+  }
+
+  p {
+    font-size: larger;
+  }
 }
+
+
 ///*********/////
 /* Put this code in your CSS file */
-
-/* The div container */
-.qrcodeImage {
+.AreaQR {
   display: flex;
-  flex: 1;
+  // flex-direction: row;
+  flex-direction: column;
+
+  /* The div container */
+  .qrcodeImage {
+    display: flex;
+    flex: 1;
+    height: 10rem;
+  }
+
+  /* Add custom styles here */
+  .qrStyle {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    height: 8rem;
+    width: 200px;
+  }
+
+  .AreaQRLINKS {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
 }
 
-/* Add custom styles here */
-.center {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-}
+
+
 /// 
 @media (min-width: 992px) {}
 
@@ -198,66 +231,78 @@
     width: auto;
   }
 
-  
-.container-perfil-Questions {
-  border: 1px solid #3261A8;
-  text-align: center;
-  padding: 1rem !important;
-  p{
-  font-weight: 700;
-  font-size: 1rem;
-}
 
+  .container-perfil-Questions {
+    border: 1px solid #3261A8;
+    text-align: center;
+    padding: 1rem !important;
 
-}
+    p {
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
 
-.container-perfil-Descripcion {
-  display: flex;
+  }
 
-  flex-shrink: 0;
-  border-radius: 30px;
-  border: 0px solid #3261A8;
-  font-weight: 600;
-  padding: 0.75rem;
+  .container-perfil-Descripcion {
+    display: flex;
 
-  img {
+    flex-shrink: 0;
+    border-radius: 30px;
+    border: 0px solid #3261A8;
+    font-weight: 600;
+    padding: 0.75rem;
+
+    img {
+      align-items: center;
+    }
+
+  }
+
+  .contenedor-opciones {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+
+  .alineacion-radios {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    label {
+      width: 100%;
+      font-size: .75rem;
+      font-weight: 700;
+    }
+
+    input[type="radio"] {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .resultados-test {
+    display: flex;
+    row-gap: 2rem;
+    flex-direction: column;
     align-items: center;
   }
 
-}
+  .contenedor-resultado-perfil {
+    display: flex;
+    justify-content: space-evenly;
 
-.contenedor-opciones{
-  display: flex;
-  flex-direction: column;
-  row-gap: 2rem;
-}
+    .imagen-Perfil {
+      max-height: 10rem;
+      /* flex: 2 0 auto; */
+      width: 50%;
+    }
 
-.alineacion-radios{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+    p {
+      width: 85%;
+      font-size: medium;
+    }
+  }
 
-  label {
-    width: 100%;
-    font-size: .9rem;
-    font-weight: 700;
-      }
-      input[type="radio"]{
-        margin-bottom: 1rem;
-      }
-}
 
-.resultados-test{
-  display: flex;
-  row-gap: 2rem;
-  flex-direction: column;
-  align-items: center;
-}
-.contenedor-resultado-perfil{
-display: flex;
-  justify-content: space-evenly;
-}
-.imagen-Perfil{
-max-height: 10rem;
-}
 }
