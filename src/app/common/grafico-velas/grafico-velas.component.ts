@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { createChart } from 'lightweight-charts';
+import { SolapaDetalleInstrumento } from 'src/app/core/models/detalle-instrumento/detalle-instrumento';
 
 @Component({
   selector: 'app-grafico-velas',
@@ -7,14 +8,14 @@ import { createChart } from 'lightweight-charts';
   styleUrls: ['./grafico-velas.component.scss']
 })
 export class GraficoVelasComponent {
-  @Input() detalleInstrumentos: any[] = [];
+  @Input() solapaDetalleInstrumento!:SolapaDetalleInstrumento;
   chart: any;
   candlestickSeries: any;
 
   ngOnInit() {
     this.chart = createChart('tv_test', {
       width: 1200,
-      height: 600,
+      height: 450,
       timeScale: {
         visible: true,
         timeVisible: true,
@@ -23,12 +24,11 @@ export class GraficoVelasComponent {
     });
 
     this.candlestickSeries = this.chart.addCandlestickSeries();
-
-    this.detalleInstrumentos.sort((a, b) => {
+    this.solapaDetalleInstrumento.datosGraficoVelas.sort((a, b) => {
       return new Date(a.tiempo).getTime() - new Date(b.tiempo).getTime();
     });
 
-    this.candlestickSeries.setData(this.detalleInstrumentos.map((detalle) => ({
+    this.candlestickSeries.setData(this.solapaDetalleInstrumento.datosGraficoVelas.map((detalle) => ({
       time: new Date(detalle.tiempo).getTime() / 1000,
       open: parseFloat(detalle.precioDeApertura),
       high: parseFloat(detalle.maximo),

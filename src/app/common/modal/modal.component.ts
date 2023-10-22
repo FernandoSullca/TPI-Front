@@ -12,14 +12,13 @@ export class ModalComponent implements OnInit {
 
   instrumento:string='';
   detalleInstrumento!:DetalleInstrumento;
-  solapaDetalleInstrumento: SolapaDetalleInstrumento |undefined;
-  datosGraficoVelas : DatosGraficoVelas[]=[];
+  solapaDetalleInstrumento!: SolapaDetalleInstrumento;
+  datosGraficoVelas! : DatosGraficoVelas[];
 
   constructor(public activeModal: NgbActiveModal,private detalleInstrumentoService : DetalleInstrumentoService) {}
 
   ngOnInit(): void {
     this.seleccionarInstrumento();
-    
   }
   cerrarModal() {
     this.activeModal.close();
@@ -29,10 +28,10 @@ export class ModalComponent implements OnInit {
       const simbolo=this.detalleInstrumento.simbolo;
       this.detalleInstrumentoService.getDetalleInstrumento(simbolo).subscribe((response) => {
         this.datosGraficoVelas=response;
-        if (this.solapaDetalleInstrumento) {
-          this.solapaDetalleInstrumento.detalleGraficoVelas = this.datosGraficoVelas;
-          this.solapaDetalleInstrumento.detalleInstrumento = this.detalleInstrumento;
-        }
+        this.solapaDetalleInstrumento = {
+          detalleInstrumento: this.detalleInstrumento,
+          datosGraficoVelas: this.datosGraficoVelas,
+        };
     });
     }
   }

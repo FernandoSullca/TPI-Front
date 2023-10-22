@@ -1,10 +1,10 @@
 export interface SolapaDetalleInstrumento{
-    detalleGraficoVelas : DatosGraficoVelas[]
+    datosGraficoVelas : DatosGraficoVelas[]
     detalleInstrumento : DetalleInstrumento
 }
 export interface DatosGraficoVelas{
-    simbolo:string,
-    precionDeApertura:string,
+    tiempo:string,
+    precioDeApertura:string,
     maximo:string,
     minimo:string,
     precioDeCierre:string,

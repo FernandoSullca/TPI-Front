@@ -3,11 +3,62 @@
     <h4 class="modal-title"></h4>
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">{{instrumento}}</h4>
+        <h4 class="modal-title">{{detalleInstrumento.descripcion}}</h4>
         <button type="button" class="close" data-dismiss="modal" (click)="cerrarModal()">&times;</button>
       </div>
       <div class="modal-body">
-        <app-grafico-velas ></app-grafico-velas>
+        <div class="d-flex flex-row flex-wrap">
+          <div class="p-2 small-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title small-text">Último Precio</h6>
+                <p class="card-text small-text">{{detalleInstrumento.ultimoPrecio}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 small-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title small-text">Variación Porcentual</h6>
+                <p class="card-text small-text">{{detalleInstrumento.variacionPorcentual}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 small-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title small-text">Puntas de Compra</h6>
+                <p class="card-text small-text">{{detalleInstrumento.puntas.cantidadCompra}} x {{detalleInstrumento.puntas.precioCompra}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 small-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title small-text">Puntas de Venta</h6>
+                <p class="card-text small-text">{{detalleInstrumento.puntas.cantidadVenta}} x {{detalleInstrumento.puntas.precioVenta}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 small-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title small-text">Cantidad de Operaciones</h6>
+                <p class="card-text small-text">{{detalleInstrumento.cantidadOperaciones}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 small-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title small-text">Rango de Precios</h6>
+                <p class="card-text small-text">{{detalleInstrumento.maximo}} - {{detalleInstrumento.minimo}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <app-grafico-velas class="grafico-velas" *ngIf="datosGraficoVelas && datosGraficoVelas.length >0; else loading" [solapaDetalleInstrumento]="solapaDetalleInstrumento"></app-grafico-velas>
         <ng-template #loading>
           <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
             <div class="spinner-border loading-spiner" role="status">
