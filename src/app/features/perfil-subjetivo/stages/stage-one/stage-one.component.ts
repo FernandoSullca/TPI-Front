@@ -31,7 +31,7 @@ export class StageOneComponent implements OnInit {
     tipoComponente: "",
     respuestas: []
   };
-
+  Username:String="";
   loading: boolean = false;
   ///////Control de paginacion. preguntas Siguiente:
   buttonText: string = 'SIGUIENTE PREGUNTA';
@@ -73,7 +73,7 @@ export class StageOneComponent implements OnInit {
       .then((testSubjetivo) => {
         this.resCuestionarioAPI = testSubjetivo;
         //Si vino Vacio y quiero buscar en mi local
-        if (this.resCuestionarioAPI == null) {
+        if (this.resCuestionarioAPI == null ||this.resCuestionarioAPI.length==0) {
           this.loadQuestionsFromLocal()
         }
         else {
@@ -87,6 +87,7 @@ export class StageOneComponent implements OnInit {
         })
       .finally(() => {
         this.loading = false;
+        this.Username=this.localStorageService.getItem("Username");
       })
   }
 
@@ -208,13 +209,12 @@ export class StageOneComponent implements OnInit {
 
     try {
       console.log("Enviando Resultados...");
-      const data = await from(this.profileServiceAPI_.TestSubjetivoResultados(this.AnalisisSubjetivo)).toPromise();
+      const data = await from(this.profileServiceAPI_.TestSubjetivoResultados(this.AnalisisSubjetivo,this.Username)).toPromise();
 
       if (data && data.perfilInversor) {
         // this.respuestasPerfil = data;
         console.log("Resultados enviados correctamente");
         // return this.respuestasPerfil;
-        data
         return data;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
