@@ -39,12 +39,15 @@ export class QuestionsTargetService {
      return data;
 }
 
-  public async TestObjetivoResultados(Analisisobjetivo: Record<string, number>):Promise<any> {
+  public async TestObjetivoResultados(Analisisobjetivo: Record<string, number>,username:String):Promise<any> {
     
     const body = {
       "horizonteTemporal": Analisisobjetivo["horizonteTemporal"],
       "toleranciaRiesgo": Analisisobjetivo["toleranciaRiesgo"],
-      "nivelConocimiento": Analisisobjetivo["Conocimento"]
+      "nivelConocimiento": Analisisobjetivo["Conocimento"],
+      "usuarioDTO": {
+        "nombreUsuario": username
+      },
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-inversor`, body);
     const { data } = resp;

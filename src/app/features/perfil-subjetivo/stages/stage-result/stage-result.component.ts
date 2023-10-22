@@ -35,7 +35,6 @@ urlperfilimage:string="";
     if (storedProfile) {
       this.valorRecibido = storedProfile;
 
-  
     }
 
   }
