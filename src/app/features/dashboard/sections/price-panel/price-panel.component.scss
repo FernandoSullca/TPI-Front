@@ -132,6 +132,10 @@
     animation: flash-neutro-rojo 2.5s ease forwards
 }
 
+.alinearDerecha{
+   text-align: right;
+}
+
 @media (max-width: 420px) {
     .mobile-col {
         padding: 0;
