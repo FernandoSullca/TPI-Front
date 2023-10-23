@@ -20,7 +20,7 @@ export class StageTwoComponent implements OnInit{
   // @Input() tematica: string | undefined;// Texto entrada para filtrar las preguntas-respuestas por tematica
   Username:string="";
 
-  buttonText: string = 'Siguiente Pregunta'; // Texto del botón por defecto
+  buttonText: string = 'Continuar'; // Texto del botón por defecto
 
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;
@@ -142,7 +142,10 @@ export class StageTwoComponent implements OnInit{
           
         // const usuario = 'Lito';
         const usuario = this.Username;
-        this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(usuario);
+        // this.dataurlcertificado= this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(usuario,this.ResultadoPerfilObjetivo);
+  
+        this.dataurlcertificado= this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario,this.ResultadoPerfilObjetivo);
+        
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
         this.buttonText = 'Obtener portfolio sugerido';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
 
@@ -225,7 +228,9 @@ export class StageTwoComponent implements OnInit{
 
   async descargarCertificado() {
     const usuario = this.Username;
-    // const usuario = 'Lito'; 
+  
+  
+    try {  // const usuario = 'Lito'; 
     const respuestaAxios = await this.preguntaObjetivasServiceAPI_.obtenerinforme(usuario);
 
 
@@ -240,6 +245,26 @@ export class StageTwoComponent implements OnInit{
       a.click();
       window.URL.revokeObjectURL(url);
     }
+  } catch (error) {
+    // Si la solicitud al servidor remoto falla, intenta obtener el certificado local
+    try {
+      const respuestaLocal = await this.preguntaObjetivasServiceAPI_.obtenercertificadoLocal(this.ResultadoPerfilObjetivo);
+
+      if (respuestaLocal) {
+        const archivoBlob: Blob = respuestaLocal;
+        const url = window.URL.createObjectURL(archivoBlob);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'Certificado Mercado Junior.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }
+    } catch (error) {
+      console.error('Error al obtener el certificado: ', error);
+    }
+  }
 
   }
 
