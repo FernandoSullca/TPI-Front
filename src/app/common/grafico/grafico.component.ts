@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 
 @Component({
@@ -7,8 +7,9 @@ import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
   styleUrls: ['./grafico.component.scss']
 })
 export class GraficoComponent{
-  
+  @Input() tipoGrafico : ChartType | undefined;
   @Input() cantidadPorInstrumento: any; 
+
   colores = [
     '#669900',
     '#CC3399',
@@ -59,10 +60,6 @@ export class GraficoComponent{
       },
     ],
   };
-  
- 
-
-  public pieChartType: ChartType = 'pie';
   
   ngOnChanges(changes: SimpleChanges) {
     if (changes['cantidadPorInstrumento'] && this.cantidadPorInstrumento) {

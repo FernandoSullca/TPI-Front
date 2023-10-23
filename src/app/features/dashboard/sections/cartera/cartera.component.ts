@@ -5,6 +5,7 @@ import { Cartera } from 'src/app/core/models/cartera/cartera';
 import { DolarBolsa } from 'src/app/core/models/dolar-bolsa/dolar-bolsa';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'src/app/common/modal/modal.component';
+import { ChartType } from 'chart.js';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { ModalComponent } from 'src/app/common/modal/modal.component';
 export class CarteraComponent implements OnInit {
 
   constructor(private carteraService: CarteraService, private router: Router,private modalService : NgbModal) { }
-  
+  tipoGrafico:ChartType='pie';
   totalValorizadoNulo: number = 20000;
   cartera: Cartera | undefined;
   valorActualDolarMEP: DolarBolsa | undefined;

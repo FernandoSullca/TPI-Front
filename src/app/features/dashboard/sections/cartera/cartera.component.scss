@@ -86,32 +86,6 @@
         margin-bottom: 1rem;
       }
     }
-    .card-dolar{
-        display: flex;
-        text-align: center;
-        height: 40%;
-        width: 50%;
-        flex-wrap: wrap;
-        align-content: center;
-        .compra,.venta{
-            width: 50%;
-        }
-        .boton {
-            background-color: $primary-color !important;
-            color: $color-white;
-            border-radius: 1.5rem;
-            font-weight: bold;
-            width: fit-content;
-        }
-        .custom-button:disabled {
-            opacity: 1; 
-            border: #3261A8;
-        }
-        .fecha{
-            width: 100%;
-            font-size: smaller;
-        }
-    }
 }
 @media (max-width: 992px) {
     .container-fluid{

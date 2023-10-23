@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="cartera-grafico-section">
-        <app-grafico [cantidadPorInstrumento]="cartera.cantidadPorInstrumento"></app-grafico>
+        <app-grafico [cantidadPorInstrumento]="cartera.cantidadPorInstrumento" [tipoGrafico]="tipoGrafico"></app-grafico>
     </div> 
        <div class="card perfil">
             <b>
@@ -43,23 +43,5 @@
             </b>
             <button type="button" class="boton btn btn-sm mx-auto" (click)="direccionar('perfil-inversor-cuestionario')">OBTENÉ TU PERFIL</button>
         </div>
-        <div class="card-dolar">
-            <div class="compra">
-                <b>
-                    <h3>Dolar MEP</h3>
-                </b>
-                <h2 *ngIf="cartera; else elseBlock">$ {{valorActualDolarMEP?.compra}}</h2>
-                <ng-template #elseBlock><h2>$ {{valorActualDolarMEP?.compra}}</h2></ng-template>
-                <button type="button" class="boton btn btn-sm mx-auto custom-button">COMPRA</button>
-            </div>
-            <div class="venta">
-                <b>
-                    <h3>Dolar MEP</h3>
-                </b>
-                <h2 *ngIf="cartera; else elseBlock">$ {{valorActualDolarMEP?.venta}}</h2>
-                <ng-template #elseBlock><h2>$ {{valorActualDolarMEP?.venta}}</h2></ng-template>
-                <button type="button" class="boton btn btn-sm mx-auto custom-button">VENTA</button>
-            </div>
-            <div class="fecha">{{fechaCompletaDolarMEP}}</div>
-        </div>    
+    
 </div>
