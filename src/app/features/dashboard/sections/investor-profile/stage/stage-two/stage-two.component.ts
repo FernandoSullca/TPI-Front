@@ -20,7 +20,7 @@ export class StageTwoComponent implements OnInit{
   // @Input() tematica: string | undefined;// Texto entrada para filtrar las preguntas-respuestas por tematica
   Username:string="";
 
-  buttonText: string = 'Siguiente Pregunta'; // Texto del botón por defecto
+  buttonText: string = 'Continuar'; // Texto del botón por defecto
 
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;

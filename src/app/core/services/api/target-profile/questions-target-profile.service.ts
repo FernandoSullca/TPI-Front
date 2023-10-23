@@ -76,17 +76,17 @@ export class QuestionsTargetService {
 
     switch (prefil) {
       case 'CONSERVADOR':
-        this.urlcertificado = 'assets/mock/perfil_inversor_conservador.pdf'; // Ruta al archivo JSON
+        this.urlcertificado = 'assets/perfiles/perfil_inversor_conservador.pdf'; // Ruta al archivo JSON
         break;
       case 'MODERADO':
-        this.urlcertificado = 'assets/mock/perfil_inversor_moderado.pdf';
+        this.urlcertificado = 'assets/perfiles/perfil_inversor_moderado.pdf';
         break;
       case 'AGRESIVO':
-        this.urlcertificado = 'assets/mock/perfil_inversor_agresivo.pdf';
+        this.urlcertificado = 'assets/perfiles/perfil_inversor_agresivo.pdf';
         break;
       default:
         console.log("Tipo de perfil no existente");
-        this.urlcertificado = 'assets/mock/perfil_inversor_conservador.pdf';
+        this.urlcertificado = 'assets/perfiles/perfil_inversor_conservador.pdf';
         break;
     }
 
@@ -113,17 +113,17 @@ export class QuestionsTargetService {
 
     switch (perfil) {
       case 'CONSERVADOR':
-        return 'assets/mock/perfil_inversor_conservador.pdf'; // Ruta al archivo JSON
+        return 'assets/perfiles/perfil_inversor_conservador.pdf'; // Ruta al archivo JSON
         break;
       case 'MODERADO':
-        return 'assets/mock/perfil_inversor_moderado.pdf';
+        return 'assets/perfiles/perfil_inversor_moderado.pdf';
         break;
       case 'AGRESIVO':
-        return'assets/mock/perfil_inversor_agresivo.pdf';
+        return'assets/perfiles/perfil_inversor_agresivo.pdf';
         break;
       default:
         console.log("Tipo de perfil no existente");
-        return 'assets/mock/perfil_inversor_conservador.pdf';
+        return 'assets/perfiles/perfil_inversor_conservador.pdf';
         break;
     }
   }

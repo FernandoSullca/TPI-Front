@@ -34,7 +34,7 @@ export class StageOneComponent implements OnInit {
   Username:String="";
   loading: boolean = false;
   ///////Control de paginacion. preguntas Siguiente:
-  buttonText: string = 'SIGUIENTE PREGUNTA';
+  buttonText: string = 'CONTINUAR';
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;
 
