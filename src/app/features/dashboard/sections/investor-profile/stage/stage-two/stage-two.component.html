@@ -56,13 +56,13 @@
         <!-- Area Resultados de Perfilamiento Onjetivos -->
         <div *ngIf="isLastQuestion " class="resultados-test" style="text-align: center;">
             <h3> Perfil final asociado: {{ResultadoPerfilObjetivo}}</h3>
-            <div class="row contenedor-resultado-perfil">
+            <div class="row contenedor-resultado-perfil" style="text-align: left;">
                 <img class="img-fluid imagen-Perfil col-3" src="{{urlperfilimage}}" alt="">
                 <p class="col-8">{{descripcionperfil}}
                 </p>
             </div>
             <div class="AreaQR">
-                <div class="qrcodeImage">
+                <div style="display: inline-block;" class="qrcodeImage">
                     <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="dataurlcertificado" [allowEmptyString]="true"
                         [cssClass]="'qrStyle'" [colorDark]="'#000000ff'" [colorLight]="'#ffffffff'"
                         [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageSrc]="'./assets/image/logo.ico'"
@@ -70,8 +70,10 @@
                         [width]="150"
                         [title]="'Certificado Mercado Junior'"> </qrcode>
                 </div>
-                <div class="AreaQRLINKS">
-                <!-- <a [href]="qrCodeDownloadLink" download="Certificado Mercado Junior">Download QR</a> -->
+                
+                <!-- 
+                    <div class="AreaQRLINKS">
+                    <a [href]="qrCodeDownloadLink" download="Certificado Mercado Junior">Download QR</a> -->
                 
                 <!-- <a href="javascript:void(0);" (click)="solicitarcertificado()" *ngIf="!issugerencia">
                     Obtenga su certificado </a> 
@@ -79,13 +81,16 @@
                 <a href="javascript:void(0);" (click)="descargarCertificado()" *ngIf="!issugerencia">
                     Descargar Certificado </a>
                 </div> -->
+                <div>
+                    <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" (click)="loadSugerencias()"
+                        *ngIf="!issugerencia ">{{ buttonText }}</button>
+                    <p style="margin-top: 15px;" *ngIf="isLastQuestion">¡Has respondido todas las preguntas! Ya podes ver tu credito de premio en tu
+                        cartera</p>
+                </div>
           
             </div>
 
-            <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" (click)="loadSugerencias()"
-                *ngIf="!issugerencia ">{{ buttonText }}</button>
-            <p *ngIf="isLastQuestion">¡Has respondido todas las preguntas! Ya podes ver tu credito de premio en tu
-                cartera</p>
+           
         </div>
 
         <!-- Area  Sugerencia de Resultados de Perfilamiento Onjetivos -->
