@@ -21,30 +21,42 @@
       </div>
       <div class="row filas" *ngIf="titulos.length > 1; else loading">
         <div *ngFor="let titulo of titulos; index as i;">
-          <div class="fila-instrumento"(click)="openModal(''+titulo.simbolo+'')" data-toggle="modal" [attr.data-target]="'#myModal'">
+          <div class="fila-instrumento" (click)="openModal(''+titulo.simbolo+'')" data-toggle="modal"
+            [attr.data-target]="'#myModal'">
             <div class="row" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
+              
               <div class="col overflow-hidden text-start mobile-col">
                 <strong>
                   {{titulo.simbolo}}
                 </strong>
               </div>
-              <div class="col overflow-hidden d-none d-xl-block">{{titulo.ultimoPrecio || '-'}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.ultimoPrecio | currency: 'USD': 'symbol':'1.2-2'   || '-'}}</div>
               <div class="col overflow-hidden d-none d-xl-block">
-                <i *ngIf="titulo && titulo.variacionPorcentual && titulo.variacionPorcentual > 0"
-                  class="fa-solid fa-caret-up text-success"></i>
-                <i *ngIf="titulo && titulo.variacionPorcentual && titulo.variacionPorcentual < 0"
-                  class="fa-solid fa-caret-down text-danger"></i>
-                {{titulo.variacionPorcentual || '-'}} %
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div style="display: inline-block;">
+                    <i *ngIf="titulo && titulo.variacionPorcentual && titulo.variacionPorcentual > 0"
+                      class="fa-solid fa-caret-up text-success"></i>
+                    <i *ngIf="titulo && titulo.variacionPorcentual && titulo.variacionPorcentual < 0"
+                      class="fa-solid fa-caret-down text-danger"></i>
+                  </div>
+                  <div style="display: inline-block;">
+                    <div> {{titulo.variacionPorcentual || '-'}} %</div>
+                  </div>
+                </div>
               </div>
-              <div class="col overflow-hidden mobile-col columna-verde">{{titulo.puntas?.cantidadCompra || '-'}}</div>
-              <div class="col overflow-hidden mobile-col columna-verde" [ngClass]="titulo.flashCompra !== 0 ? 'flash-neutro-verde': ''" >{{titulo.puntas?.precioCompra || '-'}}</div>
-              <div class="col overflow-hidden mobile-col columna-rojo" [ngClass]="titulo.flashVenta !== 0 ? 'flash-neutro-rojo': ''">{{titulo.puntas?.precioVenta || '-'}}</div>
-              <div class="col overflow-hidden mobile-col columna-rojo">{{titulo.puntas?.cantidadVenta || '-'}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{titulo.apertura || '-'}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{titulo.minimo || '-'}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{titulo.maximo || '-'}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{titulo.ultimoCierre || '-'}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{titulo.ultimoPrecio || '-'}}</div>
+              <div class="col overflow-hidden mobile-col columna-verde alinearDerecha">{{titulo.puntas?.cantidadCompra || '-'}}</div>
+              <div class="col overflow-hidden mobile-col columna-verde alinearDerecha"
+                [ngClass]="titulo.flashCompra !== 0 ? 'flash-neutro-verde': ''">{{titulo.puntas?.precioCompra | currency: 'USD': 'symbol':'1.2-2' || '-'}}
+              </div>
+              <div class="col overflow-hidden mobile-col columna-rojo alinearDerecha"
+                [ngClass]="titulo.flashVenta !== 0 ? 'flash-neutro-rojo': ''">{{titulo.puntas?.precioVenta | currency: 'USD': 'symbol':'1.2-2' || '-'}}
+              </div>
+              <div class="col overflow-hidden mobile-col columna-rojo alinearDerecha">{{titulo.puntas?.cantidadVenta || '-'}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.apertura | currency: 'USD': 'symbol':'1.2-2' || '-'}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.minimo | currency: 'USD': 'symbol':'1.2-2' || '-'}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.maximo | currency: 'USD': 'symbol':'1.2-2' || '-'}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.ultimoCierre | currency: 'USD': 'symbol':'1.2-2' || '-'}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.ultimoPrecio | currency: 'USD': 'symbol':'1.2-2' || '-'}}</div>
             </div>
           </div>
         </div>
@@ -76,9 +88,10 @@
           </label>
           <div>
             <input type="text" class="form-control" [(ngModel)]="simbolo" (input)="onInputChange()">
-              <ul class="desplegableSimbolos" *ngIf="filteredTitulos.length > 0">
-                <div class="simboloBuscador" *ngFor="let simbolo of filteredTitulos" (click)="selectSymbol(simbolo)">{{simbolo}}</div>
-              </ul>
+            <ul class="desplegableSimbolos" *ngIf="filteredTitulos.length > 0">
+              <div class="simboloBuscador" *ngFor="let simbolo of filteredTitulos" (click)="selectSymbol(simbolo)">
+                {{simbolo}}</div>
+            </ul>
           </div>
         </div>
 
@@ -93,8 +106,10 @@
 
       <div class="row mb-3">
         <div class="col d-flex justify-content-around">
-          <button type="button" class="boton btn btn-lg" (click)="vender()">VENDER</button>
-          <button type="button" class="boton btn btn-lg" (click)="comprar()">COMPRAR</button>
+          <button type="button" class="boton btn btn-lg" (click)="vender()"
+            style="background-color:#DC3545">VENDER</button>
+          <button type="button" class="boton btn btn-lg" (click)="comprar()"
+            style="background-color: #198754">COMPRAR</button>
         </div>
       </div>
 

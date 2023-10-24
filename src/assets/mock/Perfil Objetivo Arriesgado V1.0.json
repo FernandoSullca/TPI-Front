@@ -63,15 +63,15 @@
     },
     "respuestas": [
       {
-        "nombre": "A- Los eventos globales no tienen impacto en la volatilidad del mercado.",
+        "nombre": "A- Los eventos económicos y políticos globales no tienen impacto en la volatilidad del mercado.",
         "valor": 0
       },
       {
-        "nombre": "B- Los eventos económicos y políticos globales pueden aumentar la volatilidad del mercado y un inversor arriesgado puede aprovechar estas oportunidades para realizar operaciones especulativas o tomar posiciones estratégicas.",
+        "nombre": "B- Los eventos económicos y políticos globales pueden aumentar la volatilidad del mercado.",
         "valor": 5
       },
       {
-        "nombre": "C- Los eventos globales solo afectan a los inversores conservadores.",
+        "nombre": "C- Los eventos económicos y políticos globales no afectan a los mercados.",
         "valor": 0
       }
     ]

@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from 'environments/environment';
 import axios from 'axios';
+import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,9 @@ export class QuestionsProfileService {
   //Verificado Captura
   public async obtenerTestSubjetivo()  {
       const resp = await axios.get(`${environment.API}/api/pregunta/listar-por-categoria?categoria=Test Inversor`);
-      console.log( resp)
+  
       const { data } = resp;
-      // const datos = Array.from(data);
-      console.log(data)
+   
       return data;
   }
 
@@ -36,5 +36,27 @@ export class QuestionsProfileService {
     const { data } = resp;
     return data;
   }
+
+  async TestSubjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI){
+   
+    const body = {
+
+        "horizonteTemporal": perfilInversorUsuario.horizonteTemporal,
+        "toleranciaRiesgo": perfilInversorUsuario.toleranciaRiesgo,
+        "usuarioDTO": {
+          "version": 0,
+          "deleted": false,
+          "nombreUsuario": perfilInversorUsuario.UsuarioDTO.nombreUsuario,
+        }
+
+    }
+
+    const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-subjetivo`,body);
+
+    const { data } = resp;
+    return data;
+
+  }
+
 
 }
