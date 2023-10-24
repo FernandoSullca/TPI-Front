@@ -3,24 +3,21 @@ import { Router } from '@angular/router';
 import { QuestionsTargetService } from 'src/app/core/services/api/target-profile/questions-target-profile.service';
 import { PreguntaApi, RespuestaAPI } from 'src/app/core/models/API/Pregunta-APi.model';
 import { PreguntaObjetivasService } from 'src/app/core/services/dataLocalServices/Preguntas-Objetivas/preguntaObjetiva.service';
-// import { QuestionsTargetService} from 'src/app/core/services/api/target-profile/questions-target-profile.service';
-import { QRCodeModule } from 'angularx-qrcode';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { from } from 'rxjs';
-import { environment } from 'environments/environment';
 import { SafeUrl } from '@angular/platform-browser';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
+import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
 @Component({
   selector: 'app-stage-two',
   templateUrl: './stage-two.component.html',
   styleUrls: ['./stage-two.component.scss']
 })
-export class StageTwoComponent implements OnInit{
+export class StageTwoComponent implements OnInit {
 
-  // @Input() tematica: string | undefined;// Texto entrada para filtrar las preguntas-respuestas por tematica
-  Username:string="";
+  Username: string = "";
 
-  buttonText: string = 'Siguiente Pregunta'; // Texto del botón por defecto
+  buttonText: string = 'Continuar'; // Texto del botón por defecto
 
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;
@@ -29,8 +26,7 @@ export class StageTwoComponent implements OnInit{
   resPreguntas: PreguntaApi[] = [];
 
   descripcionFormateada: string[] = [];
-  //////////Control y suma de respuestas; 
-  /////////Almacenamiento de las respuestas Calculada
+
   respuestasPerfil: any = [];
 
   opcionSeleccionada: number = 0;
@@ -53,15 +49,36 @@ export class StageTwoComponent implements OnInit{
   urlperfilimage: string = "";
   descripcionperfil: string = "";
 
-  dataurlcertificado=""
-  // dataurlcertificado=`${environment.API}/api/perfil-inversor/obtener-certificado?nombreUsuario=lito`
+  dataurlcertificado = ""
   public qrCodeDownloadLink: SafeUrl = "";
-  public myAngularxQrCode: string = "My QR";
 
   loading: boolean = false;
+
+  perfilInversorUsuario: PerfilInversorAPI = {
+    oid: 0,
+    version: 0,
+    horizonteTemporal: 0,
+    toleranciaRiesgo: 0,
+    tipoPerfilSubjetivo: "",
+    nivelConocimiento: 0,
+    tipoNivelConocimiento: "",
+    perfilInversor: "",
+    UsuarioDTO: {
+      oid: 0,
+      pass: "",
+      nombreUsuario: "",
+      nombre: "",
+      apellido: "",
+      email: "",
+      cuentaConfirmada: false,
+      activo: false,
+    },
+
+  }
+
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
-    private localStorageService: LocalStorageService, private carteraService : CarteraService) {
+    private localStorageService: LocalStorageService, private carteraService: CarteraService) {
   }
 
   ngOnInit(): void {
@@ -77,7 +94,7 @@ export class StageTwoComponent implements OnInit{
     this.preguntaObjetivasServiceAPI_.obtenerTestObjetivo(this.valorRecibido)
       .then((testSubjetivo) => {
         this.resPreguntas = testSubjetivo;
-        if (this.resPreguntas  == null ||this.resPreguntas .length==0) {
+        if (this.resPreguntas == null || this.resPreguntas.length == 0) {
           this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
             subscribe((data: PreguntaApi[]) => {
               this.resPreguntas = data;
@@ -90,16 +107,17 @@ export class StageTwoComponent implements OnInit{
       })
       .catch(
         (error) => {
-          console.error("Error al obtener datos del API:", error),
-            this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
-              subscribe((data: PreguntaApi[]) => {
-                this.resPreguntas = data;
-                this.loadQuestions();
-              });
+          console.error("Error al obtener datos del API:", error);
+          this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
+            subscribe((data: PreguntaApi[]) => {
+              this.resPreguntas = data;
+              this.loadQuestions();
+            });
         }
       )
       .finally(() => {
-        this.Username=this.localStorageService.getItem("Username");
+        this.Username = this.localStorageService.getItem("Username");
+        this.perfilInversorUsuario = this.localStorageService.GetPerfilActualLocal();
         this.loading = false;
       }
       );
@@ -112,7 +130,6 @@ export class StageTwoComponent implements OnInit{
 
 
   loadNextQuestion(): void {
-
     if (this.resPreguntas) {
       // Verifica si todavía hay preguntas disponibles 
       this.currentQuestionIndex++;
@@ -129,30 +146,35 @@ export class StageTwoComponent implements OnInit{
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
           this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
+
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
-          this.acreditarDinero();
-          console.log('Entrega de resultados completada.');
+          ////Objeto general
+
+          this.perfilInversorUsuario.perfilInversor = this.respuestasPerfil.perfilInversor;
+
+          // this.localStorageService.SetPerfilActualLocal();
+
         }).finally(() => {
+          this.acreditarDinero();
           this.armardescripcion();
+          this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario, this.ResultadoPerfilObjetivo);
         }
         );;
 
-        ////////////////////////
-        console.log('Has respondido todas las preguntas.');
-          
-        // const usuario = 'Lito';
         const usuario = this.Username;
-        this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(usuario);
+        // this.dataurlcertificado= this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(usuario,this.ResultadoPerfilObjetivo);
+
+
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
         this.buttonText = 'Obtener portfolio sugerido';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
 
       }
     } else {
-      console.error('Error: Fin de preguntas válidos- Ultima Vista antes de Volver al home-RoadMap.');
+      console.error('Error: Fin de preguntas válidos-');
     }
   }
 
-  public acreditarDinero(){
+  public acreditarDinero() {
     this.carteraService.acreditarDinero(5000, "premio preguntas objetivas");
   }
 
@@ -160,16 +182,14 @@ export class StageTwoComponent implements OnInit{
     if (!this.validateData()) {
       return;
     }
+    this.perfilInversorUsuario.nivelConocimiento = this.AnalisisObjetivo["Conocimento"];
 
     try {
-      console.log("Enviando Resultados...");
-      const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
-
-
-      if (data && data.perfilInversor) {
+      // const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
+      const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
+      // data && data.perfilInversor
+      if (data?.perfilInversor) {
         this.respuestasPerfil = data;
-        console.log("Resultados enviados correctamente");
-
         return this.respuestasPerfil;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
@@ -197,7 +217,7 @@ export class StageTwoComponent implements OnInit{
         this.descripcionperfil = this.dataPerfil[2].descripcion;
         break;
       default:
-        this.ResultadoPerfilObjetivo="Conservador"
+        this.ResultadoPerfilObjetivo = "CONSERVADOR"
         this.urlperfilimage = this.dataPerfil[0].url;
         this.descripcionperfil = this.dataPerfil[0].descripcion;
         break;
@@ -214,31 +234,49 @@ export class StageTwoComponent implements OnInit{
       this.AnalisisObjetivo["Conocimento"] = 0;
     }
     this.AnalisisObjetivo["Conocimento"] += this.opcionSeleccionada;
-    console.log(this.AnalisisObjetivo);
+    this.opcionSeleccionada = 0;
   }
 
   async solicitarcertificado() {
     const usuario = this.Username;
-    // const usuario = 'Lito';
+
     this.preguntaObjetivasServiceAPI_.verinforme(usuario);
   }
 
   async descargarCertificado() {
     const usuario = this.Username;
-    // const usuario = 'Lito'; 
-    const respuestaAxios = await this.preguntaObjetivasServiceAPI_.obtenerinforme(usuario);
+    try {
+      const respuestaAxios = await this.preguntaObjetivasServiceAPI_.obtenerinforme(usuario);
+      if (respuestaAxios) {
+        const archivoBlob: Blob = respuestaAxios;
+        const url = window.URL.createObjectURL(archivoBlob);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'Certificado Mercado Junior.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }
+    } catch (error) {
+      // Si la solicitud al servidor remoto falla, intenta obtener el certificado local
+      try {
+        const respuestaLocal = await this.preguntaObjetivasServiceAPI_.obtenercertificadoLocal(this.ResultadoPerfilObjetivo);
 
-
-    if (respuestaAxios) {
-      const archivoBlob: Blob = respuestaAxios;
-      const url = window.URL.createObjectURL(archivoBlob);
-      const a = document.createElement('a');
-      document.body.appendChild(a);
-      a.style.display = 'none';
-      a.href = url;
-      a.download = 'Certificado Mercado Junior.pdf'; 
-      a.click();
-      window.URL.revokeObjectURL(url);
+        if (respuestaLocal) {
+          const archivoBlob: Blob = respuestaLocal;
+          const url = window.URL.createObjectURL(archivoBlob);
+          const a = document.createElement('a');
+          document.body.appendChild(a);
+          a.style.display = 'none';
+          a.href = url;
+          a.download = 'Certificado Mercado Junior.pdf';
+          a.click();
+          window.URL.revokeObjectURL(url);
+        }
+      } catch (error) {
+        console.error('Error al obtener el certificado: ', error);
+      }
     }
 
   }
@@ -263,7 +301,6 @@ export class StageTwoComponent implements OnInit{
 
   actualizarOpcionesSeleccionadas(pregunta: string, valor: number) {
     //Se pasa por alto la validacion///////////////////////////////////////////////
-    console.log(valor);
     this.opcionSeleccionada = valor;
   }
 
