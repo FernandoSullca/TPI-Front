@@ -30,7 +30,6 @@ export class CarteraService {
       "concepto": concepto
     }
     const resp = await axios.post(`${environment.API}/cartera/acreditar/dinero`, body);
-    debugger;
   } 
   
   getPrecioDolarMEP(): Observable<DolarBolsa>{

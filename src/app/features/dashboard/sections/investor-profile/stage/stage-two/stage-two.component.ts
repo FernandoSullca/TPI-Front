@@ -130,7 +130,6 @@ export class StageTwoComponent implements OnInit {
 
 
   loadNextQuestion(): void {
-
     if (this.resPreguntas) {
       // Verifica si todavía hay preguntas disponibles 
       this.currentQuestionIndex++;
@@ -155,9 +154,8 @@ export class StageTwoComponent implements OnInit {
 
           // this.localStorageService.SetPerfilActualLocal();
 
-          this.acreditarDinero();
-
         }).finally(() => {
+          this.acreditarDinero();
           this.armardescripcion();
           this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario, this.ResultadoPerfilObjetivo);
         }
