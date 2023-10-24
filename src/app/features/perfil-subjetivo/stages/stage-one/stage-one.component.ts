@@ -5,6 +5,7 @@ import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-st
 import { PreguntaApi, RespuestaAPI } from 'src/app/core/models/API/Pregunta-APi.model';
 import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
 import { PreguntaSubjetivasService } from 'src/app/core/services/dataLocalServices/Preguntas-Subjetivas/preguntaSubjetiva.service';
+import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
 @Component({
   selector: 'app-stage-one',
   templateUrl: './stage-one.component.html',
@@ -31,34 +32,62 @@ export class StageOneComponent implements OnInit {
     tipoComponente: "",
     respuestas: []
   };
-  Username:String="";
+
+  Username: String = "";
   loading: boolean = false;
-  ///////Control de paginacion. preguntas Siguiente:
+
   buttonText: string = 'CONTINUAR';
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;
 
-  /////////Almacenamiento de las respuestas de las preguntas
   opcionesSeleccionadas: { seccion: string, pregunta: string, valor: number }[] = [];
   opcionSeleccionada: number = 0;
   respuestasSeleccionadasPorInstrumento: Record<string, number> = {};
 
-  /////////Almacenamiento de las respuestas Calculada
+ 
   AnalisisSubjetivo: Record<string, number> = {};
-  /////////Almacenamiento de las respuestas calculada y perfil obtenido
 
-  // respuestasDeUsuario: { seccion: string, calculo: number }[] = [];
-
-  // respuestasPerfil: any = [];
   respuestasPerfil: {
     toleranciaRiesgo: number;
     horizonteTemporal: number;
     perfilInversor: string;
-  } = {
+    tipoPerfilSubjetivo:string;
+       } = {
       toleranciaRiesgo: 0,
       horizonteTemporal: 0,
-      perfilInversor: ""
+      perfilInversor: "",
+      tipoPerfilSubjetivo:"",
     };
+
+    perfilInversorUsuario: PerfilInversorAPI = {
+
+      oid: 0,
+  
+      version: 0,
+  
+      horizonteTemporal: 0,
+  
+      toleranciaRiesgo: 0,
+  
+      tipoPerfilSubjetivo: "",
+  
+      nivelConocimiento: 0,
+      tipoNivelConocimiento: "",
+  
+      perfilInversor: "",
+  
+      UsuarioDTO: {
+        oid: 0,
+        pass: "",
+        nombreUsuario: "",
+        nombre: "",
+        apellido: "",
+        email: "",
+        cuentaConfirmada: false,
+        activo: false,
+      },
+  
+    }
 
   constructor(private profileServiceAPI_: QuestionsProfileService,
     private preguntaSubjetivasServiceLocal_: PreguntaSubjetivasService,
@@ -73,7 +102,7 @@ export class StageOneComponent implements OnInit {
       .then((testSubjetivo) => {
         this.resCuestionarioAPI = testSubjetivo;
         //Si vino Vacio y quiero buscar en mi local
-        if (this.resCuestionarioAPI == null ||this.resCuestionarioAPI.length==0) {
+        if (this.resCuestionarioAPI == null || this.resCuestionarioAPI.length == 0) {
           this.loadQuestionsFromLocal()
         }
         else {
@@ -87,7 +116,8 @@ export class StageOneComponent implements OnInit {
         })
       .finally(() => {
         this.loading = false;
-        this.Username=this.localStorageService.getItem("Username");
+        this.Username = this.localStorageService.getItem("Username");
+        this.perfilInversorUsuario=this.localStorageService.GetPerfilActualLocal();
       })
   }
 
@@ -134,11 +164,9 @@ export class StageOneComponent implements OnInit {
     let index = -1
     switch (tipo) {
       case 'CHECKBOX':
-        // console.log('Suma total:Area CHECKBOX');
 
         const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
         const sumaCheckbox = valoresCheckbox.reduce((total, valor) => total + valor, 0);
-        // console.log('Suma total:', sumaCheckbox);
 
         if (!this.AnalisisSubjetivo[seccion]) {
           this.AnalisisSubjetivo[seccion] = 0;
@@ -146,26 +174,20 @@ export class StageOneComponent implements OnInit {
         this.AnalisisSubjetivo[seccion] += sumaCheckbox;
         break;
       case 'RADIO':
-        // console.log('Suma total:Area RADIO');
         let valorRadio = this.opcionSeleccionada;
 
         if (!this.AnalisisSubjetivo[seccion]) {
           this.AnalisisSubjetivo[seccion] = 0;
         }
         this.AnalisisSubjetivo[seccion] += valorRadio;
-        // console.log(valorRadio);
         break;
       case 'BOTON':
-        // console.log('Suma total:Area BOTON');
         let suma = 0;
-        // console.log("Puntaje por respuestas");
-        // console.log(this.respuestasSeleccionadasPorInstrumento);
         for (const instrumento in this.respuestasSeleccionadasPorInstrumento) {
           if (this.respuestasSeleccionadasPorInstrumento.hasOwnProperty(instrumento)) {
             suma += this.respuestasSeleccionadasPorInstrumento[instrumento];
           }
         }
-        // console.log('Suma total:', suma);
 
         if (!this.AnalisisSubjetivo[seccion]) {
           this.AnalisisSubjetivo[seccion] = 0;
@@ -190,15 +212,18 @@ export class StageOneComponent implements OnInit {
       this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
       this.localStorageService.setItem('horizonteTemporal', this.respuestasPerfil.horizonteTemporal);
       this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
+      this.perfilInversorUsuario.toleranciaRiesgo=this.respuestasPerfil.toleranciaRiesgo;
+      this.perfilInversorUsuario.horizonteTemporal=this.respuestasPerfil.horizonteTemporal;
+      this.perfilInversorUsuario.tipoPerfilSubjetivo=this.respuestasPerfil.tipoPerfilSubjetivo;
+      this.perfilInversorUsuario.perfilInversor=this.respuestasPerfil.perfilInversor;
+      this.localStorageService.setPerfilSubjetivo(this.perfilInversorUsuario);
+      this.localStorageService.SetPerfilActualLocal();
 
-      console.log('Entrega de resultados completada.');
     });
   }
 
-
-
   public async entregarResultados(): Promise<any> {
-    // debugger
+
     if (!this.validateData()) {
       return {
         toleranciaRiesgo: this.AnalisisSubjetivo["Tolerancia al riesgo"],
@@ -208,19 +233,20 @@ export class StageOneComponent implements OnInit {
     }
 
     try {
-      console.log("Enviando Resultados...");
-      const data = await from(this.profileServiceAPI_.TestSubjetivoResultados(this.AnalisisSubjetivo,this.Username)).toPromise();
 
+      this.perfilInversorUsuario.horizonteTemporal=this.AnalisisSubjetivo["Horizonte Temporal"];
+      this.perfilInversorUsuario.toleranciaRiesgo=this.AnalisisSubjetivo["Tolerancia al riesgo"];
+
+      // const data = await from(this.profileServiceAPI_.TestSubjetivoResultados(this.AnalisisSubjetivo, this.Username)).toPromise();
+
+      const data = await from(this.profileServiceAPI_.TestSubjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
       if (data && data.perfilInversor) {
-        // this.respuestasPerfil = data;
-        console.log("Resultados enviados correctamente");
-        // return this.respuestasPerfil;
         return data;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
         return {
-          toleranciaRiesgo: 0,
-          horizonteTemporal: 0,
+          toleranciaRiesgo: this.AnalisisSubjetivo["Tolerancia al riesgo"],
+          horizonteTemporal: this.AnalisisSubjetivo["Horizonte Temporal"],
           perfilInversor: ""
         };
         // Maneja el error como sea necesario
@@ -235,8 +261,6 @@ export class StageOneComponent implements OnInit {
       // Maneja el error como sea necesario
     }
   }
-
-
 
   actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
 

@@ -5,7 +5,7 @@
         <p>Bienvenido a la plataforma <br>donde aprenderas sobre el mercado.</p>
     </div>
     <div class="login-content">
-
+        <!-- <form #registroForm="ngForm" (ngSubmit)="registrarUsuario()"> -->
         <div class="fields-box">
             <div class="brand">
                 <div class="logo">
@@ -15,18 +15,28 @@
             </div>
             <h3>Registrese en <span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h3>
 
-            <input type="text" [(ngModel)]="usuario.username" name="username" id="username" placeholder="Nombre de usuario">
+            <input type="text" [(ngModel)]="usuario.username" name="username" id="username" placeholder="Nombre de usuario" required>
 
             
-            <input type="text" [(ngModel)]="usuario.name" name="name" id="name" placeholder="Nombre">
+            <input type="text" [(ngModel)]="usuario.name" name="name" id="name" placeholder="Nombre" required>
 
-            <input type="text" [(ngModel)]="usuario.lastname" name="lastname" id="lastname" placeholder="Apellido">
-
+            <input type="text" [(ngModel)]="usuario.lastname" name="lastname" id="lastname" placeholder="Apellido" required>
+<!-- 
             <input type="text" [(ngModel)]="usuario.email" name="email" id="email" placeholder="Email">
-            <input type="password" [(ngModel)]="usuario.password"  name="password" id="password" placeholder="Contraseña">
+            <input type="password" [(ngModel)]="usuario.password"  name="password" id="password" placeholder="Contraseña"> -->
+            <label *ngIf="errorReg" for="{{errorReg}}" class="error-message">
+                Error durante el registro... Verifique los datos
+            </label> 
 
-            <div class="btn-gral" (click)="registrarUsuario()" >registrarme</div>
+            <!-- <label *ngIf="registroForm.submitted && registroForm.invalid" for="registroForm" class="error-message">
+                Error durante el registro... Verifique los datos.
+            </label> -->
+<!--             
+            <button type="submit" class="btn-gral">Registrarme</button> -->
+
+            <div class="btn-gral" (click)="registrarUsuario()">registrarme</div>
+
         </div>
-
+        <!-- </form> -->
     </div>
 </section>

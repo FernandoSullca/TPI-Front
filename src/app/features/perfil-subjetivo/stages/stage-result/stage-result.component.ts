@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, map, tap } from 'rxjs';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 
 @Component({

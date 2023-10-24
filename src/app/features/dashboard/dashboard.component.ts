@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,7 @@ export class DashboardComponent implements OnInit {
   public enabledAdminMode = false;
   public quantityNotifications = 0;
 
-  constructor(private router : Router) { }
+  constructor(private router : Router,private localstorage:LocalStorageService) { }
 
   public ngOnInit(): void {
   }
@@ -22,6 +23,7 @@ export class DashboardComponent implements OnInit {
   }
 
   cerrarSesion() {
+    this.localstorage.RemovePerfilActualLocal();
     this.router.navigate(["/"]);
   }
 }
