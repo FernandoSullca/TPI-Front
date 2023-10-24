@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from 'environments/environment';
 import axios from 'axios';
@@ -17,10 +17,9 @@ export class QuestionsProfileService {
   //Verificado Captura
   public async obtenerTestSubjetivo()  {
       const resp = await axios.get(`${environment.API}/api/pregunta/listar-por-categoria?categoria=Test Inversor`);
-      console.log( resp)
+  
       const { data } = resp;
-      // const datos = Array.from(data);
-      console.log(data)
+   
       return data;
   }
 
@@ -52,13 +51,8 @@ export class QuestionsProfileService {
 
     }
 
-    console.log("TestSubjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI)")
-    console.log(perfilInversorUsuario)
-    console.log(body)
-    console.log("----------------------------")
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-subjetivo`,body);
-    console.log(resp)
-    console.log("----------------------------")
+
     const { data } = resp;
     return data;
 

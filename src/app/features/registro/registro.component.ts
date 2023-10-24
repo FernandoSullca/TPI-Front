@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { UsuarioAPI } from 'src/app/core/models/API/Usuario-API.model';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { RegistroService } from 'src/app/core/services/api/autorizacion/registro.service';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -33,11 +32,9 @@ export class RegistroComponent {
 
   errorReg: boolean = false;
 
-
   constructor(private registroUsuarioService: RegistroService
     , private router: Router
     , private LocalStorageService: LocalStorageService) { }
-
 
   registrarUsuario() { 
     this.errorReg=false;
@@ -50,7 +47,7 @@ export class RegistroComponent {
       (response) => {
         console.log('Usuario registrado con éxito', response);
         this.almacenarUsuario(this.usuario);
-        this.navegarAPerfil()
+        this.navegarAPerfil();
       },
       (error) => {
         this.errorReg=true;
@@ -61,16 +58,12 @@ export class RegistroComponent {
 
   almacenarUsuario(usuario: any) {
     usuario.email = usuario.username;
-    console.log("Buscando Entidad Usuario")
     this.registroUsuarioService.buscarUsuario(usuario.email).subscribe(
       (usuarioRecibido: UsuarioAPI) => {
-        console.log(usuario.email);
         this.usuariodb = usuarioRecibido;
-        console.log( usuarioRecibido);
         this.LocalStorageService.setItem("Username", usuario.username);
-        this.LocalStorageService.setUsuario(this.usuariodb);
+        this.LocalStorageService.setUsuarioPerfilActualLocal(this.usuariodb);
         this.LocalStorageService.SetPerfilActualLocal();
-        console.log("Guardando entidad Usuario")
       },
       (error) => {
         console.error('Error al buscar el usuario', error);

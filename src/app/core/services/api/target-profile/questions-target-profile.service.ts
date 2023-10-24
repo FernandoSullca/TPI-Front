@@ -11,8 +11,6 @@ import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.m
 })
 export class QuestionsTargetService {
 
-  
-
   // @Output() disparadordemensageResultado: EventEmitter<any> = new EventEmitter();
   private preguntasObjetivas = 'Test Conocimiento'; // Ruta al archivo JSON
   private urlcertificado = 'Test Conocimiento';
@@ -71,10 +69,8 @@ export class QuestionsTargetService {
 
       }
     }
-    console.log( body)
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-inversor`, body);
     const { data } = resp;
-    console.log( data)
     return data;
   }
 
@@ -109,7 +105,6 @@ export class QuestionsTargetService {
         this.urlcertificado = 'assets/perfiles/perfil_inversor_agresivo.pdf';
         break;
       default:
-        console.log("Tipo de perfil no existente");
         this.urlcertificado = 'assets/perfiles/perfil_inversor_conservador.pdf';
         break;
     }
@@ -146,7 +141,6 @@ export class QuestionsTargetService {
         return 'assets/perfiles/perfil_inversor_agresivo.pdf';
         break;
       default:
-        console.log("Tipo de perfil no existente");
         return 'assets/perfiles/perfil_inversor_conservador.pdf';
         break;
     }
@@ -156,9 +150,7 @@ export class QuestionsTargetService {
   solicitarlinkCertificadoLocal(usuario: string, tipo: string) {
     let urlQR: string = "";
     let urllocal = this.urlcertificadoLocal(tipo);
-    console.log(urllocal);
     urlQR = `https://api.mercadojunior.com.ar/${urllocal}`;
-    console.log(urlQR);
     return urlQR; // El enlace no está accesible    
   }
 

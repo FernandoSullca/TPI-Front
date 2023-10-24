@@ -51,30 +51,25 @@ export class LocalStorageService {
     localStorage.removeItem(key);
   }
 
-  setUsuario(data:any){
-    this.perfilInversor.UsuarioDTO=data;
-    console.log(this.perfilInversor);
-  } 
-
+ 
   setPerfilSubjetivo(data:any){
     this.perfilInversor=data;
-    console.log(this.perfilInversor);
   }
+  
+  setUsuarioPerfilActualLocal(data:any){
+    this.perfilInversor.UsuarioDTO=data;
+  } 
 
   SetPerfilActualLocal() {
-    console.log(this.perfilInversor)
     this.setItem("Perfil",this.perfilInversor);
   }
   
   GetPerfilActualLocal() {
-    console.log(this.perfilInversor)
    return this.getItem("Perfil");
   }
-  
   RemovePerfilActualLocal() {
     localStorage.removeItem("Perfil");
   }
-  
   UpdatePerfilActualLocal(perfil:PerfilInversorAPI) {
     this.setItem("Perfil",perfil);
   }

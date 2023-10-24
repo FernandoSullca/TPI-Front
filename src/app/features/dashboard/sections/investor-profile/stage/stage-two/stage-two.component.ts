@@ -13,9 +13,9 @@ import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.m
   templateUrl: './stage-two.component.html',
   styleUrls: ['./stage-two.component.scss']
 })
-export class StageTwoComponent implements OnInit{
+export class StageTwoComponent implements OnInit {
 
-  Username:string="";
+  Username: string = "";
 
   buttonText: string = 'Continuar'; // Texto del botón por defecto
 
@@ -26,8 +26,7 @@ export class StageTwoComponent implements OnInit{
   resPreguntas: PreguntaApi[] = [];
 
   descripcionFormateada: string[] = [];
-  //////////Control y suma de respuestas; 
-  /////////Almacenamiento de las respuestas Calculada
+
   respuestasPerfil: any = [];
 
   opcionSeleccionada: number = 0;
@@ -50,8 +49,7 @@ export class StageTwoComponent implements OnInit{
   urlperfilimage: string = "";
   descripcionperfil: string = "";
 
-  dataurlcertificado=""
-  // dataurlcertificado=`${environment.API}/api/perfil-inversor/obtener-certificado?nombreUsuario=lito`
+  dataurlcertificado = ""
   public qrCodeDownloadLink: SafeUrl = "";
 
   loading: boolean = false;
@@ -77,10 +75,10 @@ export class StageTwoComponent implements OnInit{
     },
 
   }
-  
+
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
-    private localStorageService: LocalStorageService, private carteraService : CarteraService) {
+    private localStorageService: LocalStorageService, private carteraService: CarteraService) {
   }
 
   ngOnInit(): void {
@@ -96,7 +94,7 @@ export class StageTwoComponent implements OnInit{
     this.preguntaObjetivasServiceAPI_.obtenerTestObjetivo(this.valorRecibido)
       .then((testSubjetivo) => {
         this.resPreguntas = testSubjetivo;
-        if (this.resPreguntas  == null ||this.resPreguntas .length==0) {
+        if (this.resPreguntas == null || this.resPreguntas.length == 0) {
           this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
             subscribe((data: PreguntaApi[]) => {
               this.resPreguntas = data;
@@ -110,19 +108,16 @@ export class StageTwoComponent implements OnInit{
       .catch(
         (error) => {
           console.error("Error al obtener datos del API:", error);
-            this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
-              subscribe((data: PreguntaApi[]) => {
-                this.resPreguntas = data;
-                this.loadQuestions();
-              });
+          this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
+            subscribe((data: PreguntaApi[]) => {
+              this.resPreguntas = data;
+              this.loadQuestions();
+            });
         }
       )
       .finally(() => {
-        this.Username=this.localStorageService.getItem("Username");
-        this.perfilInversorUsuario=this.localStorageService.GetPerfilActualLocal();
-        console.log("Perfil almacenado")
-        console.log(this.perfilInversorUsuario)
-        console.log("-----------------")
+        this.Username = this.localStorageService.getItem("Username");
+        this.perfilInversorUsuario = this.localStorageService.GetPerfilActualLocal();
         this.loading = false;
       }
       );
@@ -152,47 +147,36 @@ export class StageTwoComponent implements OnInit{
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
           this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
-          
+
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
           ////Objeto general
-          console.log('Nuevo Perfil');
-          console.log(this.ResultadoPerfilObjetivo);
-          this.perfilInversorUsuario.perfilInversor=this.respuestasPerfil.perfilInversor;
-          console.log("this.ResultadoPerfilObjetivo");
-          console.log(this.perfilInversorUsuario);
-          
 
-          // this.localStorageService.UpdatePerfilActualLocal(this.perfilInversorUsuario);
-          ////
-          // this.localStorageService.perfilInversor.perfilInversor=this.respuestasPerfil.perfilInversor;
+          this.perfilInversorUsuario.perfilInversor = this.respuestasPerfil.perfilInversor;
+
           // this.localStorageService.SetPerfilActualLocal();
-          
+
           this.acreditarDinero();
-          console.log('Entrega de resultados completada.');
 
         }).finally(() => {
           this.armardescripcion();
+          this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario, this.ResultadoPerfilObjetivo);
         }
         );;
 
-        ////////////////////////
-        console.log('Has respondido todas las preguntas.');
-          
         const usuario = this.Username;
         // this.dataurlcertificado= this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(usuario,this.ResultadoPerfilObjetivo);
-  
-        this.dataurlcertificado= this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario,this.ResultadoPerfilObjetivo);
-        
+
+
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
         this.buttonText = 'Obtener portfolio sugerido';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
 
       }
     } else {
-      console.error('Error: Fin de preguntas válidos- Ultima Vista antes de Volver al home-RoadMap.');
+      console.error('Error: Fin de preguntas válidos-');
     }
   }
 
-  public acreditarDinero(){
+  public acreditarDinero() {
     this.carteraService.acreditarDinero(5000, "premio preguntas objetivas");
   }
 
@@ -200,18 +184,14 @@ export class StageTwoComponent implements OnInit{
     if (!this.validateData()) {
       return;
     }
+    this.perfilInversorUsuario.nivelConocimiento = this.AnalisisObjetivo["Conocimento"];
 
-      console.log("Enviando Resultados...Objetivos");
-      this.perfilInversorUsuario.nivelConocimiento=this.AnalisisObjetivo["Conocimento"];
-   
-      try {
+    try {
       // const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
       const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
       // data && data.perfilInversor
       if (data?.perfilInversor) {
         this.respuestasPerfil = data;
-        console.log("Resultados enviados correctamente");
-        console.log(data);
         return this.respuestasPerfil;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
@@ -239,7 +219,7 @@ export class StageTwoComponent implements OnInit{
         this.descripcionperfil = this.dataPerfil[2].descripcion;
         break;
       default:
-        this.ResultadoPerfilObjetivo="Conservador"
+        this.ResultadoPerfilObjetivo = "CONSERVADOR"
         this.urlperfilimage = this.dataPerfil[0].url;
         this.descripcionperfil = this.dataPerfil[0].descripcion;
         break;
@@ -256,42 +236,21 @@ export class StageTwoComponent implements OnInit{
       this.AnalisisObjetivo["Conocimento"] = 0;
     }
     this.AnalisisObjetivo["Conocimento"] += this.opcionSeleccionada;
-    console.log(this.AnalisisObjetivo);
+    this.opcionSeleccionada = 0;
   }
 
   async solicitarcertificado() {
     const usuario = this.Username;
-  
+
     this.preguntaObjetivasServiceAPI_.verinforme(usuario);
   }
 
   async descargarCertificado() {
     const usuario = this.Username;
-  
-  
-    try {  
-    
-    const respuestaAxios = await this.preguntaObjetivasServiceAPI_.obtenerinforme(usuario);
-
-
-    if (respuestaAxios) {
-      const archivoBlob: Blob = respuestaAxios;
-      const url = window.URL.createObjectURL(archivoBlob);
-      const a = document.createElement('a');
-      document.body.appendChild(a);
-      a.style.display = 'none';
-      a.href = url;
-      a.download = 'Certificado Mercado Junior.pdf'; 
-      a.click();
-      window.URL.revokeObjectURL(url);
-    }
-  } catch (error) {
-    // Si la solicitud al servidor remoto falla, intenta obtener el certificado local
     try {
-      const respuestaLocal = await this.preguntaObjetivasServiceAPI_.obtenercertificadoLocal(this.ResultadoPerfilObjetivo);
-
-      if (respuestaLocal) {
-        const archivoBlob: Blob = respuestaLocal;
+      const respuestaAxios = await this.preguntaObjetivasServiceAPI_.obtenerinforme(usuario);
+      if (respuestaAxios) {
+        const archivoBlob: Blob = respuestaAxios;
         const url = window.URL.createObjectURL(archivoBlob);
         const a = document.createElement('a');
         document.body.appendChild(a);
@@ -302,9 +261,25 @@ export class StageTwoComponent implements OnInit{
         window.URL.revokeObjectURL(url);
       }
     } catch (error) {
-      console.error('Error al obtener el certificado: ', error);
+      // Si la solicitud al servidor remoto falla, intenta obtener el certificado local
+      try {
+        const respuestaLocal = await this.preguntaObjetivasServiceAPI_.obtenercertificadoLocal(this.ResultadoPerfilObjetivo);
+
+        if (respuestaLocal) {
+          const archivoBlob: Blob = respuestaLocal;
+          const url = window.URL.createObjectURL(archivoBlob);
+          const a = document.createElement('a');
+          document.body.appendChild(a);
+          a.style.display = 'none';
+          a.href = url;
+          a.download = 'Certificado Mercado Junior.pdf';
+          a.click();
+          window.URL.revokeObjectURL(url);
+        }
+      } catch (error) {
+        console.error('Error al obtener el certificado: ', error);
+      }
     }
-  }
 
   }
 
@@ -328,7 +303,6 @@ export class StageTwoComponent implements OnInit{
 
   actualizarOpcionesSeleccionadas(pregunta: string, valor: number) {
     //Se pasa por alto la validacion///////////////////////////////////////////////
-    console.log(valor);
     this.opcionSeleccionada = valor;
   }
 

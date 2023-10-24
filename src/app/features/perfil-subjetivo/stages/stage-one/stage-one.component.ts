@@ -35,23 +35,18 @@ export class StageOneComponent implements OnInit {
 
   Username: String = "";
   loading: boolean = false;
-  ///////Control de paginacion. preguntas Siguiente:
+
   buttonText: string = 'CONTINUAR';
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;
 
-  /////////Almacenamiento de las respuestas de las preguntas
   opcionesSeleccionadas: { seccion: string, pregunta: string, valor: number }[] = [];
   opcionSeleccionada: number = 0;
   respuestasSeleccionadasPorInstrumento: Record<string, number> = {};
 
-  /////////Almacenamiento de las respuestas Calculada
+ 
   AnalisisSubjetivo: Record<string, number> = {};
-  /////////Almacenamiento de las respuestas calculada y perfil obtenido
 
-  // respuestasDeUsuario: { seccion: string, calculo: number }[] = [];
-
-  // respuestasPerfil: any = [];
   respuestasPerfil: {
     toleranciaRiesgo: number;
     horizonteTemporal: number;
@@ -122,11 +117,7 @@ export class StageOneComponent implements OnInit {
       .finally(() => {
         this.loading = false;
         this.Username = this.localStorageService.getItem("Username");
-        // this.perfilInversorUsuario=this.localStorageService.perfilInversor;
         this.perfilInversorUsuario=this.localStorageService.GetPerfilActualLocal();
-        console.log(this.localStorageService.perfilInversor)
-        console.log(this.localStorageService.perfilInversor.UsuarioDTO)
-        console.log(this.perfilInversorUsuario)
       })
   }
 
@@ -227,16 +218,9 @@ export class StageOneComponent implements OnInit {
       this.perfilInversorUsuario.perfilInversor=this.respuestasPerfil.perfilInversor;
       this.localStorageService.setPerfilSubjetivo(this.perfilInversorUsuario);
       this.localStorageService.SetPerfilActualLocal();
-      console.log('Entrega de resultados completada.');
-      
-      console.log(this.perfilInversorUsuario);
-        
-      console.log('---');
 
     });
   }
-
-
 
   public async entregarResultados(): Promise<any> {
 
@@ -249,7 +233,6 @@ export class StageOneComponent implements OnInit {
     }
 
     try {
-      console.log("Enviando Resultados...");
 
       this.perfilInversorUsuario.horizonteTemporal=this.AnalisisSubjetivo["Horizonte Temporal"];
       this.perfilInversorUsuario.toleranciaRiesgo=this.AnalisisSubjetivo["Tolerancia al riesgo"];
@@ -258,9 +241,6 @@ export class StageOneComponent implements OnInit {
 
       const data = await from(this.profileServiceAPI_.TestSubjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
       if (data && data.perfilInversor) {
-        console.log("Resultados enviados correctamente");
-        console.log(data);
-        debugger
         return data;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
@@ -281,8 +261,6 @@ export class StageOneComponent implements OnInit {
       // Maneja el error como sea necesario
     }
   }
-
-
 
   actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
 
