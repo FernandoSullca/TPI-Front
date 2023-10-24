@@ -3,6 +3,8 @@ export class UsuarioAPI {
 
         public oid: number,
 
+        public username: string,
+        
         public nombreUsuario: string,
 
         public nombre: string,

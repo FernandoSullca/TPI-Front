@@ -42,6 +42,7 @@ export class QuestionsTargetService {
   public async TestObjetivoResultados(Analisisobjetivo: Record<string, number>, username: String): Promise<any> {
 
     const body = {
+      
       "horizonteTemporal": Analisisobjetivo["horizonteTemporal"],
       "toleranciaRiesgo": Analisisobjetivo["toleranciaRiesgo"],
       "nivelConocimiento": Analisisobjetivo["Conocimento"],
@@ -55,7 +56,9 @@ export class QuestionsTargetService {
   }
 
   async TestObjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI): Promise<any> {
+   console.log(perfilInversorUsuario)
     const body = {
+      "oid": perfilInversorUsuario.oid,
       "horizonteTemporal": perfilInversorUsuario.horizonteTemporal,
       "toleranciaRiesgo": perfilInversorUsuario.toleranciaRiesgo,
       "nivelConocimiento": perfilInversorUsuario.nivelConocimiento,
@@ -65,11 +68,11 @@ export class QuestionsTargetService {
         "nombre": perfilInversorUsuario.UsuarioDTO.nombre,
         "apellido": perfilInversorUsuario.UsuarioDTO.apellido,
         "email": perfilInversorUsuario.UsuarioDTO.email,
-        "nombreUsuario": perfilInversorUsuario.UsuarioDTO.nombreUsuario,
-
+        "nombreUsuario": perfilInversorUsuario.UsuarioDTO.username,
       }
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-inversor`, body);
+    console.log(resp)
     const { data } = resp;
     return data;
   }
@@ -127,7 +130,6 @@ export class QuestionsTargetService {
 
 
   urlcertificadoLocal(perfil: string) {
-    console.log(" urlcertificadoLocal(perfil: string) {");
     console.log(perfil);
 
     switch (perfil) {

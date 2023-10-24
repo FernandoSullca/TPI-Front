@@ -66,6 +66,7 @@ export class StageTwoComponent implements OnInit {
     UsuarioDTO: {
       oid: 0,
       pass: "",
+      username:"",
       nombreUsuario: "",
       nombre: "",
       apellido: "",
@@ -118,6 +119,7 @@ export class StageTwoComponent implements OnInit {
       .finally(() => {
         this.Username = this.localStorageService.getItem("Username");
         this.perfilInversorUsuario = this.localStorageService.GetPerfilActualLocal();
+        console.log( this.perfilInversorUsuario);
         this.loading = false;
       }
       );

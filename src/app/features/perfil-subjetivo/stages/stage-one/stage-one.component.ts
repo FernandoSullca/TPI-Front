@@ -79,6 +79,7 @@ export class StageOneComponent implements OnInit {
       UsuarioDTO: {
         oid: 0,
         pass: "",
+        username: "",
         nombreUsuario: "",
         nombre: "",
         apellido: "",
@@ -118,6 +119,7 @@ export class StageOneComponent implements OnInit {
         this.loading = false;
         this.Username = this.localStorageService.getItem("Username");
         this.perfilInversorUsuario=this.localStorageService.GetPerfilActualLocal();
+        console.log(this.perfilInversorUsuario);
       })
   }
 
@@ -207,6 +209,7 @@ export class StageOneComponent implements OnInit {
     this.buttonText = 'FINALIZAR'; //Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
     //     //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
     //     //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
+    debugger
     this.entregarResultados().then((data) => {
       this.respuestasPerfil = data;
       this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
@@ -216,6 +219,7 @@ export class StageOneComponent implements OnInit {
       this.perfilInversorUsuario.horizonteTemporal=this.respuestasPerfil.horizonteTemporal;
       this.perfilInversorUsuario.tipoPerfilSubjetivo=this.respuestasPerfil.tipoPerfilSubjetivo;
       this.perfilInversorUsuario.perfilInversor=this.respuestasPerfil.perfilInversor;
+      this.perfilInversorUsuario.oid=data.oid;
       this.localStorageService.setPerfilSubjetivo(this.perfilInversorUsuario);
       this.localStorageService.SetPerfilActualLocal();
 
@@ -233,12 +237,12 @@ export class StageOneComponent implements OnInit {
     }
 
     try {
-
+      debugger
       this.perfilInversorUsuario.horizonteTemporal=this.AnalisisSubjetivo["Horizonte Temporal"];
       this.perfilInversorUsuario.toleranciaRiesgo=this.AnalisisSubjetivo["Tolerancia al riesgo"];
 
       // const data = await from(this.profileServiceAPI_.TestSubjetivoResultados(this.AnalisisSubjetivo, this.Username)).toPromise();
-
+      console.log(this.perfilInversorUsuario);
       const data = await from(this.profileServiceAPI_.TestSubjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
       if (data && data.perfilInversor) {
         return data;
