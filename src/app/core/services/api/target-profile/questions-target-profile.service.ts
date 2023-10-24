@@ -5,11 +5,13 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 
 import { environment } from 'environments/environment';
 import axios from 'axios';
+import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionsTargetService {
 
+  
 
   // @Output() disparadordemensageResultado: EventEmitter<any> = new EventEmitter();
   private preguntasObjetivas = 'Test Conocimiento'; // Ruta al archivo JSON
@@ -51,6 +53,28 @@ export class QuestionsTargetService {
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-inversor`, body);
     const { data } = resp;
+    return data;
+  }
+
+  async TestObjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI): Promise<any> {
+    const body = {
+      "horizonteTemporal": perfilInversorUsuario.horizonteTemporal,
+      "toleranciaRiesgo": perfilInversorUsuario.toleranciaRiesgo,
+      "nivelConocimiento": perfilInversorUsuario.nivelConocimiento,
+      "tipoPerfilSubjetivo": perfilInversorUsuario.tipoPerfilSubjetivo,
+      "usuarioDTO": {
+        "oid":perfilInversorUsuario.UsuarioDTO.oid,
+        "nombre": perfilInversorUsuario.UsuarioDTO.nombre,
+        "apellido": perfilInversorUsuario.UsuarioDTO.apellido,
+        "email": perfilInversorUsuario.UsuarioDTO.email,
+        "nombreUsuario": perfilInversorUsuario.UsuarioDTO.nombreUsuario,
+
+      }
+    }
+    console.log( body)
+    const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-inversor`, body);
+    const { data } = resp;
+    console.log( data)
     return data;
   }
 
@@ -119,7 +143,7 @@ export class QuestionsTargetService {
         return 'assets/perfiles/perfil_inversor_moderado.pdf';
         break;
       case 'AGRESIVO':
-        return'assets/perfiles/perfil_inversor_agresivo.pdf';
+        return 'assets/perfiles/perfil_inversor_agresivo.pdf';
         break;
       default:
         console.log("Tipo de perfil no existente");

@@ -3,13 +3,11 @@ import { Router } from '@angular/router';
 import { QuestionsTargetService } from 'src/app/core/services/api/target-profile/questions-target-profile.service';
 import { PreguntaApi, RespuestaAPI } from 'src/app/core/models/API/Pregunta-APi.model';
 import { PreguntaObjetivasService } from 'src/app/core/services/dataLocalServices/Preguntas-Objetivas/preguntaObjetiva.service';
-// import { QuestionsTargetService} from 'src/app/core/services/api/target-profile/questions-target-profile.service';
-import { QRCodeModule } from 'angularx-qrcode';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { from } from 'rxjs';
-import { environment } from 'environments/environment';
 import { SafeUrl } from '@angular/platform-browser';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
+import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
 @Component({
   selector: 'app-stage-two',
   templateUrl: './stage-two.component.html',
@@ -17,7 +15,6 @@ import { CarteraService } from 'src/app/core/services/api/cartera/cartera.servic
 })
 export class StageTwoComponent implements OnInit{
 
-  // @Input() tematica: string | undefined;// Texto entrada para filtrar las preguntas-respuestas por tematica
   Username:string="";
 
   buttonText: string = 'Continuar'; // Texto del botón por defecto
@@ -56,9 +53,31 @@ export class StageTwoComponent implements OnInit{
   dataurlcertificado=""
   // dataurlcertificado=`${environment.API}/api/perfil-inversor/obtener-certificado?nombreUsuario=lito`
   public qrCodeDownloadLink: SafeUrl = "";
-  public myAngularxQrCode: string = "My QR";
 
   loading: boolean = false;
+
+  perfilInversorUsuario: PerfilInversorAPI = {
+    oid: 0,
+    version: 0,
+    horizonteTemporal: 0,
+    toleranciaRiesgo: 0,
+    tipoPerfilSubjetivo: "",
+    nivelConocimiento: 0,
+    tipoNivelConocimiento: "",
+    perfilInversor: "",
+    UsuarioDTO: {
+      oid: 0,
+      pass: "",
+      nombreUsuario: "",
+      nombre: "",
+      apellido: "",
+      email: "",
+      cuentaConfirmada: false,
+      activo: false,
+    },
+
+  }
+  
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
     private localStorageService: LocalStorageService, private carteraService : CarteraService) {
@@ -90,7 +109,7 @@ export class StageTwoComponent implements OnInit{
       })
       .catch(
         (error) => {
-          console.error("Error al obtener datos del API:", error),
+          console.error("Error al obtener datos del API:", error);
             this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
               subscribe((data: PreguntaApi[]) => {
                 this.resPreguntas = data;
@@ -100,6 +119,10 @@ export class StageTwoComponent implements OnInit{
       )
       .finally(() => {
         this.Username=this.localStorageService.getItem("Username");
+        this.perfilInversorUsuario=this.localStorageService.GetPerfilActualLocal();
+        console.log("Perfil almacenado")
+        console.log(this.perfilInversorUsuario)
+        console.log("-----------------")
         this.loading = false;
       }
       );
@@ -129,9 +152,24 @@ export class StageTwoComponent implements OnInit{
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
           this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
+          
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
+          ////Objeto general
+          console.log('Nuevo Perfil');
+          console.log(this.ResultadoPerfilObjetivo);
+          this.perfilInversorUsuario.perfilInversor=this.respuestasPerfil.perfilInversor;
+          console.log("this.ResultadoPerfilObjetivo");
+          console.log(this.perfilInversorUsuario);
+          
+
+          // this.localStorageService.UpdatePerfilActualLocal(this.perfilInversorUsuario);
+          ////
+          // this.localStorageService.perfilInversor.perfilInversor=this.respuestasPerfil.perfilInversor;
+          // this.localStorageService.SetPerfilActualLocal();
+          
           this.acreditarDinero();
           console.log('Entrega de resultados completada.');
+
         }).finally(() => {
           this.armardescripcion();
         }
@@ -140,7 +178,6 @@ export class StageTwoComponent implements OnInit{
         ////////////////////////
         console.log('Has respondido todas las preguntas.');
           
-        // const usuario = 'Lito';
         const usuario = this.Username;
         // this.dataurlcertificado= this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(usuario,this.ResultadoPerfilObjetivo);
   
@@ -164,15 +201,17 @@ export class StageTwoComponent implements OnInit{
       return;
     }
 
-    try {
-      console.log("Enviando Resultados...");
-      const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
-
-
-      if (data && data.perfilInversor) {
+      console.log("Enviando Resultados...Objetivos");
+      this.perfilInversorUsuario.nivelConocimiento=this.AnalisisObjetivo["Conocimento"];
+   
+      try {
+      // const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
+      const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
+      // data && data.perfilInversor
+      if (data?.perfilInversor) {
         this.respuestasPerfil = data;
         console.log("Resultados enviados correctamente");
-
+        console.log(data);
         return this.respuestasPerfil;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
@@ -222,7 +261,7 @@ export class StageTwoComponent implements OnInit{
 
   async solicitarcertificado() {
     const usuario = this.Username;
-    // const usuario = 'Lito';
+  
     this.preguntaObjetivasServiceAPI_.verinforme(usuario);
   }
 
@@ -230,7 +269,8 @@ export class StageTwoComponent implements OnInit{
     const usuario = this.Username;
   
   
-    try {  // const usuario = 'Lito'; 
+    try {  
+    
     const respuestaAxios = await this.preguntaObjetivasServiceAPI_.obtenerinforme(usuario);
 
 
