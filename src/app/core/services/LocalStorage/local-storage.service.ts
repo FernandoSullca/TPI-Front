@@ -28,6 +28,7 @@ export class LocalStorageService {
     UsuarioDTO: {
       oid: 0,
       pass: "",
+      username: "",
       nombreUsuario: "",
       nombre: "",
       apellido: "",

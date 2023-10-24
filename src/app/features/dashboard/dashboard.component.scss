@@ -10,7 +10,6 @@ section {
       background-color: #FFF;
       border-radius: 0 2rem 2rem 0;
       box-shadow: 4px 2px 8px #e8e8ef;
-      padding: 2rem 1rem 1rem 1rem;
       position: fixed;
       height: 100vh;
       left: 0;
@@ -25,6 +24,7 @@ section {
         align-items: center;
         margin: 20%;
         cursor: pointer;
+        height: 15%;
         img {
           margin-left: 2px;
           margin-top: -20px;
@@ -36,14 +36,16 @@ section {
           font-size: 1.5rem;
         }
       }
-  
+    .container-ul{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
       ul {
         list-style: none;
-        padding: 0;
         margin: 0;
-        width: 100%;
-        padding-bottom: 45%;
-  
+        width: 95%;
+        list-style-type: none;
+        padding-left: 0 auto;
         li {
           outline: none;
           cursor: pointer;
@@ -53,11 +55,11 @@ section {
           align-items: center;
           color: #000000;
           font-weight: 700;
-          padding: 1.2rem .9rem;
           position: relative;
           opacity: .7;
           user-select: none;
-        
+          margin-bottom: 5vh;
+          margin-left: 10%;
           img {
             width: 1.7rem;
             height: 1.7rem;
@@ -98,7 +100,40 @@ section {
           }
         }
       }
-  
+      .card-dolar{
+        display: flex;
+        text-align: center;
+        width: 90%;
+        height: 20%;
+        flex-wrap: wrap;
+        align-content: flex-end;
+        .titulo-mep{
+          width: 100%;
+        }
+        .compra,.venta{
+            width: 50%;
+        }
+        .compra {
+          .boton{
+          color: red;
+        }
+        }
+        .boton {
+            color: green;
+            border-radius: 1.5rem;
+            font-weight: bold;
+            width: fit-content;
+        }
+        .custom-button:disabled {
+            opacity: 1; 
+            border: #3261A8;
+        }
+        .fecha{
+            width: 100%;
+            font-size: smaller;
+        }
+      }
+    }
       .logout {
         font-size: 0.85rem;
         border-radius: 7px;

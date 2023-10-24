@@ -39,6 +39,7 @@ export class QuestionsProfileService {
 
   async TestSubjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI){
    
+    console.log(perfilInversorUsuario);
     const body = {
 
         "horizonteTemporal": perfilInversorUsuario.horizonteTemporal,
@@ -46,11 +47,11 @@ export class QuestionsProfileService {
         "usuarioDTO": {
           "version": 0,
           "deleted": false,
-          "nombreUsuario": perfilInversorUsuario.UsuarioDTO.nombreUsuario,
+          "nombreUsuario": perfilInversorUsuario.UsuarioDTO.username,
         }
 
     }
-
+    console.log(body);
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-subjetivo`,body);
 
     const { data } = resp;
