@@ -152,8 +152,8 @@ export class QuestionsTargetService {
   solicitarlinkCertificadoLocal(usuario: string, tipo: string) {
     let urlQR: string = "";
     let urllocal = this.urlcertificadoLocal(tipo);
-    urlQR = `https://api.mercadojunior.com.ar/${urllocal}`;
-    return urlQR; // El enlace no está accesible    
+    urlQR = `https://mercadojunior.com.ar/${urllocal}`;
+    return urlQR;    
   }
 
 }
