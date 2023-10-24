@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Chart, ChartConfiguration, ChartData, ChartType } from 'chart.js';
+import { Value } from 'sass';
 
 @Component({
   selector: 'app-grafico',
@@ -27,6 +28,7 @@ export class GraficoComponent implements OnInit{
   ];
   
   ngOnInit(): void {
+    this.actualizarArray();
   }
 
   
@@ -68,6 +70,7 @@ export class GraficoComponent implements OnInit{
   };
 
   ngOnChanges(changes: SimpleChanges) {
+    this.actualizarArray();
     // Check if the `datosGrafico` input has changed.
     if (changes['datosGrafico']) {
       if (this.datosGrafico) {
@@ -91,6 +94,7 @@ export class GraficoComponent implements OnInit{
   }
   
   actualizarArray(){
+    debugger
     const arrayIntrumentos = Object.assign({}, this.datosGrafico);
     for(const key in arrayIntrumentos){
       if(arrayIntrumentos[key]== 0)
