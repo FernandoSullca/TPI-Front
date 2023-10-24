@@ -1,4 +1,4 @@
 <div class="chart-container">
-    <canvas *ngIf="tipoGrafico" #myPieChart baseChart class="chart" [data]="pieChartData" [type]="tipoGrafico" [options]="pieChartOptions">
+    <canvas id="MyChart" *ngIf="tipoGrafico && datosGrafico" #myPieChart baseChart class="chart" [data]="grafico" [type]="tipoGrafico" [options]="opcionesGrafico">
     </canvas>
 </div>

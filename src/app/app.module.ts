@@ -26,6 +26,7 @@ import { ModalComponent } from './common/modal/modal.component';
 import { GraficoVelasComponent } from './common/grafico-velas/grafico-velas.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { RegistroComponent } from './features/registro/registro.component';
+import { GraficoLineaComponent } from './common/grafico-linea/grafico-linea.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { RegistroComponent } from './features/registro/registro.component';
     AdministrarPreguntasComponent,
     ModalComponent,
     GraficoVelasComponent,
-    RegistroComponent
+    RegistroComponent,
+    GraficoLineaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,17 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
-import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Chart, ChartConfiguration, ChartData, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-grafico',
   templateUrl: './grafico.component.html',
   styleUrls: ['./grafico.component.scss']
 })
-export class GraficoComponent{
+export class GraficoComponent implements OnInit{
   @Input() tipoGrafico : ChartType | undefined;
-  @Input() cantidadPorInstrumento: any; 
+  @Input() tituloGrafico : string ='';
+  @Input() datosGrafico : any ;
+  label:string='Rendimiento';
+
 
   colores = [
     '#669900',
@@ -22,14 +25,18 @@ export class GraficoComponent{
     '#99CC33',
     '#FFCC00'
   ];
+  
+  ngOnInit(): void {
+  }
 
-  public pieChartOptions: ChartConfiguration['options'] = {
+  
+  public opcionesGrafico: ChartConfiguration['options'] = {
     maintainAspectRatio:false,
     responsive: true,
     plugins: {
       title:{
         display:true,
-        text:'Activos valorizados',
+        text:this.tituloGrafico,
         color:'#00000',
         font:{
           size:20
@@ -46,12 +53,11 @@ export class GraficoComponent{
       },
       tooltip:{
         enabled:true,
-        
       }
     },
   };
-  
-  public pieChartData: ChartData<'pie', number[], string | string[]> = {
+
+  public grafico: ChartData ={
     labels: [], // Etiquetas en formato de arreglo de cadenas
     datasets: [
       {
@@ -60,20 +66,41 @@ export class GraficoComponent{
       },
     ],
   };
-  
+
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['cantidadPorInstrumento'] && this.cantidadPorInstrumento) {
-      this.actualizarArray();
-      this.pieChartData.labels = Object.keys(this.cantidadPorInstrumento);
-      this.pieChartData.datasets[0].data = Object.values(this.cantidadPorInstrumento);
+    // Check if the `datosGrafico` input has changed.
+    if (changes['datosGrafico']) {
+      if (this.datosGrafico) {
+        // Check if the `tipoGrafico` input is set to `line`.
+        if (this.tipoGrafico === 'line') {
+        } else {
+          // Update the chart data for a pie chart.
+          this.grafico.labels = Object.keys(this.datosGrafico);
+          this.grafico.datasets[0].data = Object.values(this.datosGrafico);
+        }
+      } else {
+        // En caso de que los datos sean nulos o no válidos, establece el gráfico en blanco o con datos predeterminados.
+        this.grafico.labels = [];
+        this.grafico.datasets[0].data = [];
+      }
+    }
+    // Check if the `tituloGrafico` input has changed.
+    if (changes['tituloGrafico']) {
+      this.actualizarTitulo();
     }
   }
+  
   actualizarArray(){
-    const arrayIntrumentos = Object.assign({}, this.cantidadPorInstrumento);
+    const arrayIntrumentos = Object.assign({}, this.datosGrafico);
     for(const key in arrayIntrumentos){
       if(arrayIntrumentos[key]== 0)
         delete arrayIntrumentos[key];
     };
-    this.cantidadPorInstrumento=arrayIntrumentos;
+    this.datosGrafico=arrayIntrumentos;
   }
+  actualizarTitulo() {
+    if(this.opcionesGrafico?.plugins?.title)
+      this.opcionesGrafico.plugins.title.text = this.tituloGrafico;
+  }
+
 }
