@@ -27,6 +27,7 @@ import { GraficoVelasComponent } from './common/grafico-velas/grafico-velas.comp
 import { QRCodeModule } from 'angularx-qrcode';
 import { RegistroComponent } from './features/registro/registro.component';
 import { GraficoLineaComponent } from './common/grafico-linea/grafico-linea.component';
+import { FormatoValorPipe } from './common/pipe-formato-valor/formato-valor.pipe';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { GraficoLineaComponent } from './common/grafico-linea/grafico-linea.comp
     ModalComponent,
     GraficoVelasComponent,
     RegistroComponent,
-    GraficoLineaComponent
+    GraficoLineaComponent,
+    FormatoValorPipe,
   ],
   imports: [
     BrowserModule,

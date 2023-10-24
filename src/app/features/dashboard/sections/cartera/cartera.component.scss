@@ -1,8 +1,6 @@
-// div{
-//   border-style: groove;
-// }
-.container-fluid{
-  height: 100%;
+@import "../../../../../variables";
+
+.valores,.cartera-grafico-section,.perfil{
 }
 .valores{
   justify-content: space-around;
@@ -48,14 +46,18 @@
     width:100%;
     text-align: center;
   }
-
+  .linea{
+    padding: 2rem;
+  }
   /* Estilos para dispositivos más grandes (tabletas y escritorio) */
   @media (min-width: 1400px) {
   }
- @import "../../../../../variables";
+
 .container-fluid{
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
+    background-color: #fff;
     .card{
         justify-content: center;
         text-align: center;
@@ -90,6 +92,7 @@
       }
     }
 }
+
 @media (max-width: 992px) {
     .container-fluid{
         flex-direction: column;
