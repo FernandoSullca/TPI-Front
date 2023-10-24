@@ -1,5 +1,6 @@
-.container-fluid{
-  height: 100%;
+@import "../../../../../variables";
+
+.valores,.cartera-grafico-section,.perfil{
 }
 .valores{
   justify-content: space-around;
@@ -11,7 +12,7 @@
     display: flex;
     flex-direction: column;
     width: 50%;
-    height: 60%; 
+    height: 50%; 
   }
   .total-valorizado-section{
     b{
@@ -45,14 +46,18 @@
     width:100%;
     text-align: center;
   }
-
+  .linea{
+    padding: 2rem;
+  }
   /* Estilos para dispositivos más grandes (tabletas y escritorio) */
   @media (min-width: 1400px) {
   }
- @import "../../../../../variables";
+
 .container-fluid{
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
+    background-color: #fff;
     .card{
         justify-content: center;
         text-align: center;
@@ -86,33 +91,8 @@
         margin-bottom: 1rem;
       }
     }
-    .card-dolar{
-        display: flex;
-        text-align: center;
-        height: 40%;
-        width: 50%;
-        flex-wrap: wrap;
-        align-content: center;
-        .compra,.venta{
-            width: 50%;
-        }
-        .boton {
-            background-color: $primary-color !important;
-            color: $color-white;
-            border-radius: 1.5rem;
-            font-weight: bold;
-            width: fit-content;
-        }
-        .custom-button:disabled {
-            opacity: 1; 
-            border: #3261A8;
-        }
-        .fecha{
-            width: 100%;
-            font-size: smaller;
-        }
-    }
 }
+
 @media (max-width: 992px) {
     .container-fluid{
         flex-direction: column;
