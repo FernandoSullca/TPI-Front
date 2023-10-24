@@ -6,17 +6,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FormatoValorPipe implements PipeTransform {
 
   transform(value: number | undefined): string {
-    if (value === undefined) {
-      return ''; // o algún valor predeterminado si lo deseas
+    if (!value) {
+      return '-'; // o algún valor predeterminado si lo deseas
     }
 
-    // Formatear el número con dos decimales y coma como separador decimal
+    // Formatear el número con dos decimales y el símbolo de moneda peso argentino (ARS)
     const options = {
+      style: 'currency',
+      currency: 'ARS', // Símbolo de moneda peso argentino (ARS)
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
       useGrouping: true,
     };
 
-    return value.toLocaleString('es-ES', options);
+    return value.toLocaleString('es-AR', options); // 'es-AR' para el español de Argentina
   }
 }

@@ -4,7 +4,7 @@
             <b>
                 <h3>Total valorizado</h3>
             </b>
-            <h2 *ngIf="cartera?.totalCartera; else elseBlock">$ {{cartera.totalCartera|formatoValor}}</h2>
+            <h2 *ngIf="cartera?.totalCartera; else elseBlock"> {{cartera.totalCartera|formatoValor}}</h2>
             <ng-template #elseBlock>{{totalValorizadoNulo|formatoValor}}</ng-template>
         </div>
         <div class="card-valores">

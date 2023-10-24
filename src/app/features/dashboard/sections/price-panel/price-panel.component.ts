@@ -7,6 +7,7 @@ import { environment } from 'environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'src/app/common/modal/modal.component';
 import { DatosGraficoVelas, DetalleInstrumento } from 'src/app/core/models/detalle-instrumento/detalle-instrumento';
+import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
 
 @Component({
   selector: 'app-price-panel',
@@ -22,17 +23,18 @@ export class PricePanelComponent implements OnInit {
   public typeMessage: string = '';
   public lastUpdatePanel: string = '';
   public instrumento : string=''
-  titulosSimbolo: string[] = []; 
-  simbolo: string = ''; 
-  filteredTitulos: string[] = [];
+  public titulosSimbolo: string[] = []; 
+  public simbolo: string = ''; 
+  public filteredTitulos: string[] = [];
+  public totalDineroDisponible:number=0;
 
-  constructor(private pricePanelService: PricePanelService,private modalService : NgbModal) { }
+  constructor(private pricePanelService: PricePanelService,private modalService : NgbModal,private carteraService : CarteraService) { }
 
   ngOnInit(): void {
+    this.getDineroDisponible();
     this.getTitulos();
     this.updateTitulosEvery(environment.UPDATE_PRICE_PANEL_EVERY_SECONDS);
     this.titulosSimbolo = this.pricePanelService.getSimbolosEnMemoria();
-
   }
 
   public openModal(instrumento: string) {
@@ -46,6 +48,13 @@ export class PricePanelComponent implements OnInit {
   } 
   public filtrarPorInstrumento(instrumento:string){
     return this.titulos.find(titulo => titulo.simbolo === instrumento);
+  }
+
+  public getDineroDisponible(){
+    return this.carteraService.getCartera().subscribe((response) => {
+      if(response.totalMonedas)
+        this.totalDineroDisponible=response.totalMonedas;
+    })
   }
   onInputChange() {
     this.filteredTitulos = this.titulosSimbolo.filter(simbolo =>
@@ -129,6 +138,7 @@ export class PricePanelComponent implements OnInit {
       .then(() => {
         this.textMessage = "Operacion realizada"
         this.typeMessage = "success"
+        this.getDineroDisponible();
       })
       .catch((error) => {
         this.textMessage = error.response.data
