@@ -11,32 +11,30 @@
 
             <ng-container *ngIf="cuestionario.tipoComponente== 'CHECKBOX'">
 
-                    <div class="container-render-test-Questions p-2">
-                        <p class="">{{ cuestionario.enunciado }}</p>
+                <div class="container-render-test-Questions p-2">
+                    <p class="">{{ cuestionario.enunciado }}</p>
+                </div>
+                <p class="alinea-descripcion-pregunta-check"> Podés elegir más de una opción o ninguna</p>
+                <div *ngIf="isArray(cuestionario.respuestas)">
+                    <div *ngFor="let respuesta of cuestionario.respuestas" class="alinea-pregunta-check">
+                        <input type="checkbox" id="{{ respuesta.nombre }}" name="{{ respuesta.nombre}}"
+                            (change)="actualizarOpcionesSeleccionadas(cuestionario.seccion.nombre,respuesta.nombre,respuesta.valor)">
+                        <label for="{{ respuesta }}">{{ respuesta.nombre }}</label>
                     </div>
-                    <p class="alinea-descripcion-pregunta-check"> Podés elegir más de una opción o ninguna</p>
-                    <div *ngIf="isArray(cuestionario.respuestas)">
-                        <div *ngFor="let respuesta of cuestionario.respuestas" class="alinea-pregunta-check">
-                            <input type="checkbox" id="{{ respuesta.nombre }}" name="{{ respuesta.nombre}}"
-                                (change)="actualizarOpcionesSeleccionadas(cuestionario.seccion.nombre,respuesta.nombre,respuesta.valor)">
-                            <label for="{{ respuesta }}">{{ respuesta.nombre }}</label>
-                        </div>
-                    </div>
-               
+                </div>
             </ng-container>
 
 
             <ng-container class="container-test-radio" *ngIf="cuestionario.tipoComponente == 'RADIO'">
-                
+
                 <div class="container-render-test-Questions p-2">
                     <p>{{ cuestionario.enunciado }}</p>
                 </div>
                 <p class="alinea-descripcion-pregunta-radius">Elegir solo una opción</p>
                 <div *ngIf="isArray(cuestionario.respuestas)" class="alineacion-botones-opciones-radius">
                     <div *ngFor="let respuesta of cuestionario.respuestas " class="alinea-pregunta-radius">
-                        <input type="radio" id="{{ respuesta.nombre }}" name="{{respuesta.nombre}}"
-                            value="{{respuesta.valor}}" [(ngModel)]="opcionSeleccionada"
-                            (change)="actualizarOpcionesSeleccionadas(cuestionario.seccion.nombre,respuesta.nombre,respuesta.valor)">
+                        <input type="radio" id="{{ respuesta.nombre }}" name="{{cuestionario.enunciado }}"
+                            value="{{respuesta.valor}}" (change)="opcionSeleccionada=respuesta.valor">
                         <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label>
                     </div>
                 </div>
@@ -94,8 +92,31 @@
         </div>
 
         <div *ngIf="isLastQuestion" class="finalizacion-area">
+            
+            <div *ngIf="URLQRPerfil" class="container-perfil-resultado p-3">
+                <div>
+                    <h3>
+                        Perfil asociado: <b>{{repsuestaperfil}}</b>
+                    </h3>
+                </div>
+            </div>
+
+            <img *ngIf="URLQRPerfil" src="{{URLQRPerfil}} " alt="QR Resultados Subjetivo" class="img-qr-subjetivo">
+
+
+            <div *ngIf="!URLQRPerfil">
+                <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
+                    <div class="spinner-border loading-spiner" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <h3>Analizando tus respuestas ...</h3>
+                </div>
+            </div>
+
+
             <button class="btn btn-primary btn btn-primary me-md-2 botonera-lg" (click)=" loadPageResultado()">{{
                 buttonText }}</button>
+
             <p *ngIf="isLastQuestion" style="margin-top: 1.5rem;">¡Has respondido todas las preguntas!</p>
 
         </div>
@@ -110,5 +131,5 @@
             <h3>Cargando preguntas subjetivas ...</h3>
         </div>
     </div>
-    
+
 </div>

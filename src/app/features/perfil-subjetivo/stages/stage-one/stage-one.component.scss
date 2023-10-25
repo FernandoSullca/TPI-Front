@@ -195,12 +195,16 @@
   text-align: center;
   flex-direction: column;
   align-content: center;
-  justify-content: space-around;
   height: 7em;
   align-items: center;
+  position: relative;
 
   button {
     width: fit-content;
+  }
+  .img-qr-subjetivo{
+    width: 12rem;
+    padding: 1rem;
   }
 }
 
@@ -209,6 +213,18 @@ svg {
     height: 23px;
     padding-bottom: 0.3rem;
 }
+
+/*****************/
+.container-perfil-resultado {
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 5em;
+  // border: 2px solid #3261A8;
+  width: 75%;
+  align-items: center;
+  text-align: center;
+}
+
 
 /* Estilos para dispositivos de pantalla grande (por ejemplo, computadoras de escritorio) */
 @media (min-width: 992px) {}
