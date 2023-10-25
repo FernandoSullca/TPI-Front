@@ -209,7 +209,6 @@ export class StageOneComponent implements OnInit {
         console.error('Tipo de pregunta no reconocido-para valorizar respuesta');
         break;
     }
-
   }
 
   public FinalizarCargaYEntrega() {
@@ -274,10 +273,9 @@ export class StageOneComponent implements OnInit {
     }
   }
 
+  //CheckBox, opciones multiples...
   actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
 
-    // SE actualiza para el cadso de los raidus(unica opcion)
-    // this.opcionSeleccionada = valor;
     console.log(this.opcionesSeleccionadas)
     const index = this.opcionesSeleccionadas.findIndex(opcion => opcion.pregunta === pregunta && opcion.valor === valor);
     if (index !== -1) {
@@ -289,7 +287,7 @@ export class StageOneComponent implements OnInit {
       this.opcionesSeleccionadas.push({ seccion, pregunta, valor });
     }
   }
-
+  //instrumewntos multiples, opciones multiples...
   actualizarOpcionesSeleccionadasBotonInstrumento(seccion: string, instrumento: string, valor: number) {
 
     this.respuestasSeleccionadasPorInstrumento[instrumento] = valor;
