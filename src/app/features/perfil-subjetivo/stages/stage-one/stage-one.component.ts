@@ -121,7 +121,7 @@ export class StageOneComponent implements OnInit {
         this.loading = false;
         this.Username = this.localStorageService.getItem("Username");
         this.perfilInversorUsuario=this.localStorageService.GetPerfilActualLocal();
-        console.log(this.perfilInversorUsuario);
+    
       })
   }
 
@@ -136,9 +136,9 @@ export class StageOneComponent implements OnInit {
   }
 
   loadQuestions() {
-    console.log("----------Cargar Primer Pregunta-------");
+
     this.cuestionario = this.resCuestionarioAPI[0];
-    console.log(this.cuestionario);
+
   }
 
   loadNextQuestion(): void {
@@ -168,7 +168,6 @@ export class StageOneComponent implements OnInit {
     let index = -1
     switch (tipo) {
       case 'CHECKBOX':
-        console.log(this.opcionesSeleccionadas);
         const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
         const sumaCheckbox = valoresCheckbox.reduce((total, valor) => total + valor, 0);
 
@@ -179,7 +178,6 @@ export class StageOneComponent implements OnInit {
         this.opcionesSeleccionadas = [];
         break;
       case 'RADIO':
-        console.log(this.opcionSeleccionada)
         let valorRadio = this.opcionSeleccionada;
 
         if (!this.AnalisisSubjetivo[seccion]) {
@@ -191,10 +189,8 @@ export class StageOneComponent implements OnInit {
         break;
       case 'BOTON':
         let suma = 0;
-        console.log(this.respuestasSeleccionadasPorInstrumento);
         for (const instrumento in this.respuestasSeleccionadasPorInstrumento) {
           if (this.respuestasSeleccionadasPorInstrumento.hasOwnProperty(instrumento)) {
-            console.log(this.respuestasSeleccionadasPorInstrumento[instrumento]);
             suma += this.respuestasSeleccionadasPorInstrumento[instrumento];
             //Eliminando valores de instrumento en caso de repetir form
             // this.respuestasSeleccionadasPorInstrumento[instrumento] = 0;
@@ -253,7 +249,6 @@ export class StageOneComponent implements OnInit {
       this.perfilInversorUsuario.toleranciaRiesgo=this.AnalisisSubjetivo["Tolerancia al riesgo"];
 
       // const data = await from(this.profileServiceAPI_.TestSubjetivoResultados(this.AnalisisSubjetivo, this.Username)).toPromise();
-      console.log(this.perfilInversorUsuario);
       const data = await from(this.profileServiceAPI_.TestSubjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
       if (data && data.perfilInversor) {
   
@@ -281,7 +276,6 @@ export class StageOneComponent implements OnInit {
   //CheckBox, opciones multiples...
   actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
 
-    console.log(this.opcionesSeleccionadas)
     const index = this.opcionesSeleccionadas.findIndex(opcion => opcion.pregunta === pregunta && opcion.valor === valor);
     if (index !== -1) {
       // Eliminar la opción no seleccionada del arreglo de opciones seleccionadas
@@ -296,7 +290,6 @@ export class StageOneComponent implements OnInit {
   actualizarOpcionesSeleccionadasBotonInstrumento(seccion: string, instrumento: string, valor: number) {
 
     this.respuestasSeleccionadasPorInstrumento[instrumento] = valor;
-    console.log(this.respuestasSeleccionadasPorInstrumento[instrumento] );
   }
 
   validateData(): boolean {

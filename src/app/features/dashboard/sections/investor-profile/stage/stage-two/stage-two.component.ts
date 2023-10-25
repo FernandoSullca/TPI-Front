@@ -119,7 +119,6 @@ export class StageTwoComponent implements OnInit {
       .finally(() => {
         this.Username = this.localStorageService.getItem("Username");
         this.perfilInversorUsuario = this.localStorageService.GetPerfilActualLocal();
-        console.log( this.perfilInversorUsuario);
         this.loading = false;
       }
       );
@@ -185,7 +184,7 @@ export class StageTwoComponent implements OnInit {
       return;
     }
     this.perfilInversorUsuario.nivelConocimiento = this.AnalisisObjetivo["Conocimento"];
-    console.log(this.perfilInversorUsuario);
+  
     try {
       
       // const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
