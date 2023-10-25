@@ -166,7 +166,7 @@ export class StageOneComponent implements OnInit {
     let index = -1
     switch (tipo) {
       case 'CHECKBOX':
-
+        console.log(this.opcionesSeleccionadas);
         const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
         const sumaCheckbox = valoresCheckbox.reduce((total, valor) => total + valor, 0);
 
@@ -174,20 +174,28 @@ export class StageOneComponent implements OnInit {
           this.AnalisisSubjetivo[seccion] = 0;
         }
         this.AnalisisSubjetivo[seccion] += sumaCheckbox;
+        this.opcionesSeleccionadas = [];
         break;
       case 'RADIO':
+        console.log(this.opcionSeleccionada)
         let valorRadio = this.opcionSeleccionada;
 
         if (!this.AnalisisSubjetivo[seccion]) {
           this.AnalisisSubjetivo[seccion] = 0;
         }
         this.AnalisisSubjetivo[seccion] += valorRadio;
+        //Eliminando valores de instrumento en caso de repetir form multiples for consecutivos
+        this.opcionSeleccionada=0;
         break;
       case 'BOTON':
         let suma = 0;
+        console.log(this.respuestasSeleccionadasPorInstrumento);
         for (const instrumento in this.respuestasSeleccionadasPorInstrumento) {
           if (this.respuestasSeleccionadasPorInstrumento.hasOwnProperty(instrumento)) {
+            console.log(this.respuestasSeleccionadasPorInstrumento[instrumento]);
             suma += this.respuestasSeleccionadasPorInstrumento[instrumento];
+            //Eliminando valores de instrumento en caso de repetir form
+            // this.respuestasSeleccionadasPorInstrumento[instrumento] = 0;
           }
         }
 
@@ -201,7 +209,6 @@ export class StageOneComponent implements OnInit {
         console.error('Tipo de pregunta no reconocido-para valorizar respuesta');
         break;
     }
-    this.opcionesSeleccionadas = [];
   }
 
   public FinalizarCargaYEntrega() {
@@ -266,11 +273,10 @@ export class StageOneComponent implements OnInit {
     }
   }
 
+  //CheckBox, opciones multiples...
   actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
 
-    // SE actualiza para el cadso de los raidus(unica opcion)
-    this.opcionSeleccionada = valor;
-
+    console.log(this.opcionesSeleccionadas)
     const index = this.opcionesSeleccionadas.findIndex(opcion => opcion.pregunta === pregunta && opcion.valor === valor);
     if (index !== -1) {
       // Eliminar la opción no seleccionada del arreglo de opciones seleccionadas
@@ -278,15 +284,14 @@ export class StageOneComponent implements OnInit {
 
     } else {
       // Si noesta en el grupo de opciones ingresadas se guarda
-      this.opcionesSeleccionadas.push({ seccion, pregunta, valor }); if (index !== -1) {
-      }
+      this.opcionesSeleccionadas.push({ seccion, pregunta, valor });
     }
   }
-
+  //instrumewntos multiples, opciones multiples...
   actualizarOpcionesSeleccionadasBotonInstrumento(seccion: string, instrumento: string, valor: number) {
 
     this.respuestasSeleccionadasPorInstrumento[instrumento] = valor;
-
+    console.log(this.respuestasSeleccionadasPorInstrumento[instrumento] );
   }
 
   validateData(): boolean {

@@ -26,14 +26,16 @@
                 <div class="container-perfil-Descripcion">
                     <ng-container *ngIf="pregunta.tipoComponente =='TEXTO'; else imgContenido">
 
-                        <div class="row contenedor-opciones">
+                        <div class="row contenedor-opciones form">
                             <div class="alineacion-radios alineacion-botones-opciones-radius"
                                 *ngFor="let opcion of pregunta.respuestas ">
-                                <input class="col-auto" type="radio" id="{{ opcion.nombre }}" name="{{opcion.nombre}}"
-                                    value="{{opcion.valor}}" [(ngModel)]="opcionSeleccionada"
-                                    (change)="actualizarOpcionesSeleccionadas(opcion.nombre,opcion.valor)">
-                                <label class="col-auto enunciado-radio" for="{{ opcion.nombre}}">{{ opcion.nombre
-                                    }}</label>
+                                <input class="col-auto" type="radio" id="{{ opcion.nombre }}"
+                                    name="{{pregunta.enunciado}}" value="{{opcion.valor}}"
+                                    (change)="opcionSeleccionada=opcion.valor">
+                                <label class="col-auto enunciado-radio" for="{{ opcion.nombre}}">
+                                    {{ opcion.nombre}}
+                                </label>
+
                             </div>
                         </div>
                     </ng-container>
@@ -66,15 +68,14 @@
                     <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="dataurlcertificado" [allowEmptyString]="true"
                         [cssClass]="'qrStyle'" [colorDark]="'#000000ff'" [colorLight]="'#ffffffff'"
                         [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageSrc]="'./assets/image/logo.ico'"
-                        [imageHeight]="40" [imageWidth]="40" [margin]="4" [scale]="1"
-                        [width]="150"
+                        [imageHeight]="40" [imageWidth]="40" [margin]="4" [scale]="1" [width]="150"
                         [title]="'Certificado Mercado Junior'"> </qrcode>
                 </div>
-                
+
                 <!-- 
                     <div class="AreaQRLINKS">
                     <a [href]="qrCodeDownloadLink" download="Certificado Mercado Junior">Download QR</a> -->
-                
+
                 <!-- <a href="javascript:void(0);" (click)="solicitarcertificado()" *ngIf="!issugerencia">
                     Obtenga su certificado </a> 
 
@@ -82,15 +83,16 @@
                     Descargar Certificado </a>
                 </div> -->
                 <div>
-                    <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg" (click)="loadSugerencias()"
-                        *ngIf="!issugerencia ">{{ buttonText }}</button>
-                    <p style="margin-top: 15px;" *ngIf="isLastQuestion">¡Has respondido todas las preguntas! Ya podes ver tu credito de premio en tu
+                    <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg"
+                        (click)="loadSugerencias()" *ngIf="!issugerencia ">{{ buttonText }}</button>
+                    <p style="margin-top: 15px;" *ngIf="isLastQuestion">¡Has respondido todas las preguntas! Ya podes
+                        ver tu credito de premio en tu
                         cartera</p>
                 </div>
-          
+
             </div>
 
-           
+
         </div>
 
         <!-- Area  Sugerencia de Resultados de Perfilamiento Onjetivos -->
