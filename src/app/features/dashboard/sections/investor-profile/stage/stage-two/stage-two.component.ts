@@ -185,8 +185,9 @@ export class StageTwoComponent implements OnInit {
       return;
     }
     this.perfilInversorUsuario.nivelConocimiento = this.AnalisisObjetivo["Conocimento"];
-
+    console.log(this.perfilInversorUsuario);
     try {
+      
       // const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
       const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
       // data && data.perfilInversor
@@ -301,10 +302,10 @@ export class StageTwoComponent implements OnInit {
     this.descripcionFormateada = lineas.map((linea) => linea.trim());
   }
 
-  actualizarOpcionesSeleccionadas(pregunta: string, valor: number) {
-    //Se pasa por alto la validacion///////////////////////////////////////////////
-    this.opcionSeleccionada = valor;
-  }
+  // actualizarOpcionesSeleccionadas(pregunta: string, valor: number) {
+  //   //Se pasa por alto la validacion///////////////////////////////////////////////
+  //   this.opcionSeleccionada = valor;
+  // }
 
   loadHome(): void {
     this.router.navigate(['/dashboard/precios']);
