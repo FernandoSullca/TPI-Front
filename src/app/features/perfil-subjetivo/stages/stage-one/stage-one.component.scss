@@ -195,12 +195,16 @@
   text-align: center;
   flex-direction: column;
   align-content: center;
-  justify-content: space-around;
   height: 7em;
   align-items: center;
+  position: relative;
 
   button {
     width: fit-content;
+  }
+  .img-qr-subjetivo{
+    width: 12rem;
+    padding: 1rem;
   }
 }
 
