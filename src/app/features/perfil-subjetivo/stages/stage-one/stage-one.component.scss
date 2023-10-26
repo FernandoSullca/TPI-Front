@@ -146,7 +146,7 @@
   flex-wrap: nowrap;
   align-items: center;
   text-align: center;
-  padding-bottom: 0.2rem;
+  padding-bottom: 0.3rem;
 }
 
 .nombre-instrumento-boton {
@@ -225,9 +225,31 @@ svg {
   text-align: center;
 }
 
-
 /* Estilos para dispositivos de pantalla grande (por ejemplo, computadoras de escritorio) */
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+  .container-render-test{
+
+  }
+
+  .finalizacion-area {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-content: center;
+    height: auto;
+    align-items: center;
+    position: relative;
+  
+    button {
+      width: 15rem;
+    }
+    .img-qr-subjetivo{
+      width: 15rem;
+      padding: 1rem;
+    }
+  }
+  
+}
 
 /* Estilos para dispositivos medianos (por ejemplo, tablets) */
 @media (min-width: 768px) and (max-width: 991px) {}

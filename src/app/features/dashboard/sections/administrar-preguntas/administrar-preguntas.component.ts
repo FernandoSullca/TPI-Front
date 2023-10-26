@@ -12,7 +12,7 @@ export class AdministrarPreguntasComponent {
   selectedFile: File | null = null;
   selectedFileName: string = 'Nombre del archivo: No seleccionado';
   uploadProgress: number = 0;
-  resp: any=null;
+  resp: any = null;
 
   constructor(private http: HttpClient, private servicioPreguntasAPI_: AdministrarPreguntasService) { }
 
@@ -37,27 +37,27 @@ export class AdministrarPreguntasComponent {
       const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
       headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type'
 
-      this.servicioPreguntasAPI_.CargarExcelDePreguntas(this.selectedFile)
-        .then((preguntasExcel) => {
-          this.resp = preguntasExcel;
-        })
-        .catch(
-          (error) => {
-            console.error("Error al obtener datos del API Administrador-Preguntas:", error)
-        })
-        .finally(() => {
 
+      this.servicioPreguntasAPI_.CargarExcelDePreguntas(this.selectedFile).subscribe(
+        () => {
+          console.log('Todas las solicitudes se completaron con éxito');
+          // Puedes realizar acciones adicionales aquí
+        },
+        (error) => {
+          console.error('Error en la carga de datos', error);
+          // Puedes manejar el error y mostrar un mensaje al usuario
         }
-        );
+      );
+
     } else {
       alert('Por favor, seleccione un archivo antes de cargarlo.');
     }
-    if(this.resp !=null ){
+    if (this.resp != null) {
 
-this.uploadProgress= 100;
+      this.uploadProgress = 100;
+    }
+
   }
 
-  }
 
-  
 }
