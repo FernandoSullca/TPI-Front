@@ -29,12 +29,12 @@ export class QuestionsTargetService {
         this.preguntasObjetivas = 'Test Conocimiento Arriesgado';
         break;
       default:
-        console.log("Tipo de perfil no existente");
+        console.error("Tipo de perfil-test no existente");
         break;
     }
     const resp = await axios.get(`${environment.API}/api/pregunta/listar-por-categoria?categoria=${this.preguntasObjetivas}`);
     const { data } = resp;
-    console.log(data)
+ 
     const datos = Array.from(data);
     return data;
   }
@@ -56,7 +56,6 @@ export class QuestionsTargetService {
   }
 
   async TestObjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI): Promise<any> {
-   console.log(perfilInversorUsuario)
     const body = {
       "oid": perfilInversorUsuario.oid,
       "horizonteTemporal": perfilInversorUsuario.horizonteTemporal,
@@ -72,7 +71,6 @@ export class QuestionsTargetService {
       }
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-inversor`, body);
-    console.log(resp)
     const { data } = resp;
     return data;
   }
@@ -130,7 +128,7 @@ export class QuestionsTargetService {
 
 
   urlcertificadoLocal(perfil: string) {
-    console.log(perfil);
+  
 
     switch (perfil) {
       case 'CONSERVADOR':

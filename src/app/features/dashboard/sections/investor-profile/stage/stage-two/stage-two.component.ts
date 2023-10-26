@@ -119,7 +119,6 @@ export class StageTwoComponent implements OnInit {
       .finally(() => {
         this.Username = this.localStorageService.getItem("Username");
         this.perfilInversorUsuario = this.localStorageService.GetPerfilActualLocal();
-        console.log( this.perfilInversorUsuario);
         this.loading = false;
       }
       );
@@ -185,8 +184,9 @@ export class StageTwoComponent implements OnInit {
       return;
     }
     this.perfilInversorUsuario.nivelConocimiento = this.AnalisisObjetivo["Conocimento"];
-
+  
     try {
+      
       // const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
       const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
       // data && data.perfilInversor
@@ -231,12 +231,15 @@ export class StageTwoComponent implements OnInit {
   }
 
   guardarRespuestas() {
-
+    console.log("Entrando en guardar respuestas");
+    console.log(this.AnalisisObjetivo["Conocimento"]);
     if (!this.AnalisisObjetivo["Conocimento"]) {
       this.AnalisisObjetivo["Conocimento"] = 0;
     }
     this.AnalisisObjetivo["Conocimento"] += this.opcionSeleccionada;
     this.opcionSeleccionada = 0;
+    console.log("Ver respuestas almacenadas");
+    console.log(this.AnalisisObjetivo["Conocimento"]);
   }
 
   async solicitarcertificado() {
@@ -301,10 +304,10 @@ export class StageTwoComponent implements OnInit {
     this.descripcionFormateada = lineas.map((linea) => linea.trim());
   }
 
-  actualizarOpcionesSeleccionadas(pregunta: string, valor: number) {
-    //Se pasa por alto la validacion///////////////////////////////////////////////
-    this.opcionSeleccionada = valor;
-  }
+  // actualizarOpcionesSeleccionadas(pregunta: string, valor: number) {
+  //   //Se pasa por alto la validacion///////////////////////////////////////////////
+  //   this.opcionSeleccionada = valor;
+  // }
 
   loadHome(): void {
     this.router.navigate(['/dashboard/precios']);

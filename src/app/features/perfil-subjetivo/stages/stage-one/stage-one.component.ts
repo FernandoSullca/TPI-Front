@@ -6,6 +6,7 @@ import { PreguntaApi, RespuestaAPI } from 'src/app/core/models/API/Pregunta-APi.
 import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
 import { PreguntaSubjetivasService } from 'src/app/core/services/dataLocalServices/Preguntas-Subjetivas/preguntaSubjetiva.service';
 import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
+import { QRLocalService } from 'src/app/core/services/dataLocalServices/QR/qrlocal.service';
 @Component({
   selector: 'app-stage-one',
   templateUrl: './stage-one.component.html',
@@ -35,11 +36,11 @@ export class StageOneComponent implements OnInit {
 
   Username: String = "";
   loading: boolean = false;
-
+  URLQRPerfil:string="";
   buttonText: string = 'CONTINUAR';
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;
-
+ repsuestaperfil:string="";
   opcionesSeleccionadas: { seccion: string, pregunta: string, valor: number }[] = [];
   opcionSeleccionada: number = 0;
   respuestasSeleccionadasPorInstrumento: Record<string, number> = {};
@@ -93,7 +94,8 @@ export class StageOneComponent implements OnInit {
   constructor(private profileServiceAPI_: QuestionsProfileService,
     private preguntaSubjetivasServiceLocal_: PreguntaSubjetivasService,
     private router: Router,
-    private localStorageService: LocalStorageService) {
+    private localStorageService: LocalStorageService,
+    private QrLocal:QRLocalService) {
 
   }
 
@@ -119,7 +121,7 @@ export class StageOneComponent implements OnInit {
         this.loading = false;
         this.Username = this.localStorageService.getItem("Username");
         this.perfilInversorUsuario=this.localStorageService.GetPerfilActualLocal();
-        console.log(this.perfilInversorUsuario);
+    
       })
   }
 
@@ -134,9 +136,9 @@ export class StageOneComponent implements OnInit {
   }
 
   loadQuestions() {
-    console.log("----------Cargar Primer Pregunta-------");
+
     this.cuestionario = this.resCuestionarioAPI[0];
-    console.log(this.cuestionario);
+
   }
 
   loadNextQuestion(): void {
@@ -166,7 +168,6 @@ export class StageOneComponent implements OnInit {
     let index = -1
     switch (tipo) {
       case 'CHECKBOX':
-
         const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
         const sumaCheckbox = valoresCheckbox.reduce((total, valor) => total + valor, 0);
 
@@ -174,6 +175,7 @@ export class StageOneComponent implements OnInit {
           this.AnalisisSubjetivo[seccion] = 0;
         }
         this.AnalisisSubjetivo[seccion] += sumaCheckbox;
+        this.opcionesSeleccionadas = [];
         break;
       case 'RADIO':
         let valorRadio = this.opcionSeleccionada;
@@ -182,12 +184,16 @@ export class StageOneComponent implements OnInit {
           this.AnalisisSubjetivo[seccion] = 0;
         }
         this.AnalisisSubjetivo[seccion] += valorRadio;
+        //Eliminando valores de instrumento en caso de repetir form multiples for consecutivos
+        this.opcionSeleccionada=0;
         break;
       case 'BOTON':
         let suma = 0;
         for (const instrumento in this.respuestasSeleccionadasPorInstrumento) {
           if (this.respuestasSeleccionadasPorInstrumento.hasOwnProperty(instrumento)) {
             suma += this.respuestasSeleccionadasPorInstrumento[instrumento];
+            //Eliminando valores de instrumento en caso de repetir form
+            // this.respuestasSeleccionadasPorInstrumento[instrumento] = 0;
           }
         }
 
@@ -201,7 +207,6 @@ export class StageOneComponent implements OnInit {
         console.error('Tipo de pregunta no reconocido-para valorizar respuesta');
         break;
     }
-    this.opcionesSeleccionadas = [];
   }
 
   public FinalizarCargaYEntrega() {
@@ -209,9 +214,11 @@ export class StageOneComponent implements OnInit {
     this.buttonText = 'FINALIZAR'; //Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
     //     //REaliza el envio de los resultaos y la espera del resultado guarda en una clase dentro el metodo del servicio el 
     //     //resultado del test que debe estar disponible prar la proxima componente(o pantalla)
-    debugger
+  
     this.entregarResultados().then((data) => {
       this.respuestasPerfil = data;
+      this.URLQRPerfil=this.QrLocal.solicitarQRLocal(data.perfilInversor);
+      this.repsuestaperfil=data.perfilInversor;
       this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
       this.localStorageService.setItem('horizonteTemporal', this.respuestasPerfil.horizonteTemporal);
       this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
@@ -237,14 +244,14 @@ export class StageOneComponent implements OnInit {
     }
 
     try {
-      debugger
+  
       this.perfilInversorUsuario.horizonteTemporal=this.AnalisisSubjetivo["Horizonte Temporal"];
       this.perfilInversorUsuario.toleranciaRiesgo=this.AnalisisSubjetivo["Tolerancia al riesgo"];
 
       // const data = await from(this.profileServiceAPI_.TestSubjetivoResultados(this.AnalisisSubjetivo, this.Username)).toPromise();
-      console.log(this.perfilInversorUsuario);
       const data = await from(this.profileServiceAPI_.TestSubjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
       if (data && data.perfilInversor) {
+  
         return data;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
@@ -266,10 +273,8 @@ export class StageOneComponent implements OnInit {
     }
   }
 
+  //CheckBox, opciones multiples...
   actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
-
-    // SE actualiza para el cadso de los raidus(unica opcion)
-    this.opcionSeleccionada = valor;
 
     const index = this.opcionesSeleccionadas.findIndex(opcion => opcion.pregunta === pregunta && opcion.valor === valor);
     if (index !== -1) {
@@ -278,15 +283,13 @@ export class StageOneComponent implements OnInit {
 
     } else {
       // Si noesta en el grupo de opciones ingresadas se guarda
-      this.opcionesSeleccionadas.push({ seccion, pregunta, valor }); if (index !== -1) {
-      }
+      this.opcionesSeleccionadas.push({ seccion, pregunta, valor });
     }
   }
-
+  //instrumewntos multiples, opciones multiples...
   actualizarOpcionesSeleccionadasBotonInstrumento(seccion: string, instrumento: string, valor: number) {
 
     this.respuestasSeleccionadasPorInstrumento[instrumento] = valor;
-
   }
 
   validateData(): boolean {
