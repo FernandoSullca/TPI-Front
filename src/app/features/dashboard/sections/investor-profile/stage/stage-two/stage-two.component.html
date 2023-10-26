@@ -38,6 +38,7 @@
 
                             </div>
                         </div>
+                        {{opcionSeleccionada}}
                     </ng-container>
 
                     <ng-template #imgContenido>
@@ -64,11 +65,11 @@
                 </p>
             </div>
             <div class="AreaQR">
-                <div style="display: inline-block;" class="qrcodeImage">
+                <div class="qrcodeImage">
                     <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="dataurlcertificado" [allowEmptyString]="true"
                         [cssClass]="'qrStyle'" [colorDark]="'#000000ff'" [colorLight]="'#ffffffff'"
                         [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageSrc]="'./assets/image/logo.ico'"
-                        [imageHeight]="40" [imageWidth]="40" [margin]="4" [scale]="1" [width]="150"
+                        [imageHeight]="40" [imageWidth]="40" [margin]="4" [scale]="1" [width]="175"
                         [title]="'Certificado Mercado Junior'"> </qrcode>
                 </div>
 
@@ -82,16 +83,15 @@
                 <a href="javascript:void(0);" (click)="descargarCertificado()" *ngIf="!issugerencia">
                     Descargar Certificado </a>
                 </div> -->
-                <div>
-                    <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg"
-                        (click)="loadSugerencias()" *ngIf="!issugerencia ">{{ buttonText }}</button>
-                    <p style="margin-top: 15px;" *ngIf="isLastQuestion">¡Has respondido todas las preguntas! Ya podes
-                        ver tu credito de premio en tu
-                        cartera</p>
-                </div>
 
             </div>
-
+            <div>
+                <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg"
+                    (click)="loadSugerencias()" *ngIf="!issugerencia ">{{ buttonText }}</button>
+                <p style="margin-top: 15px;" *ngIf="isLastQuestion">¡Has respondido todas las preguntas! Ya podes
+                    ver tu credito de premio en tu
+                    cartera</p>
+            </div>
 
         </div>
 
