@@ -231,12 +231,15 @@ export class StageTwoComponent implements OnInit {
   }
 
   guardarRespuestas() {
-
+    console.log("Entrando en guardar respuestas");
+    console.log(this.AnalisisObjetivo["Conocimento"]);
     if (!this.AnalisisObjetivo["Conocimento"]) {
       this.AnalisisObjetivo["Conocimento"] = 0;
     }
     this.AnalisisObjetivo["Conocimento"] += this.opcionSeleccionada;
     this.opcionSeleccionada = 0;
+    console.log("Ver respuestas almacenadas");
+    console.log(this.AnalisisObjetivo["Conocimento"]);
   }
 
   async solicitarcertificado() {
