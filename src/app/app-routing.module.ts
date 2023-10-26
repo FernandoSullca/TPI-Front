@@ -27,7 +27,11 @@ const routes: Routes = [
   // Rutas de las páginas
   { path: '', component: LandingComponent }, // Redirección por defecto
   // { path: 'dashboard', component: DashboardComponent },
-  { path: 'login', component: LoginComponent },
+  //{ path: 'login', component: LoginComponent },
+  /*{ path: 'login', component: LoginComponent },
+  { path: "registro", component:  RegistroComponent},*/
+  // { path: 'dashboard', component: DashboardComponent },
+  /* { path: 'login', component: LoginComponent },
   { path: "perfil", component:  PerfilSubjetivoComponent},
   { path: "perfil-inversor", component:  StageOneComponent},
   // { path: 'perfil-inversor-resultado/:perfil', component:  StageResultComponent},
@@ -53,7 +57,9 @@ const routes: Routes = [
     ],
   },
   // Otras rutas o manejo de errores
-  { path: '**', component: DefaultPathComponent }, // Manejo de rutas no encontradas
+  //{ path: '**', component: DefaultPathComponent }, // Manejo de rutas no encontradas
+  */
+  { path: '**', redirectTo: '', component: LandingComponent }
 ];
 
 @NgModule({
