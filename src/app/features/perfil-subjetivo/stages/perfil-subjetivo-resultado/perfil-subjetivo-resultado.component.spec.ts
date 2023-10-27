@@ -3,11 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
-import { StageResultComponent } from './stage-result.component';
+import { PerfilSubjetivoResultadoComponent } from './perfil-subjetivo-resultado.component';
 
-describe('StageResultComponent', () => {
-  let component: StageResultComponent;
-  let fixture: ComponentFixture<StageResultComponent>;
+describe('PerfilSubjetivoResultadoComponent', () => {
+  let component: PerfilSubjetivoResultadoComponent;
+  let fixture: ComponentFixture<PerfilSubjetivoResultadoComponent>;
 
   ///Mock
   let router: jasmine.SpyObj<Router>;
@@ -20,14 +20,14 @@ describe('StageResultComponent', () => {
      const localStorageServiceSpy = jasmine.createSpyObj('LocalStorageService', ['getItem']);
  
     TestBed.configureTestingModule({
-      declarations: [StageResultComponent],
+      declarations: [PerfilSubjetivoResultadoComponent],
       //Provider de servicios para mockear
       providers: [
         { provide: Router, useValue: routerSpy },
         { provide: LocalStorageService, useValue: localStorageServiceSpy },
       ],
     });
-    fixture = TestBed.createComponent(StageResultComponent);
+    fixture = TestBed.createComponent(PerfilSubjetivoResultadoComponent);
     component = fixture.componentInstance;
     ///injeccion de los mock
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;

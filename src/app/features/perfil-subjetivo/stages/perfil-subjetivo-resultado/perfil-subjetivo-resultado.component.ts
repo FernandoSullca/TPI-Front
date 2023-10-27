@@ -3,11 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 
 @Component({
-  selector: 'app-stage-result',
-  templateUrl: './stage-result.component.html',
-  styleUrls: ['./stage-result.component.scss']
+  selector: 'app-perfil-subjetivo-resultado',
+  templateUrl: './perfil-subjetivo-resultado.component.html',
+  styleUrls: ['./perfil-subjetivo-resultado.component.scss']
 })
-export class StageResultComponent implements OnInit {
+export class PerfilSubjetivoResultadoComponent implements OnInit {
   dataPerfil = [
     {
       conservador: "Se caracteriza por buscar inversiones que representen un crecimiento moderado, sin asumir riesgos importantes, priorizando tener una disponibilidad inmediata de sus inversiones y buscando minimizar la incidencia de las fluctuaciones del mercado.",

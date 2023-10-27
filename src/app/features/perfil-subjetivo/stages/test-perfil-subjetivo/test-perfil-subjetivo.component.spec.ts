@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { StageOneComponent } from './stage-one.component';
+import { TestPerfilSubjetivoComponent } from './test-perfil-subjetivo.component';
 import { PreguntaSubjetivasService } from 'src/app/core/services/dataLocalServices/Preguntas-Subjetivas/preguntaSubjetiva.service';
 import { QuestionsProfileService } from 'src/app/core/services/api/subjective-profile/questions-profile.service';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { of } from 'rxjs';
 import { PreguntaApi } from 'src/app/core/models/API/Pregunta-APi.model';
 
-describe('StageOneComponent', () => {
-  let component: StageOneComponent;
-  let fixture: ComponentFixture<StageOneComponent>;
+describe('TestPerfilSubjetivoComponent', () => {
+  let component: TestPerfilSubjetivoComponent;
+  let fixture: ComponentFixture<TestPerfilSubjetivoComponent>;
   let questionsProfileService: QuestionsProfileService;
 
   // Creamos stubs de los servicios
@@ -196,7 +196,7 @@ describe('StageOneComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [StageOneComponent],
+      declarations: [TestPerfilSubjetivoComponent],
       // Utiliza los stubs en lugar de los servicios reales
       providers: [
         { provide: PreguntaSubjetivasService, useValue: preguntaSubjetivasServiceStub },
@@ -205,7 +205,7 @@ describe('StageOneComponent', () => {
 
       ],
     }).compileComponents();
-    fixture = TestBed.createComponent(StageOneComponent);
+    fixture = TestBed.createComponent(TestPerfilSubjetivoComponent);
     component = fixture.componentInstance;
     questionsProfileService = TestBed.inject(QuestionsProfileService); // Obtiene una instancia del servicio
     fixture.detectChanges();

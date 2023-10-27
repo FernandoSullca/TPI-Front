@@ -14,13 +14,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
-import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
+import { TestPerfilSubjetivoComponent } from './features/perfil-subjetivo/stages/test-perfil-subjetivo/test-perfil-subjetivo.component';
 import { MessageComponent } from './common/message/message.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component';
 import { GraficoComponent } from './common/grafico/grafico.component';
-import { StageResultComponent } from './features/perfil-subjetivo/stages/stage-result/stage-result.component';
-import { InvestorProfileComponent } from './features/dashboard/sections/investor-profile/investor-profile.component'; 
-import { StageTwoComponent } from './features/dashboard/sections/investor-profile/stage/stage-two/stage-two.component';
+import { PerfilSubjetivoResultadoComponent } from './features/perfil-subjetivo/stages/perfil-subjetivo-resultado/perfil-subjetivo-resultado.component';
+import { PerfilInversorObjetivoPresentacionComponent } from './features/dashboard/sections/perfil-inversor-objetivo/perfil-inversor-objetivo-presentacion.component'; 
+import { TestPerfilInversorObjetivoComponent } from './features/dashboard/sections/perfil-inversor-objetivo/stage/test-perfil-inversor-objetivo/test-perfil-inversor-objetivo.component';
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
 import { ModalComponent } from './common/modal/modal.component';
@@ -38,13 +38,13 @@ import { FormatoValorPipe } from './common/pipe-formato-valor/formato-valor.pipe
     LandingComponent,
     PricePanelComponent,
     PerfilSubjetivoComponent,
-    StageOneComponent,
-    StageTwoComponent,
+    TestPerfilSubjetivoComponent,
+    TestPerfilInversorObjetivoComponent,
     MessageComponent,
     CarteraComponent,
     GraficoComponent,
-    StageResultComponent,
-    InvestorProfileComponent,
+    PerfilSubjetivoResultadoComponent,
+    PerfilInversorObjetivoPresentacionComponent,
     AdministrarComponent,
     AdministrarPreguntasComponent,
     ModalComponent,
