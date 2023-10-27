@@ -11,7 +11,7 @@ import { RegistroService } from 'src/app/core/services/api/autorizacion/registro
 })
 
 export class RegistroComponent {
-  usuario: any = {
+  usuarioForm: any = {
     username: '',
     name: '',
     lastname: '',
@@ -44,10 +44,10 @@ export class RegistroComponent {
       console.log("Error de campos enviados")
       return; // No envía la solicitud si los campos no son válidos
     }
-    this.registroUsuarioService.registrarUsuario(this.usuario).subscribe(
+    this.registroUsuarioService.registrarUsuario(this.usuarioForm).subscribe(
       (response) => {
         console.log('Usuario registrado con éxito', response);
-        this.almacenarUsuario(this.usuario);
+        this.almacenarUsuario(this.usuarioForm);
         this.navegarAPerfil();
       },
       (error) => {
@@ -62,7 +62,7 @@ export class RegistroComponent {
     this.registroUsuarioService.buscarUsuario(usuario.email).subscribe(
       (usuarioRecibido: UsuarioAPI) => {
         this.usuariodb = usuarioRecibido;
-        this.LocalStorageService.setItem("Username", usuario.username);
+        // this.LocalStorageService.setItem("Username", usuario.username);
         this.LocalStorageService.setUsuarioPerfilActualLocal(this.usuariodb);
         this.LocalStorageService.SetPerfilActualLocal();
       },
@@ -78,7 +78,7 @@ export class RegistroComponent {
   }
 
   validarCampos(): boolean {
-    if (!this.usuario.username || !this.usuario.name || !this.usuario.lastname) {
+    if (!this.usuarioForm.username || !this.usuarioForm.name || !this.usuarioForm.lastname) {
       return false;
     }
     return true;
