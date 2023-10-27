@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-investor-profile',
-  templateUrl: './investor-profile.component.html',
-  styleUrls: ['./investor-profile.component.scss']
+  selector: 'app-perfil-inversor-objetivo-presentacion',
+  templateUrl: './perfil-inversor-objetivo-presentacion.component.html',
+  styleUrls: ['./perfil-inversor-objetivo-presentacion.component.scss']
 })
-export class InvestorProfileComponent {
+export class PerfilInversorObjetivoPresentacionComponent {
 
   constructor(private router: Router) {
     // customize default values of progress bars used by this component tree

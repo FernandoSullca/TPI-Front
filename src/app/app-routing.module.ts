@@ -12,8 +12,8 @@ import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-sub
 import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component'; 
 import { StageResultComponent } from './features/perfil-subjetivo/stages/stage-result/stage-result.component';
-import { InvestorProfileComponent } from './features/dashboard/sections/investor-profile/investor-profile.component';
-import { StageTwoComponent } from './features/dashboard/sections/investor-profile/stage/stage-two/stage-two.component';
+import { PerfilInversorObjetivoPresentacionComponent } from './features/dashboard/sections/perfil-inversor-objetivo/perfil-inversor-objetivo-presentacion.component'; 
+import { TestPerfilInversorObjetivoComponent } from './features/dashboard/sections/perfil-inversor-objetivo/stage/test-perfil-inversor-objetivo/test-perfil-inversor-objetivo.component';
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
 import { RegistroComponent } from './features/registro/registro.component';
@@ -34,8 +34,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'cartera', pathMatch: 'full' }, // Ruta por defecto del dashboard
       { path: 'precios', component: PricePanelComponent },
-      { path: "perfil-inversor", component: InvestorProfileComponent},
-      { path: "perfil-inversor-cuestionario", component: StageTwoComponent},
+      { path: "perfil-inversor", component: PerfilInversorObjetivoPresentacionComponent},
+      { path: "perfil-inversor-cuestionario", component: TestPerfilInversorObjetivoComponent},
       { path: "Administrar", component: AdministrarComponent},
       { path: "Administrar-Preguntas", component: AdministrarPreguntasComponent},
       { path: "cartera", component: CarteraComponent},

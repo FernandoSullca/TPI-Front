@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StageTwoComponent } from './stage-two.component';
+import { TestPerfilInversorObjetivoComponent } from './test-perfil-inversor-objetivo.component';
 import { PreguntaObjetivasService } from 'src/app/core/services/dataLocalServices/Preguntas-Objetivas/preguntaObjetiva.service';
 import { QuestionsTargetService } from 'src/app/core/services/api/target-profile/questions-target-profile.service';
 import { Router } from '@angular/router';
@@ -8,9 +8,9 @@ import { of } from 'rxjs';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { PreguntaApi } from 'src/app/core/models/API/Pregunta-APi.model';
 
-describe('StageTwoComponent', () => {
-  let component: StageTwoComponent;
-  let fixture: ComponentFixture<StageTwoComponent>;
+describe('TestPerfilInversorObjetivoComponent', () => {
+  let component: TestPerfilInversorObjetivoComponent;
+  let fixture: ComponentFixture<TestPerfilInversorObjetivoComponent>;
 
   let preguntaObjetivasServiceAPI: any; 
 
@@ -68,7 +68,7 @@ describe('StageTwoComponent', () => {
     LocalStorageServiceStub = new LocalStorageService();
     const routerSpy=jasmine.createSpyObj('Router', ['navigate']);
     TestBed.configureTestingModule({
-      declarations: [StageTwoComponent],
+      declarations: [TestPerfilInversorObjetivoComponent],
        providers: [
         { provide: PreguntaObjetivasService, useValue: preguntaObjetivasServiceStub },
         { provide: QuestionsTargetService, useValue: questionsProfileTargetServiceStub },
@@ -76,7 +76,7 @@ describe('StageTwoComponent', () => {
          { provide: LocalStorageService, useValue: LocalStorageServiceStub },
       ],
     }).compileComponents()
-    fixture = TestBed.createComponent(StageTwoComponent);
+    fixture = TestBed.createComponent(TestPerfilInversorObjetivoComponent);
     component = fixture.componentInstance;
     router= TestBed.inject(Router) as  jasmine.SpyObj<Router>
     LocalStorageServiceStub = TestBed.inject(LocalStorageService);

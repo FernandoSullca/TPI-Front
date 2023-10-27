@@ -19,8 +19,8 @@ import { MessageComponent } from './common/message/message.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component';
 import { GraficoComponent } from './common/grafico/grafico.component';
 import { StageResultComponent } from './features/perfil-subjetivo/stages/stage-result/stage-result.component';
-import { InvestorProfileComponent } from './features/dashboard/sections/investor-profile/investor-profile.component'; 
-import { StageTwoComponent } from './features/dashboard/sections/investor-profile/stage/stage-two/stage-two.component';
+import { PerfilInversorObjetivoPresentacionComponent } from './features/dashboard/sections/perfil-inversor-objetivo/perfil-inversor-objetivo-presentacion.component'; 
+import { TestPerfilInversorObjetivoComponent } from './features/dashboard/sections/perfil-inversor-objetivo/stage/test-perfil-inversor-objetivo/test-perfil-inversor-objetivo.component';
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
 import { ModalComponent } from './common/modal/modal.component';
@@ -39,12 +39,12 @@ import { FormatoValorPipe } from './common/pipe-formato-valor/formato-valor.pipe
     PricePanelComponent,
     PerfilSubjetivoComponent,
     StageOneComponent,
-    StageTwoComponent,
+    TestPerfilInversorObjetivoComponent,
     MessageComponent,
     CarteraComponent,
     GraficoComponent,
     StageResultComponent,
-    InvestorProfileComponent,
+    PerfilInversorObjetivoPresentacionComponent,
     AdministrarComponent,
     AdministrarPreguntasComponent,
     ModalComponent,

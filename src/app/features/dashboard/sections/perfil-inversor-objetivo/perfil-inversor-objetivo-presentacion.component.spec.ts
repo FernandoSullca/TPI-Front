@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
-import { InvestorProfileComponent } from './investor-profile.component';
+import { PerfilInversorObjetivoPresentacionComponent } from './perfil-inversor-objetivo-presentacion.component';
 
-describe('InvestorProfileComponent', () => {
-  let component: InvestorProfileComponent;
-  let fixture: ComponentFixture<InvestorProfileComponent>;
+describe('PerfilInversorObjetivoPresentacionComponent', () => {
+  let component: PerfilInversorObjetivoPresentacionComponent;
+  let fixture: ComponentFixture<PerfilInversorObjetivoPresentacionComponent>;
 
    ///Mock
    let router: jasmine.SpyObj<Router>;
@@ -15,12 +15,12 @@ describe('InvestorProfileComponent', () => {
      const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     TestBed.configureTestingModule({
-      declarations: [InvestorProfileComponent],
+      declarations: [PerfilInversorObjetivoPresentacionComponent],
       providers: [
         { provide: Router, useValue: routerSpy },
       ]
     });
-    fixture = TestBed.createComponent(InvestorProfileComponent);
+    fixture = TestBed.createComponent(PerfilInversorObjetivoPresentacionComponent);
     component = fixture.componentInstance;
 
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;

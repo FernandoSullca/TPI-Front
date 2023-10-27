@@ -9,11 +9,11 @@ import { SafeUrl } from '@angular/platform-browser';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
 import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
 @Component({
-  selector: 'app-stage-two',
-  templateUrl: './stage-two.component.html',
-  styleUrls: ['./stage-two.component.scss']
+  selector: 'app-test-perfil-inversor-objetivo',
+  templateUrl: './test-perfil-inversor-objetivo.component.html',
+  styleUrls: ['./test-perfil-inversor-objetivo.component.scss']
 })
-export class StageTwoComponent implements OnInit {
+export class TestPerfilInversorObjetivoComponent implements OnInit {
 
   Username: string = "";
 
