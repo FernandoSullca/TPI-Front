@@ -25,14 +25,12 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   preguntas: PreguntaApi[] = [];
   resPreguntas: PreguntaApi[] = [];
 
-  descripcionFormateada: string[] = [];
-
   respuestasPerfil: any = [];
 
   opcionSeleccionada: number = 0;
   AnalisisObjetivo: Record<string, number> = {};
   ResultadoPerfilObjetivo: string = "";
-  valorRecibido: string = "";
+  PerfilSubjetivoObtenido: string = "";
 
   dataPerfil = [
     {
@@ -46,6 +44,7 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
       url: "assets\\image\\perfil-agresivo.jpeg",
     }
   ]
+
   urlperfilimage: string = "";
   descripcionperfil: string = "";
 
@@ -86,17 +85,17 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
     this.loading = true;
     /*********Area Preguntas onjetivas*********/
     const storedProfile = this.localStorageService.getItem('perfil');
-    this.AnalisisObjetivo["toleranciaRiesgo"] = this.localStorageService.getItem('toleranciaRiesgo');
-    this.AnalisisObjetivo["horizonteTemporal"] = this.localStorageService.getItem('horizonteTemporal');
+    // this.AnalisisObjetivo["toleranciaRiesgo"] = this.localStorageService.getItem('toleranciaRiesgo');
+    // this.AnalisisObjetivo["horizonteTemporal"] = this.localStorageService.getItem('horizonteTemporal');
     if (storedProfile) {
-      this.valorRecibido = storedProfile;
+      this.PerfilSubjetivoObtenido = storedProfile;
     }
 
-    this.preguntaObjetivasServiceAPI_.obtenerTestObjetivo(this.valorRecibido)
+    this.preguntaObjetivasServiceAPI_.obtenerTestObjetivo(this.PerfilSubjetivoObtenido)
       .then((testSubjetivo) => {
         this.resPreguntas = testSubjetivo;
         if (this.resPreguntas == null || this.resPreguntas.length == 0) {
-          this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
+          this.preguntaObjetivasServiceLocal_.getPreguntas(this.PerfilSubjetivoObtenido).
             subscribe((data: PreguntaApi[]) => {
               this.resPreguntas = data;
               this.loadQuestions();
@@ -109,7 +108,7 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
       .catch(
         (error) => {
           console.error("Error al obtener datos del API:", error);
-          this.preguntaObjetivasServiceLocal_.getPreguntas(this.valorRecibido).
+          this.preguntaObjetivasServiceLocal_.getPreguntas(this.PerfilSubjetivoObtenido).
             subscribe((data: PreguntaApi[]) => {
               this.resPreguntas = data;
               this.loadQuestions();
@@ -117,8 +116,9 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
         }
       )
       .finally(() => {
-        this.Username = this.localStorageService.getItem("Username");
+        // this.Username = this.localStorageService.getItem("Username");
         this.perfilInversorUsuario = this.localStorageService.GetPerfilActualLocal();
+        this.Username= this.perfilInversorUsuario.UsuarioDTO.username; 
         this.loading = false;
       }
       );
@@ -298,16 +298,6 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   isArray(respuestas: string[] | RespuestaAPI[]): respuestas is string[] {
     return Array.isArray(respuestas);
   }
-
-  formatearDescripcion() {
-    const lineas = this.preguntas[0].descripcion.split(/(?=[A-Z]- )/);
-    this.descripcionFormateada = lineas.map((linea) => linea.trim());
-  }
-
-  // actualizarOpcionesSeleccionadas(pregunta: string, valor: number) {
-  //   //Se pasa por alto la validacion///////////////////////////////////////////////
-  //   this.opcionSeleccionada = valor;
-  // }
 
   loadHome(): void {
     this.router.navigate(['/dashboard/precios']);

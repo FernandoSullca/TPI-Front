@@ -16,8 +16,6 @@ export class TestPerfilSubjetivoComponent implements OnInit {
 
   resCuestionarioAPI: PreguntaApi[] = [];
 
-  resPreguntaSubjetivaAPI: PreguntaApi[] = [];
-
   cuestionario: PreguntaApi = {
     enunciado: "",
     descripcion: "",
@@ -34,13 +32,12 @@ export class TestPerfilSubjetivoComponent implements OnInit {
     respuestas: []
   };
 
-  Username: String = "";
   loading: boolean = false;
   URLQRPerfil:string="";
   buttonText: string = 'CONTINUAR';
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;
- repsuestaperfil:string="";
+ respPerfilResultante:string="";
   opcionesSeleccionadas: { seccion: string, pregunta: string, valor: number }[] = [];
   opcionSeleccionada: number = 0;
   respuestasSeleccionadasPorInstrumento: Record<string, number> = {};
@@ -114,14 +111,12 @@ export class TestPerfilSubjetivoComponent implements OnInit {
       })
       .catch(
         (error) => {
-          console.error("Error al obtener datos del API:", error),
-            this.loadQuestionsFromLocal()
+          console.error("Error al obtener datos del API:", error);
+          this.loadQuestionsFromLocal();
         })
       .finally(() => {
         this.loading = false;
-        this.Username = this.localStorageService.getItem("Username");
         this.perfilInversorUsuario=this.localStorageService.GetPerfilActualLocal();
-    
       })
   }
 
@@ -149,13 +144,21 @@ export class TestPerfilSubjetivoComponent implements OnInit {
       //   // Incrementa el índice para la próxima pregunta
       this.currentQuestionIndex++;
 
+    
+      if (this.currentQuestionIndex+1 == this.resCuestionarioAPI.length) {
+
+        this.buttonText = 'Completar Test'
+      }
+
       if (this.currentQuestionIndex < this.resCuestionarioAPI.length) {
 
         this.cuestionario = this.resCuestionarioAPI[this.currentQuestionIndex];
       }
+     
       else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
         this.FinalizarCargaYEntrega();
+
       }
     }
     else {
@@ -217,8 +220,8 @@ export class TestPerfilSubjetivoComponent implements OnInit {
   
     this.entregarResultados().then((data) => {
       this.respuestasPerfil = data;
-      this.URLQRPerfil=this.QrLocal.solicitarQRLocal(data.perfilInversor);
-      this.repsuestaperfil=data.perfilInversor;
+      // this.URLQRPerfil=this.QrLocal.solicitarQRLocal(data.perfilInversor);
+      this.respPerfilResultante=data.perfilInversor;
       this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
       this.localStorageService.setItem('horizonteTemporal', this.respuestasPerfil.horizonteTemporal);
       this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
@@ -229,7 +232,7 @@ export class TestPerfilSubjetivoComponent implements OnInit {
       this.perfilInversorUsuario.oid=data.oid;
       this.localStorageService.setPerfilSubjetivo(this.perfilInversorUsuario);
       this.localStorageService.SetPerfilActualLocal();
-
+      this.loadPageResultado();
     });
   }
 
