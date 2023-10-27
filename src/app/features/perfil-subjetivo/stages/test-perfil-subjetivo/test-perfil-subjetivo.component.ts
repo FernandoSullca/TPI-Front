@@ -8,11 +8,11 @@ import { PreguntaSubjetivasService } from 'src/app/core/services/dataLocalServic
 import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
 import { QRLocalService } from 'src/app/core/services/dataLocalServices/QR/qrlocal.service';
 @Component({
-  selector: 'app-stage-one',
-  templateUrl: './stage-one.component.html',
-  styleUrls: ['./stage-one.component.scss']
+  selector: 'app-test-perfil-subjetivo',
+  templateUrl: './test-perfil-subjetivo.component.html',
+  styleUrls: ['./test-perfil-subjetivo.component.scss']
 })
-export class StageOneComponent implements OnInit {
+export class TestPerfilSubjetivoComponent implements OnInit {
 
   resCuestionarioAPI: PreguntaApi[] = [];
 

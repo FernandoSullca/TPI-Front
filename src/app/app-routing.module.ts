@@ -9,9 +9,9 @@ import { LandingComponent } from './features/landing/landing.component';
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
 import { DefaultPathComponent } from './default-path/default-path.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
-import { StageOneComponent } from './features/perfil-subjetivo/stages/stage-one/stage-one.component';
+import { TestPerfilSubjetivoComponent } from './features/perfil-subjetivo/stages/test-perfil-subjetivo/test-perfil-subjetivo.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component'; 
-import { StageResultComponent } from './features/perfil-subjetivo/stages/stage-result/stage-result.component';
+import { PerfilSubjetivoResultadoComponent } from './features/perfil-subjetivo/stages/perfil-subjetivo-resultado/perfil-subjetivo-resultado.component';
 import { PerfilInversorObjetivoPresentacionComponent } from './features/dashboard/sections/perfil-inversor-objetivo/perfil-inversor-objetivo-presentacion.component'; 
 import { TestPerfilInversorObjetivoComponent } from './features/dashboard/sections/perfil-inversor-objetivo/stage/test-perfil-inversor-objetivo/test-perfil-inversor-objetivo.component';
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
@@ -25,8 +25,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: "registro", component:  RegistroComponent},
   { path: "perfil", component:  PerfilSubjetivoComponent},
-  { path: "perfil-inversor", component:  StageOneComponent},
-  { path: 'perfil-inversor-resultado', component:  StageResultComponent},
+  { path: "perfil-inversor", component:  TestPerfilSubjetivoComponent},
+  { path: 'perfil-inversor-resultado', component:  PerfilSubjetivoResultadoComponent},
   
   {
     path: 'dashboard',
