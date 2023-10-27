@@ -22,16 +22,12 @@ import { RegistroComponent } from './features/registro/registro.component';
 const routes: Routes = [
   // Rutas de las páginas
   { path: '', component: LandingComponent }, // Redirección por defecto
-  // { path: 'dashboard', component: DashboardComponent },
-  //{ path: 'login', component: LoginComponent },
-  /*{ path: 'login', component: LoginComponent },
-  { path: "registro", component:  RegistroComponent},*/
-  // { path: 'dashboard', component: DashboardComponent },
-  /* { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'login', component: LoginComponent },
+  { path: "registro", component:  RegistroComponent},
   { path: "perfil", component:  PerfilSubjetivoComponent},
   { path: "perfil-inversor", component:  TestPerfilSubjetivoComponent},
   { path: 'perfil-inversor-resultado', component:  PerfilSubjetivoResultadoComponent},
-  
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -46,9 +42,7 @@ const routes: Routes = [
     ],
   },
   // Otras rutas o manejo de errores
-  //{ path: '**', component: DefaultPathComponent }, // Manejo de rutas no encontradas
-  */
-  { path: '**', redirectTo: '', component: LandingComponent }
+  { path: '**', component: DefaultPathComponent }, // Manejo de rutas no encontradas
 ];
 
 @NgModule({
