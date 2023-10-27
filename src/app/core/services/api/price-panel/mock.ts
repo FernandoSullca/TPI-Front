@@ -17,8 +17,8 @@ export const mockAcciones = [
         "plazo": "T2",
         "laminaMinima": 999,
         "lote": 999,
-        "flashCompra": 999,
-        "flashVenta": 999,
+        "flashCompra": 1,
+        "flashVenta": -1,
         "deleted": false
     },
     {

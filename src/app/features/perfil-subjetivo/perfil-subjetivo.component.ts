@@ -10,11 +10,9 @@ export class PerfilSubjetivoComponent {
 
 
   constructor(private router: Router) {
-    // customize default values of progress bars used by this component tree
   }
   loadStages() { 
     let url: string = '/perfil-inversor';
-    // let fullUrl = url.concat((this.tematica).toLocaleLowerCase());
     this.router.navigate([url]);
   }
 }

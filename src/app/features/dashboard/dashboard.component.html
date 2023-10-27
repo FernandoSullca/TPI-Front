@@ -5,24 +5,19 @@
   </div>
   <nav [ngClass]="{'active': menuMobile}">
 
-    <div class="brand-box" [routerLink]="['/']">      
+    <div class="brand-box" [routerLink]="['/dashboard/cartera']">      
       <h2>Mercado<b>JR</b></h2>
 
       <img style="margin-left: 2px; margin-top: -14px;" src="/assets/image/logo.svg" alt="">
     </div>
+    <div class="container-ul" style="width: 90%; height: 50%; margin-top: -7rem; margin-left: -1.5rem;">
     <ul>
       <!-- *ngIf="!enabledAdminMode" -->
-      <div>
         <!-- *ngIf="enabledPerfil" -->
         <!-- <li routerLink='/dashboard/aprender' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/aprender.svg" alt="">
           <span>Aprender</span>
         </li> -->
-        <li routerLink='/dashboard/perfil-inversor-questions' routerLinkActive="active" (click)="actionMenuMobile()">
-          <img src="/assets/image/perfil-icon.svg" alt="">
-          <span>Perfil inversor</span>
-          <p *ngIf="false" class="notif">1</p>
-        </li>
         <!-- <li routerLink='/dashboard/foro' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/foro.svg" alt=""><span>Foro</span> -->
           <!--           *ngIf="quantityNotifications > 0"
@@ -33,7 +28,12 @@
           </p>
         </li> -->
         <li routerLink='/dashboard/cartera' routerLinkActive="active" (click)="actionMenuMobile()">
-          <img src="/assets/image/cartera-icon.svg" alt=""><span>Cartera</span>
+          <img src="/assets/image/cartera-icon.svg" alt=""><span>Mi Cuenta</span>
+        </li>
+        <li routerLink='/dashboard/perfil-inversor-cuestionario' routerLinkActive="active" (click)="actionMenuMobile()">
+          <img src="/assets/image/perfil-icon.svg" alt="">
+          <span>Perfil Inversor</span>
+          <p *ngIf="false" class="notif">1</p>
         </li>
         <li routerLink='/dashboard/precios' routerLinkActive="active" (click)="actionMenuMobile()">
 
@@ -42,11 +42,30 @@
         <li routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/prediccion-icon.svg" alt=""><span>Predicción</span>
         </li>
-      </div>
     </ul>
+  </div>
+  <!--
+  <div class="card-dolar">
+    <div class="titulo-mep">
+        <b>
+            <h4>Dolar MEP</h4>
+        </b>
+    </div>
+    <div class="compra">
+        <h5 >$ {{valorActualDolarMEP?.compra}}</h5>
+        <ng-template #elseBlock><h2>$ {{valorActualDolarMEP?.compra| number: '1.2-2'}}</h2></ng-template>
+        <button type="button" class="boton btn btn-sm mx-auto custom-button">COMPRA</button>
+    </div>
+    <div class="venta">
+        <h5 >$ {{valorActualDolarMEP?.venta}}</h5>
+        <ng-template #elseBlock><h2>$ {{valorActualDolarMEP?.venta}}</h2></ng-template>
+        <button type="button" class="boton btn btn-sm mx-auto custom-button">VENTA</button>
+    </div>
+    <div class="fecha">{{fechaCompletaDolarMEP}}</div>
+</div>-->
     <!-- (click)="logout()" -->
     <div class="logout" (click)="cerrarSesion()">
-      <span>Cerrar sesión</span>
+      <span>Cerrar Sesión</span>
       <img src="/assets/image/logout.svg" alt="logout">
     </div>
 
