@@ -16,4 +16,7 @@ export class PerfilInversorObjetivoPresentacionComponent {
     let url: string = './dashboard/perfil-inversor-cuestionario';
     this.router.navigate([url]);
   }
+  loadHome(): void {
+    this.router.navigate(['/dashboard/precios']);
+  }
 }

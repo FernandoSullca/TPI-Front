@@ -121,12 +121,12 @@ describe('TestPerfilInversorObjetivoComponent', () => {
       ]
     }
   ];
-  component.valorRecibido = "Moderado";
+  component.PerfilSubjetivoObtenido = "Moderado";
     // Llama a ngOnInit para ejecutar el código dentro de esta función
     component.ngOnInit();
   
     // Realiza expectativas para verificar que los datos se han cargado correctamente
-    expect(component.valorRecibido).toBeDefined(); // Verifica que valorRecibido se haya definido
+    expect(component.PerfilSubjetivoObtenido).toBeDefined(); // Verifica que valorRecibido se haya definido
     expect(component.resPreguntas).toBeDefined(); // Verifica que resPreguntas se haya definido
     // Agrega más expectativas según lo que necesites probar
   });
