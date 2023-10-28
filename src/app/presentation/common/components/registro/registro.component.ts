@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioAPI } from 'src/core/models/API/Usuario-API.model';
-import { LocalStorageService } from 'src/core/services/LocalStorage/local-storage.service';
-import { RegistroService } from 'src/core/services/api/autorizacion/registro.service';
+import { UsuarioAPI } from '@core/models/API/Usuario-API.model';
+import { LocalStorageService } from '@core/services/LocalStorage/local-storage.service';
+import { RegistroService } from '@core/services/api/autorizacion/registro.service';
 
 @Component({
   selector: 'app-registro',

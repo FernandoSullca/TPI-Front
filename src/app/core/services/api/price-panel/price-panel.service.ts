@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '@core/environments/environment';
 import axios from 'axios';
 import { Observable } from 'rxjs';
-import { Titulo } from 'src/core/models/price-panel/titulo.model';
+import { Titulo } from '@core/models/price-panel/titulo.model';
 
 @Injectable({
   providedIn: 'root'

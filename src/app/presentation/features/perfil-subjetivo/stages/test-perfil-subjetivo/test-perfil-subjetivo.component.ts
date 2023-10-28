@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
-import { LocalStorageService } from 'src/core/services/LocalStorage/local-storage.service';
-import { PreguntaApi, RespuestaAPI } from 'src/core/models/API/Pregunta-APi.model';
-import { QuestionsProfileService } from 'src/core/services/api/subjective-profile/questions-profile.service';
-import { PreguntaSubjetivasService } from 'src/core/services/dataLocalServices/Preguntas-Subjetivas/preguntaSubjetiva.service';
-import { PerfilInversorAPI } from 'src/core/models/API/Perfil-Inversor-API.model';
-import { QRLocalService } from 'src/core/services/dataLocalServices/QR/qrlocal.service';
+import { LocalStorageService } from '@core/services/LocalStorage/local-storage.service';
+import { PreguntaApi, RespuestaAPI } from '@core/models/API/Pregunta-APi.model';
+import { QuestionsProfileService } from '@core/services/api/subjective-profile/questions-profile.service';
+import { PreguntaSubjetivasService } from '@core/services/dataLocalServices/Preguntas-Subjetivas/preguntaSubjetiva.service';
+import { PerfilInversorAPI } from '@core/models/API/Perfil-Inversor-API.model';
+import { QRLocalService } from '@core/services/dataLocalServices/QR/qrlocal.service';
 @Component({
   selector: 'app-test-perfil-subjetivo',
   templateUrl: './test-perfil-subjetivo.component.html',

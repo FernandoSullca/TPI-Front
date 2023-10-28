@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestPerfilInversorObjetivoComponent } from './test-perfil-inversor-objetivo.component';
-import { PreguntaObjetivasService } from 'src/core/services/dataLocalServices/Preguntas-Objetivas/preguntaObjetiva.service';
-import { QuestionsTargetService } from 'src/core/services/api/target-profile/questions-target-profile.service';
+import { PreguntaObjetivasService } from '@core/services/dataLocalServices/Preguntas-Objetivas/preguntaObjetiva.service';
+import { QuestionsTargetService } from '@core/services/api/target-profile/questions-target-profile.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
-import { LocalStorageService } from 'src/core/services/LocalStorage/local-storage.service';
-import { PreguntaApi } from 'src/core/models/API/Pregunta-APi.model';
+import { LocalStorageService } from '@core/services/LocalStorage/local-storage.service';
+import { PreguntaApi } from '@core/models/API/Pregunta-APi.model';
 
 describe('TestPerfilInversorObjetivoComponent', () => {
   let component: TestPerfilInversorObjetivoComponent;

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { createChart } from 'lightweight-charts';
-import { SolapaDetalleInstrumento } from 'src/core/models/detalle-instrumento/detalle-instrumento';
+import { SolapaDetalleInstrumento } from '@core/models/detalle-instrumento/detalle-instrumento';
 
 @Component({
   selector: 'app-grafico-velas',

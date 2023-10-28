@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TestPerfilSubjetivoComponent } from './test-perfil-subjetivo.component';
-import { PreguntaSubjetivasService } from 'src/core/services/dataLocalServices/Preguntas-Subjetivas/preguntaSubjetiva.service';
-import { QuestionsProfileService } from 'src/core/services/api/subjective-profile/questions-profile.service';
-import { LocalStorageService } from 'src/core/services/LocalStorage/local-storage.service';
+import { PreguntaSubjetivasService } from '@core/services/dataLocalServices/Preguntas-Subjetivas/preguntaSubjetiva.service';
+import { QuestionsProfileService } from '@core/services/api/subjective-profile/questions-profile.service';
+import { LocalStorageService } from '@core/services/LocalStorage/local-storage.service';
 import { of } from 'rxjs';
-import { PreguntaApi } from 'src/core/models/API/Pregunta-APi.model';
+import { PreguntaApi } from '@core/models/API/Pregunta-APi.model';
 
 describe('TestPerfilSubjetivoComponent', () => {
   let component: TestPerfilSubjetivoComponent;

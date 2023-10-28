@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 
 import { Router } from '@angular/router';
-import { LocalStorageService } from 'src/core/services/LocalStorage/local-storage.service';
+import { LocalStorageService } from '@core/services/LocalStorage/local-storage.service';
 import { PerfilSubjetivoResultadoComponent } from './perfil-subjetivo-resultado.component';
 
 describe('PerfilSubjetivoResultadoComponent', () => {

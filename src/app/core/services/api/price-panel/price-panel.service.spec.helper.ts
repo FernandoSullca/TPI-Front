@@ -1,6 +1,6 @@
 
 import { Observable } from 'rxjs';
-import { Titulo } from 'src/core/models/price-panel/titulo.model';
+import { Titulo } from '@core/models/price-panel/titulo.model';
 
 export function obtenerTitulosMock(): Observable<Titulo[]> {
   const datos = [{

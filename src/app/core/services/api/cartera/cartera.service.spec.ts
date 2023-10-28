@@ -4,7 +4,7 @@ import { of, throwError } from 'rxjs';
 
 import { mockCarteraData } from './mockCartera';
 import { TestBed } from '@angular/core/testing';
-import { Cartera } from 'src/core/models/cartera/cartera';
+import { Cartera } from '@core/models/cartera/cartera';
 
 describe('CarteraService', () => {
   let service: CarteraService;

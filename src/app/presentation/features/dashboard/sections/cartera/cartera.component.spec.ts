@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarteraComponent } from './cartera.component';
-import { CarteraService } from 'src/core/services/api/cartera/cartera.service';
+import { CarteraService } from '@core/services/api/cartera/cartera.service';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';

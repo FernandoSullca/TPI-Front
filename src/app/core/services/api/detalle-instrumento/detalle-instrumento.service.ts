@@ -4,8 +4,8 @@ import { Observable, Subject, catchError } from 'rxjs';
 
 
 import { HandleErrorApiService } from '../../manejo-errores/handle-error-api.service';
-import { DatosGraficoVelas } from 'src/core/models/detalle-instrumento/detalle-instrumento';
-import { environment } from 'src/environments/environment';
+import { DatosGraficoVelas } from '@core/models/detalle-instrumento/detalle-instrumento';
+import { environment } from '@core/environments/environment';
 
 @Injectable({
   providedIn: 'root'

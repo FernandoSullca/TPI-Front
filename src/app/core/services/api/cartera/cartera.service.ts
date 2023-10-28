@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
+import { environment } from '@core/environments/environment';
 import { HandleErrorApiService } from '../../manejo-errores/handle-error-api.service';
 import axios from 'axios';
-import { Cartera } from 'src/core/models/cartera/cartera';
-import { DolarBolsa } from 'src/core/models/dolar-bolsa/dolar-bolsa';
+import { Cartera } from '@core/models/cartera/cartera';
+import { DolarBolsa } from '@core/models/dolar-bolsa/dolar-bolsa';
 
 
 @Injectable({

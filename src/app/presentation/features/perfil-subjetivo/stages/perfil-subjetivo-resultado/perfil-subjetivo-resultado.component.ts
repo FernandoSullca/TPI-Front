@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LocalStorageService } from 'src/core/services/LocalStorage/local-storage.service';
-import { QRLocalService } from 'src/core/services/dataLocalServices/QR/qrlocal.service';
+import { LocalStorageService } from '@core/services/LocalStorage/local-storage.service';
+import { QRLocalService } from '@core/services/dataLocalServices/QR/qrlocal.service';
 
 @Component({
   selector: 'app-perfil-subjetivo-resultado',

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { AdministrarPreguntasService } from 'src/core/services/api/administracion/administrar-preguntas.service';
+import { AdministrarPreguntasService } from '@core/services/api/administracion/administrar-preguntas.service';
 
 @Component({
   selector: 'app-administrar-preguntas',

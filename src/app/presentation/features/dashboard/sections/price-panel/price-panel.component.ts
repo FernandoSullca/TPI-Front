@@ -1,15 +1,15 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { PricePanelService } from 'src/core/services/api/price-panel/price-panel.service';
+import { PricePanelService } from '@core/services/api/price-panel/price-panel.service';
 // import { CommonModule } from '@angular/common';
-import { Titulo } from 'src/core/models/price-panel/titulo.model';
-import { mockAcciones } from 'src/core/services/api/price-panel/mock'
+import { Titulo } from '@core/models/price-panel/titulo.model';
+import { mockAcciones } from '@core/services/api/price-panel/mock'
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DatosGraficoVelas, DetalleInstrumento } from 'src/core/models/detalle-instrumento/detalle-instrumento';
-import { CarteraService } from 'src/core/services/api/cartera/cartera.service';
+import { DatosGraficoVelas, DetalleInstrumento } from '@core/models/detalle-instrumento/detalle-instrumento';
+import { CarteraService } from '@core/services/api/cartera/cartera.service';
 
-import { environment } from 'src/environments/environment';
-import { ModalComponent } from 'src/app/common/modal/modal.component';
+import { environment } from '@core/environments/environment';
+import { ModalComponent } from '@presentation/common/components/modal/modal.component';
 
 @Component({
   selector: 'app-price-panel',

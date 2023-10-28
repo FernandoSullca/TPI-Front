@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import { DolarBolsa } from 'src/core/models/dolar-bolsa/dolar-bolsa';
-import { CarteraService } from 'src/core/services/api/cartera/cartera.service';
-import { LocalStorageService } from 'src/core/services/LocalStorage/local-storage.service';
+import { DolarBolsa } from '@core/models/dolar-bolsa/dolar-bolsa';
+import { CarteraService } from '@core/services/api/cartera/cartera.service';
+import { LocalStorageService } from '@core/services/LocalStorage/local-storage.service';
 
 @Component({
   selector: 'app-dashboard',

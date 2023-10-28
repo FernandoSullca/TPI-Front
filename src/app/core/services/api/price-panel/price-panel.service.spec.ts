@@ -1,11 +1,11 @@
 // import { HttpClient } from '@angular/common/http';
-// import { environment } from 'src/environments/environment';
+// import { environment } from '@core/environments/environment';
 import axios from 'axios';
 import { TestBed } from '@angular/core/testing';
 import { PricePanelService } from './price-panel.service';
 import { obtenerTitulosMock, capturarOrdenMock } from './price-panel.service.spec.helper';
-import { mockAcciones } from 'src/core/services/api/price-panel/mock'
-import { Titulo } from 'src/core/models/price-panel/titulo.model';
+import { mockAcciones } from '@core/services/api/price-panel/mock'
+import { Titulo } from '@core/models/price-panel/titulo.model';
 describe('PricePanelService', () => {
     let service: PricePanelService;
 

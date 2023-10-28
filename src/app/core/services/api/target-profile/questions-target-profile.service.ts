@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PreguntaApi } from 'src/core/models/API/Pregunta-APi.model';
+import { PreguntaApi } from '@core/models/API/Pregunta-APi.model';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 
-import { environment } from 'src/environments/environment';
+import { environment } from '@core/environments/environment';
 import axios from 'axios';
-import { PerfilInversorAPI } from 'src/core/models/API/Perfil-Inversor-API.model';
+import { PerfilInversorAPI } from '@core/models/API/Perfil-Inversor-API.model';
 @Injectable({
   providedIn: 'root'
 })

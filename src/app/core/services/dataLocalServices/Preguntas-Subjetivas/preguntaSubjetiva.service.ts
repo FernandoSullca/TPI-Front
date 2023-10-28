@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import {  Injectable,  } from '@angular/core';
 import {  Observable,  } from 'rxjs';
-import { PreguntaApi } from 'src/core/models/API/Pregunta-APi.model';
+import { PreguntaApi } from '@core/models/API/Pregunta-APi.model';
 
 @Injectable({
   providedIn: 'root'

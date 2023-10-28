@@ -15,21 +15,21 @@ import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientMo
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { TestPerfilSubjetivoComponent } from './features/perfil-subjetivo/stages/test-perfil-subjetivo/test-perfil-subjetivo.component';
-import { MessageComponent } from './common/message/message.component';
+import { MessageComponent } from '@presentation/common/components/message/message.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component';
-import { GraficoComponent } from './common/grafico/grafico.component';
+import { GraficoComponent } from '@presentation/common/components/grafico/grafico.component';
 import { PerfilSubjetivoResultadoComponent } from './features/perfil-subjetivo/stages/perfil-subjetivo-resultado/perfil-subjetivo-resultado.component';
 import { PerfilInversorObjetivoPresentacionComponent } from './features/dashboard/sections/perfil-inversor-objetivo/perfil-inversor-objetivo-presentacion.component'; 
 import { TestPerfilInversorObjetivoComponent } from './features/dashboard/sections/perfil-inversor-objetivo/stage/test-perfil-inversor-objetivo/test-perfil-inversor-objetivo.component';
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
-import { ModalComponent } from './common/modal/modal.component';
-import { GraficoVelasComponent } from './common/grafico-velas/grafico-velas.component';
+import { ModalComponent } from '@presentation/common/components/modal/modal.component';
+import { GraficoVelasComponent } from '@presentation/common/components/grafico-velas/grafico-velas.component';
 import { QRCodeModule } from 'angularx-qrcode';
-import { RegistroComponent } from './features/registro/registro.component';
-import { GraficoLineaComponent } from './common/grafico-linea/grafico-linea.component';
-import { FormatoValorPipe } from './common/pipe-formato-valor/formato-valor.pipe';
-import { OtroComponent } from './common/otro/otro/otro.component';
+
+import { GraficoLineaComponent } from '@presentation/common/components/grafico-linea/grafico-linea.component';
+import { FormatoValorPipe } from '@presentation/common/pipes/pipe-formato-valor/formato-valor.pipe';
+import { RegistroComponent } from './common/components/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -52,8 +52,7 @@ import { OtroComponent } from './common/otro/otro/otro.component';
     GraficoVelasComponent,
     RegistroComponent,
     GraficoLineaComponent,
-    FormatoValorPipe,
-    OtroComponent,
+    FormatoValorPipe
   ],
   imports: [
     BrowserModule,

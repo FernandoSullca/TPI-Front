@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { QuestionsTargetService } from 'src/core/services/api/target-profile/questions-target-profile.service';
-import { PreguntaApi, RespuestaAPI } from 'src/core/models/API/Pregunta-APi.model';
-import { PreguntaObjetivasService } from 'src/core/services/dataLocalServices/Preguntas-Objetivas/preguntaObjetiva.service';
-import { LocalStorageService } from 'src/core/services/LocalStorage/local-storage.service';
+import { QuestionsTargetService } from '@core/services/api/target-profile/questions-target-profile.service';
+import { PreguntaApi, RespuestaAPI } from '@core/models/API/Pregunta-APi.model';
+import { PreguntaObjetivasService } from '@core/services/dataLocalServices/Preguntas-Objetivas/preguntaObjetiva.service';
+import { LocalStorageService } from '@core/services/LocalStorage/local-storage.service';
 import { from } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
-import { CarteraService } from 'src/core/services/api/cartera/cartera.service';
-import { PerfilInversorAPI } from 'src/core/models/API/Perfil-Inversor-API.model';
+import { CarteraService } from '@core/services/api/cartera/cartera.service';
+import { PerfilInversorAPI } from '@core/models/API/Perfil-Inversor-API.model';
 @Component({
   selector: 'app-test-perfil-inversor-objetivo',
   templateUrl: './test-perfil-inversor-objetivo.component.html',

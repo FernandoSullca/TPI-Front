@@ -7,7 +7,7 @@ import { LoginComponent } from './features/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { LandingComponent } from './features/landing/landing.component';
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
-import { DefaultPathComponent } from './default-path/default-path.component';
+
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { TestPerfilSubjetivoComponent } from './features/perfil-subjetivo/stages/test-perfil-subjetivo/test-perfil-subjetivo.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component'; 
@@ -16,7 +16,9 @@ import { PerfilInversorObjetivoPresentacionComponent } from './features/dashboar
 import { TestPerfilInversorObjetivoComponent } from './features/dashboard/sections/perfil-inversor-objetivo/stage/test-perfil-inversor-objetivo/test-perfil-inversor-objetivo.component';
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
-import { RegistroComponent } from './features/registro/registro.component';
+import { RegistroComponent } from './common/components/registro/registro.component';
+import { DefaultPathComponent } from './features/default-path/default-path.component';
+
 
 
 const routes: Routes = [

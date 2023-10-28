@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { PreguntaObjetivasService, } from './preguntaObjetiva.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { PreguntaApi } from 'src/core/models/API/Pregunta-APi.model';
+import { PreguntaApi } from '@core/models/API/Pregunta-APi.model';
 
 describe('PreguntaObjetivaService', () => {
   let service: PreguntaObjetivasService;

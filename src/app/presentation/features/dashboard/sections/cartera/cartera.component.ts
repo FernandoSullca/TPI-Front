@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CarteraService } from 'src/core/services/api/cartera/cartera.service';
-import { Cartera } from 'src/core/models/cartera/cartera';
-import { DolarBolsa } from 'src/core/models/dolar-bolsa/dolar-bolsa';
+import { CarteraService } from '@core/services/api/cartera/cartera.service';
+import { Cartera } from '@core/models/cartera/cartera';
+import { DolarBolsa } from '@core/models/dolar-bolsa/dolar-bolsa';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ChartType } from 'chart.js';
 

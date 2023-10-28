@@ -1,14 +1,14 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { PricePanelComponent } from "./price-panel.component";
 import { Router } from "@angular/router";
-import { PricePanelService } from "src/core/services/api/price-panel/price-panel.service";
-import { mockAcciones } from "src/core/services/api/price-panel/mock";
-import { MessageComponent } from "src/app/presentations/app/common/message/message.component";
+import { PricePanelService } from "@core/services/api/price-panel/price-panel.service";
+import { mockAcciones } from "@core/services/api/price-panel/mock";
+import { MessageComponent } from "@presentation/common/components/message/message.component";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule } from "@angular/forms";
-import { Titulo } from "src/core/models/price-panel/titulo.model";
+import { Titulo } from "@core/models/price-panel/titulo.model";
 import { By } from "@angular/platform-browser";
 
 describe('PricePanelComponent', () => {
