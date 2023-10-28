@@ -871,7 +871,7 @@ describe('TestPerfilSubjetivoComponent', () => {
 
     // Llama a la función directamente
     const resultados = await component.entregarResultados();
-
+    expect(component.validateData).toBeTrue();
     // Verifica que los resultados sean los esperados
     expect(resultados).toEqual({
       toleranciaRiesgo: 10,

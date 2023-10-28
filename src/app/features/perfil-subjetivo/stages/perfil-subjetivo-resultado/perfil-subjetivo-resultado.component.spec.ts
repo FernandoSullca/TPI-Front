@@ -46,14 +46,7 @@ describe('PerfilSubjetivoResultadoComponent', () => {
     component.ngOnInit();
 
     expect(localStorageService.getItem).toHaveBeenCalledWith('perfil');
-    expect(component.valorRecibido).toEqual(storedProfile);
-  });
-
-  //Navegavilidad
-  it('deberia navegar a "./dashboard/perfil-inversor-cuestionario" Cuando llama a loadStages()"Cargar Etapas"', () => {
-    component.loadStages();
-
-    expect(router.navigate).toHaveBeenCalledWith(['./dashboard/perfil-inversor-cuestionario']);
+    expect(component.respPerfilResultante).toEqual(storedProfile.perfil);
   });
 
   it('eberia navegar a  "/dashboard/precios" Cuando llama a loadHome(),por defecto, panel de precios ', () => {
