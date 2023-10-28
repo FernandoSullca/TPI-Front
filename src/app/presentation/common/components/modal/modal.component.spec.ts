@@ -6,8 +6,8 @@ describe('ModalComponent', () => {
   let component: ModalComponent;
   let fixture: ComponentFixture<ModalComponent>;
 
-  beforeEach(async() => {
-    await TestBed.configureTestingModule({
+  beforeEach( () => {
+    TestBed.configureTestingModule({
       declarations: [ModalComponent]
     });
     fixture = TestBed.createComponent(ModalComponent);
