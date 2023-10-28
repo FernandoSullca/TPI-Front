@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RegistroComponent } from './registro.component';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
-import { RegistroService } from 'src/app/core/services/api/autorizacion/registro.service';
+import { LocalStorageService } from 'src/core/services/LocalStorage/local-storage.service'; 
+import { RegistroService } from 'src/core/services/api/autorizacion/registro.service'; 
 import { HttpClientModule } from '@angular/common/http'; //Dependencia de RegistroService
 import { of } from 'rxjs';
 
