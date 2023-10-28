@@ -7,6 +7,7 @@ import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-st
 import { RegistroService } from 'src/app/core/services/api/autorizacion/registro.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
 describe('RegistroComponent', () => {
@@ -17,7 +18,8 @@ describe('RegistroComponent', () => {
     TestBed.configureTestingModule({
       imports:[RouterTestingModule,HttpClientTestingModule],
       declarations: [RegistroComponent],
-      providers:[LocalStorageService,RegistroService,Router]
+      providers:[LocalStorageService,RegistroService,Router],
+      schemas:[NO_ERRORS_SCHEMA]
     });
     fixture = TestBed.createComponent(RegistroComponent);
     component = fixture.componentInstance;

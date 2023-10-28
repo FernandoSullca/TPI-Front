@@ -24,14 +24,14 @@ export class GraficoVelasComponent {
     });
 
     this.candlestickSeries = this.chart.addCandlestickSeries();
-    if(this.solapaDetalleInstrumento.datosGraficoVelas){
+    if(this.solapaDetalleInstrumento?.datosGraficoVelas){
       this.solapaDetalleInstrumento.datosGraficoVelas.sort((a, b) => {
       return new Date(a.tiempo).getTime() - new Date(b.tiempo).getTime();
     });
     }
-      
-
-    this.candlestickSeries.setData(this.solapaDetalleInstrumento.datosGraficoVelas.map((detalle) => ({
+    if(this.solapaDetalleInstrumento) {
+      if (this.solapaDetalleInstrumento.datosGraficoVelas.length > 0){
+      this.candlestickSeries.setData(this.solapaDetalleInstrumento?.datosGraficoVelas.map((detalle) => ({
       time: new Date(detalle.tiempo).getTime() / 1000,
       open: parseFloat(detalle.precioDeApertura),
       high: parseFloat(detalle.maximo),
@@ -39,6 +39,10 @@ export class GraficoVelasComponent {
       close: parseFloat(detalle.precioDeCierre),
     })));
     this.chart.timeScale().fitContent();
+    }
+    }
+    
+    
   }
 }
 
