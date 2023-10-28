@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import { QuestionsProfileService } from './questions-profile.service';
-import { environment } from 'environments/environment';
+import { environment } from 'src/app/core/environments/environment';
 
 import axios from 'axios';
 import { PreguntaApi } from 'src/app/core/models/API/Pregunta-APi.model';
@@ -123,14 +123,14 @@ it('should be created', () => {
       toleranciaRiesgo: 2,
       Conocimento: 5,
     };
-   
+   const username:String="fernando"
     spyOn(axios, 'post').and.returnValue(mockAxiosResponse);
-    const result = await service.TestSubjetivoResultados(analisisObjetivo);
+    const result = await service.TestSubjetivoResultados(analisisObjetivo,username);
 
     // Verifica que la función devuelva los datos esperados
    expect(result.perfilInversor).toEqual('Moderado' );
   
-   return service.TestSubjetivoResultados(analisisObjetivo).then((data) => {
+   return service.TestSubjetivoResultados(analisisObjetivo,username).then((data) => {
      
         expect(data).toHaveSize(1);
         expect(data.perfilInversor).toBe('Moderado');

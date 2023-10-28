@@ -116,14 +116,14 @@ describe('QuestionsTargetProfileService', () => {
       toleranciaRiesgo: 2,
       Conocimento: 5,
     };
-   
+    const username:String="fer";
     spyOn(axios, 'post').and.returnValue(mockAxiosResponse);
-    const result = await service.TestObjetivoResultados(analisisObjetivo);
+    const result = await service.TestObjetivoResultados(analisisObjetivo,username);
 
     // Verifica que la función devuelva los datos esperados
    expect(result.perfilInversor).toEqual('Moderado' );
   
-   return service.TestObjetivoResultados(analisisObjetivo).then((data) => {
+   return service.TestObjetivoResultados(analisisObjetivo,username).then((data) => {
      
         expect(data).toHaveSize(1);
         expect(data.perfilInversor).toBe('Moderado');
