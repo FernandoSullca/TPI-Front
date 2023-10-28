@@ -183,6 +183,7 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
     if (!this.validateData()) {
       return;
     }
+    
     this.perfilInversorUsuario.nivelConocimiento = this.AnalisisObjetivo["Conocimento"];
   
     try {
