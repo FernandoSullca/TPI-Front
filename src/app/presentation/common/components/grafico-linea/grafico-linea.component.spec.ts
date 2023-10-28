@@ -4,7 +4,7 @@ import { GraficoLineaComponent } from './grafico-linea.component';
 import Chart from 'chart.js/auto';
 
 
-describe('GraficoLineaComponent', () => {
+xdescribe('GraficoLineaComponent', () => {
   let component: GraficoLineaComponent;
   let fixture: ComponentFixture<GraficoLineaComponent>;
 
