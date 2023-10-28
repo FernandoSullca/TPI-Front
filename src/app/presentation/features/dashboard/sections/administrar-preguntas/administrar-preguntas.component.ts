@@ -14,7 +14,7 @@ export class AdministrarPreguntasComponent {
   uploadProgress: number = 0;
   resp: any = null;
 
-  constructor(private http: HttpClient, private servicioPreguntasAPI_: AdministrarPreguntasService) { }
+  constructor(private servicioPreguntasAPI_: AdministrarPreguntasService) { }
 
   onFileSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;

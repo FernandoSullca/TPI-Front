@@ -5,6 +5,7 @@ import { CarteraService } from 'src/app/core/services/api/cartera/cartera.servic
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormatoValorPipe } from 'src/app/presentation/common/pipes/pipe-formato-valor/formato-valor.pipe';
 
 describe('CarteraComponent', () => {
   let component: CarteraComponent;
@@ -29,7 +30,7 @@ describe('CarteraComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[HttpClientTestingModule],
-      declarations: [CarteraComponent],
+      declarations: [CarteraComponent,FormatoValorPipe],
       providers: [
         { provide: CarteraService, useValue: carteraServiceStub }
       ],

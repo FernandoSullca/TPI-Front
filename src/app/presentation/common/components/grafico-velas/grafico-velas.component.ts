@@ -24,9 +24,12 @@ export class GraficoVelasComponent {
     });
 
     this.candlestickSeries = this.chart.addCandlestickSeries();
-    this.solapaDetalleInstrumento.datosGraficoVelas.sort((a, b) => {
+    if(this.solapaDetalleInstrumento.datosGraficoVelas){
+      this.solapaDetalleInstrumento.datosGraficoVelas.sort((a, b) => {
       return new Date(a.tiempo).getTime() - new Date(b.tiempo).getTime();
     });
+    }
+      
 
     this.candlestickSeries.setData(this.solapaDetalleInstrumento.datosGraficoVelas.map((detalle) => ({
       time: new Date(detalle.tiempo).getTime() / 1000,
