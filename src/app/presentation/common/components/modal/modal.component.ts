@@ -3,6 +3,7 @@ import { NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { DatosGraficoVelas, DetalleInstrumento, SolapaDetalleInstrumento } from 'src/core/models/detalle-instrumento/detalle-instrumento';
 import { DetalleInstrumentoService } from 'src/core/services/api/detalle-instrumento/detalle-instrumento.service';
 
+
 @Component({
   selector: 'app-modal',
   styleUrls: ['./modal.component.scss'],

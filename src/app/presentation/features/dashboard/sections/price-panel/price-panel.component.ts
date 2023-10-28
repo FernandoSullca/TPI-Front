@@ -3,11 +3,13 @@ import { PricePanelService } from 'src/core/services/api/price-panel/price-panel
 // import { CommonModule } from '@angular/common';
 import { Titulo } from 'src/core/models/price-panel/titulo.model';
 import { mockAcciones } from 'src/core/services/api/price-panel/mock'
-import { environment } from 'src/environments/environment';
+
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatosGraficoVelas, DetalleInstrumento } from 'src/core/models/detalle-instrumento/detalle-instrumento';
 import { CarteraService } from 'src/core/services/api/cartera/cartera.service';
-import { ModalComponent } from 'src/presentations/app/common/modal/modal.component';
+
+import { environment } from 'src/environments/environment';
+import { ModalComponent } from 'src/app/common/modal/modal.component';
 
 @Component({
   selector: 'app-price-panel',

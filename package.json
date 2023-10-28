@@ -15,6 +15,10 @@
     "roots": [
       "<rootDir>/src"
     ],
+    "moduleNameMapper": {
+      "@app/(.*)$": "<rootDir>/src/app/$1",
+      "@env/(.*)": "<rootDir>/src/environments/$1"
+    },
     "setupFilesAfterEnv": [
       "<rootDir>/setupJest.ts"
     ],

@@ -1,28 +1,28 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-      "baseUrl": "./",
-      "outDir": "./out-tsc/spec",
-      "types": [
-          "jest", //cambiar esta línea de jasmine a jest
-          "node"
-      ],
-      "experimentalDecorators": true, // agregar
-      "emitDecoratorMetadata": true, // agregar
-      "paths": { // esta sección es en caso de que uses paths 
-          "@app/*": [
-              "app/*"
-          ],
-          "@env/*": [
-              "environments/*"
-          ]
-      }
-  },
-  "files": [ // eliminar la referencia a test.ts ya que lo eliminamos
-      "src/polyfills.ts"
-  ],
-  "include": [
-      "src/**/*.spec.ts",
-      "src/**/*.d.ts"
-  ]
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./out-tsc/spec",
+        "types": [
+            "jest", //cambiar esta línea de jasmine a jest
+            "node"
+        ],
+        "experimentalDecorators": true, // agregar
+        "emitDecoratorMetadata": true, // agregar
+        "paths": { // esta sección es en caso de que uses paths 
+            "@app/*": [
+                "app/*"
+            ],
+            "@env/*": [
+                "environments/*"
+            ]
+        }
+    },
+    "files": [ // eliminar la referencia a test.ts ya que lo eliminamos
+        "src/polyfills.ts"
+    ],
+    "include": [
+        "src/**/*.spec.ts",
+        "src/**/*.d.ts"
+    ]
 }

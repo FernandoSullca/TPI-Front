@@ -125,7 +125,7 @@ describe('QuestionsTargetProfileService', () => {
   
    return service.TestObjetivoResultados(analisisObjetivo,username).then((data) => {
      
-        expect(data).toHaveSize(1);
+        expect(data).toHaveLength(1);
         expect(data.perfilInversor).toBe('Moderado');
     
     })

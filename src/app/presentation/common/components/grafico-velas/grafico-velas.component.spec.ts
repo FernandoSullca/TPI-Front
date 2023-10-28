@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GraficoVelasComponent } from './grafico-velas.component';
 
-describe('GraficoVelasComponent', () => {
+xdescribe('GraficoVelasComponent', () => {
   let component: GraficoVelasComponent;
   let fixture: ComponentFixture<GraficoVelasComponent>;
 

@@ -30,6 +30,9 @@ export class CarteraComponent implements OnInit {
     this.obtenerPrecioDolarMEP()
     this.generarAleatorioTotalValorizado()
   }
+  // core      |||||   component
+  // llamado a api  !== exceso logica en componente angular
+  /// local-storage.service
   getCartera() {
     return this.carteraService.getCartera().subscribe((response) => {
       const { totalCartera = '', totalInstrumentos = '', totalMonedas = '' } = response;
@@ -75,4 +78,5 @@ export class CarteraComponent implements OnInit {
     
     this.datosGrafico = formattedData;
   }
+  
 }

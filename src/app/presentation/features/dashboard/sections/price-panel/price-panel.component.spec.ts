@@ -3,7 +3,7 @@ import { PricePanelComponent } from "./price-panel.component";
 import { Router } from "@angular/router";
 import { PricePanelService } from "src/core/services/api/price-panel/price-panel.service";
 import { mockAcciones } from "src/core/services/api/price-panel/mock";
-import { MessageComponent } from "src/presentations/app/common/message/message.component";
+import { MessageComponent } from "src/app/presentations/app/common/message/message.component";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
