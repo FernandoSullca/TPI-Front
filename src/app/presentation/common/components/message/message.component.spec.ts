@@ -20,9 +20,15 @@ describe('MessageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-/*   it('should show algo', () => {
-    const buttonsPanel = fixture.debugElement.nativeElement
-
+  it('should show mensajito', () => {
+    component.ngOnInit();
+    component.textMessage = "hola mundito";
+    component.typeMessage = "success";
+    fixture.detectChanges();
+    const textMessageShow = fixture.debugElement.query(By.css("span")).nativeElement.innerText;
+    const classMessageShow = fixture.debugElement.query(By.css("span")).nativeElement.className;
+    expect(textMessageShow).toEqual("hola mundito");
+    expect(classMessageShow).toEqual("success");
     expect(component).toBeTruthy();
-  }); */
+  });
 });
