@@ -1,0 +1,71 @@
+@import "../../../../../variables";
+::ng-deep span{
+    margin:0;
+}
+::ng-deep .modal-lg {
+    width: 100%;
+}
+.loading-spiner {
+    color: $primary-color;
+    width: 3rem;
+    height: 3rem;
+    margin: 2rem;
+}
+.modal-dialog.my-horizontal-center {
+    margin: 0 auto;
+    display: table;
+}
+
+/* Asegúrate de que el contenido del modal sea responsive y se ajuste al ancho de la pantalla. */
+.modal-content {
+    width: 100%;
+}
+
+/* Estilos para hacer que las tarjetas sean responsive */
+
+.small-card {
+    flex: 0 0 auto;
+}
+
+/* Estilos para el contenido de las tarjetas */
+.card-body {
+    text-align: center;
+}
+
+.small-text {
+    text-align: center;
+}
+
+.card-title {
+    color: $primary-color;
+}
+
+@media (max-width: 650px) {
+    .small-card {
+        width: 100%;
+        height: 100%;
+        font-size: 0.75rem;
+    }
+
+    .card-body {
+        padding: 0.1rem;
+    }
+}
+
+@media (min-width: 650px) and (max-width: 990px) {
+    .small-card {
+        width: 50%;
+        height: 100%;
+        font-size: 0.75rem;
+    }
+
+    .card-body {
+        padding: 0.1rem;
+    }
+}
+
+@media (min-width: 990px) and (max-width: 1200px) {
+    .small-card {
+        width: 33.3%;
+    }
+}

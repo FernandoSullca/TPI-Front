@@ -1,0 +1,205 @@
+@import "../../../../../../variables";
+
+.filas {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 50vh;
+}
+
+.fila-instrumento :hover {
+    cursor: pointer;
+    background-color: $primary-color;
+    color: $color-white;
+
+    div {
+        background-color: $primary-color !important;
+    }
+}
+
+.table-price {
+
+    @media(max-width:992px) {
+        font-size: .8rem;
+    }
+
+    @media(max-width:1600px) {
+        font-size: .75rem;
+    }
+}
+
+.filasClaras {
+    background-color: white;
+}
+
+.filasOscuras {
+    background-color: #f9f9f9;
+}
+
+.columna-verde {
+    background-color: #D1E7DD;
+}
+
+.columna-rojo {
+    background-color: #F8D7DA;
+}
+
+.boton {
+    background-color: $primary-color;
+    color: $color-white;
+    border-radius: 1.5rem;
+    font-weight: bold;
+
+}
+
+.inputs-orden {
+    select {
+        color: $primary-color;
+        font-weight: bold;
+    }
+
+    input {
+        color: $primary-color;
+        font-weight: bold;
+    }
+}
+
+.loading-spiner {
+    color: $primary-color;
+    width: 3rem;
+    height: 3rem;
+    margin: 2rem;
+}
+
+.autocomplete {
+    position: relative;
+}
+
+.autocomplete .suggestions {
+    /* ... (otros estilos) */
+    cursor: pointer;
+}
+
+.autocomplete .suggestions li {
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    /* Agregamos una transición para el cambio de color de fondo */
+}
+
+.autocomplete .suggestions li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Agregamos un estilo para resaltar la opción seleccionada */
+.autocomplete .suggestions li.selected {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.desplegableSimbolos {
+    padding-left: 0.2rem;
+    border: 0.1px solid;
+    margin-top: 2px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.simboloBuscador {
+    color: #3261A8;
+    font-weight: bold;
+    margin-left: -5px;
+    padding-left: 0.5rem;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.simboloBuscador:hover {
+    background-color: #3261A8;
+    color: #fff;
+}
+
+
+.flash-neutro {
+    -webkit-animation: flash-verde 2.5s ease forwards;
+    animation: flash-verde 2.5s ease forwards
+}
+
+.flash-neutro-verde {
+    -webkit-animation: flash-neutro-verde 2.5s ease forwards;
+    animation: flash-neutro-verde 4.5s ease forwards
+}
+
+.flash-neutro-rojo {
+    -webkit-animation: flash-neutro-rojo 1.5s ease forwards;
+    animation: flash-neutro-rojo 4.5s ease forwards
+}
+
+.alinearDerecha{
+   text-align: right;
+}
+
+@media (max-width: 420px) {
+    .mobile-col {
+        padding: 0;
+    }
+}
+
+
+@-webkit-keyframes flash-neutro-verde {
+    0% {
+        background-color: $primary-color;
+    }
+
+    100% {
+        background-color: #D1E7DD;
+    }
+}
+
+@keyframes flash-neutro-verde {
+    0% {
+        background-color: $primary-color;
+    }
+
+    100% {
+        background-color: #D1E7DD;
+    }
+}
+
+@-webkit-keyframes flash-neutro-rojo {
+    0% {
+        background-color: $primary-color;
+    }
+
+    100% {
+        background-color: #F8D7DA;
+    }
+}
+
+@keyframes flash-neutro-rojo {
+    0% {
+        background-color: $primary-color;
+    }
+
+    100% {
+        background-color: #F8D7DA;
+    }
+}
+
+/* 
+@-webkit-keyframes flash-verde {
+    0% {
+        background-color: green;
+    }
+
+    100% {
+        background-color: initial;
+    }
+}
+
+@keyframes flash-verde {
+    0% {
+        background-color: green;
+    }
+
+    100% {
+        background-color: initial;
+    }
+} */

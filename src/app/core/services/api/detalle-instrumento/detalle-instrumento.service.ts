@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, catchError } from 'rxjs';
-import { environment } from 'environments/environment';
-import { DatosGraficoVelas} from 'src/app/core/models/detalle-instrumento/detalle-instrumento';
+
+
 import { HandleErrorApiService } from '../../manejo-errores/handle-error-api.service';
+import { DatosGraficoVelas } from 'src/app/core/models/detalle-instrumento/detalle-instrumento';
+import { environment } from 'src/app/core/environments/environment';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DetalleInstrumentoService {
-  
-  private datosSubject = new Subject<string>();
   
   constructor(private http : HttpClient,private handleErrorService: HandleErrorApiService) { }
   
