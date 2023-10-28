@@ -114,4 +114,4 @@ jobs:
           # ssh key private de alguien que tenga permiso para entrar al server
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker cp /home/builds/angular/dist/tpi-front/. angular-v1:/usr/share/nginx/html
+            docker cp /home/builds/angular/dist/tpi-front/. angular_app_tpi:/usr/share/nginx/html
