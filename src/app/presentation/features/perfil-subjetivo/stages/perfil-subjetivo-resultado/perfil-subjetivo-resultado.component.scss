@@ -1,0 +1,208 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgb(255, 255, 255);
+}
+
+/*****************/
+
+.finalizacion-area {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-content: center;
+  height: 7em;
+  align-items: center;
+  position: relative;
+
+  button {
+    width: fit-content;
+  }
+  .img-qr-subjetivo{
+    width: 12rem;
+    padding: 1rem;
+  }
+}
+
+.container-perfil-resultado {
+  height: auto;
+    flex-shrink: 0;
+    border-radius: 5em;
+    width: 75%;
+    align-items: center;
+    text-align: center;
+}
+
+
+/*********Contenerdor de texto MercadoJR para Regular y Bold*********/
+.brand-box {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  // margin-bottom: 2rem;
+  margin-top: 2rem;
+
+  img {
+    height: 3.8rem;
+    // margin-right: .7rem;
+    margin-left: .1rem;
+    padding-bottom: 1em;
+  }
+
+  h2 {
+    // margin: 0;
+    font-size: 1.2rem;
+  }
+}
+
+.bold-text-Marca {
+  font-weight: normal;
+  font-family: 'Poppins';
+  /* Establece la fuente regular para "Mercado" */
+}
+
+.bold-Marca {
+  font-weight: bold;
+  font-family: 'Poppins';
+  /* Establece la fuente en negrita para "JR" */
+}
+
+.alinearcion-logotipo {
+  display: flex !important;
+  align-content: flex-end;
+  align-items: center;
+}
+
+
+/*********correcion de texto MercadoJR para Regular y Bold*********/
+.bold-text-Marca {
+  font-weight: normal;
+  font-family: 'Poppins';
+  /* Establece la fuente regular para "Mercado" */
+}
+
+.bold-Marca {
+  font-weight: bold;
+  font-family: 'Poppins';
+  /* Establece la fuente en negrita para "JR" */
+}
+
+.alinearcion-logotipo {
+  display: flex !important;
+  align-content: flex-end;
+}
+
+.img-logo {
+  height: 8rem;
+}
+
+
+.container-botonera-lg {
+  color: #FFFFFF;
+  border-radius: 1.5rem;
+  font-weight: bold;
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.botonera-lg {
+  background-color: #3261A8;
+  color: #FFFFFF;
+  border-radius: 1.5rem;
+  font-weight: bold;
+}
+
+.container-render-test {
+  width: 95%;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background-color: antiquewhite;
+
+  .container-test {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    row-gap: 1rem;
+  }
+
+}
+
+svg {
+  margin-left: 0.5rem;
+}
+
+/* Estilos para dispositivos de pantalla grande (por ejemplo, computadoras de escritorio) */
+@media (min-width: 992px) {}
+
+/* Estilos para dispositivos medianos (por ejemplo, tablets) */
+@media (min-width: 768px) and (max-width: 991px) {}
+
+/* Estilos para dispositivos pequeños (por ejemplo, teléfonos móviles) */
+@media (max-width: 767px) {
+  /*****************/
+.container-perfil-resultado {
+  height: auto;
+  border: 1px solid #3261A8;
+  width: 85%;
+  div h3{
+    font-size: 1rem;
+
+  }
+}
+
+.infomacion-central {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  p {
+    font-size: 1rem;
+  }
+
+  .brand-box {
+    display: flex;
+    align-items: flex-end;
+    white-space: nowrap;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    align-content: flex-end;
+  
+  
+    img {
+      height: 5rem;
+      // margin-right: .7rem;
+      margin-left: 0.2rem;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+      /* padding-bottom: 0.5rem; */
+    }
+  }
+}
+
+.introduccion-perfil-objetivo {
+  width:95%;
+  margin-top: 1rem;
+
+  p {
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+.alerta-introduccion-perfil-objetivo {
+  width: 100%;
+  margin-top: 0.5rem;
+
+  p {
+    text-align: center;
+    font-size: 0.8rem;
+  }
+}
+
+}

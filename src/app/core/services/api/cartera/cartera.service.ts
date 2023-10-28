@@ -2,11 +2,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
-import { Cartera } from 'src/app/core/models/cartera/cartera';
-import { environment } from '../../../../../../environments/environment';
+
+import { environment } from 'src/app/core/environments/environment';
 import { HandleErrorApiService } from '../../manejo-errores/handle-error-api.service';
 import axios from 'axios';
+import { Cartera } from 'src/app/core/models/cartera/cartera';
 import { DolarBolsa } from 'src/app/core/models/dolar-bolsa/dolar-bolsa';
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +25,7 @@ export class CarteraService {
       })
     );
   }
-
+  // {hola: "mundo"} typeof JSON ....>>>>> DolarBolsa
   public async acreditarDinero(cantidad : number, concepto : string) {
     const body = {
       "cantidadPorAcreditar": cantidad,

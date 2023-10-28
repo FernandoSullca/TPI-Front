@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import { environment } from 'environments/environment';
+import { environment } from 'src/app/core/environments/environment';
 import { Observable, of } from 'rxjs';
 import { concatMap, catchError, tap } from 'rxjs/operators';
 

@@ -1,0 +1,40 @@
+<div class="container main-container bg-white">
+    <div class="brand-box pt-1 alinearcion-logotipo">
+        <h3><span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h3>
+        <img src="/assets/image/logo.svg" alt="">
+    </div>
+
+    <div class="container-render-test p-2 bg-white">
+         <div  class="finalizacion-area">
+            
+        <div *ngIf="!isLoading" class="container-perfil-resultado p-3">
+            <div>
+                <h3>
+                    Perfil asociado: <b>{{respPerfilResultante}}</b>
+                </h3>
+            </div>
+        </div>
+
+        <img *ngIf="!isLoading" src="{{URLQRPerfil}} " alt="QR Resultados Subjetivo" class="img-qr-subjetivo">
+
+
+        <div *ngIf="isLoading">
+            <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
+                <div class="spinner-border loading-spiner" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <h3>Analizando tus respuestas ...</h3>
+            </div>
+        </div>
+
+        <div class="justify-content-md-end container-botonera-lg ">
+        <button class="btn btn-primary btn btn-primary me-md-2 botonera-lg" (click)=" loadPagePerfilObjetivo()">{{
+            buttonText }}</button>
+        </div>
+        <p style="margin-top: 1.5rem;">¡Has respondido todas las preguntas!</p>
+
+    </div>
+    </div>
+   
+
+</div>
