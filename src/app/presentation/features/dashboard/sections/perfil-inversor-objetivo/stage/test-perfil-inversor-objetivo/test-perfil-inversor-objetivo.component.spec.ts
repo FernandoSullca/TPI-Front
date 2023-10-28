@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { PreguntaApi } from 'src/app/core/models/API/Pregunta-APi.model';
+import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TestPerfilInversorObjetivoComponent', () => {
   let component: TestPerfilInversorObjetivoComponent;
@@ -60,20 +63,27 @@ describe('TestPerfilInversorObjetivoComponent', () => {
       }]
       ),
       TestObjetivoResultados:() => Promise.resolve({}),
+      TestObjetivoResultadosObtenidos:() => Promise.resolve({}),
     };
 
+    
     let LocalStorageServiceStub: LocalStorageService;
     
+    let CarteraServiceStub : CarteraService;
+    
+
   beforeEach(() => {
     LocalStorageServiceStub = new LocalStorageService();
     const routerSpy=jasmine.createSpyObj('Router', ['navigate']);
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [TestPerfilInversorObjetivoComponent],
        providers: [
         { provide: PreguntaObjetivasService, useValue: preguntaObjetivasServiceStub },
         { provide: QuestionsTargetService, useValue: questionsProfileTargetServiceStub },
         { provide: Router, useValue: routerSpy },
-         { provide: LocalStorageService, useValue: LocalStorageServiceStub },
+        { provide: LocalStorageService, useValue: LocalStorageServiceStub} ,
+        { provide: CarteraService,usaValue:CarteraServiceStub       },
       ],
     }).compileComponents()
     fixture = TestBed.createComponent(TestPerfilInversorObjetivoComponent);
@@ -236,14 +246,18 @@ describe('TestPerfilInversorObjetivoComponent', () => {
       // Otras propiedades
     };
 
-    spyOn(questionsProfileTargetServiceStub,'TestObjetivoResultados').and.returnValue(Promise.resolve(mockResponse));
+    component.respuestasPerfil.horizonteTemporal=10,
+    component.respuestasPerfil.toleranciaRiesgo=10, 
+
+    spyOn(questionsProfileTargetServiceStub,'TestObjetivoResultadosObtenidos').and.returnValue(Promise.resolve(mockResponse));
 
     // Llama a la función que deseas probar
     await component.entregarResultados();
 
     // Verifica que respuestasPerfil se haya asignado correctamente
-    expect(component.respuestasPerfil).toEqual(mockResponse);
+    expect(component.respuestasPerfil.perfilInversor).toEqual(mockResponse.perfilInversor);
   });
+
 
   
   it('debería manejar errores si la API no responde correctamente', async () => {

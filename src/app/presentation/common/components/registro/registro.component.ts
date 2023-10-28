@@ -11,6 +11,7 @@ import { RegistroService } from 'src/app/core/services/api/autorizacion/registro
 })
 
 export class RegistroComponent {
+  
   usuarioForm: any = {
     username: '',
     name: '',
