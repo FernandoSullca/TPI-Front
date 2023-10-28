@@ -1,14 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GraficoVelasComponent } from './grafico-velas.component';
+import { FormatoValorPipe } from '../../pipes/pipe-formato-valor/formato-valor.pipe';
 
-xdescribe('GraficoVelasComponent', () => {
+  describe('GraficoVelasComponent', () => {
   let component: GraficoVelasComponent;
   let fixture: ComponentFixture<GraficoVelasComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [GraficoVelasComponent]
+      declarations: [GraficoVelasComponent,FormatoValorPipe]
     });
     fixture = TestBed.createComponent(GraficoVelasComponent);
     component = fixture.componentInstance;

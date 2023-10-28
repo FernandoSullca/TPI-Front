@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
 import { Cartera } from 'src/app/core/models/cartera/cartera';
 import { DolarBolsa } from 'src/app/core/models/dolar-bolsa/dolar-bolsa';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ChartType } from 'chart.js';
 
 
@@ -14,7 +13,7 @@ import { ChartType } from 'chart.js';
 })
 export class CarteraComponent implements OnInit {
 
-  constructor(private carteraService: CarteraService, private router: Router, private modalService: NgbModal) { }
+  constructor(private carteraService: CarteraService, private router: Router) { }
   datosGrafico : any;
   tipoGrafico: ChartType = 'pie';
   tipoGraficoLinea: ChartType = 'line';
@@ -27,7 +26,6 @@ export class CarteraComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCartera();
-    this.obtenerPrecioDolarMEP()
     this.generarAleatorioTotalValorizado()
   }
   // core      |||||   component

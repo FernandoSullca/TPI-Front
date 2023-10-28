@@ -39,7 +39,7 @@ export class ModalComponent implements OnInit {
     }
   }
   mostrarVariacionDiaria() {
-    if (this.detalleInstrumento.variacionPorcentual) {
+    if (this.detalleInstrumento?.variacionPorcentual) {
       const variacion = this.detalleInstrumento.variacionPorcentual;
       const ultimoCierre = this.detalleInstrumento.ultimoCierre;
       const valorFinal = ((ultimoCierre * variacion) / 100).toFixed(2);
