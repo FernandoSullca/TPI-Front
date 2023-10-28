@@ -34,7 +34,7 @@ export class RegistroComponent {
   errorReg: boolean = false;
 
   constructor(private registroUsuarioService: RegistroService
-    , private router: Router
+    , private router: Router 
     , private LocalStorageService: LocalStorageService) { }
 
   registrarUsuario() { 
