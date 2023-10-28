@@ -30,6 +30,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { GraficoLineaComponent } from '@presentation/common/components/grafico-linea/grafico-linea.component';
 import { FormatoValorPipe } from '@presentation/common/pipes/pipe-formato-valor/formato-valor.pipe';
 import { RegistroComponent } from './common/components/registro/registro.component';
+import { PruebitaComponent } from './common/components/pruebita/pruebita.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { RegistroComponent } from './common/components/registro/registro.compone
     GraficoVelasComponent,
     RegistroComponent,
     GraficoLineaComponent,
-    FormatoValorPipe
+    FormatoValorPipe,
+    PruebitaComponent
   ],
   imports: [
     BrowserModule,
