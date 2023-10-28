@@ -14,8 +14,6 @@ import { environment } from 'src/app/core/environments/environment';
 })
 export class DetalleInstrumentoService {
   
-  private datosSubject = new Subject<string>();
-  
   constructor(private http : HttpClient,private handleErrorService: HandleErrorApiService) { }
   
   getDetalleInstrumento(simbolo:string): Observable<DatosGraficoVelas[]>{
