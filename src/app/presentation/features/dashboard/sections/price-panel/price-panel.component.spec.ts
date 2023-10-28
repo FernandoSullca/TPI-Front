@@ -6,14 +6,16 @@ import { mockAcciones } from "src/app/core/services/api/price-panel/mock";
 import { MessageComponent } from "src/app/presentation/common/components/message/message.component";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule } from "@angular/forms";
 import { Titulo } from "src/app/core/models/price-panel/titulo.model";
 import { By } from "@angular/platform-browser";
+import { FormatoValorPipe } from "src/app/presentation/common/pipes/pipe-formato-valor/formato-valor.pipe";
 
 describe('PricePanelComponent', () => {
   let component: PricePanelComponent;
   let service: PricePanelService;
+  // let ngbModal : NgbModal;
   let pricePanelServiceMocked;
   let fixture: ComponentFixture<PricePanelComponent>;
   const pricePanelServiceStub = {
@@ -30,7 +32,8 @@ describe('PricePanelComponent', () => {
       return new Promise((resolver) => {
         return resolver({})
       })
-    }
+    },
+    getSimbolosEnMemoria: () => "texto"
   }
 
 
@@ -49,10 +52,10 @@ describe('PricePanelComponent', () => {
         CommonModule,
         FormsModule
       ],
-      declarations: [PricePanelComponent, MessageComponent],
+      declarations: [PricePanelComponent, MessageComponent,FormatoValorPipe],
       providers: [
-
         { provide: PricePanelService, useValue: pricePanelServiceStub },
+        { provide: NgbModal },
         { provide: Router, useValue: routerSpy },
       ],
     }).compileComponents()
