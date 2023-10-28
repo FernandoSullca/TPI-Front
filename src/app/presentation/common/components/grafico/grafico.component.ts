@@ -94,7 +94,6 @@ export class GraficoComponent implements OnInit{
   }
   
   actualizarArray(){
-    debugger
     const arrayIntrumentos = Object.assign({}, this.datosGrafico);
     for(const key in arrayIntrumentos){
       if(arrayIntrumentos[key]== 0)
