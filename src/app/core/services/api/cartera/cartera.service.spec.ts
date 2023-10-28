@@ -1,9 +1,10 @@
 import { CarteraService } from './cartera.service';
 import { HandleErrorApiService } from '../../manejo-errores/handle-error-api.service';
 import { of, throwError } from 'rxjs';
-import { Cartera } from 'src/app/core/models/cartera/cartera';
+
 import { mockCarteraData } from './mockCartera';
 import { TestBed } from '@angular/core/testing';
+import { Cartera } from 'src/app/core/models/cartera/cartera';
 
 describe('CarteraService', () => {
   let service: CarteraService;
@@ -21,7 +22,7 @@ describe('CarteraService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('Verify response', (done: DoneFn) => {
+  it('Verify response', (done: any) => {
     httpClientSpy.get.and.returnValue(of(datos));
     service.getCartera()
       .subscribe((resultado: Cartera) => {
@@ -31,7 +32,7 @@ describe('CarteraService', () => {
         done();
       });
   });
-  it('Verify response Not Found', (done: DoneFn) => {
+  it('Verify response Not Found', (done: any) => {
     httpClientSpy.get.and.returnValue(throwError({ status: 404, statusText: 'Not Found' }));
   
     service.getCartera()

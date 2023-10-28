@@ -1,5 +1,5 @@
 // import { HttpClient } from '@angular/common/http';
-// import { environment } from 'src/environments/environment';
+// import { environment } from 'src/app/core/environments/environment';
 import axios from 'axios';
 import { TestBed } from '@angular/core/testing';
 import { PricePanelService } from './price-panel.service';
