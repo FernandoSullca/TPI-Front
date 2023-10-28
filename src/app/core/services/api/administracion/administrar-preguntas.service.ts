@@ -1,9 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import axios from 'axios';
 import { environment } from 'src/app/core/environments/environment';
 import { Observable, of } from 'rxjs';
-import { concatMap, catchError, tap } from 'rxjs/operators';
+import { concatMap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +15,9 @@ export class AdministrarPreguntasService {
 
 
   //Verificado Envio, ¿Captura?
+  // TODO excelPreg NO ....excelPreguntas SI
   public CargarExcelDePreguntas(excelPreg: File): Observable<any> {
-
+    // TODO llevar esta a funcion privada "configHeaders"
     const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
     headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type'
 
@@ -61,13 +61,13 @@ export class AdministrarPreguntasService {
   }
 
   public async CargarSeccion(excelPreg: File, headers: HttpHeaders) {
-    console.log("Cargando Seccion....");
+    
     const formData = new FormData();
     formData.append('excelSeccion', excelPreg, excelPreg.name);
 
     this.http
       .post<FormData>(`${environment.API}/api/seccion/carga-seccion-excel`, formData, { headers: headers })
-
+      // TODO mensaje de error en pantalla
       .subscribe((response) => {
         console.log('Archivo Seccion subido exitosamente', response);
       },
