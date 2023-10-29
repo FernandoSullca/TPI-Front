@@ -1,7 +1,8 @@
-import { Component, OnInit} from '@angular/core';
-import { NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { DatosGraficoVelas, DetalleInstrumento, SolapaDetalleInstrumento } from '../../../../core/models/detalle-instrumento/detalle-instrumento';
+import { Component, Input, OnInit } from '@angular/core';
+import { DatosGraficoVelas, SolapaDetalleInstrumento } from '../../../../core/models/detalle-instrumento/detalle-instrumento';
 import { DetalleInstrumentoService } from '../../../../core/services/api/detalle-instrumento/detalle-instrumento.service';
+import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
+import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
 
 @Component({
   selector: 'app-modal',
@@ -9,47 +10,45 @@ import { DetalleInstrumentoService } from '../../../../core/services/api/detalle
   templateUrl: './modal.component.html',
 })
 export class ModalComponent implements OnInit {
-  textMessage:string='';
-  typeMessage:string='';
-  instrumento:string='';
-  detalleInstrumento!:DetalleInstrumento;
+  @Input() detalleInstrumento!: Titulo;
+  textMessage: string = '';
+  typeMessage: string = '';
+  instrumento: string = '';
   solapaDetalleInstrumento!: SolapaDetalleInstrumento;
-  datosGraficoVelas! : DatosGraficoVelas[];
-
-  constructor(public activeModal: NgbActiveModal,private detalleInstrumentoService : DetalleInstrumentoService,private servicioModal: NgbModal) {}
+  datosGraficoVelas!: DatosGraficoVelas[];
+  constructor(private detalleInstrumentoService: DetalleInstrumentoService,private modalService : ModalService) { }
 
   ngOnInit(): void {
+    debugger
     this.seleccionarInstrumento();
     this.mostrarVariacionDiaria();
   }
-  cerrarModal() {
-    this.activeModal.close();
-    this.servicioModal.dismissAll();
-  }
   public seleccionarInstrumento() {
-    if(this.detalleInstrumento){
-      const simbolo=this.detalleInstrumento.simbolo;
+      const simbolo = this.detalleInstrumento?.simbolo;
       this.detalleInstrumentoService.getDetalleInstrumento(simbolo).subscribe((response) => {
-        this.datosGraficoVelas=response;
+        this.datosGraficoVelas = response;
         this.solapaDetalleInstrumento = {
           detalleInstrumento: this.detalleInstrumento,
-          datosGraficoVelas: this.datosGraficoVelas,
+          datosGraficoVelas: response,
         };
-    });
-    }
+      });
   }
-  mostrarVariacionDiaria() {
+  public mostrarVariacionDiaria() {
     if (this.detalleInstrumento?.variacionPorcentual) {
       const variacion = this.detalleInstrumento.variacionPorcentual;
       const ultimoCierre = this.detalleInstrumento.ultimoCierre;
-      const valorFinal = ((ultimoCierre * variacion) / 100).toFixed(2);
-      const textoPorcentual = `(${variacion.toFixed(2)}%)`; 
-      this.textMessage = '$'+valorFinal.toString().concat(textoPorcentual);
-      if (this.detalleInstrumento.variacionPorcentual > 0)
-        this.typeMessage = 'success';
-      else
-        this.typeMessage = 'error';
+      if (ultimoCierre != undefined) {
+        const valorFinal = ((ultimoCierre * variacion) / 100).toFixed(2);
+        const textoPorcentual = `(${variacion.toFixed(2)}%)`;
+        this.textMessage = '$' + valorFinal.toString().concat(textoPorcentual);
+        if (this.detalleInstrumento.variacionPorcentual > 0)
+          this.typeMessage = 'success';
+        else
+          this.typeMessage = 'error';
+      }
     }
   }
- 
+  public cerrarModal(){
+      this.modalService.closeModal();
+  }
 }

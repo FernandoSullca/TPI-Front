@@ -16,7 +16,7 @@ export class DetalleInstrumentoService {
   
   constructor(private http : HttpClient,private handleErrorService: HandleErrorApiService) { }
   
-  getDetalleInstrumento(simbolo:string): Observable<DatosGraficoVelas[]>{
+  getDetalleInstrumento(simbolo?:string): Observable<DatosGraficoVelas[]>{
     let resp = `${environment.API}/instrumento/historico/${simbolo}`;
     return this.http.get<DatosGraficoVelas[]>(resp).pipe(
       catchError((error)=>{

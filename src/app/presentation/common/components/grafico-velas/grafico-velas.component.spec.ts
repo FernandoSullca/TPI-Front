@@ -44,7 +44,6 @@ import { SolapaDetalleInstrumento } from 'src/app/core/models/detalle-instrument
           "precioCompra": 104.50,
           "cantidadVenta": 30,
           "precioVenta": 107.20,
-          "deleted": false
         },
         "ultimoPrecio": 107.60,
         "variacionPorcentual": 2.56,
@@ -63,7 +62,6 @@ import { SolapaDetalleInstrumento } from 'src/app/core/models/detalle-instrument
         "lote": 100,
         "flashCompra": 105.00,
         "flashVenta": 107.00,
-        "deleted": false
       }
     }
     ;
