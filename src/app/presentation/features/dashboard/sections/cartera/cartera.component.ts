@@ -34,6 +34,8 @@ export class CarteraComponent implements OnInit {
   getCartera() {
     return this.carteraService.getCartera().subscribe((response) => {
       const { totalCartera = '', totalInstrumentos = '', totalMonedas = '' } = response;
+
+      // TODO limpiar
       const responseFormated: Cartera = {
         ...response,
         totalCartera: Number((Math.round(Number(totalCartera) * 100) / 100).toFixed(2)),
@@ -59,6 +61,7 @@ export class CarteraComponent implements OnInit {
       this.fechaCompletaDolarMEP = fecha;
     })
   }
+  // TODO limpiar
   generarAleatorioTotalValorizado() {
     const aleatorios = [];
     let valorInicial = 4000;
