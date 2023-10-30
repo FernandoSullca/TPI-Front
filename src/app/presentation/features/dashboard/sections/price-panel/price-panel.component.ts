@@ -1,15 +1,10 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { PricePanelService } from 'src/app/core/services/api/price-panel/price-panel.service';
-// import { CommonModule } from '@angular/common';
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 import { mockAcciones } from 'src/app/core/services/api/price-panel/mock'
-
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DatosGraficoVelas, DetalleInstrumento } from 'src/app/core/models/detalle-instrumento/detalle-instrumento';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
-
 import { environment } from 'src/app/core/environments/environment';
-import { ModalComponent } from 'src/app/presentation/common/components/modal/modal.component';
+import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
 
 @Component({
   selector: 'app-price-panel',
@@ -29,8 +24,9 @@ export class PricePanelComponent implements OnInit {
   public simbolo: string = ''; 
   public filteredTitulos: string[] = [];
   public totalDineroDisponible:number=0;
+  public detalleInstrumento!:Titulo;
 
-  constructor(private pricePanelService: PricePanelService,private modalService : NgbModal,private carteraService : CarteraService) { }
+  constructor(private pricePanelService: PricePanelService,public modalService : ModalService,private carteraService : CarteraService) { }
 
   ngOnInit(): void {
     this.getDineroDisponible();
@@ -40,14 +36,18 @@ export class PricePanelComponent implements OnInit {
   }
 
   public openModal(instrumento: string) {
-    let detalleInstrumento = this.filtrarPorInstrumento(instrumento);
-    if (detalleInstrumento) {
-      const modalRef = this.modalService.open(ModalComponent);
-      modalRef.componentInstance.detalleInstrumento = detalleInstrumento;
-    } else {
-      console.log('Instrumento no encontrado');
-    }
+      const detalleInstrumento = this.filtrarPorInstrumento(instrumento);
+      console.log(detalleInstrumento);
+      if (detalleInstrumento) {
+        this.detalleInstrumento = detalleInstrumento;
+        this.modalService.openModal();
+      } else {
+        console.log('Instrumento no encontrado');
+      }
   } 
+  openModalPrueba(){
+    this.modalService.openModal();
+  }
   public filtrarPorInstrumento(instrumento:string){
     return this.titulos.find(titulo => titulo.simbolo === instrumento);
   }
