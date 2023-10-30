@@ -1,4 +1,3 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { AdministrarPreguntasService } from 'src/app/core/services/api/administracion/administrar-preguntas.service';
 
@@ -33,15 +32,30 @@ export class AdministrarPreguntasComponent {
       const formData = new FormData();
       formData.append('file', this.selectedFile, this.selectedFile.name);
 
+      // Simula la carga del archivo y actualiza la barra de progreso
+      const totalSize = this.selectedFile.size;
+      const chunkSize = 1024 * 1024; // Tamaño del fragmento (1 MB en este ejemplo)
+      let loaded = 0;
 
-      const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
-      headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type'
+      const uploadInterval = setInterval(() => {
+        if (loaded >= totalSize) {
+          clearInterval(uploadInterval);
+          return;
+        }
+
+        loaded += chunkSize;
+        this.uploadProgress = (loaded / totalSize) * 100;
+      }, 1000); // Actualiza la barra de progreso cada segundo
 
 
       this.servicioPreguntasAPI_.CargarExcelDePreguntas(this.selectedFile).subscribe(
-        () => {
+        (data) => {
+          this.resp = data;
           console.log('Todas las solicitudes se completaron con éxito');
-          // Puedes realizar acciones adicionales aquí
+          // Puedes realizar acciones adicionales aquí 
+          if (this.resp != null) {
+            this.uploadProgress = 100;
+          }
         },
         (error) => {
           console.error('Error en la carga de datos', error);
@@ -49,12 +63,10 @@ export class AdministrarPreguntasComponent {
         }
       );
 
-    } else {
-      alert('Por favor, seleccione un archivo antes de cargarlo.');
     }
-    if (this.resp != null) {
 
-      this.uploadProgress = 100;
+    if (!this.selectedFile) {
+      alert('Por favor, seleccione un archivo antes de cargarlo.');
     }
 
   }

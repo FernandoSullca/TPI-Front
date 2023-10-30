@@ -7,8 +7,9 @@
 
         <div class="dropzone">
             <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
-            <input type="file" class="upload-input"  accept=".xlsx, .xls" name="excelPregunta" (change)="onFileSelected($event)" />
-          </div>
+            <input type="file" class="upload-input" accept=".xlsx, .xls" name="excelPregunta"
+                (change)="onFileSelected($event)" />
+        </div>
 
 
         <div class="file-info">
@@ -18,6 +19,20 @@
 
 
         <button class="btn" (click)="uploadFile()">Subir archivo</button>
+
+        <div class="uploaded uploaded--one">
+            <i class="far fa-file-pdf"></i>
+            <div class="file">
+                <div class="file__name">
+                    <p>lorem_ipsum.pdf</p>
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width:100%">
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
