@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'environments/environment';
+import { environment } from 'src/app/core/environments/environment';
 import axios from 'axios';
-import { Observable } from 'rxjs';
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 
 @Injectable({
@@ -14,8 +12,7 @@ export class PricePanelService {
 
   constructor() { }
 
-  public async obtenerTitulos() {
-    const resp = await axios.get(`${environment.API}/panel/acciones`);
+  mapToTitulos(resp: any) {
     const { data } = resp;
     const datos = Array.from(data);
     return datos.map((titulo: any) => {
@@ -24,12 +21,17 @@ export class PricePanelService {
     });
   }
 
+  public async obtenerTitulos() {
+    const resp = await axios.get(`${environment.API}/panel/acciones`);
+    return this.mapToTitulos(resp);
+  }
+
 
   public getSimbolosEnMemoria(): string[] {
     console.log(this.simbolos);
     return this.simbolos;
   }
-
+  // todo separar logica
   public async capturarOrden(sentido: string, simbolo: string, cantidad: number, mapa: Map<string, string>) {
     let date = new Date()
     let day = `${(date.getDate())}`.padStart(2, '0');
@@ -47,7 +49,7 @@ export class PricePanelService {
     }
     const resp = await axios.post(`${environment.API}/orden/capturar`, body);
     const { data } = resp;
-    
+
     return data;
   }
 }

@@ -1,0 +1,129 @@
+<div class="container-fluid">
+  <div class="row text-center table-price">
+    <div class="text-start">
+      <h3>Panel de Acciones</h3>
+
+    </div>
+    <div class="col-sm-12">
+      <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
+        <div class="col mobile-col">Simbolo</div>
+        <div class="col d-none d-xl-block">Último Operado</div>
+        <div class="col d-none d-xl-block">Variación Diaria</div>
+        <div class="col mobile-col">Cantidad Compra</div>
+        <div class="col mobile-col">Precio Compra</div>
+        <div class="col mobile-col">Precio Venta</div>
+        <div class="col mobile-col">Cantidad Venta</div>
+        <div class="col d-none d-xl-block">Apertura</div>
+        <div class="col d-none d-xl-block">Minimo</div>
+        <div class="col d-none d-xl-block">Máximo</div>
+        <div class="col d-none d-xl-block">Último Cierre</div>
+        <div class="col d-none d-xl-block">Monto Operado</div>
+      </div>
+      <div class="row filas" *ngIf="titulos.length > 1; else loading">
+        <div *ngFor="let titulo of titulos; index as i;">
+          <div class="fila-instrumento" (click)="openModal(''+titulo.simbolo+'')" data-toggle="modal" data-target="#myModal">
+            <div class="row" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
+              <div class="col overflow-hidden text-start mobile-col">
+                <strong>
+                  {{titulo.simbolo}}
+                </strong>
+              </div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.ultimoPrecio | formatoValor}}</div>
+              <div class="col overflow-hidden d-none d-xl-block">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div style="display: inline-block;">
+                    <i *ngIf="titulo && titulo.variacionPorcentual && titulo.variacionPorcentual > 0"
+                      class="fa-solid fa-caret-up text-success"></i>
+                    <i *ngIf="titulo && titulo.variacionPorcentual && titulo.variacionPorcentual < 0"
+                      class="fa-solid fa-caret-down text-danger"></i>
+                  </div>
+                  <div style="display: inline-block;">
+                    <div> {{titulo.variacionPorcentual || '-'}} %</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col overflow-hidden mobile-col columna-verde alinearDerecha">{{titulo.puntas?.cantidadCompra || "-"}}</div>
+              <div class="col overflow-hidden mobile-col columna-verde alinearDerecha"
+                [ngClass]="titulo.flashCompra !== 0 ? 'flash-neutro-verde': ''">{{titulo.puntas?.precioCompra |formatoValor}}
+              </div>
+              <div class="col overflow-hidden mobile-col columna-rojo alinearDerecha"
+                [ngClass]="titulo.flashVenta !== 0 ? 'flash-neutro-rojo': ''">{{titulo.puntas?.precioVenta | formatoValor}}
+              </div>
+              <div class="col overflow-hidden mobile-col columna-rojo alinearDerecha">{{titulo.puntas?.cantidadVenta || '-'}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.apertura | formatoValor}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.minimo | formatoValor}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.maximo | formatoValor}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.ultimoCierre | formatoValor}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.ultimoPrecio | formatoValor}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row float-end" *ngIf="lastUpdatePanel" style="margin-top: 0.5rem;">Última actualización del mercado real: {{lastUpdatePanel}}</div>
+
+      <ng-template #loading>
+        <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
+          <div class="spinner-border loading-spiner" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <h3>Cargando panel de precios ...</h3>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div class="row mt-5" style="height: 30vh;">
+    <div class="container-fluid ">
+      <div class="text-start">
+        <div class="row d-flex justify-content-between align-items-center">
+          <div class="col-md-6">
+            <h3>Capturar orden</h3>
+          </div>
+          <div class="col-md-6 text-end">
+            <h3>Saldo: $ {{totalDineroDisponible | formatoValor}}</h3>
+          </div>
+        </div>
+        <div class="col d-flex justify-content-around" style="font-weight: 700; font-size: 18px;">
+          <message [textMessage]="textMessage" [typeMessage]="typeMessage"></message>
+        </div>
+      </div>
+      <div class="row d-flex align-content-between mb-3 inputs-orden">
+        <div class="col-md-12">
+          <label for="simbolos" class="form-label">
+            Especie
+          </label>
+          <div>
+            <input type="text" class="form-control" [(ngModel)]="simbolo" (input)="onInputChange()">
+            <ul class="desplegableSimbolos" *ngIf="filteredTitulos.length > 0">
+              <div class="simboloBuscador" *ngFor="let simbolo of filteredTitulos" (click)="selectSymbol(simbolo)">
+                {{simbolo}}</div>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <label for="simbolos" class="form-label">
+            Cantidad
+          </label>
+          <input placeholder="Ingrese cantidad aca" name='cantidad' [(ngModel)]="cantidad" type="number"
+            class="form-control" id="cantidad">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col d-flex justify-content-around">
+          <button type="button" class="boton btn btn-lg" (click)="vender()"
+            style="background-color:#DC3545">VENDER</button>
+          <button type="button" class="boton btn btn-lg" (click)="comprar()"
+            style="background-color: #198754">COMPRAR</button>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+  <app-modal *ngIf="modalService.isModalOpen()" [detalleInstrumento]="detalleInstrumento"></app-modal>
+</div>
