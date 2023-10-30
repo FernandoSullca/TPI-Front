@@ -18,6 +18,7 @@ import { AdministrarComponent } from './features/dashboard/sections/administrar/
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
 import { RegistroComponent } from './common/components/registro/registro.component';
 import { DefaultPathComponent } from './features/default-path/default-path.component';
+import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
       { path: "Administrar", component: AdministrarComponent},
       { path: "Administrar-Preguntas", component: AdministrarPreguntasComponent},
       { path: "cartera", component: CarteraComponent},
+      { path: "prediccion", component : PrediccionComponent}
     ],
   },
   // Otras rutas o manejo de errores

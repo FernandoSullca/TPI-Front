@@ -1,0 +1,23 @@
+div {
+    border-style: groove;
+}
+
+.container-fluid {
+    height: 100%;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    .grafico,.precios{
+        width: 100%;
+    }
+    .grafico {
+        height: 65%;
+        border-style: groove;
+    }
+
+    .precios {
+        height: 35%;
+        border-style: groove;
+    }
+}

@@ -30,6 +30,7 @@ import { GraficoLineaComponent } from 'src/app/presentation/common/components/gr
 import { FormatoValorPipe } from 'src/app/presentation/common/pipes/pipe-formato-valor/formato-valor.pipe';
 import { RegistroComponent } from './common/components/registro/registro.component';
 import { PruebitaComponent } from './common/components/pruebita/pruebita.component';
+import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { PruebitaComponent } from './common/components/pruebita/pruebita.compone
     GraficoLineaComponent,
     FormatoValorPipe,
     PruebitaComponent,
+    PrediccionComponent,
   ],
   imports: [
     BrowserModule,
