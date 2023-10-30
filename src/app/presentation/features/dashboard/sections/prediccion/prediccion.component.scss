@@ -1,23 +1,59 @@
-div {
-    border-style: groove;
-}
-
 .container-fluid {
     height: 100%;
     background-color: #FFFFFF;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    .grafico,.precios{
-        width: 100%;
+    .titulo-intrumento-grafico{
+        padding: 2rem;
     }
     .grafico {
-        height: 65%;
-        border-style: groove;
+        padding: 2rem;
+        width: 100%;
+        height: auto;
+        transition: none !important;
     }
-
-    .precios {
-        height: 35%;
-        border-style: groove;
+    .valores{
+        display: flex;
+        text-align: center;
+        width: 100%;
+        height: 40%;
+        flex-wrap: wrap;
+        .titulo-valores{
+          width: 100%;
+        }
+        .valor-actual,.valor-futuro{
+            height: 80%;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        .fecha{
+            width: 100%;
+            font-size: smaller;
+        }  
+      }
+      h2{
+        color:#3261A8;
+        font-weight: bold;
+    }
+    @media (max-width: 650px) {
+        .valores{
+            height: 25%;
+           .valor-actual,.valor-futuro{
+            width: 100%;
+            } 
+        }
+    }   
+    
+    @media (min-width: 650px) and (max-width: 1200px) {
+        .valores{
+            height: 25%;
+           .valor-actual,.valor-futuro{
+            width: 100%;
+            } 
+        }
+        
     }
 }

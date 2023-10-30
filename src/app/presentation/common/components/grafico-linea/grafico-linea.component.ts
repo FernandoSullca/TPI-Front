@@ -42,8 +42,9 @@ export class GraficoLineaComponent implements OnInit {
             ]
         },
         options: {
-            aspectRatio: 2,
+            aspectRatio: 1|2,
             responsive: true,
+            resizeDelay: -0.5
         }
     });
 }
