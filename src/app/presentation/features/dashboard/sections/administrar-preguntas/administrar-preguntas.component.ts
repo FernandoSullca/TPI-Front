@@ -68,6 +68,90 @@ export class AdministrarPreguntasComponent {
     }
   }
 
+  onFileSelectedCategorias(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    console.log(file)
+    if (file) {
+      this.selectedFile = file;
+      console.log(`Nombre del archivo: ${file.name}`);
+      // Puedes realizar otras operaciones con el archivo aquí
+      // Formatear los valores
+      if (file.size !== undefined) {
+        this.formattedSize = `${(file.size / 1024 / 1024).toPrecision(2)} MB`;
+        console.log(this.formattedSize)
+      }
+      if (file.type !== undefined) {
+        this.formattedType = file.type ;
+        console.log(this.formattedType)
+      }
+      if (file.lastModified !== undefined) {
+        this.formattedLastModified = new Date(file.lastModified).toLocaleDateString();
+        console.log(this.formattedLastModified )
+      }
+    }
+    else {
+      this.selectedFile = null;
+      this.selectedFileName = 'Nombre del archivo: No seleccionado';
+    }
+  }
+
+  onFileSelectedPreguntas(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    console.log(file)
+    if (file) {
+      this.selectedFile = file;
+      console.log(`Nombre del archivo: ${file.name}`);
+      // Puedes realizar otras operaciones con el archivo aquí
+      // Formatear los valores
+      if (file.size !== undefined) {
+        this.formattedSize = `${(file.size / 1024 / 1024).toPrecision(2)} MB`;
+        console.log(this.formattedSize)
+      }
+      if (file.type !== undefined) {
+        this.formattedType = file.type ;
+        console.log(this.formattedType)
+      }
+      if (file.lastModified !== undefined) {
+        this.formattedLastModified = new Date(file.lastModified).toLocaleDateString();
+        console.log(this.formattedLastModified )
+      }
+    }
+    else {
+      this.selectedFile = null;
+      this.selectedFileName = 'Nombre del archivo: No seleccionado';
+    }
+  }
+
+  onFileSelectedRespuestas(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    console.log(file)
+    if (file) {
+      this.selectedFile = file;
+      console.log(`Nombre del archivo: ${file.name}`);
+      // Puedes realizar otras operaciones con el archivo aquí
+      // Formatear los valores
+      if (file.size !== undefined) {
+        this.formattedSize = `${(file.size / 1024 / 1024).toPrecision(2)} MB`;
+        console.log(this.formattedSize)
+      }
+      if (file.type !== undefined) {
+        this.formattedType = file.type ;
+        console.log(this.formattedType)
+      }
+      if (file.lastModified !== undefined) {
+        this.formattedLastModified = new Date(file.lastModified).toLocaleDateString();
+        console.log(this.formattedLastModified )
+      }
+    }
+    else {
+      this.selectedFile = null;
+      this.selectedFileName = 'Nombre del archivo: No seleccionado';
+    }
+  }
+
   getShortFileType(fileType: string): string {
     // Realiza la conversión según tus necesidades
     // Aquí puedes personalizar la lógica para abreviar el tipo de archivo

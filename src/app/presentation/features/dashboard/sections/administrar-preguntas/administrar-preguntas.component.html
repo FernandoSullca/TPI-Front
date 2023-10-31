@@ -1,51 +1,8 @@
-<!-- <div class="frame">
-    <div class="center">
-        <div class="title">
-            <h1>Subir su archivo de preguntas en formato Excel</h1>
-        </div>
-
-        <div class="dropzone">
-            <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
-            <input type="file" class="upload-input" accept=".xlsx, .xls" name="excelPregunta"
-                (change)="onFileSelected($event)" />
-        </div>
-
-
-        <div class="file-info">
-            <div>{{ selectedFileName }}</div>
-            <progress [value]="uploadProgress" max="100"></progress>
-        </div>
-
-
-        <button class="btn" (click)="uploadFile()">Subir archivo</button>
-
-        <div class="uploaded uploaded--one">
-            <i class="far fa-file-pdf"></i>
-            <div class="file">
-                <div class="file__name">
-                    <p>lorem_ipsum.pdf</p>
-                    <i class="fas fa-times"></i>
-                </div>
-                <div class="progress">
-                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width:100%">
-                    </div>
-                </div>
-            </div>
-        </div>
-
- 
-
-    </div>
-</div> -->
-<!-- /*********************************************************/ -->
-
 <head>
 
     <meta charset="UTF-8">
-    <title>CodePen Demo</title>
 
     <meta name="robots" content="noindex">
-
     <link rel="shortcut icon" type="image/x-icon"
         href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
     <link rel="mask-icon"
@@ -53,12 +10,8 @@
         color="#111">
     <link rel="canonical" href="https://codepen.io/abhijitdarji/pen/dMVoaX">
 
-
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-
-
 
 </head>
 
@@ -72,9 +25,7 @@
     </nav>
     <!-- //////////////////////// -->
 
-
     <div class="container">
-
 
         <div class="panel-group ng-pristine ng-untouched ng-valid ng-scope ng-not-empty"
             data-as-sortable="vm.documentDragListeners" ng-model="vm.documents">
@@ -84,7 +35,7 @@
                 data-as-sortable-item="">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <i class="fa fa fa-grip a-grip-large fa-rotate-90 ng-scope as-sortable-item-handle"
+                        <i class="fa fa-grip fa-rotate-90 ng-scope as-sortable-item-handle"
                             data-as-sortable-item-handle=""></i>
                         <a data-toggle="collapse" data-target="#collapse0" class="ng-binding collapsed"
                             aria-expanded="false">Secciones
@@ -185,7 +136,7 @@
                 data-as-sortable-item="" style="">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <i class="fa fa fa-grip fa-grip-large fa-rotate-90 ng-scope as-sortable-item-handle"
+                        <i class="fa fa-grip fa-rotate-90 ng-scope as-sortable-item-handle"
                             data-as-sortable-item-handle=""></i>
                         <a data-toggle="collapse" data-target="#collapse1" class="ng-binding collapsed"
                             aria-expanded="false">Categorias<i class="chevron fa fa-fw"></i></a> <span
@@ -197,16 +148,18 @@
                 </div>
                 <div id="collapse1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                     <div class="panel-body">
-                        <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
-                            ngf-select="vm.addFiles($files,doc.files)" accept="*/*" multiple="multiple"
-                            ng-model="vm.files" ngf-max-height="1000" ngf-max-size="5MB">
-                            Select Files</button>
-
+                            <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
+                            ngf-select="vm.addFiles($files,doc.files)" (click)="openFileInput()" accept="*/*"
+                            multiple="multiple" ng-model="vm.files" ngf-max-height="1000" ngf-max-size="5MB">
+                            Seleccione su archivo</button>
+                            <input type="file" #fileInput style="display: none" 
+                            (change)="onFileSelectedCategorias($event)"/>
                         <br>
                         <br>
                         <div ngf-drop="vm.addFiles($files,doc.files)" class="drop-box" ngf-drag-over-class="'dragover'"
                             ngf-multiple="true" ngf-pattern="'image/*,application/pdf'">
                             <div class="dragOverlay">
+                               
                                 <div class="dragInner">Drop files here.</div>
                             </div>
                             <div ngf-no-file-drop="" style="display: none;">File Drag/Drop is not supported for this
@@ -224,7 +177,11 @@
                                     </div>
                                 </li>
                                 <li class="list-group-item" ng-show="doc.files.length === 0">
-                                  
+                                    <div class="dropzone">
+                                        <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+                                        <input type="file" class="upload-input" accept=".xlsx, .xls"
+                                            name="excelPregunta" (change)="onFileSelected($event)" />
+                                    </div>
 
                                     Drop Images or PDFs files here.
                                 </li>
@@ -274,7 +231,7 @@
                 data-as-sortable-item="" style="">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <i class="fa fa fa-grip fa-grip-large fa-rotate-90 ng-scope as-sortable-item-handle"
+                        <i class="fa fa-grip fa-rotate-90 ng-scope as-sortable-item-handle"
                             data-as-sortable-item-handle=""></i>
                         <a data-toggle="collapse" data-target="#collapse2" class="ng-binding collapsed"
                             aria-expanded="false">Preguntas<i class="chevron fa fa-fw"></i></a> <span
@@ -286,11 +243,16 @@
                 </div>
                 <div id="collapse2" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                     <div class="panel-body">
-                        <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
+                        <!-- <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
                             ngf-select="vm.addFiles($files,doc.files)" accept="*/*" multiple="multiple"
                             ng-model="vm.files" ngf-max-height="1000" ngf-max-size="5MB">
-                            Select Files</button>
-
+                            Select Files</button> -->
+                            <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
+                            ngf-select="vm.addFiles($files,doc.files)" (click)="openFileInput()" accept="*/*"
+                            multiple="multiple" ng-model="vm.files" ngf-max-height="1000" ngf-max-size="5MB">
+                            Seleccione su archivo</button>
+                            <input type="file" #fileInput style="display: none" 
+                            (change)="onFileSelectedPreguntas($event)"/>
                         <br>
                         <br>
                         <div ngf-drop="vm.addFiles($files,doc.files)" class="drop-box" ngf-drag-over-class="'dragover'"
@@ -313,6 +275,11 @@
                                     </div>
                                 </li>
                                 <li class="list-group-item" ng-show="doc.files.length === 0">
+                                    <div class="dropzone">
+                                        <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+                                        <input type="file" class="upload-input" accept=".xlsx, .xls"
+                                            name="excelPregunta" (change)="onFileSelected($event)" />
+                                    </div>
                                     Drop Images or PDFs files here.
                                 </li>
                                  <!-- ngRepeat: f in doc.files -->
@@ -361,7 +328,7 @@
                 data-as-sortable-item="" style="">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <i class="fa fa fa-grip fa-grip-large fa-rotate-90 ng-scope as-sortable-item-handle"
+                        <i class="fa fa-grip fa-rotate-90 ng-scope as-sortable-item-handle"
                             data-as-sortable-item-handle=""></i>
                         <a data-toggle="collapse" data-target="#collapse3" class="ng-binding collapsed"
                             aria-expanded="false">Respuestas<i class="chevron fa fa-fw"></i></a> <span
@@ -373,10 +340,16 @@
                 </div>
                 <div id="collapse3" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                     <div class="panel-body">
-                        <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
+                        <!-- <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
                             ngf-select="vm.addFiles($files,doc.files)" accept="*/*" multiple="multiple"
                             ng-model="vm.files" ngf-max-height="1000" ngf-max-size="5MB">
-                            Select Files</button>
+                            Select Files</button> -->
+                            <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
+                            ngf-select="vm.addFiles($files,doc.files)" (click)="openFileInput()" accept="*/*"
+                            multiple="multiple" ng-model="vm.files" ngf-max-height="1000" ngf-max-size="5MB">
+                            Seleccione su archivo</button>
+                            <input type="file" #fileInput style="display: none" 
+                            (change)="onFileSelectedRespuestas($event)"/>
 
                         <br>
                         <br>
@@ -401,6 +374,11 @@
                                     </div>
                                 </li>
                                 <li class="list-group-item" ng-show="doc.files.length === 0">
+                                    <div class="dropzone">
+                                        <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+                                        <input type="file" class="upload-input" accept=".xlsx, .xls"
+                                            name="excelPregunta" (change)="onFileSelected($event)" />
+                                    </div>
                                     Drop Images or PDFs files here.
                                 </li>
                                  <!-- ngRepeat: f in doc.files -->
