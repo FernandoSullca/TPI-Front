@@ -1,5 +1,4 @@
-<p>Administrar-preguntas de Test Subjetivos como objetivos!</p>
-<div class="frame">
+<!-- <div class="frame">
     <div class="center">
         <div class="title">
             <h1>Subir su archivo de preguntas en formato Excel</h1>
@@ -34,5 +33,243 @@
             </div>
         </div>
 
+ 
+
     </div>
+</div> -->
+<!-- /*********************************************************/ -->
+
+<!-- /*************************************/ -->
+<div class="container-fluid container main-container bg-white">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/dashboard/Administrar"> File Upload with Sorting</a>
+            </div>
+        </div>
+    </nav>
+    <!-- //////////////////////// -->
+
+
+    <div class="container">
+
+
+        <div class="panel-group ng-pristine ng-untouched ng-valid ng-scope ng-not-empty"
+            data-as-sortable="vm.documentDragListeners" ng-model="vm.documents">
+            <!-- ngRepeat: doc in vm.documents -->
+            <div class="" ng-repeat="doc in vm.documents" data-as-sortable-item="">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <i class="fa fa-grip-large fa-rotate-90 ng-scope as-sortable-item-handle"
+                            data-as-sortable-item-handle=""></i>
+                        <a data-toggle="collapse" data-target="#collapse0" class="ng-binding collapsed"
+                            aria-expanded="false">Doc11<i class="chevron fa fa-fw"></i></a> <span
+                            class="badge ng-binding">0</span>
+                        <a class="close-ribbon pull-right" ng-click="vm.removeDoc($index)"><i
+                                class="fa fa-times"></i></a>
+                    </h4>
+
+                </div>
+                <div id="collapse0" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body">
+                        <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
+                            ngf-select="vm.addFiles($files,doc.files)" accept="*/*" multiple="multiple"
+                            ng-model="vm.files" ngf-max-height="1000" ngf-max-size="5MB">
+                            Select Files</button>
+
+                        <br>
+                        <br>
+                        <div ngf-drop="vm.addFiles($files,doc.files)" class="drop-box" ngf-drag-over-class="'dragover'"
+                            ngf-multiple="true" ngf-pattern="'image/*,application/pdf'">
+                            <div class="dragOverlay">
+                                <div class="dragInner">Drop files here.</div>
+                            </div>
+                            <div ngf-no-file-drop="" style="display: none;">File Drag/Drop is not supported for this
+                                browser</div>
+                            <ul class="list-group ng-pristine ng-untouched ng-valid ng-scope ng-not-empty"
+                                data-as-sortable="vm.fileDragListeners" ng-model="doc.files">
+                                <li class="list-group-item list-group-item-info">
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">Sort</div>
+                                        <div class="col-lg-4 col-md-4 col-sm-7 col-xs-7">Name</div>
+                                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">Size (MB)</div>
+                                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">Type</div>
+                                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">Modified on</div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2"></div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" ng-show="doc.files.length === 0">
+                                    Drop Images or PDFs files here.
+                                </li>
+                                <!-- ngRepeat: f in doc.files -->
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Upload</button> 
+                </div>
+            </div><!-- end ngRepeat: doc in vm.documents -->
+            <div class="panel panel-default xlist ng-scope as-sortable-item" ng-repeat="doc in vm.documents"
+                data-as-sortable-item="" style="">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <i class="fa fa-grip-large fa-rotate-90 ng-scope as-sortable-item-handle"
+                            data-as-sortable-item-handle=""></i>
+                        <a data-toggle="collapse" data-target="#collapse1" class="ng-binding collapsed"
+                            aria-expanded="false">Doc11<i class="chevron fa fa-fw"></i></a> <span
+                            class="badge ng-binding">0</span>
+                        <a class="close-ribbon pull-right" ng-click="vm.removeDoc($index)"><i
+                                class="fa fa-times"></i></a>
+                    </h4>
+                    
+                </div>
+                <div id="collapse1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body">
+                        <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
+                            ngf-select="vm.addFiles($files,doc.files)" accept="*/*" multiple="multiple"
+                            ng-model="vm.files" ngf-max-height="1000" ngf-max-size="5MB">
+                            Select Files</button>
+
+                        <br>
+                        <br>
+                        <div ngf-drop="vm.addFiles($files,doc.files)" class="drop-box" ngf-drag-over-class="'dragover'"
+                            ngf-multiple="true" ngf-pattern="'image/*,application/pdf'">
+                            <div class="dragOverlay">
+                                <div class="dragInner">Drop files here.</div>
+                            </div>
+                            <div ngf-no-file-drop="" style="display: none;">File Drag/Drop is not supported for this
+                                browser</div>
+                            <ul class="list-group ng-pristine ng-untouched ng-valid ng-scope ng-not-empty"
+                                data-as-sortable="vm.fileDragListeners" ng-model="doc.files">
+                                <li class="list-group-item list-group-item-info">
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">Sort</div>
+                                        <div class="col-lg-4 col-md-4 col-sm-7 col-xs-7">Name</div>
+                                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">Size (MB)</div>
+                                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">Type</div>
+                                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">Modified on</div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2"></div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" ng-show="doc.files.length === 0">
+                                    Drop Images or PDFs files here.
+                                </li>
+                                <!-- ngRepeat: f in doc.files -->
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Upload</button> 
+                </div>
+            </div><!-- end ngRepeat: doc in vm.documents -->
+            <div class="panel panel-default xlist ng-scope as-sortable-item" ng-repeat="doc in vm.documents"
+                data-as-sortable-item="" style="">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <i class="fa fa-grip-large fa-rotate-90 ng-scope as-sortable-item-handle"
+                            data-as-sortable-item-handle=""></i>
+                        <a data-toggle="collapse" data-target="#collapse2" class="ng-binding collapsed"
+                            aria-expanded="false">Doc21<i class="chevron fa fa-fw"></i></a> <span
+                            class="badge ng-binding">0</span>
+                        <a class="close-ribbon pull-right" ng-click="vm.removeDoc($index)"><i
+                                class="fa fa-times"></i></a>
+                    </h4>
+
+                </div>
+                <div id="collapse2" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body">
+                        <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
+                            ngf-select="vm.addFiles($files,doc.files)" accept="*/*" multiple="multiple"
+                            ng-model="vm.files" ngf-max-height="1000" ngf-max-size="5MB">
+                            Select Files</button>
+
+                        <br>
+                        <br>
+                        <div ngf-drop="vm.addFiles($files,doc.files)" class="drop-box" ngf-drag-over-class="'dragover'"
+                            ngf-multiple="true" ngf-pattern="'image/*,application/pdf'">
+                            <div class="dragOverlay">
+                                <div class="dragInner">Drop files here.</div>
+                            </div>
+                            <div ngf-no-file-drop="" style="display: none;">File Drag/Drop is not supported for this
+                                browser</div>
+                            <ul class="list-group ng-pristine ng-untouched ng-valid ng-scope ng-not-empty"
+                                data-as-sortable="vm.fileDragListeners" ng-model="doc.files">
+                                <li class="list-group-item list-group-item-info">
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">Sort</div>
+                                        <div class="col-lg-4 col-md-4 col-sm-7 col-xs-7">Name</div>
+                                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">Size (MB)</div>
+                                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">Type</div>
+                                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">Modified on</div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2"></div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" ng-show="doc.files.length === 0">
+                                    Drop Images or PDFs files here.
+                                </li>
+                                <!-- ngRepeat: f in doc.files -->
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Upload</button> 
+                </div>
+            </div><!-- end ngRepeat: doc in vm.documents -->
+            <div class="panel panel-default xlist ng-scope as-sortable-item" ng-repeat="doc in vm.documents"
+                data-as-sortable-item="" style="">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <i class="fa fa-grip-large fa-rotate-90 ng-scope as-sortable-item-handle"
+                            data-as-sortable-item-handle=""></i>
+                        <a data-toggle="collapse" data-target="#collapse3" class="ng-binding collapsed"
+                            aria-expanded="false">Doc31<i class="chevron fa fa-fw"></i></a> <span
+                            class="badge ng-binding">0</span>
+                        <a class="close-ribbon pull-right" ng-click="vm.removeDoc($index)"><i
+                                class="fa fa-times"></i></a>
+                    </h4>
+
+                </div>
+                <div id="collapse3" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body">
+                        <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
+                            ngf-select="vm.addFiles($files,doc.files)" accept="*/*" multiple="multiple"
+                            ng-model="vm.files" ngf-max-height="1000" ngf-max-size="5MB">
+                            Select Files</button>
+
+                        <br>
+                        <br>
+                        <div ngf-drop="vm.addFiles($files,doc.files)" class="drop-box" ngf-drag-over-class="'dragover'"
+                            ngf-multiple="true" ngf-pattern="'image/*,application/pdf'">
+                            <div class="dragOverlay">
+                                <div class="dragInner">Drop files here.</div>
+                            </div>
+                            <div ngf-no-file-drop="" style="display: none;">File Drag/Drop is not supported for this
+                                browser
+                            </div>
+                            <ul class="list-group ng-pristine ng-untouched ng-valid ng-scope ng-not-empty"
+                                data-as-sortable="vm.fileDragListeners" ng-model="doc.files">
+                                <li class="list-group-item list-group-item-info">
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">Sort</div>
+                                        <div class="col-lg-4 col-md-4 col-sm-7 col-xs-7">Name</div>
+                                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">Size (MB)</div>
+                                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">Type</div>
+                                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">Modified on</div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2"></div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" ng-show="doc.files.length === 0">
+                                    Drop Images or PDFs files here.
+                                </li>
+                                <!-- ngRepeat: f in doc.files -->
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Upload</button>
+                </div>
+            </div><!-- end ngRepeat: doc in vm.documents -->
+        </div>
+     
+         </div> 
+        <div class="container-descargar-template">
+
+        <button class="btn btn-primary" (click)="downloadExcelTemplate()">Descargar Plantilla Excel</button>
+        </div>
 </div>
