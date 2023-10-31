@@ -64,7 +64,7 @@
     <div class="fecha">{{fechaCompletaDolarMEP}}</div>
 </div>-->
     <!-- (click)="logout()" -->
-    <div class="portfolio-sugerido-container">
+    <div class="portfolio-sugerido-container" (click)="openModal()" data-toggle="modal" data-target="#sugerido" >
       <img class="portfolio-sugerido" src="/assets/image/portfolio-sugerido-icon.svg" alt="Portofolio sugerido">
     </div>
     <div class="logout" (click)="cerrarSesion()">
@@ -74,7 +74,9 @@
 
   </nav>
   <div class="main-content">
+    <app-modal-sugerido *ngIf="modalService.isModalOpen()"></app-modal-sugerido>
     <router-outlet></router-outlet>
     <!-- <app-price-panel></app-price-panel> -->
   </div>
 </section>
+
