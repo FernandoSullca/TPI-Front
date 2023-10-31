@@ -33,8 +33,6 @@ export class PricePanelComponent implements OnInit {
     this.getTitulos();
     this.updateTitulosEvery(environment.UPDATE_PRICE_PANEL_EVERY_SECONDS);
     this.titulosSimbolo = this.pricePanelService.getSimbolosEnMemoria();
-    
-    console.log("🚀 ~ file: price-panel.component.ts:37 ~ PricePanelComponent ~ ngOnInit ~ environment:", environment)
   }
 
   public openModal(instrumento: string) {
