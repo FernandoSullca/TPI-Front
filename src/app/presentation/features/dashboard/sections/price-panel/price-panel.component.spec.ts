@@ -11,6 +11,9 @@ import { FormsModule } from "@angular/forms";
 import { Titulo } from "src/app/core/models/price-panel/titulo.model";
 import { By } from "@angular/platform-browser";
 import { FormatoValorPipe } from "src/app/presentation/common/pipes/pipe-formato-valor/formato-valor.pipe";
+import { CarteraService } from "src/app/core/services/api/cartera/cartera.service";
+import { Observable } from "rxjs";
+import { Cartera } from "src/app/core/models/cartera/cartera";
 
 describe('PricePanelComponent', () => {
   let component: PricePanelComponent;
@@ -35,7 +38,11 @@ describe('PricePanelComponent', () => {
     },
     getSimbolosEnMemoria: () => "texto"
   }
-
+  const carteraServiceStub = {
+    getCartera: () => {
+      return new Observable<Cartera>
+    }
+  }
 
   beforeEach(() => {
     service = new PricePanelService();
@@ -57,6 +64,8 @@ describe('PricePanelComponent', () => {
         { provide: PricePanelService, useValue: pricePanelServiceStub },
         { provide: NgbModal },
         { provide: Router, useValue: routerSpy },
+        { provide: CarteraService, useValue: carteraServiceStub },
+
       ],
     }).compileComponents()
     fixture = TestBed.createComponent(PricePanelComponent);
