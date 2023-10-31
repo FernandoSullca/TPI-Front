@@ -5,7 +5,7 @@ import { Observable, Subject, catchError } from 'rxjs';
 
 import { HandleErrorApiService } from '../../manejo-errores/handle-error-api.service';
 import { DatosGraficoVelas } from 'src/app/core/models/detalle-instrumento/detalle-instrumento';
-import { environment } from 'src/app/core/environments/environment';
+import { environment } from 'environments/environment';
 
 
 

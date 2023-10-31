@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/app/core/environments/environment';
 import axios from 'axios';
+import { environment } from 'environments/environment';
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 
 @Injectable({
