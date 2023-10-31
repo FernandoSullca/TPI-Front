@@ -162,7 +162,25 @@ section {
       overflow: hidden;
     }
   }
-  
+  .portfolio-sugerido-container{
+    width: 20%;
+    height: auto;
+    border-style: solid;
+    border-radius: 50px;
+    padding:3%;
+    color: #578CEE;  
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+    &:hover .portfolio-sugerido{
+      opacity: 1;
+    }
+    .portfolio-sugerido{
+      width: 100%;
+      height: 100%;
+     }
+  }
   @media(max-width:1600px) {
     section {
       nav {

@@ -10,7 +10,7 @@
 
       <img style="margin-left: 2px; margin-top: -14px;" src="assets/image/logo.svg" alt="">
     </div>
-    <div class="container-ul" style="width: 90%; height: 50%; margin-top: -7rem; margin-left: -1.5rem;">
+    <div class="container-ul" style="width: 90%; height: 50%; margin-left: -1.5rem;">
     <ul>
       <!-- *ngIf="!enabledAdminMode" -->
         <!-- *ngIf="enabledPerfil" -->
@@ -64,6 +64,9 @@
     <div class="fecha">{{fechaCompletaDolarMEP}}</div>
 </div>-->
     <!-- (click)="logout()" -->
+    <div class="portfolio-sugerido-container">
+      <img class="portfolio-sugerido" src="/assets/image/portfolio-sugerido-icon.svg" alt="Portofolio sugerido">
+    </div>
     <div class="logout" (click)="cerrarSesion()">
       <span>Cerrar Sesión</span>
       <img src="/assets/image/logout.svg" alt="logout">
