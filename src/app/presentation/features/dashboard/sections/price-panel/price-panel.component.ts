@@ -3,8 +3,8 @@ import { PricePanelService } from 'src/app/core/services/api/price-panel/price-p
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 import { mockAcciones } from 'src/app/core/services/api/price-panel/mock'
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
-import { environment } from 'src/app/core/environments/environment';
 import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-price-panel',
@@ -33,6 +33,8 @@ export class PricePanelComponent implements OnInit {
     this.getTitulos();
     this.updateTitulosEvery(environment.UPDATE_PRICE_PANEL_EVERY_SECONDS);
     this.titulosSimbolo = this.pricePanelService.getSimbolosEnMemoria();
+    
+    console.log("🚀 ~ file: price-panel.component.ts:37 ~ PricePanelComponent ~ ngOnInit ~ environment:", environment)
   }
 
   public openModal(instrumento: string) {
