@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AdministrarPreguntasService } from 'src/app/core/services/api/administracion/administrar-preguntas.service';
 
 @Component({
@@ -22,12 +22,61 @@ export class AdministrarPreguntasComponent {
   }
 
   selectedFile: File | null = null;
+  selectedFileSeccion: File | null = null;
   selectedFileName: string = 'Nombre del archivo: No seleccionado';
   uploadProgress: number = 0;
   resp: any = null;
 
   constructor(private servicioPreguntasAPI_: AdministrarPreguntasService) { }
+  @ViewChild('fileInput') fileInput: ElementRef | undefined;
+  // selectedFile: File | null = null;
 
+  openFileInput() {
+    if (this.fileInput) {
+      this.fileInput.nativeElement.click();
+    }
+  }
+  formattedSize: string = 'Tamaño no disponible';
+  formattedType: string = 'Tipo no disponible';
+  formattedLastModified: string = 'Última modificación no disponible';
+
+  onFileSelectedSecciones(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    console.log(file)
+    if (file) {
+      this.selectedFile = file;
+      console.log(`Nombre del archivo: ${file.name}`);
+      // Puedes realizar otras operaciones con el archivo aquí
+      // Formatear los valores
+      if (file.size !== undefined) {
+        this.formattedSize = `${(file.size / 1024 / 1024).toPrecision(2)} MB`;
+        console.log(this.formattedSize)
+      }
+      if (file.type !== undefined) {
+        this.formattedType = file.type ;
+        console.log(this.formattedType)
+      }
+      if (file.lastModified !== undefined) {
+        this.formattedLastModified = new Date(file.lastModified).toLocaleDateString();
+        console.log(this.formattedLastModified )
+      }
+    }
+    else {
+      this.selectedFile = null;
+      this.selectedFileName = 'Nombre del archivo: No seleccionado';
+    }
+  }
+
+  getShortFileType(fileType: string): string {
+    // Realiza la conversión según tus necesidades
+    // Aquí puedes personalizar la lógica para abreviar el tipo de archivo
+    // Por ejemplo, puedes buscar la extensión y mostrarla
+   
+    const extension = fileType.split('/').pop();
+    return extension || fileType; // Si no se encuentra la extensión, muestra el tipo completo
+    
+  }
   onFileSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];

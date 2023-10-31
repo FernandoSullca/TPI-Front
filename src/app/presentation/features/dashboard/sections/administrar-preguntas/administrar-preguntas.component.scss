@@ -1,127 +1,127 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css);
 // <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-// .frame {
-// 	position: absolute;
-// 	top: 50%;
-// 	left: 50%;
-// 	width: 400px;
-// 	height: 400px;
-// 	margin-top: -200px;
-// 	margin-left: -200px;
-// 	border-radius: 2px;
-// 	box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
-// 	overflow: hidden;
-// 	background: linear-gradient(to top right, #3261a8 0%, #99b6e0 100%);
-// 	color: #333;
-// 	font-family: "Open Sans", Helvetica, sans-serif;
-// }
+.frame {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	height: 400px;
+	margin-top: -200px;
+	margin-left: -200px;
+	border-radius: 2px;
+	box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	background: linear-gradient(to top right, #3261a8 0%, #99b6e0 100%);
+	color: #333;
+	font-family: "Open Sans", Helvetica, sans-serif;
+}
 
-// .center {
-// 	position: absolute;
-// 	top: 50%;
-// 	left: 50%;
-// 	transform: translate(-50%, -50%);
-// 	width: 300px;
-// 	height: 260px;
-// 	border-radius: 3px;
-// 	box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
-// 	background: #fff;
-// 	display: flex;
-// 	align-items: center;
-// 	justify-content: space-evenly;
-// 	flex-direction: column;
-// }
+.center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 260px;
+	border-radius: 3px;
+	box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-direction: column;
+}
 
-// .title {
-// 	width: 100%;
-// 	height: 50px;
-// 	border-bottom: 1px solid #999;
-// 	text-align: center;
-// }
+.title {
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #999;
+	text-align: center;
+}
 
-// h1 {
-// 	font-size: 16px;
-// 	font-weight: 300;
-// 	color: #666;
-// }
+h1 {
+	font-size: 16px;
+	font-weight: 300;
+	color: #666;
+}
 
-// .dropzone {
-// 	width: 100px;
-// 	height: 80px;
-// 	border: 1px dashed #999;
-// 	border-radius: 3px;
-// 	text-align: center;
-// }
+.dropzone {
+	// width: 100px;
+	height: 80px;
+	border: 1px dashed #999;
+	border-radius: 3px;
+	text-align: center;
+}
 
-// .upload-icon {
-// 	margin: 25px 2px 2px 2px;
-// }
+.upload-icon {
+	margin: 25px 2px 2px 2px;
+}
 
-// .upload-input {
-// 	position: relative;
-// 	top: -62px;
-// 	left: 0;
-// 	width: 100%;
-// 	height: 100%;
-// 	opacity: 0;
-// }
+.upload-input {
+	position: relative;
+	top: -62px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
 
-// .btn {
-// 	display: block;
-// 	width: 140px;
-// 	height: 40px;
-// 	background: #6390cd;
-// 	color: #fff;
-// 	border-radius: 3px;
-// 	border: 0;
-// 	box-shadow: 0 3px 0 0 #99b6e0;
-// 	transition: all 0.3s ease-in-out;
-// 	font-size: 14px;
-// }
+.btn {
+	display: block;
+	width: 140px;
+	height: 40px;
+	background: #6390cd;
+	color: #fff;
+	border-radius: 3px;
+	border: 0;
+	box-shadow: 0 3px 0 0 #99b6e0;
+	transition: all 0.3s ease-in-out;
+	font-size: 14px;
+}
 
-// .btn:hover {
-// 	background: #233e69;
-// 	box-shadow: 0 3px 0 0 #3f72b8;
-// }
+.btn:hover {
+	background: #233e69;
+	box-shadow: 0 3px 0 0 #3f72b8;
+}
 
-// /* === Uploaded Files === */
-// .uploaded {
-// 	width: 375px;
-// 	margin: 10px;
-// 	background-color: #e6f5e9;
-// 	border-radius: 10px;
-// 	display: flex;
-// 	flex-direction: row;
-// 	justify-content: flex-start;
-// 	align-items: center;
-//   }
-//   .file {
-// 	display: flex;
-// 	flex-direction: column;
-//   }
-//   .file__name {
-// 	display: flex;
-// 	flex-direction: row;
-// 	justify-content: space-between;
-// 	align-items: baseline;
-// 	width: 300px;
-// 	line-height: 0;
-// 	color: #0c3214;
-// 	font-size: 18px;
-// 	letter-spacing: 1.5px;
-//   }
-//   .fa-times:hover {
-// 	cursor: pointer;
-// 	opacity: 0.8;
-//   }
-//   .fa-file-pdf {
-// 	padding: 15px;
-// 	font-size: 40px;
-// 	color: #0c3214;
-//   }
+/* === Uploaded Files === */
+.uploaded {
+	width: 375px;
+	margin: 10px;
+	background-color: #e6f5e9;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+  }
+  .file {
+	display: flex;
+	flex-direction: column;
+  }
+  .file__name {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: baseline;
+	width: 300px;
+	line-height: 0;
+	color: #0c3214;
+	font-size: 18px;
+	letter-spacing: 1.5px;
+  }
+  .fa-times:hover {
+	cursor: pointer;
+	opacity: 0.8;
+  }
+  .fa-file-pdf {
+	padding: 15px;
+	font-size: 40px;
+	color: #0c3214;
+  }
 
-
+/************************************/
   .main-container {
 	display: flex;
     flex-direction: column;
@@ -143,6 +143,15 @@
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+
+.dropzone {
+	// width: 100px;
+	height: 80px;
+	border: 1px dashed #999;
+	border-radius: 3px;
+	text-align: center;
 }
   /*********Formato de listas*************/
   .navbar-inverse {
