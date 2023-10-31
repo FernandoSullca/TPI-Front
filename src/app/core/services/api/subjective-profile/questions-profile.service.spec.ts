@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import { QuestionsProfileService } from './questions-profile.service';
-import { environment } from 'src/app/core/environments/environment';
+import { environment } from 'environments/environment';
 
 import axios from 'axios';
 import { PreguntaApi } from 'src/app/core/models/API/Pregunta-APi.model';
