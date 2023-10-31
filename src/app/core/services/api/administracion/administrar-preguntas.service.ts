@@ -8,7 +8,7 @@ import { concatMap, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AdministrarPreguntasService {
-
+  
   constructor(private http: HttpClient) { }
 
   // Define un observable para la secuencia
@@ -39,7 +39,7 @@ export class AdministrarPreguntasService {
   }
 
   public async CargarSeccion(excelPreg: File, headers: HttpHeaders) {
-    
+
     const formData = new FormData();
     formData.append('excelSeccion', excelPreg, excelPreg.name);
 
@@ -53,7 +53,7 @@ export class AdministrarPreguntasService {
           console.error('Error al subir el archivo Seccion', error);
         }
       );
-    
+
   }
   public async CargarCategorias(excelPreg: File, headers: HttpHeaders) {
 
@@ -106,5 +106,10 @@ export class AdministrarPreguntasService {
         }
       );
   }
+
+  getExcelTemplate() {
+    return this.http.get('/assets/documents/Esquema-Preguntas-De-Perfiles.xlsx', { responseType: 'blob' });
+  }
+
 
 }

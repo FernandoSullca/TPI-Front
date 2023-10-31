@@ -63,7 +63,8 @@ import { PruebitaComponent } from './common/components/pruebita/pruebita.compone
     CommonModule,
     FormsModule,
     NgChartsModule,
-    QRCodeModule
+    QRCodeModule,
+
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [DatePipe],

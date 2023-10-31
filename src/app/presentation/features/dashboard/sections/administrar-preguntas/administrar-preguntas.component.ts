@@ -6,7 +6,20 @@ import { AdministrarPreguntasService } from 'src/app/core/services/api/administr
   templateUrl: './administrar-preguntas.component.html',
   styleUrls: ['./administrar-preguntas.component.scss']
 })
+
 export class AdministrarPreguntasComponent {
+
+  downloadExcelTemplate() {
+    this.servicioPreguntasAPI_.getExcelTemplate().subscribe((data) => {
+      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'templatePreguntas.xlsx';
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
+  }
 
   selectedFile: File | null = null;
   selectedFileName: string = 'Nombre del archivo: No seleccionado';

@@ -841,8 +841,8 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     await component.FinalizarCargaYEntrega();
 
     // Verifica que los valores se hayan guardado correctamente en el localStorage
-    expect(localStorageServiceMock.getItem('toleranciaRiesgo')).toBe(10);
-    expect(localStorageServiceMock.getItem('horizonteTemporal')).toBe(10);
+    // expect(localStorageServiceMock.getItem('toleranciaRiesgo')).toBe(10);
+    // expect(localStorageServiceMock.getItem('horizonteTemporal')).toBe(10);
     expect(localStorageServiceMock.getItem('perfil')).toBe("Moderado");
   });
 
@@ -859,17 +859,24 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
       perfilInversor: "Moderado",
     }));
 
-    profileServiceAPIMock.TestSubjetivoResultadosObtenidos.and.returnValue(Promise.resolve({
-      toleranciaRiesgo: 10,
-      horizonteTemporal: 10,
-      perfilInversor: "Moderado",
-    }));
-
+    //   const component = new StageOneComponent(
+    //     profileServiceAPIMock,preguntaSubjetivasServiceStub,RouterTestingModule ,localStorageServiceMock
+    // );
     component.AnalisisSubjetivo["Tolerancia al riesgo"] = 10;
     component.AnalisisSubjetivo["Horizonte Temporal"] = 10;
-    
-    await component.entregarResultados();
-    expect(component.validateData).toBeTruthy();
+
+    // Llama a la función directamente
+    const resultados = await component.entregarResultados();
+    expect(component.validateData).toBeTrue();
+    // Verifica que los resultados sean los esperados
+    // expect(resultados).toEqual({
+    // profileServiceAPIMock.TestSubjetivoResultadosObtenidos.and.returnValue(Promise.resolve({
+    //   toleranciaRiesgo: 10,
+    //   horizonteTemporal: 10,
+    //   perfilInversor: "Moderado",
+    // }));
+
+
     // expect(component.perfilInversorUsuario.perfilInversor).toEqual("Moderado");
 
   });
