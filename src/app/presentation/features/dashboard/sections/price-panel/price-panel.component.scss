@@ -1,9 +1,15 @@
 @import "../../../../../../variables";
 
+.container-fluid{
+    padding: 1.5rem;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 15px;
+}
 .filas {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 50vh;
+    height: 35vh;
 }
 
 .fila-instrumento :hover {

@@ -25,6 +25,7 @@ export class PricePanelComponent implements OnInit {
   public filteredTitulos: string[] = [];
   public totalDineroDisponible:number=0;
   public detalleInstrumento!:Titulo;
+  public tipoModal:string|undefined;
 
   constructor(private pricePanelService: PricePanelService,public modalService : ModalService,private carteraService : CarteraService) { }
 
@@ -45,9 +46,10 @@ export class PricePanelComponent implements OnInit {
         console.log('Instrumento no encontrado');
       }
   } 
-  openModalPrueba(){
+  openModalService(){
+    console.log('tipoModal en DashboardComponent:', this.tipoModal);
     this.modalService.openModal();
-  }
+  } 
   public filtrarPorInstrumento(instrumento:string){
     return this.titulos.find(titulo => titulo.simbolo === instrumento);
   }

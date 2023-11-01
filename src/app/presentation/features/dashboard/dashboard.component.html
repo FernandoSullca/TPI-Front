@@ -10,7 +10,7 @@
 
       <img style="margin-left: 2px; margin-top: -14px;" src="assets/image/logo.svg" alt="">
     </div>
-    <div class="container-ul" style="width: 90%; height: 50%; margin-top: -7rem; margin-left: -1.5rem;">
+    <div class="container-ul" style="width: 90%; height: 50%; margin-left: -1.5rem;">
     <ul>
       <!-- *ngIf="!enabledAdminMode" -->
         <!-- *ngIf="enabledPerfil" -->
@@ -39,7 +39,7 @@
 
           <img src="/assets/image/panel-precios-icon.svg" alt=""><span>Panel Precios</span>
         </li>
-        <li routerLinkActive="active" (click)="actionMenuMobile()">
+        <li  routerLinkActive="active" routerLink='/dashboard/prediccion' (click)="actionMenuMobile()">
           <img src="/assets/image/prediccion-icon.svg" alt=""><span>Predicción</span>
         </li>
     </ul>
@@ -64,6 +64,9 @@
     <div class="fecha">{{fechaCompletaDolarMEP}}</div>
 </div>-->
     <!-- (click)="logout()" -->
+    <div class="portfolio-sugerido-container" (click)="openModal()" data-toggle="modal" data-target="#sugerido" >
+      <img class="portfolio-sugerido" src="/assets/image/portfolio-sugerido-icon.svg" alt="Portofolio sugerido">
+    </div>
     <div class="logout" (click)="cerrarSesion()">
       <span>Cerrar Sesión</span>
       <img src="/assets/image/logout.svg" alt="logout">
@@ -71,7 +74,9 @@
 
   </nav>
   <div class="main-content">
+    <app-modal-sugerido *ngIf="modalService.isModalOpen()" [portfolioSugerido]="portfolioSugerido"></app-modal-sugerido>
     <router-outlet></router-outlet>
     <!-- <app-price-panel></app-price-panel> -->
   </div>
 </section>
+
