@@ -12,6 +12,7 @@ import { ModalSugeridoComponent } from 'src/app/presentation/common/components/m
 import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
 import { PortfolioSugerido } from 'src/app/core/models/portfolio-sugerido/portfolio-sugerido';
 import { PortfolioSugeridoService } from 'src/app/core/services/api/portfolio-sugerido/portfolio-sugerido.service';
+import { DashboardComponent } from '../../../../dashboard.component';
 @Component({
   selector: 'app-test-perfil-inversor-objetivo',
   templateUrl: './test-perfil-inversor-objetivo.component.html',
@@ -33,7 +34,7 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
 
   opcionSeleccionada: number = 0;
   AnalisisObjetivo: Record<string, number> = {};
-  ResultadoPerfilObjetivo: string = "";
+  public ResultadoPerfilObjetivo: string = "";
   PerfilSubjetivoObtenido: string = "";
   public portfolioSugerido!:PortfolioSugerido[];
   public tipoPerfil : string |undefined
@@ -85,7 +86,7 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
     private localStorageService: LocalStorageService, private carteraService: CarteraService,
-    public modalService : ModalService,private portfolioSugeridoService : PortfolioSugeridoService) {
+    public modalService : ModalService,private portfolioSugeridoService : PortfolioSugeridoService, private dashboardComponent: DashboardComponent) {
   }
 
   ngOnInit(): void {
@@ -166,6 +167,7 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
           this.acreditarDinero();
           this.armardescripcion();
           this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario, this.ResultadoPerfilObjetivo);
+          this.dashboardComponent.obtenerPortfolioSugerido(this.ResultadoPerfilObjetivo);
         }
         );;
 
@@ -316,10 +318,5 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   }
   public obtenerTipoPerfil(){
     return this.tipoPerfil;
-  }
-  public obtenerPortfolioSugerido(tipoPerfil:string|undefined) {
-    this.portfolioSugeridoService.getPortfolioSugerido(tipoPerfil).subscribe((response) => {
-      this.portfolioSugerido = response;
-    });
   }
 }

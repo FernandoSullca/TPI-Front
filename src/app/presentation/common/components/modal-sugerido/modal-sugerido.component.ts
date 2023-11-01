@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PortfolioSugerido } from 'src/app/core/models/portfolio-sugerido/portfolio-sugerido';
 import { PortfolioSugeridoService } from 'src/app/core/services/api/portfolio-sugerido/portfolio-sugerido.service';
 import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
+import { DashboardComponent } from 'src/app/presentation/features/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-modal-sugerido',
@@ -12,8 +13,19 @@ import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
 export class ModalSugeridoComponent {
   @Input() portfolioSugerido!: PortfolioSugerido[];
   elementosArray: any []=[];
+
+  public instrumentoSeleccionadoId: number = 0;
+
   
-  constructor(public modalService: ModalService, private router : Router,private portfolioSugeridoService : PortfolioSugeridoService){}
+  public ngOnInit(): void {
+    debugger;
+    if (this.portfolioSugerido.length > 0) {
+      this.instrumentoSeleccionadoId = this.portfolioSugerido[0].oid;
+    }
+  }
+  
+  
+  constructor(public modalService: ModalService, private router : Router,private portfolioSugeridoService : PortfolioSugeridoService, private dashboardComponent: DashboardComponent){}
 
   public cerrarModal(){
     this.modalService.closeModal();
@@ -22,8 +34,11 @@ export class ModalSugeridoComponent {
     this.router.navigate([`/dashboard/${componente}`]);
     this.cerrarModal();
   }
-  obtenerNuevoPortfolioSugerido(idProducto:number){
-    this.portfolioSugeridoService.obtenerNuevoPortfolioSugerido(idProducto).subscribe(response => {
+  obtenerNuevoPortfolioSugerido(){
+    debugger;
+    this.portfolioSugeridoService.obtenerNuevoPortfolioSugerido(this.instrumentoSeleccionadoId).subscribe(response => {
+      debugger;
+      this.dashboardComponent.portfolioSugerido = response;
     });
   }
 }
