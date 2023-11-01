@@ -31,6 +31,7 @@ import { FormatoValorPipe } from 'src/app/presentation/common/pipes/pipe-formato
 import { RegistroComponent } from './common/components/registro/registro.component';
 import { PruebitaComponent } from './common/components/pruebita/pruebita.component';
 import { RegistarUsuarioComponent } from './features/registar-usuario/registar-usuario.component';
+import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { RegistarUsuarioComponent } from './features/registar-usuario/registar-u
     FormatoValorPipe,
     PruebitaComponent,
     RegistarUsuarioComponent,
+    ActivarCuentaComponent,
   ],
   imports: [
     BrowserModule,
