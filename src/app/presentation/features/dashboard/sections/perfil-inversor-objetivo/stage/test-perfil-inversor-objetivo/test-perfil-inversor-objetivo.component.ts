@@ -159,6 +159,8 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
           this.acreditarDinero();
           this.armardescripcion();
           this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario, this.ResultadoPerfilObjetivo);
+          this.dataurlcertificado= this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(this.Username, this.ResultadoPerfilObjetivo);
+
         }
         );;
 
