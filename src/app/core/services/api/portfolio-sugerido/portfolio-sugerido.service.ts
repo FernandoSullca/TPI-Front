@@ -16,7 +16,6 @@ export class PortfolioSugeridoService {
   
   getPortfolioSugerido(tipoPerfil?:string,idProducto?:number): Observable<PortfolioSugerido[]>{
    
-    debugger;
     if (idProducto == null) {
       idProducto = 0; 
     }
@@ -35,7 +34,7 @@ export class PortfolioSugeridoService {
     var perfilInversorUsuario=this.localStorage.GetPerfilActualLocal();
 
     var tipoPerfil = perfilInversorUsuario.perfilInversor
-    debugger;
+    // debugger;
    return this.getPortfolioSugerido(tipoPerfil, idProducto);
 }
 }
