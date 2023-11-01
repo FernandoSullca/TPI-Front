@@ -23,13 +23,11 @@
             </div>
         </div>
     </nav>
-    <!-- //////////////////////// -->
 
     <div class="container">
 
         <div class="panel-group ng-pristine ng-untouched ng-valid ng-scope ng-not-empty"
             data-as-sortable="vm.documentDragListeners" ng-model="vm.documents">
-            <!-- ngRepeat: doc in vm.documents -->
             <!-- Area de carga de Secciones -->
             <div class="panel panel-default xlist ng-scope as-sortable-item" ng-repeat="doc in vm.documents"
                 data-as-sortable-item="">
@@ -54,8 +52,7 @@
                             Seleccione su archivo</button>
                             <input type="file" #fileInput style="display: none" 
                             (change)="onFileSelectedSecciones($event)"/>
-                        <!-- <input type="file" class="upload-input" accept=".xlsx, .xls" name="excelPregunta"
-                            (change)="onFileSelected($event)" />  -->
+
                         <br>
                         <br>
                         <div ngf-drop="vm.addFiles($files,doc.files)" class="drop-box" ngf-drag-over-class="'dragover'"
@@ -89,7 +86,7 @@
                                     </div>
                                     Drop Images or PDFs files here.
                                 </li>
-                                <!-- ngRepeat: f in doc.files -->
+
                                 <li *ngIf="selectedFile" ng-repeat="f in selectedFile?" class="list-group-item xlist ng-scope as-sortable-item"
                                   data-as-sortable-item="" style="">
                                   <div class="row">
@@ -123,14 +120,14 @@
                                       </div>
                                   </div>
                                 </li>
-                                <!-- end ngRepeat: f in doc.files -->
-                                <!-- ngRepeat: f in doc.files -->
+                                <ngb-progressbar [value]="uploadProgressSecciones" [striped]="true" [max]="100" [type]="typeProgressSecciones"></ngb-progressbar>
                             </ul>
                         </div>
                     </div>
                     <button class="btn btn-primary" (click)="uploadFileSecciones()">Subir mi archivo</button>
                 </div>
-            </div><!-- end ngRepeat: doc in vm.documents -->
+            </div>
+ 
             <!-- Area de carga de Categorias -->
             <div class="panel panel-default xlist ng-scope as-sortable-item" ng-repeat="doc in vm.documents"
                 data-as-sortable-item="" style="">
@@ -219,13 +216,15 @@
                                     </div>
                                 </div>
                               </li>
+                              <ngb-progressbar [value]="uploadProgressCategorias" [striped]="true" [max]="100" [type]="typeProgressCategorias"></ngb-progressbar>
                                 <!-- ngRepeat: f in doc.files -->
                             </ul>
                         </div>
                     </div>
                     <button class="btn btn-primary" (click)="uploadFileCategorias()">Subir mi archivo</button>
                 </div>
-            </div><!-- end ngRepeat: doc in vm.documents -->
+            </div>
+     
             <!-- Area de carga de Preguntas -->
             <div class="panel panel-default xlist ng-scope as-sortable-item" ng-repeat="doc in vm.documents"
                 data-as-sortable-item="" style="">
@@ -317,12 +316,14 @@
                                  </div>
                                </li>
                                 <!-- ngRepeat: f in doc.files -->
+                                <ngb-progressbar [value]="uploadProgressPreguntas" [striped]="true" [max]="100" [type]="typeProgressPreguntas"></ngb-progressbar>
                             </ul>
                         </div>
                     </div>
                     <button class="btn btn-primary" (click)="uploadFilePreguntas()">Subir mi archivo</button>
                 </div>
-            </div><!-- end ngRepeat: doc in vm.documents -->
+            </div>
+    
               <!-- Area de carga de Respuestas -->
             <div class="panel panel-default xlist ng-scope as-sortable-item" ng-repeat="doc in vm.documents"
                 data-as-sortable-item="" style="">
@@ -413,7 +414,7 @@
                                  </div>
                                </li>
                                <!-- <progress [value]="uploadProgress " role="progressbar" max="100"></progress> -->
-                               <ngb-progressbar [value]="uploadProgress" [striped]="true" [max]="100" [type]="typeProgress"></ngb-progressbar>
+                               <ngb-progressbar [value]="uploadProgressRespuestas" [striped]="true" [max]="100" [type]="typeProgress"></ngb-progressbar>
                                <!-- ngRepeat: f in doc.files -->
                             </ul>
                         </div>
@@ -421,12 +422,13 @@
                     <button class="btn btn-primary" (click)="uploadFileRespuestas()">Subir mi archivo</button>
                 </div>
             </div>
-            <!-- end ngRepeat: doc in vm.documents -->
+
         </div>
 
     </div>
-    <div class="container-descargar-template">
 
+    <!-- /***************Descarga de Archivo .xlsx************************/ -->
+    <div class="container-descargar-template">
         <button class="btn btn-primary" (click)="downloadExcelTemplate()">Descargar Plantilla Excel</button>
     </div>
 </div>

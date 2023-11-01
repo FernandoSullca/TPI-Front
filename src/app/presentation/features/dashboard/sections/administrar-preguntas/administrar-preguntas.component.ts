@@ -9,6 +9,7 @@ import { NgbProgressbar, NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap
 
 export class AdministrarPreguntasComponent {
 
+
   downloadExcelTemplate() {
     this.servicioPreguntasAPI_.getExcelTemplate().subscribe((data) => {
       const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
@@ -28,8 +29,14 @@ export class AdministrarPreguntasComponent {
   selectedFileRespuesta: File | null = null;
   selectedFileName: string = 'Nombre del archivo: No seleccionado';
   uploadProgress: number = 0;
-  typeProgress:string="primary"
-  resp: any = null;
+  uploadProgressSecciones: number=0;
+  uploadProgressCategorias: number=0;
+  uploadProgressPreguntas: number=0;
+  uploadProgressRespuestas: number=0;
+  typeProgress:string="primary";
+  typeProgressSecciones: string="primary";
+  typeProgressCategorias: string="primary";
+  typeProgressPreguntas: string="primary";
 
   constructor(private servicioPreguntasAPI_: AdministrarPreguntasService,
     private configBar: NgbProgressbarConfig) {
@@ -202,12 +209,12 @@ export class AdministrarPreguntasComponent {
 
       this.servicioPreguntasAPI_.CargarExcelDePreguntas(this.selectedFile).subscribe(
         (data) => {
-          this.resp = data;
+          // this.resp = data;
           console.log('Todas las solicitudes se completaron con éxito');
           // Puedes realizar acciones adicionales aquí 
-          if (this.resp != null) {
+          // if (this.resp != null) {
             this.uploadProgress = 100;
-          }
+          // }
         },
         (error) => {
           console.error('Error en la carga de datos', error);
@@ -223,40 +230,6 @@ export class AdministrarPreguntasComponent {
 
   }
   /***************************** */
-  uploadFileCategorias() {
-    console.log("uploadFileSecciones()");
-
-    console.log("----------");
-
-    console.log(this.selectedFile);
-
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile, this.selectedFile.name);
-
-      this.servicioPreguntasAPI_.CargarCategoriasExcel(this.selectedFile).subscribe(
-        (data) => {
-          this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // Puedes realizar acciones adicionales aquí 
-          if (this.resp != null) {
-            this.uploadProgress = 100;
-          }
-        },
-        (error) => {
-          console.error('Error en la carga de datos', error);
-          // Puedes manejar el error y mostrar un mensaje al usuario
-        }
-      );
-
-    }
-
-    if (!this.selectedFile) {
-      alert('Por favor, seleccione un archivo antes de cargarlo.');
-    }
-
-  }
-
   uploadFileSecciones() {
     console.log("uploadFileSecciones()");
 
@@ -271,16 +244,20 @@ export class AdministrarPreguntasComponent {
       // Simula la carga del archivo y actualiza la barra de progreso
       this.servicioPreguntasAPI_.CargarSeccionesExcel(this.selectedFile).subscribe(
         (data) => {
-          this.resp = data;
+          console.log(data);
+          // this.resp = data;
           console.log('Todas las solicitudes se completaron con éxito');
-          // Puedes realizar acciones adicionales aquí 
-          if (this.resp != null) {
-            this.uploadProgress = 100;
-          }
+          // if (this.resp != null) {
+          this.uploadProgressPreguntas = 100;
+          this.typeProgressPreguntas="success"
+          this.configBar.type = "success";
+          this.configBar.animated = true;
         },
         (error) => {
           console.error('Error en la carga de datos', error);
-          // Puedes manejar el error y mostrar un mensaje al usuario
+    
+          this.uploadProgressSecciones= 50;
+          this.typeProgressSecciones="danger"
         }
       );
 
@@ -292,6 +269,45 @@ export class AdministrarPreguntasComponent {
 
   }
 
+ uploadFileCategorias() {
+    console.log("uploadFileSecciones()");
+
+    console.log("----------");
+
+    console.log(this.selectedFile);
+
+    if (this.selectedFile) {
+      const formData = new FormData();
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+
+      this.servicioPreguntasAPI_.CargarCategoriasExcel(this.selectedFile).subscribe(
+        (data) => {
+          console.log(data);
+          // this.resp = data;
+          console.log('Todas las solicitudes se completaron con éxito');
+          // if (this.resp != null) {
+          this.uploadProgressCategorias = 100;
+          this.typeProgressCategorias="success"
+          this.configBar.type = "success";
+          this.configBar.animated = true;
+        },
+        (error) => {
+          console.error('Error en la carga de datos', error);
+    
+          this.uploadProgressCategorias = 50;
+          this.typeProgressCategorias="danger"
+        }
+      );
+
+    }
+
+    if (!this.selectedFile) {
+      alert('Por favor, seleccione un archivo antes de cargarlo.');
+    }
+
+  }
+
+ 
   uploadFilePreguntas() {
     console.log("uploadFilePreguntas()");
 
@@ -306,16 +322,20 @@ export class AdministrarPreguntasComponent {
 
       this.servicioPreguntasAPI_.CargarPreguntasExcel(this.selectedFile).subscribe(
         (data) => {
-          this.resp = data;
+          console.log(data);
+          // this.resp = data;
           console.log('Todas las solicitudes se completaron con éxito');
-          // Puedes realizar acciones adicionales aquí 
-          if (this.resp != null) {
-            this.uploadProgress = 100;
-          }
+          // if (this.resp != null) {
+          this.uploadProgressPreguntas = 100;
+          this.typeProgressPreguntas="success"
+          this.configBar.type = "success";
+          this.configBar.animated = true;
         },
         (error) => {
           console.error('Error en la carga de datos', error);
-          // Puedes manejar el error y mostrar un mensaje al usuario
+    
+          this.uploadProgressPreguntas = 50;
+          this.typeProgressPreguntas="danger"
         }
       );
 
@@ -339,7 +359,7 @@ export class AdministrarPreguntasComponent {
       this.servicioPreguntasAPI_.CargarRespuestasExcel(this.selectedFile).subscribe(
         (data) => {
           console.log(data);
-          this.resp = data;
+          // this.resp = data;
           console.log('Todas las solicitudes se completaron con éxito');
           // if (this.resp != null) {
           this.uploadProgress = 100;
