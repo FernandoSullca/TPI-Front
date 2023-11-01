@@ -1,0 +1,24 @@
+.card-body {
+    border: 3px solid #3261A8;
+    border-radius: 15px;
+    box-sizing: border-box;
+    justify-content: space-around; 
+}
+
+.card {
+    border-radius: 15px;
+}
+.card-title{
+    color: #3261A8;
+    font-weight: bold;
+}
+.boton{
+    background-color: #3261A8;
+    color: #FFFFFF;
+    border-radius: 1.5rem;
+    font-weight: bold;
+    width: fit-content;
+}
+.modal-footer{
+    justify-content: center;
+}

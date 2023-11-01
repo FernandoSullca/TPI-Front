@@ -8,6 +8,10 @@ import { from } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
 import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
+import { ModalSugeridoComponent } from 'src/app/presentation/common/components/modal-sugerido/modal-sugerido.component';
+import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
+import { PortfolioSugerido } from 'src/app/core/models/portfolio-sugerido/portfolio-sugerido';
+import { PortfolioSugeridoService } from 'src/app/core/services/api/portfolio-sugerido/portfolio-sugerido.service';
 @Component({
   selector: 'app-test-perfil-inversor-objetivo',
   templateUrl: './test-perfil-inversor-objetivo.component.html',
@@ -31,6 +35,8 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   AnalisisObjetivo: Record<string, number> = {};
   ResultadoPerfilObjetivo: string = "";
   PerfilSubjetivoObtenido: string = "";
+  public portfolioSugerido!:PortfolioSugerido[];
+  public tipoPerfil : string |undefined
 
   dataPerfil = [
     {
@@ -78,7 +84,8 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
 
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
-    private localStorageService: LocalStorageService, private carteraService: CarteraService) {
+    private localStorageService: LocalStorageService, private carteraService: CarteraService,
+    public modalService : ModalService,private portfolioSugeridoService : PortfolioSugeridoService) {
   }
 
   ngOnInit(): void {
@@ -304,5 +311,15 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
     this.router.navigate(['/dashboard/precios']);
     this.buttonText = 'Continuar';
   }
-
+  openModal(){
+    this.modalService.openModal();
+  }
+  public obtenerTipoPerfil(){
+    return this.tipoPerfil;
+  }
+  public obtenerPortfolioSugerido(tipoPerfil:string|undefined) {
+    this.portfolioSugeridoService.getPortfolioSugerido(tipoPerfil).subscribe((response) => {
+      this.portfolioSugerido = response;
+    });
+  }
 }

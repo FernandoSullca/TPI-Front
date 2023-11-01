@@ -74,7 +74,7 @@
 
   </nav>
   <div class="main-content">
-    <app-modal-sugerido *ngIf="modalService.isModalOpen()"></app-modal-sugerido>
+    <app-modal-sugerido *ngIf="modalService.isModalOpen()" [portfolioSugerido]="portfolioSugerido"></app-modal-sugerido>
     <router-outlet></router-outlet>
     <!-- <app-price-panel></app-price-panel> -->
   </div>

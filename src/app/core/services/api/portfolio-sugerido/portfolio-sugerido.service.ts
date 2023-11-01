@@ -12,9 +12,9 @@ export class PortfolioSugeridoService {
 
   constructor(private http : HttpClient,private handleErrorService: HandleErrorApiService) { }
   
-  getPortfolioSugerido(tipoPerfil?:string): Observable<PortfolioSugerido>{
-    let resp = `${environment.API}/IA/portafolio/sugeridoFake?tipoPerfil=${tipoPerfil}`;
-    return this.http.get<PortfolioSugerido>(resp).pipe(
+  getPortfolioSugerido(tipoPerfil?:string,url?:string): Observable<PortfolioSugerido[]>{
+    let resp = `${environment.API}/IA/portafolio/sugeridoFake?tipoPerfil=${tipoPerfil}&url=${url}`;
+    return this.http.get<PortfolioSugerido[]>(resp).pipe(
       catchError((error)=>{
         return this.handleErrorService.errorHandler(error);
       })
