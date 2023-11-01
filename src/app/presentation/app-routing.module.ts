@@ -19,6 +19,7 @@ import { AdministrarPreguntasComponent } from './features/dashboard/sections/adm
 import { RegistroComponent } from './common/components/registro/registro.component';
 import { DefaultPathComponent } from './features/default-path/default-path.component';
 import { RegistarUsuarioComponent } from './features/registar-usuario/registar-usuario.component';
+import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta.component';
 
 
 
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: "registro", component:  RegistroComponent},
   { path: "registrarme", component:  RegistarUsuarioComponent},
+  { path: "activar-cuenta", component:  ActivarCuentaComponent},
   { path: "perfil", component:  PerfilSubjetivoComponent},
   { path: "perfil-inversor", component:  TestPerfilSubjetivoComponent},
   { path: 'perfil-inversor-resultado', component:  PerfilSubjetivoResultadoComponent},

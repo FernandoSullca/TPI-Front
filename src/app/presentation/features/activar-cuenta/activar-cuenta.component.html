@@ -1,0 +1,23 @@
+<div id="main-doc">
+    <section id="welcome-section">
+        <div *ngIf="loading; else loaded">
+            <div class="logo animado">
+                <img src="/assets/image/logo.svg" alt="" width="15%">
+            </div>
+            <h2>Activando cuenta ...</h2>
+        </div>
+        <ng-template #loaded>
+            <div class="logo">
+                <img src="/assets/image/logo.svg" alt="" width="15%">
+            </div>
+            <h2>Cuenta activada</h2>
+            <button [routerLink]="['/login']" routerLinkActive="router-link-active"
+                class="boton-start-page btn-xl">Ingresar a <span class="bold-text-Marca">Mercado</span><span
+                    class="bold-Marca">JR</span></button>
+        </ng-template>
+        <br>
+        <label *ngIf="error" for="{{error}}" class="error-message" style="color:red">
+            Error durante la validacion.
+        </label>
+    </section>
+</div>
