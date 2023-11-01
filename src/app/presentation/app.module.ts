@@ -65,7 +65,8 @@ import { ModalSugeridoComponent } from './common/components/modal-sugerido/modal
     CommonModule,
     FormsModule,
     NgChartsModule,
-    QRCodeModule
+    QRCodeModule,
+
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [DatePipe],
