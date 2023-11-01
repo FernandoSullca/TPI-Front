@@ -11,7 +11,7 @@ export class GraficoLineaComponent implements OnInit {
   public chart: any;
   @Input() tipoGrafico : ChartType | undefined;
   @Input() tituloGrafico : string ='';
-  @Input() datosGrafico : any ;
+  @Input() datosGrafico : [] | any ;
  
   ngOnInit(): void {
     this.createChart();
