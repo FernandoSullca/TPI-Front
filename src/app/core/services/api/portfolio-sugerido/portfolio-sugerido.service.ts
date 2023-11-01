@@ -20,4 +20,14 @@ export class PortfolioSugeridoService {
       })
     );
   }
+  obtenerNuevoPortfolioSugerido(idProducto: number): Observable<any> {
+    const url = `${environment.API}/resto de URL`;
+    const data = { idProducto: idProducto }; 
+    console.log(`llegue al servicio: ${idProducto}`);
+    return this.http.post(url, data).pipe(
+      catchError((error) => {
+        return this.handleErrorService.errorHandler(error);
+      })
+    );
+  }
 }
