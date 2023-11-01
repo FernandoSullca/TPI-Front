@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Output } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { environment } from 'environments/environment';
 import axios from 'axios';
 import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'

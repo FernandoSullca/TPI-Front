@@ -1,0 +1,18 @@
+<div class="container-fluid" *ngIf="prediccionPrecio">
+    <div class="titulo-intrumento-grafico">
+        <h3>Dolar Futuro</h3>
+    </div>
+    <div class="grafico">
+        <app-grafico-linea *ngIf="prediccionPrecio.dolar" [datosGrafico]="prediccionPrecio.dolar" [tipoGrafico]="tipoGraficoLinea" [tituloGrafico]='tituloGraficoLinea'></app-grafico-linea>
+    </div>
+    <div class="valores">
+        <div class="valor-actual">
+            <h5 >{{prediccionPrecio.dolar[0].fecha}}</h5>
+            <h2>ARS {{prediccionPrecio.dolar[0].precio|formatoValor}}</h2>
+        </div>
+        <div class="valor-futuro">
+            <h5 >{{prediccionPrecio.dolar[6].fecha}}</h5>
+            <h2>ARS {{prediccionPrecio.dolar[6].precio|formatoValor}}</h2>
+        </div>
+    </div>
+</div>

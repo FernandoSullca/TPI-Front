@@ -1,0 +1,136 @@
+<div class="container main-container ">
+
+    <div class="brand-box pt-1 alinearcion-logotipo">
+        <h3><span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h3>
+        <img src="/assets/image/logo.svg" alt="">
+    </div>
+
+    <div class="container-render-test p-2 bg-white">
+
+        <div class="container-test" *ngIf="!isLastQuestion && cuestionario != null">
+
+            <ng-container *ngIf="cuestionario.tipoComponente== 'CHECKBOX'">
+
+                <div class="container-render-test-Questions p-2">
+                    <p class="">{{ cuestionario.enunciado }}</p>
+                </div>
+                <p class="alinea-descripcion-pregunta-check"> Podés elegir más de una opción o ninguna</p>
+                <div *ngIf="isArray(cuestionario.respuestas)">
+                    <div *ngFor="let respuesta of cuestionario.respuestas" class="alinea-pregunta-check">
+                        <input type="checkbox" id="{{ respuesta.nombre }}" name="{{ respuesta.nombre}}"
+                            (change)="actualizarOpcionesSeleccionadas(cuestionario.seccion.nombre,respuesta.nombre,respuesta.valor)">
+                        <label for="{{ respuesta }}">{{ respuesta.nombre }}</label>
+                    </div>
+                </div>
+            </ng-container>
+
+
+            <ng-container class="container-test-radio" *ngIf="cuestionario.tipoComponente == 'RADIO'">
+
+                <div class="container-render-test-Questions p-2">
+                    <p>{{ cuestionario.enunciado }}</p>
+                </div>
+                <p class="alinea-descripcion-pregunta-radius">Elegir solo una opción</p>
+                <div *ngIf="isArray(cuestionario.respuestas)" class="alineacion-botones-opciones-radius">
+                    <div *ngFor="let respuesta of cuestionario.respuestas " class="alinea-pregunta-radius">
+                        <input type="radio" id="{{ respuesta.nombre }}" name="{{cuestionario.enunciado }}"
+                            value="{{respuesta.valor}}" (change)="opcionSeleccionada=respuesta.valor">
+                        <label for="{{ respuesta.nombre}}">{{ respuesta.nombre }}</label>
+                    </div>
+                </div>
+            </ng-container>
+
+
+            <ng-container *ngIf="cuestionario.tipoComponente == 'BOTON'" style="text-align: center;">
+                <div class="container-render-test-Questions p-2 pb-0">
+                    <p>{{ cuestionario.enunciado }}</p>
+                </div>
+                <div class="alinea-descripcion-pregunta-boton">
+                    <p> Elige el nivel de conocimiento por cada instrumento</p>
+                </div>
+
+                <div class="contenedor-opciones-preguntas-botones">
+                    <div *ngFor="let respuesta of cuestionario.respuestas" class="alinea-pregunta-boton">
+                        <div class="row">
+
+                            <div *ngIf="esPrimero(respuesta)">
+                                <p class="pb-0 mb-1 nombre-instrumento-boton">{{ respuesta.instrumento }}</p>
+                                <ng-container *ngIf="respuesta.instrumento;">
+                                    <div class="row alinea-botones-opciones">
+
+                                        <div *ngFor="let opcion of opcionesPorInstrumento(cuestionario.respuestas,respuesta.instrumento)"
+                                            class="col-4 ">
+                                            <div class="botonera-lg-opciones">
+                                                <button class=" col" type="button" id="{{ opcion.orden}}"
+                                                    name="{{ respuesta.instrumento }}"
+                                                    [class.selected]="esRespuestaSeleccionada(respuesta.instrumento, opcion.valor,opcion.orden)"
+                                                    (click)="actualizarOpcionesSeleccionadasBotonInstrumento(cuestionario.seccion.nombre, respuesta.instrumento, opcion.valor)">
+                                                    {{ opcion.nombre }}
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </ng-container>
+
+            <div *ngIf="!loading" class="justify-content-md-end container-botonera-lg ">
+                <button class="btn btn-primary btn btn-primary me-md-2 botonera-lg" *ngIf="!isLastQuestion"
+                    (click)="loadNextQuestion()">{{ buttonText }}<svg width="32" height="24" viewBox="0 0 32 24"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M22.0597 12H9.08354M22.0597 12L16.8693 16M22.0597 12L16.8693 8M27.2502 12C27.2502 16.9706 22.0215 21 15.5716 21C9.12174 21 3.89307 16.9706 3.89307 12C3.89307 7.02944 9.12174 3 15.5716 3C22.0215 3 27.2502 7.02944 27.2502 12Z"
+                            stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg></button>
+
+            </div>
+        </div>
+        
+<!-- 
+        <div *ngIf="isLastQuestion" class="finalizacion-area">
+            
+            <div *ngIf="URLQRPerfil" class="container-perfil-resultado p-3">
+                <div>
+                    <h3>
+                        Perfil asociado: <b>{{respPerfilResultante}}</b>
+                    </h3>
+                </div>
+            </div>
+
+            <img *ngIf="URLQRPerfil" src="{{URLQRPerfil}} " alt="QR Resultados Subjetivo" class="img-qr-subjetivo">
+
+
+            <div *ngIf="!URLQRPerfil">
+                <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
+                    <div class="spinner-border loading-spiner" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <h3>Analizando tus respuestas ...</h3>
+                </div>
+            </div>
+
+
+            <button class="btn btn-primary btn btn-primary me-md-2 botonera-lg" (click)=" loadPageResultado()">{{
+                buttonText }}</button>
+
+            <p *ngIf="isLastQuestion" style="margin-top: 1.5rem;">¡Has respondido todas las preguntas!</p>
+
+        </div> -->
+
+    </div>
+
+    <div *ngIf="loading">
+        <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
+            <div class="spinner-border loading-spiner" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <h3>Cargando preguntas subjetivas ...</h3>
+        </div>
+    </div>
+
+</div>
