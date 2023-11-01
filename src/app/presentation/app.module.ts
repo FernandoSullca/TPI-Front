@@ -2,7 +2,7 @@ import { NgModule,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
-
+import { NgbProgressbar } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './features/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -66,6 +66,7 @@ import { RegistarUsuarioComponent } from './features/registar-usuario/registar-u
     FormsModule,
     NgChartsModule,
     QRCodeModule,
+    NgbProgressbar
 
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],

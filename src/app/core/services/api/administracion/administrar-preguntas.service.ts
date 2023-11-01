@@ -8,6 +8,7 @@ import { concatMap, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AdministrarPreguntasService {
+ 
   
   constructor(private http: HttpClient) { }
 
@@ -105,6 +106,19 @@ export class AdministrarPreguntasService {
           console.error('Error al subir el archivo Respuestas', error);
         }
       );
+  }
+
+  public CargarRespuestasExcel(selectedFile: File):Observable<FormData>{
+    console.log("Cargando Respuesta...");
+
+    const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
+    headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type' 
+    
+    const formData = new FormData();
+    formData.append('excelRespuesta', selectedFile, selectedFile.name);
+
+    return this.http
+      .post<FormData>(`${environment.API}/api/respuesta/carga-respuesta-excel`, formData, { headers: headers });
   }
 
   getExcelTemplate() {

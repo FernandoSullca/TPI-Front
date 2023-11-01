@@ -415,7 +415,9 @@
                                      </div>
                                  </div>
                                </li>
-                                <!-- ngRepeat: f in doc.files -->
+                               <progress [value]="uploadProgress " role="progressbar" max="100"></progress>
+                               <ngb-progressbar [value]="uploadProgress" [striped]="true" [max]="100" [type]="typeProgress"></ngb-progressbar>
+                               <!-- ngRepeat: f in doc.files -->
                             </ul>
                         </div>
                     </div>
