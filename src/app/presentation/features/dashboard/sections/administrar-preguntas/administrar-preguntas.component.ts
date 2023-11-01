@@ -37,15 +37,17 @@ export class AdministrarPreguntasComponent {
   }
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
   // selectedFile: File | null = null;
+ formattedSize: string = 'Tamaño no disponible';
+  formattedType: string = 'Tipo no disponible';
+  formattedLastModified: string = 'Última modificación no disponible';
 
   openFileInput() {
     if (this.fileInput) {
       this.fileInput.nativeElement.click();
     }
   }
-  formattedSize: string = 'Tamaño no disponible';
-  formattedType: string = 'Tipo no disponible';
-  formattedLastModified: string = 'Última modificación no disponible';
+
+ 
 
   onFileSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;
@@ -60,8 +62,10 @@ export class AdministrarPreguntasComponent {
       this.selectedFileName = 'Nombre del archivo: No seleccionado';
     }
   }
+
   /***************************** */
   onFileSelectedSecciones(event: Event) {
+    console.log("Area preguntas secciones")
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     console.log(file)
@@ -89,6 +93,7 @@ export class AdministrarPreguntasComponent {
     }
   }
   onFileSelectedCategorias(event: Event) {
+    console.log("Area preguntas Categoria")
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     console.log(file)
@@ -117,6 +122,7 @@ export class AdministrarPreguntasComponent {
   }
 
   onFileSelectedPreguntas(event: Event) {
+    console.log("Area preguntas Preguntas")
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     console.log(file)
@@ -145,6 +151,7 @@ export class AdministrarPreguntasComponent {
   }
 
   onFileSelectedRespuestas(event: Event) {
+    console.log("Area preguntas Respuestas")
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     console.log(file)
@@ -171,17 +178,6 @@ export class AdministrarPreguntasComponent {
       this.selectedFileName = 'Nombre del archivo: No seleccionado';
     }
   }
-
-  getShortFileType(fileType: string): string {
-    // Realiza la conversión según tus necesidades
-    // Aquí puedes personalizar la lógica para abreviar el tipo de archivo
-    // Por ejemplo, puedes buscar la extensión y mostrarla
-
-    const extension = fileType.split('/').pop();
-    return extension || fileType; // Si no se encuentra la extensión, muestra el tipo completo
-
-  }
-
 
   uploadFile() {
     if (this.selectedFile) {
@@ -238,23 +234,7 @@ export class AdministrarPreguntasComponent {
       const formData = new FormData();
       formData.append('file', this.selectedFile, this.selectedFile.name);
 
-      // Simula la carga del archivo y actualiza la barra de progreso
-      const totalSize = this.selectedFile.size;
-      const chunkSize = 1024 * 1024; // Tamaño del fragmento (1 MB en este ejemplo)
-      let loaded = 0;
-
-      const uploadInterval = setInterval(() => {
-        if (loaded >= totalSize) {
-          clearInterval(uploadInterval);
-          return;
-        }
-
-        loaded += chunkSize;
-        this.uploadProgress = (loaded / totalSize) * 100;
-      }, 1000); // Actualiza la barra de progreso cada segundo
-
-
-      this.servicioPreguntasAPI_.CargarExcelDePreguntas(this.selectedFile).subscribe(
+      this.servicioPreguntasAPI_.CargarCategoriasExcel(this.selectedFile).subscribe(
         (data) => {
           this.resp = data;
           console.log('Todas las solicitudes se completaron con éxito');
@@ -289,22 +269,7 @@ export class AdministrarPreguntasComponent {
       formData.append('file', this.selectedFile, this.selectedFile.name);
 
       // Simula la carga del archivo y actualiza la barra de progreso
-      const totalSize = this.selectedFile.size;
-      const chunkSize = 1024 * 1024; // Tamaño del fragmento (1 MB en este ejemplo)
-      let loaded = 0;
-
-      const uploadInterval = setInterval(() => {
-        if (loaded >= totalSize) {
-          clearInterval(uploadInterval);
-          return;
-        }
-
-        loaded += chunkSize;
-        this.uploadProgress = (loaded / totalSize) * 100;
-      }, 1000); // Actualiza la barra de progreso cada segundo
-
-
-      this.servicioPreguntasAPI_.CargarExcelDePreguntas(this.selectedFile).subscribe(
+      this.servicioPreguntasAPI_.CargarSeccionesExcel(this.selectedFile).subscribe(
         (data) => {
           this.resp = data;
           console.log('Todas las solicitudes se completaron con éxito');
@@ -338,23 +303,8 @@ export class AdministrarPreguntasComponent {
       const formData = new FormData();
       formData.append('file', this.selectedFile, this.selectedFile.name);
 
-      // Simula la carga del archivo y actualiza la barra de progreso
-      const totalSize = this.selectedFile.size;
-      const chunkSize = 1024 * 1024; // Tamaño del fragmento (1 MB en este ejemplo)
-      let loaded = 0;
 
-      const uploadInterval = setInterval(() => {
-        if (loaded >= totalSize) {
-          clearInterval(uploadInterval);
-          return;
-        }
-
-        loaded += chunkSize;
-        this.uploadProgress = (loaded / totalSize) * 100;
-      }, 1000); // Actualiza la barra de progreso cada segundo
-
-
-      this.servicioPreguntasAPI_.CargarExcelDePreguntas(this.selectedFile).subscribe(
+      this.servicioPreguntasAPI_.CargarPreguntasExcel(this.selectedFile).subscribe(
         (data) => {
           this.resp = data;
           console.log('Todas las solicitudes se completaron con éxito');
@@ -386,25 +336,6 @@ export class AdministrarPreguntasComponent {
     console.log(this.selectedFile);
 
     if (this.selectedFile) {
-      // const formData = new FormData();
-      // formData.append('file', this.selectedFile, this.selectedFile.name);
-
-      // // Simula la carga del archivo y actualiza la barra de progreso
-      // const totalSize = this.selectedFile.size;
-      // const chunkSize = 1024 * 1024; // Tamaño del fragmento (1 MB en este ejemplo)
-      // let loaded = 0;
-
-      // const uploadInterval = setInterval(() => {
-      //   if (loaded >= totalSize) {
-      //     clearInterval(uploadInterval);
-      //     return;
-      //   }
-
-      //   loaded += chunkSize;
-      //   this.uploadProgress = (loaded / totalSize) * 100;
-      // }, 1000); // Actualiza la barra de progreso cada segundo
-
-
       this.servicioPreguntasAPI_.CargarRespuestasExcel(this.selectedFile).subscribe(
         (data) => {
           console.log(data);
