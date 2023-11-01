@@ -300,6 +300,7 @@ export class TestPerfilSubjetivoComponent implements OnInit {
 
     return Object.keys(this.AnalisisSubjetivo).length > 0;
   }
+  
   esRespuestaSeleccionada(instrumento: string, valor: number, order: number): boolean {
     return this.respuestasSeleccionadasPorInstrumento[instrumento] === valor;
   }

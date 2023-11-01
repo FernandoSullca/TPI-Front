@@ -32,7 +32,7 @@ export class ActivarCuentaComponent {
         this.loading = false
       },
       (error) => {
-        this.loading = false
+        this.loading = true
         this.error = true;
         console.error('Error al registrar el usuario', error);
       }
