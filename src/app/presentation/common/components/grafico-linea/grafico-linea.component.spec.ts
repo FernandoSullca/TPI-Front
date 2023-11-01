@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GraficoLineaComponent } from './grafico-linea.component';
-import Chart from 'chart.js/auto';
 
 
 xdescribe('GraficoLineaComponent', () => {
