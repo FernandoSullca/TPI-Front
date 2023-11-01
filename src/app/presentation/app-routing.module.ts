@@ -18,6 +18,7 @@ import { AdministrarComponent } from './features/dashboard/sections/administrar/
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
 import { RegistroComponent } from './common/components/registro/registro.component';
 import { DefaultPathComponent } from './features/default-path/default-path.component';
+import { RegistarUsuarioComponent } from './features/registar-usuario/registar-usuario.component';
 
 
 
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: "registro", component:  RegistroComponent},
+  { path: "registrarme", component:  RegistarUsuarioComponent},
   { path: "perfil", component:  PerfilSubjetivoComponent},
   { path: "perfil-inversor", component:  TestPerfilSubjetivoComponent},
   { path: 'perfil-inversor-resultado', component:  PerfilSubjetivoResultadoComponent},
