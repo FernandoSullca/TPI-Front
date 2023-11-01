@@ -1,23 +1,23 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import axios from 'axios';
-import { environment } from 'src/app/core/environments/environment';
+import { environment } from 'environments/environment';
 import { Observable, of } from 'rxjs';
-import { concatMap, catchError, tap } from 'rxjs/operators';
+import { concatMap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdministrarPreguntasService {
-
+  
   constructor(private http: HttpClient) { }
 
   // Define un observable para la secuencia
 
 
   //Verificado Envio, ¿Captura?
+  // TODO excelPreg NO ....excelPreguntas SI
   public CargarExcelDePreguntas(excelPreg: File): Observable<any> {
-
+    // TODO llevar esta a funcion privada "configHeaders"
     const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
     headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type'
 
@@ -34,40 +34,18 @@ export class AdministrarPreguntasService {
     );
 
     return secuencia$;
-    // try {
-    //     await this.CargarSeccion(excelPreg, headers);
-    // } catch (error) {
-    //     console.error('Error al cargar sección:', error);
-    //  }
 
-    // try {
-    //   await this.CargarCategorias(excelPreg, headers);
-    // } catch (error) {
-    //   console.error('Error al cargar categorías:', error);
-    // }
-
-    // try {
-    //   await this.CargarPreguntas(excelPreg, headers);
-    // } catch (error) {
-    //   console.error('Error al cargar preguntas:', error);
-    // }
-
-    // try {
-    //   await this.CargarRespuestas(excelPreg, headers);
-    // } catch (error) {
-    //   console.error('Error al cargar respuestas:', error);
-    // }
 
   }
 
   public async CargarSeccion(excelPreg: File, headers: HttpHeaders) {
-    console.log("Cargando Seccion....");
+
     const formData = new FormData();
     formData.append('excelSeccion', excelPreg, excelPreg.name);
 
-    this.http
+    return this.http
       .post<FormData>(`${environment.API}/api/seccion/carga-seccion-excel`, formData, { headers: headers })
-
+      // TODO mensaje de error en pantalla
       .subscribe((response) => {
         console.log('Archivo Seccion subido exitosamente', response);
       },
@@ -75,13 +53,14 @@ export class AdministrarPreguntasService {
           console.error('Error al subir el archivo Seccion', error);
         }
       );
+
   }
   public async CargarCategorias(excelPreg: File, headers: HttpHeaders) {
 
     const formData = new FormData();
     formData.append('excelCategoria', excelPreg, excelPreg.name);
     console.log("Cargando Categoria....");
-    this.http
+    return this.http
       .post<FormData>(`${environment.API}/api/categoria/carga-categoria-excel`, formData, { headers: headers })
 
       .subscribe((response) => {
@@ -98,7 +77,7 @@ export class AdministrarPreguntasService {
     const formData = new FormData();
     formData.append('excelPregunta', excelPreg, excelPreg.name);
 
-    this.http
+    return this.http
       .post<FormData>(`${environment.API}/api/pregunta/carga-pregunta-excel`, formData, { headers: headers })
 
       .subscribe((response) => {
@@ -116,7 +95,7 @@ export class AdministrarPreguntasService {
     const formData = new FormData();
     formData.append('excelRespuesta', excelPreg, excelPreg.name);
 
-    this.http
+    return this.http
       .post<FormData>(`${environment.API}/api/respuesta/carga-respuesta-excel`, formData, { headers: headers })
 
       .subscribe((response) => {
@@ -127,5 +106,10 @@ export class AdministrarPreguntasService {
         }
       );
   }
+
+  getExcelTemplate() {
+    return this.http.get('/assets/documents/Esquema-Preguntas-De-Perfiles.xlsx', { responseType: 'blob' });
+  }
+
 
 }

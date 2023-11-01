@@ -2,7 +2,6 @@ import { NgModule,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
-import { createChart, createChartEx } from 'lightweight-charts'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './features/login/login.component';
@@ -54,7 +53,7 @@ import { PruebitaComponent } from './common/components/pruebita/pruebita.compone
     RegistroComponent,
     GraficoLineaComponent,
     FormatoValorPipe,
-    PruebitaComponent
+    PruebitaComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +63,8 @@ import { PruebitaComponent } from './common/components/pruebita/pruebita.compone
     CommonModule,
     FormsModule,
     NgChartsModule,
-    QRCodeModule
+    QRCodeModule,
+
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [DatePipe],
