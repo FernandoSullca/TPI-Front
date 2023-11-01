@@ -21,14 +21,15 @@ export class DashboardComponent implements OnInit {
   public quantityNotifications = 0;
   public valorActualDolarMEP: DolarBolsa | undefined;
   public fechaCompletaDolarMEP: string='';
-  public portfolioSugerido!:PortfolioSugerido;
+  public portfolioSugerido!:PortfolioSugerido[];
+  public tipoPerfil : string |undefined
 
   constructor(private router : Router,private localstorage:LocalStorageService,
     private carteraService : CarteraService, public modalService : ModalService,
     private portfolioSugeridoService : PortfolioSugeridoService) { }
 
   public ngOnInit(): void {
-    this.obtenerPortfolioSugerido("moderado");
+    this.obtenerPortfolioSugerido(this.obtenerTipoPerfil());
     this.obtenerPrecioDolarMEP();
   }
   public actionMenuMobile(): void {
@@ -52,10 +53,12 @@ export class DashboardComponent implements OnInit {
   openModal(){
     this.modalService.openModal();
   }
-  public obtenerPortfolioSugerido(tipoPerfil:string) {
+  public obtenerPortfolioSugerido(tipoPerfil:string|undefined) {
     this.portfolioSugeridoService.getPortfolioSugerido(tipoPerfil).subscribe((response) => {
       this.portfolioSugerido = response;
-      console.log(this.portfolioSugerido);
-  });
-}
+    });
+  }
+  public obtenerTipoPerfil(){
+    return this.tipoPerfil;
+  }
 }

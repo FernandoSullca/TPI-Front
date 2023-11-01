@@ -99,11 +99,10 @@
         <div *ngIf="isLastQuestion && issugerencia" class="contenedor-sugerencias">
 
             <h3> Portfolio sugerido acorde a tú perfil</h3>
-            <img src="\assets\image\GraficoTorta.png" alt="">
-            <button class="btn btn-primary btn btn-primary me-md-2" (click)="loadHome()">Finalizar</button>
-
+            <button type="button" class="boton btn btn-sm mx-auto" data-dismiss="modal" (click)="openModal()"data-toggle="modal" data-target="#sugerido">Ver cartera sugerida</button>
+            <app-modal-sugerido *ngIf="modalService.isModalOpen()" [portfolioSugerido]="portfolioSugerido"></app-modal-sugerido>
         </div>
-
+        
     </div>
 
 
