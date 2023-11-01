@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Chart, ChartConfiguration, ChartData, ChartType } from 'chart.js';
+import { Value } from 'sass';
 
 @Component({
   selector: 'app-grafico-linea',
@@ -8,7 +9,10 @@ import { Chart } from 'chart.js';
 })
 export class GraficoLineaComponent implements OnInit {
   public chart: any;
-
+  @Input() tipoGrafico : ChartType | undefined;
+  @Input() tituloGrafico : string ='';
+  @Input() datosGrafico : any ;
+ 
   ngOnInit(): void {
     this.createChart();
   }
@@ -17,6 +21,8 @@ export class GraficoLineaComponent implements OnInit {
     const currentDate = new Date();
     const months = [];
     const salesData = [];
+    const ejex = this.datosGrafico.map((data:any) => data.fecha )
+    const ejey = this.datosGrafico.map((data:any)=> data.precio)
 
     for (let i = 0; i < 8; i++) {
         const month = this.getSpanishMonth(currentDate.getMonth());
@@ -28,11 +34,11 @@ export class GraficoLineaComponent implements OnInit {
     this.chart = new Chart("MyChart", {
         type: 'line',
         data: {
-            labels: months,
+            labels: ejex || months,
             datasets: [
                 {
-                    label: "Progreso",
-                    data: salesData,
+                    label: "Precio",
+                    data: ejey || salesData,
                     tension: 0.1,
                     fill: false,
                     borderColor: '#3261A8', 
