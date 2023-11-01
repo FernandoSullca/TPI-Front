@@ -419,7 +419,7 @@ export class AdministrarPreguntasComponent {
         },
         (error) => {
           console.error('Error en la carga de datos', error);
-          this.uploadProgress = 25;
+          this.uploadProgress = 50;
           this.typeProgress="danger"
           this.configBar.type = "danger";
           this.configBar.textType= "danger";
