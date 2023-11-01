@@ -11,7 +11,7 @@ export class GraficoLineaComponent implements OnInit {
   public chart: any;
   @Input() tipoGrafico : ChartType | undefined;
   @Input() tituloGrafico : string ='';
-  @Input() datosGrafico : [] | any ;
+  @Input() datosGrafico : any[] = [];
  
   ngOnInit(): void {
     this.createChart();
@@ -21,8 +21,8 @@ export class GraficoLineaComponent implements OnInit {
     const currentDate = new Date();
     const months = [];
     const salesData = [];
-    const ejex = this.datosGrafico.map((data:any) => data.fecha )
-    const ejey = this.datosGrafico.map((data:any)=> data.precio)
+    const ejex = this.datosGrafico.length > 0 && this.datosGrafico.map((data:any) => data.fecha )
+    const ejey = this.datosGrafico.length > 0 && this.datosGrafico.map((data:any)=> data.precio)
 
     for (let i = 0; i < 8; i++) {
         const month = this.getSpanishMonth(currentDate.getMonth());
