@@ -18,7 +18,7 @@ export class ModalSugeridoComponent {
 
   
   public ngOnInit(): void {
-    debugger;
+    // debugger;
     if (this.portfolioSugerido.length > 0) {
       this.instrumentoSeleccionadoId = this.portfolioSugerido[0].oid;
     }
@@ -35,9 +35,9 @@ export class ModalSugeridoComponent {
     this.cerrarModal();
   }
   obtenerNuevoPortfolioSugerido(){
-    debugger;
+    // debugger;
     this.portfolioSugeridoService.obtenerNuevoPortfolioSugerido(this.instrumentoSeleccionadoId).subscribe(response => {
-      debugger;
+      // debugger;
       this.dashboardComponent.portfolioSugerido = response;
     });
   }
