@@ -63,8 +63,7 @@ export class RegistarUsuarioComponent {
     if (!this.usuarioForm.username || 
       !this.usuarioForm.name || 
       !this.usuarioForm.lastname ||
-      !this.usuarioForm.email || 
-      !this.usuarioForm.pass ) {
+      !this.usuarioForm.email ) {
       return false;
     }
     return true;
