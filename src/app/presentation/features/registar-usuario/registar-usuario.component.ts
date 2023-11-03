@@ -5,13 +5,12 @@ import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-st
 import { RegistroService } from 'src/app/core/services/api/autorizacion/registro.service';
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.scss']
+  selector: 'app-registar-usuario',
+  templateUrl: './registar-usuario.component.html',
+  styleUrls: ['./registar-usuario.component.scss']
 })
+export class RegistarUsuarioComponent {
 
-export class RegistroComponent {
-  
   usuarioForm: any = {
     username: '',
     name: '',
@@ -34,6 +33,7 @@ export class RegistroComponent {
   }
 
   errorReg: boolean = false;
+  registro: boolean = false;
 
   constructor(private registroUsuarioService: RegistroService
     , private router: Router
@@ -44,46 +44,33 @@ export class RegistroComponent {
     if (!this.validarCampos()) {
       this.errorReg = true;
       console.log("Error de campos enviados")
-      return; // No envía la solicitud si los campos no son válidos
+      return; 
     }
-    this.registroUsuarioService.registrarUsuario(this.usuarioForm).subscribe(
+    this.registroUsuarioService.registrarNuevoUsuario(this.usuarioForm).subscribe(
       (response) => {
         console.log('Usuario registrado con éxito', response);
-        this.almacenarUsuario(this.usuarioForm);
-        this.navegarAPerfil();
+        this.registro=true;
       },
       (error) => {
         this.errorReg=true;
+        this.registro=false;
         console.error('Error al registrar el usuario', error);
       }
     );
   }
 
-  almacenarUsuario(usuario: any) {
-    usuario.email = usuario.username;
-    this.registroUsuarioService.buscarUsuario(usuario.email).subscribe(
-      (usuarioRecibido: UsuarioAPI) => {
-        this.usuariodb = usuarioRecibido;
-        // this.LocalStorageService.setItem("Username", usuario.username);
-        this.LocalStorageService.setUsuarioPerfilActualLocal(this.usuariodb);
-        this.LocalStorageService.SetPerfilActualLocal();
-      },
-      (error) => {
-        console.error('Error al buscar el usuario', error);
-      }
-    );
-
-  }
-
-  navegarAPerfil() {
-    this.router.navigate(['/perfil']);
-  }
-
   validarCampos(): boolean {
-    if (!this.usuarioForm.username || !this.usuarioForm.name || !this.usuarioForm.lastname) {
+    if (!this.usuarioForm.username || 
+      !this.usuarioForm.name || 
+      !this.usuarioForm.lastname ||
+      !this.usuarioForm.email || 
+      !this.usuarioForm.pass ) {
       return false;
     }
     return true;
   }
 
+
+
+  
 }

@@ -2,7 +2,7 @@ export class UsuarioAPI {
     constructor(
 
         public oid: number,
-
+        public version: number,
         public username: string,
         
         public nombreUsuario: string,

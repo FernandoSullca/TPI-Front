@@ -8,6 +8,7 @@ import { concatMap, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AdministrarPreguntasService {
+
   
   constructor(private http: HttpClient) { }
 
@@ -88,6 +89,7 @@ export class AdministrarPreguntasService {
         }
       );
   }
+
   public async CargarRespuestas(excelPreg: File, headers: HttpHeaders) {
 
     console.log("Cargando Respuesta...");
@@ -105,6 +107,59 @@ export class AdministrarPreguntasService {
           console.error('Error al subir el archivo Respuestas', error);
         }
       );
+  }
+/**********************************************************************/
+  public CargarSeccionesExcel(selectedFile: File):Observable<FormData>{
+    console.log("Cargando Respuesta...");
+
+    const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
+    headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type' 
+    
+    const formData = new FormData();
+    formData.append('excelSeccion', selectedFile, selectedFile.name);
+
+    return this.http
+      .post<FormData>(`${environment.API}/api/seccion/carga-seccion-excel`, formData, { headers: headers });
+  }
+
+  public CargarCategoriasExcel(selectedFile: File):Observable<FormData>{
+    console.log("Cargando Respuesta...");
+
+    const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
+    headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type' 
+    
+    const formData = new FormData();
+    formData.append('excelCategoria', selectedFile, selectedFile.name);
+
+    return this.http
+      .post<FormData>(`${environment.API}/api/categoria/carga-categoria-excel`, formData, { headers: headers });
+  }
+
+  public CargarPreguntasExcel(selectedFile: File):Observable<FormData>{
+    console.log("Cargando Respuesta...");
+
+    const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
+    headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type' 
+    
+    const formData = new FormData();
+    formData.append('excelPregunta', selectedFile, selectedFile.name);
+
+    return this.http
+      .post<FormData>(`${environment.API}/api/respuesta/carga-pregunta-excel`, formData, { headers: headers });
+  }
+ 
+
+  public CargarRespuestasExcel(selectedFile: File):Observable<FormData>{
+    console.log("Cargando Respuesta...");
+
+    const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
+    headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type' 
+    
+    const formData = new FormData();
+    formData.append('excelRespuesta', selectedFile, selectedFile.name);
+
+    return this.http
+      .post<FormData>(`${environment.API}/api/respuesta/carga-respuesta-excel`, formData, { headers: headers });
   }
 
   getExcelTemplate() {
