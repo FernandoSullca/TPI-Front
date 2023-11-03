@@ -61,7 +61,8 @@ export class TestPerfilSubjetivoComponent implements OnInit {
     perfilInversorUsuario: PerfilInversorAPI = {
 
       oid: 0,
-  
+      deleted:0,
+     
       version: 0,
   
       horizonteTemporal: 0,
@@ -74,9 +75,10 @@ export class TestPerfilSubjetivoComponent implements OnInit {
       tipoNivelConocimiento: "",
   
       perfilInversor: "",
-  
+      resultadoPerfilado: "",
       UsuarioDTO: {
         oid: 0,
+        version: 0,
         pass: "",
         username: "",
         nombreUsuario: "",

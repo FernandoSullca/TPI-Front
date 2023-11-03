@@ -48,8 +48,8 @@ export class RegistroService {
    
     const body =
     {
-      "cuentaConfirmada": true,
-      "activo": true,
+      "cuentaConfirmada": false,
+      "activo": false,
       "username": usuario.username,
       "nombre": usuario.name,
       "apellido": usuario.lastname,

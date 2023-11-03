@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegistroService } from 'src/app/core/services/api/autorizacion/registro.service';
 
 @Component({
@@ -13,7 +13,8 @@ export class ActivarCuentaComponent {
   public error : boolean = false;
   constructor(
     private registroUsuarioService: RegistroService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private router: Router
   ) { }
   
 
@@ -22,14 +23,13 @@ export class ActivarCuentaComponent {
     this.registrarToken();
   }
 
-
-
   registrarToken() {
     
     this.registroUsuarioService.ActivarConToken(this.token).subscribe(
       (response) => {
         console.log('Usuario registrado con éxito', response);
         this.loading = false
+        this.error = false;
       },
       (error) => {
         this.loading = true
@@ -38,6 +38,5 @@ export class ActivarCuentaComponent {
       }
     );
   }
-
 
 }

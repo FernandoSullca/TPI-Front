@@ -19,8 +19,11 @@
 
             <input type="password" [(ngModel)]="usuarioForm.password" name="password" id="password"
                 placeholder="Contraseña">
+            <label *ngIf="errorLogin" for="{{errorLogin}}" class="error-message">
+                    Error durante el Login... Verifique los datos ingresados.
+                </label>
 
-            <div class="btn-gral" routerLink='/perfil'>Iniciar sesión</div> 
+            <div class="btn-gral" (click)="verificarUsuario()">Iniciar sesión</div> 
             <div class="btn-secundario btn-gral " routerLink='/registrarme'>Registrarme</div> 
         </div>
        
