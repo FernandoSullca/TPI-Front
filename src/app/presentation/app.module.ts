@@ -31,6 +31,7 @@ import { FormatoValorPipe } from 'src/app/presentation/common/pipes/pipe-formato
 import { RegistroComponent } from './common/components/registro/registro.component';
 import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
 import { ModalSugeridoComponent } from './common/components/modal-sugerido/modal-sugerido.component';
+import { LoadingComponent } from './common/components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ModalSugeridoComponent } from './common/components/modal-sugerido/modal
     FormatoValorPipe,
     PrediccionComponent,
     ModalSugeridoComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

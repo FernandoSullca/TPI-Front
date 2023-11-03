@@ -19,6 +19,7 @@ import { AdministrarPreguntasComponent } from './features/dashboard/sections/adm
 import { RegistroComponent } from './common/components/registro/registro.component';
 import { DefaultPathComponent } from './features/default-path/default-path.component';
 import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
+import { LoadingComponent } from './common/components/loading/loading.component';
 
 
 
@@ -46,7 +47,7 @@ const routes: Routes = [
     ],
   },
   // Otras rutas o manejo de errores
-  { path: '**', component: DefaultPathComponent }, // Manejo de rutas no encontradas
+  { path: '**', component: LoadingComponent }, // Manejo de rutas no encontradas
 ];
 
 @NgModule({

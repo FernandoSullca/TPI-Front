@@ -62,12 +62,13 @@
       <div class="row float-end" *ngIf="lastUpdatePanel" style="margin-top: 0.5rem;">Última actualización del mercado real: {{lastUpdatePanel}}</div>
 
       <ng-template #loading>
-        <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
+        <app-loading class="container-loading filas flex-column" [textoLoading]="'Cargando panel de precios ...'"></app-loading>
+        <!-- <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
           <div class="spinner-border loading-spiner" role="status">
             <span class="sr-only">Loading...</span>
           </div>
           <h3>Cargando panel de precios ...</h3>
-        </div>
+        </div> -->
       </ng-template>
     </div>
   </div>

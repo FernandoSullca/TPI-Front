@@ -46,7 +46,7 @@ export class GraficoComponent implements OnInit{
       },
       legend: {
         display: true,
-        position: 'bottom',
+        position: 'right',
         labels:{
           boxWidth:40,
           color:'#00000'
