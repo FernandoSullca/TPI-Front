@@ -5,7 +5,11 @@
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine",
-      "@angular/localize"
+      "@angular/localize",
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
     ]
   },
   "files": [
