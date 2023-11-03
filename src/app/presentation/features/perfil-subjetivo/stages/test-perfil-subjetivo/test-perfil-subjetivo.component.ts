@@ -34,11 +34,11 @@ export class TestPerfilSubjetivoComponent implements OnInit {
   };
 
   loading: boolean = false;
-  URLQRPerfil:string="";
+  // URLQRPerfil:string="";
   buttonText: string = 'CONTINUAR';
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;
- respPerfilResultante:string="";
+  respPerfilResultante:string="";
   opcionesSeleccionadas: { seccion: string, pregunta: string, valor: number }[] = [];
   opcionSeleccionada: number = 0;
   respuestasSeleccionadasPorInstrumento: Record<string, number> = {};
@@ -61,7 +61,8 @@ export class TestPerfilSubjetivoComponent implements OnInit {
     perfilInversorUsuario: PerfilInversorAPI = {
 
       oid: 0,
-  
+      deleted:0,
+     
       version: 0,
   
       horizonteTemporal: 0,
@@ -74,9 +75,10 @@ export class TestPerfilSubjetivoComponent implements OnInit {
       tipoNivelConocimiento: "",
   
       perfilInversor: "",
-  
+      resultadoPerfilado: "",
       UsuarioDTO: {
         oid: 0,
+        version: 0,
         pass: "",
         username: "",
         nombreUsuario: "",
@@ -223,8 +225,8 @@ export class TestPerfilSubjetivoComponent implements OnInit {
       this.respuestasPerfil = data;
       // this.URLQRPerfil=this.QrLocal.solicitarQRLocal(data.perfilInversor);
       this.respPerfilResultante=data.perfilInversor;
-      this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
-      this.localStorageService.setItem('horizonteTemporal', this.respuestasPerfil.horizonteTemporal);
+      // this.localStorageService.setItem('toleranciaRiesgo', this.respuestasPerfil.toleranciaRiesgo);
+      // this.localStorageService.setItem('horizonteTemporal', this.respuestasPerfil.horizonteTemporal);
       this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
       this.perfilInversorUsuario.toleranciaRiesgo=this.respuestasPerfil.toleranciaRiesgo;
       this.perfilInversorUsuario.horizonteTemporal=this.respuestasPerfil.horizonteTemporal;
@@ -300,6 +302,7 @@ export class TestPerfilSubjetivoComponent implements OnInit {
 
     return Object.keys(this.AnalisisSubjetivo).length > 0;
   }
+  
   esRespuestaSeleccionada(instrumento: string, valor: number, order: number): boolean {
     return this.respuestasSeleccionadasPorInstrumento[instrumento] === valor;
   }

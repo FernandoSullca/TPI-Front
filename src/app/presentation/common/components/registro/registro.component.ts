@@ -22,6 +22,7 @@ export class RegistroComponent {
 
   usuariodb: UsuarioAPI = {
     oid: 0,
+    version: 0,
     nombreUsuario: "",
     username: "",
     nombre: "",

@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import { DolarBolsa } from 'src/app/core/models/dolar-bolsa/dolar-bolsa';
+import { PortfolioSugerido } from 'src/app/core/models/portfolio-sugerido/portfolio-sugerido';
+import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
+import { PortfolioSugeridoService } from 'src/app/core/services/api/portfolio-sugerido/portfolio-sugerido.service';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
+import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,12 +19,17 @@ export class DashboardComponent implements OnInit {
   public enabledPerfil = false;
   public enabledAdminMode = false;
   public quantityNotifications = 0;
-  valorActualDolarMEP: DolarBolsa | undefined;
-  fechaCompletaDolarMEP: string='';
+  public valorActualDolarMEP: DolarBolsa | undefined;
+  public fechaCompletaDolarMEP: string='';
+  public portfolioSugerido!:PortfolioSugerido[];
+  public tipoPerfil : string |undefined
 
-  constructor(private router : Router,private localstorage:LocalStorageService,private carteraService : CarteraService) { }
+  constructor(private router : Router,private localstorage:LocalStorageService,
+    private carteraService : CarteraService, public modalService : ModalService,
+    private portfolioSugeridoService : PortfolioSugeridoService) { }
 
   public ngOnInit(): void {
+    this.obtenerPortfolioSugerido(this.obtenerTipoPerfil());
     this.obtenerPrecioDolarMEP();
   }
   public actionMenuMobile(): void {
@@ -28,10 +37,10 @@ export class DashboardComponent implements OnInit {
   }
 
   cerrarSesion() {
-    this.localstorage.RemovePerfilActualLocal();
+    /*this.localstorage.RemovePerfilActualLocal();
     this.localstorage.removeItem("perfil");
     this.localstorage.removeItem("horizonteTemporal"); 
-    this.localstorage.removeItem("toleranciaRiesgo"); 
+    this.localstorage.removeItem("toleranciaRiesgo"); */
     this.router.navigate(["/"]);
   }
   obtenerPrecioDolarMEP(){
@@ -40,5 +49,16 @@ export class DashboardComponent implements OnInit {
     const fecha = (new Date(this.valorActualDolarMEP.fechaActualizacion)).toLocaleString();
     this.fechaCompletaDolarMEP = fecha;
     })
+  }
+  openModal(){
+    this.modalService.openModal();
+  }
+  public obtenerPortfolioSugerido(tipoPerfil:string|undefined) {
+    this.portfolioSugeridoService.getPortfolioSugerido(tipoPerfil).subscribe((response) => {
+      this.portfolioSugerido = response;
+    });
+  }
+  public obtenerTipoPerfil(){
+    return this.tipoPerfil;
   }
 }
