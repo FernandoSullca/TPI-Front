@@ -33,7 +33,7 @@ export class RegistroService {
   verificarExistencia(usuario: any) {
     const body =
     {
-      "email": usuario.username,
+      "email": usuario.email,
 
     }
     return this.http.post(this.apiEndpoint, body);
