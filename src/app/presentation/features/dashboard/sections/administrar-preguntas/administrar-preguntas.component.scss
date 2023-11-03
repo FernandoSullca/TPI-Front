@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
-
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css);
+// <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 .frame {
 	position: absolute;
 	top: 50%;
@@ -46,7 +47,7 @@ h1 {
 }
 
 .dropzone {
-	width: 100px;
+	// width: 100px;
 	height: 80px;
 	border: 1px dashed #999;
 	border-radius: 3px;
@@ -120,7 +121,7 @@ h1 {
 	color: #0c3214;
   }
 
-
+/************************************/
   .main-container {
 	display: flex;
     flex-direction: column;
@@ -130,6 +131,28 @@ h1 {
     min-height: 80vh;
   }
 
+  .fa-fw {
+    width: 1.28571429em;
+    text-align: center;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.dropzone {
+	// width: 100px;
+	height: 80px;
+	border: 1px dashed #999;
+	border-radius: 3px;
+	text-align: center;
+}
   /*********Formato de listas*************/
   .navbar-inverse {
     // background-color: #222;
@@ -161,9 +184,16 @@ h1 {
  
 }
 
+.navbar-inverse .navbar-brand {
+  color: #ffffff;
+}
+
 .container-descargar-template{
 	display: flex;
     justify-content: center;
+    button{
+      width: auto;
+    }
 }
 
   body {
@@ -321,3 +351,17 @@ h1 {
   .as-sortable-drag {
     opacity: .8
   }
+
+  /*************/
+  .btn-danger {
+    width: 5rem;
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+  }
+  .panel-body {
+    padding: 15px;
+    button{
+      width: auto;
+    }
+}

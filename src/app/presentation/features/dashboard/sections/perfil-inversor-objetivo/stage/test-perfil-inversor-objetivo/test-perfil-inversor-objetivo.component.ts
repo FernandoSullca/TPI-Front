@@ -63,14 +63,17 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   perfilInversorUsuario: PerfilInversorAPI = {
     oid: 0,
     version: 0,
+    deleted:0,
     horizonteTemporal: 0,
     toleranciaRiesgo: 0,
     tipoPerfilSubjetivo: "",
     nivelConocimiento: 0,
     tipoNivelConocimiento: "",
     perfilInversor: "",
+    resultadoPerfilado:"",
     UsuarioDTO: {
       oid: 0,
+      version: 0,
       pass: "",
       username:"",
       nombreUsuario: "",
@@ -166,7 +169,9 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
         }).finally(() => {
           this.acreditarDinero();
           this.armardescripcion();
-          this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario, this.ResultadoPerfilObjetivo);
+          //this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario, this.ResultadoPerfilObjetivo);
+          this.dataurlcertificado= this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(this.Username, this.ResultadoPerfilObjetivo);
+
           this.dashboardComponent.obtenerPortfolioSugerido(this.ResultadoPerfilObjetivo);
         }
         );;
