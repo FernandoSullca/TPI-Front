@@ -37,7 +37,7 @@ export class GraficoLineaComponent implements OnInit {
             labels: ejex || months,
             datasets: [
                 {
-                    label: "Precio",
+                    label: "Progreso",
                     data: ejey || salesData,
                     tension: 0.1,
                     fill: false,
