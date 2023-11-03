@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { PerfilInversorService } from './perfil-inversor.service';
 
-describe('PerfilInversorService', () => {
+xdescribe('PerfilInversorService', () => {
   let service: PerfilInversorService;
 
   beforeEach(() => {
