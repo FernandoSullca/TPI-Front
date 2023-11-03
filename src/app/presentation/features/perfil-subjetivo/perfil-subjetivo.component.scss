@@ -1,0 +1,130 @@
+.main-container{
+  position: relative;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-radius: 1rem;
+  min-height: 100vh;
+  justify-content: space-around;
+  row-gap: 1rem;
+}
+/*********Contenerdor de texto MercadoJR para Regular y Bold*********/
+.brand-box {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    margin-top: 1rem;
+  
+    img {
+      height: 3.8rem;
+      // margin-right: .7rem;
+      margin-left: .1rem;
+      padding-bottom: 1em;
+    }
+
+    h2 {
+      // margin: 0;
+      font-size: 1.8rem; 
+    }
+  }
+/*********correcion de texto MercadoJR para Regular y Bold*********/
+.bold-text-Marca {
+  font-weight: normal;
+  font-family: 'Poppins';
+  /* Establece la fuente regular para "Mercado" */
+}
+
+.bold-Marca {
+  font-weight: bold;
+  font-family: 'Poppins';
+  /* Establece la fuente en negrita para "JR" */
+}
+ .alinearcion-logotipo{
+  display: flex !important;
+  align-content: flex-end;
+  align-items: center;
+ } 
+///*********/////
+ 
+.container-presentacion{
+  display: flex;
+  justify-content: center;
+  height: auto;
+  row-gap: 2rem;
+}
+.container-perfil {
+  // width: 1179px;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 30px;
+  border: 2px solid #3261A8;
+  div h3{
+    font-size: 1.5rem;
+  }
+}
+
+.botonera-lg{
+  background-color: #3261A8;
+    color: #FFFFFF;
+    border-radius: 1.5rem;
+    font-weight: bold;
+}
+
+
+.ilustracion{
+  width: 12rem;
+  height: auto;
+}
+
+.botonera{
+  width: 17rem;
+  // height: 200px;
+  bottom: 5rem;
+  // position: absolute;
+}
+
+
+.btn-Iniciar {
+  // width: 253px;
+  height: 57px;
+  flex-shrink: 0;
+  fill: #3261A8;
+  filter: drop-shadow(0px 4px 6px rgba(163, 161, 255, 0.16));
+}
+/* Estilos para dispositivos de pantalla grande (por ejemplo, computadoras de escritorio) */
+@media (min-width: 992px) {
+
+}
+
+/* Estilos para dispositivos medianos (por ejemplo, tablets) */
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Estilos para dispositivos pequeños (por ejemplo, teléfonos móviles) */
+@media (max-width: 767px) {
+
+  .container-perfil{
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 30px;
+    border: 1px solid #3261A8;
+    div h3{
+      font-size: 0.9rem;
+    }
+
+  }
+  .ilustracion{
+    width: 9rem;
+    height: auto;
+  }
+  
+  .botonera{
+    width: 10rem;
+ 
+  }
+ 
+}

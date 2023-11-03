@@ -1,0 +1,23 @@
+<p>Administrar-preguntas de Test Subjetivos como objetivos!</p>
+<div class="frame">
+    <div class="center">
+        <div class="title">
+            <h1>Subir su archivo de preguntas en formato Excel</h1>
+        </div>
+
+        <div class="dropzone">
+            <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+            <input type="file" class="upload-input"  accept=".xlsx, .xls" name="excelPregunta" (change)="onFileSelected($event)" />
+          </div>
+
+
+        <div class="file-info">
+            <div>{{ selectedFileName }}</div>
+            <progress [value]="uploadProgress" max="100"></progress>
+        </div>
+
+
+        <button class="btn" (click)="uploadFile()">Subir archivo</button>
+
+    </div>
+</div>

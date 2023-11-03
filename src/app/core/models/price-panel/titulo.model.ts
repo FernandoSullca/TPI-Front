@@ -1,6 +1,7 @@
 export class Titulo {
     constructor(
         public simbolo?: string,
+        public categoriaInstrumento?: string,
         public puntas?: {
             cantidadCompra: number;
             precioCompra: number;
@@ -25,12 +26,15 @@ export class Titulo {
         public plazo?: string,
         public laminaMinima?: number,
         public lote?: number,
+        public flashCompra?: number,
+        public flashVenta?: number
     ) {}
 
     // Método para serializar el objeto JSON recibido desde la API
     public static serializar(json: any): Titulo {
         return new this(
             json.simbolo,
+            json.categoriaInstrumento,
             json.puntas,
             json.ultimoPrecio,
             json.variacionPorcentual,
@@ -49,7 +53,9 @@ export class Titulo {
             json.descripcion,
             json.plazo,
             json.laminaMinima,
-            json.lote
+            json.lote,
+            json.flashCompra || 0,
+            json.flashVenta || 0
         );
     }
 }

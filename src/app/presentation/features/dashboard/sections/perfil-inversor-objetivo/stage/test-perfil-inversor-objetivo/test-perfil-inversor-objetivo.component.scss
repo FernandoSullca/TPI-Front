@@ -1,0 +1,321 @@
+.main-container {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  // height: 95vh;
+  min-height: 100vh;
+}
+
+.brand-box {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  margin-top: 2rem;
+
+  img {
+    height: 2.8rem;
+    // margin-right: .7rem;
+    margin-left: .7rem;
+    padding-bottom: 1em;
+  }
+
+  h2 {
+    // margin: 0;
+    font-size: 1.3rem;
+    padding-top: 0.3rem;
+    font-family: 'poppins';
+  }
+}
+
+/*********correcion de texto MercadoJR para Regular y Bold*********/
+.bold-text-Marca {
+  font-weight: normal;
+  font-family: 'Poppins';
+  /* Establece la fuente regular para "Mercado" */
+}
+
+.bold-Marca {
+  font-weight: bold;
+  font-family: 'Poppins';
+  /* Establece la fuente en negrita para "JR" */
+}
+
+.alinearcion-logotipo {
+  display: flex !important;
+  align-content: flex-end;
+  align-items: center;
+}
+
+/******************************************************************/
+.container-perfil {
+  min-width: 95%;
+  min-height: 100vh;
+  flex-shrink: 0;
+  border-radius: 30px;
+  // border: 2px solid #3261A8;
+}
+
+.container-perfil-Quest-descr-opt {
+  min-height: auto;
+  row-gap: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-perfil-Questions {
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 30px;
+  border: 2px solid #3261A8;
+  text-align: center;
+  /* padding-bottom: 3rem; */
+  font-weight: 700;
+  font-size: 1.2rem;
+
+  // margin-bottom: 2em;
+  p {
+    padding: 0.5rem;
+    margin-bottom: 0;
+  }
+}
+
+.container-perfil-Descripcion {
+  // height: auto;
+  display: flex;
+  // min-height: 100vh;
+  flex-shrink: 0;
+  border-radius: 30px;
+  border: 2px solid #3261A8;
+  // text-align: center;
+  // padding-top: 1rem;
+  font-weight: 700;
+  // font-size: 1.2rem;
+  padding: 2em;
+  min-height: auto;
+
+  img {
+    align-items: center;
+  }
+
+}
+
+.centrar-opciones {
+  display: flex;
+  /* flex-wrap: nowrap; */
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+
+
+.alineacion-radios {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  label {
+    width: 90%;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  input[type="radio"] {
+    margin-bottom: 1rem;
+  }
+}
+
+.alineacion-botones-opciones-radius {}
+
+.contenedor-sugerencias {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.btn-Iniciar {
+  width: 253px;
+  height: 57px;
+  flex-shrink: 0;
+  fill: #3261A8;
+  filter: drop-shadow(0px 4px 6px rgba(163, 161, 255, 0.16));
+}
+
+.botonera-lg {
+  background-color: #3261A8;
+  color: #FFFFFF;
+  border-radius: 1.5rem;
+  font-weight: bold;
+}
+
+.botonera-lg-opciones {
+  background-color: #3261A8;
+  color: #FFFFFF;
+  border-radius: 1.5rem;
+  font-weight: bold;
+  width: 6rem;
+  height: auto;
+  /* Para que la altura se ajuste automáticamente al contenido */
+  text-align: center;
+  /* Alinea el texto en el centro verticalmente */
+  white-space: normal;
+  /* Permite que el texto se divida en varias líneas */
+  word-wrap: break-word;
+  /* Rompe palabras largas en líneas si es necesario */
+}
+
+.resultados-test {
+  display: flex;
+  row-gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contenedor-resultado-perfil {
+  display: flex;
+  justify-content: space-evenly;
+
+  .imagen-Perfil {
+    max-height: 19rem;
+  }
+
+  p {
+    font-size: larger;
+  }
+}
+
+
+///*********/////
+/* Put this code in your CSS file */
+.AreaQR {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  /* margin-left: 5rem; */
+  /* margin-top: 1rem;
+
+  /* The div container */
+  .qrcodeImage {
+    display: flex;
+    flex: 1;
+    height: 10rem;
+    // margin-top: -100px;
+  }
+
+ /* Add custom styles here */
+  .qrStyle {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    height: 8rem;
+    width: 200px;
+    
+    canvas{
+      height: 8rem;
+      width: 200px;
+    }
+  } 
+
+  .AreaQRLINKS {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+  }
+
+  }
+
+
+
+/// 
+@media (min-width: 992px) {}
+
+/* Estilos para dispositivos medianos (por ejemplo, tablets) */
+@media (min-width: 768px) and (max-width: 991px) {}
+
+/* Estilos para dispositivos pequeños (por ejemplo, teléfonos móviles) */
+@media (max-width: 767px) {
+
+  .container-perfil {
+    width: auto;
+  }
+
+
+  .container-perfil-Questions {
+    border: 1px solid #3261A8;
+    text-align: center;
+    padding: 1rem !important;
+
+    p {
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+  }
+
+  .container-perfil-Descripcion {
+    display: flex;
+
+    flex-shrink: 0;
+    border-radius: 30px;
+    border: 0px solid #3261A8;
+    font-weight: 600;
+    padding: 0.75rem;
+
+    img {
+      align-items: center;
+    }
+
+  }
+
+  .contenedor-opciones {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+
+  .alineacion-radios {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    label {
+      width: 100%;
+      font-size: .75rem;
+      font-weight: 700;
+    }
+
+    input[type="radio"] {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .resultados-test {
+    display: flex;
+    row-gap: 2rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contenedor-resultado-perfil {
+    display: flex;
+    justify-content: space-evenly;
+
+    .imagen-Perfil {
+      max-height: 10rem;
+      /* flex: 2 0 auto; */
+      width: 50%;
+    }
+
+    p {
+      width: 85%;
+      font-size: medium;
+    }
+  }
+
+
+}

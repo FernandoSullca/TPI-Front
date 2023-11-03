@@ -1,15 +1,117 @@
-
 name: CI-CD-angular
 
 on:
   push:
     branches: [ "master" ]
-  
+
 jobs:
-  build:
-
-    runs-on: self-hosted
-
+  avoid_reduncy:
+    runs-on: ubuntu-22.04
+    steps: 
+      - name: Cancela build previos redundantes
+        uses: styfle/cancel-workflow-action@0.12.0
+        with: 
+          access_token: ${{ github.token }}
+  install:
+    runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3
-    - run: docker compose up -d --build
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+        # preconfig de node
+      - uses: actions/setup-node@v3.8.1
+        with:
+          cache: 'npm'
+          node-version: '18.18.0'
+      - name: Instalando dependencias
+        # npm ci es especifico de npm para instalar con cicd  
+        run: npm ci
+  build:
+    needs: [install] 
+    runs-on: ubuntu-22.04
+    steps:
+        # verifica cambios
+      - name: Verifica cambios 
+        uses: actions/checkout@v3
+        #ultimo commit para mas velocidad
+        with:
+          fetch-depth: 0
+        # preconfig de node
+      - name: Instalando node  
+        uses: actions/setup-node@v3.8.1
+        with:
+          cache: 'npm'
+          node-version: '18.18.0'
+      - name: Instalando dependencias
+        # npm ci es especifico de npm para instalar con cicd  
+        run: npm ci
+      - name: Build aplicacion
+        run: npm run build --prod
+      - name: Pasar build a siguiente job
+        uses: actions/upload-artifact@v3.1.3
+        with:
+           name: dist
+           path: dist
+  test:
+    needs: [build]
+    runs-on: ubuntu-22.04
+    steps:
+      # verifica cambios
+    - name: Verifica cambios 
+      uses: actions/checkout@v3
+      #ultimo commit para mas velocidad
+      with:
+        fetch-depth: 0
+      # preconfig de node
+    - name: Instalando node  
+      uses: actions/setup-node@v3.8.1
+      with:
+        cache: 'npm'
+        node-version: '18.18.0'
+    - name: Instalando dependencias
+      # npm ci es especifico de npm para instalar con cicd  
+      run: npm ci
+    - name: Obteniendo build anterior
+      uses: actions/download-artifact@v2.1.1
+      with:
+        name: dist
+        path: dist
+    - name: Corriendo tests
+      # de esta forma corre por terminal solamente
+      run: npm test -- --browsers=ChromeHeadless --watch=false
+
+  deploy-app-vps:
+    needs: [test]
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
+      - uses: actions/download-artifact@v2.1.1
+        with:
+            name: dist
+            path: dist
+      - name: executing remote ssh commands using ssh key
+        run: ls
+        working-directory: dist
+      - name: copy file via ssh key
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          #devcops.com.ar
+          host: ${{ secrets.SSH_HOST }}
+          #root
+          username: ${{ secrets.SSH_USER }}
+          # ssh key private de alguien que tenga permiso para entrar al server
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: dist/*
+          target: /home/builds/angular
+      - uses: appleboy/ssh-action@v1.0.0
+        with:
+          #devcops.com.ar
+          host: ${{ secrets.SSH_HOST }}
+          #root
+          username: ${{ secrets.SSH_USER }}
+          # ssh key private de alguien que tenga permiso para entrar al server
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            docker cp /home/builds/angular/dist/tpi-front/. angular_app_tpi:/usr/share/nginx/html

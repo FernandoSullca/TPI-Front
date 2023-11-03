@@ -1,40 +1,61 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Cuestionario } from 'src/app/core/models/initial-profile/questions-profile.model';
-import { environment } from 'src/environments/environment';
+import { Injectable, Output } from '@angular/core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import axios from 'axios';
+import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionsProfileService {
- 
-  private apiUrl = 'assets\\mock\\Perfil subjetivo.json'; // Reemplaza con la URL real de tu JSON
-  // private apiUrl=environment.API
+
+  // @Output() disparadordemensageResultado: EventEmitter<any> = new EventEmitter();
+
   constructor(private http: HttpClient) { }
 
-  getCuestionario(): Observable<Cuestionario> {
-    return this.http.get<Cuestionario>(this.apiUrl);
+  //Verificado Captura
+  public async obtenerTestSubjetivo()  {
+      const resp = await axios.get(`${environment.API}/api/pregunta/listar-por-categoria?categoria=Test Inversor`);
+  
+      const { data } = resp;
+   
+      return data;
   }
 
-  public async obtenerTestSubjetivo() {
-    const resp = await axios.get(`${this.apiUrl}/perfil-Subjetivo`);
-    const { data } = resp;
-    const datos = Array.from(data);
-    return datos.map((test) => {
-      // return Cuestionario.serializar(test);
-    });
-
-  }
-
-  public async TestSubjetivoResultados(AnalisisSubjetivo: Record<string, number>) {
+  //Verificado Envio, ¿Captura?
+  public async TestSubjetivoResultados(AnalisisSubjetivo: Record<string, number>,username:String) {
     const body = {
-      AnalisisSubjetivo
+      "horizonteTemporal": AnalisisSubjetivo["Horizonte Temporal"],
+      "toleranciaRiesgo": AnalisisSubjetivo["Tolerancia al riesgo"],
+      "usuarioDTO": {
+        "nombreUsuario": username
+      },
     }
-    const resp = await axios.post(`${this.apiUrl}/perfil-Subjetivo/resultado`, body);
+    const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-subjetivo`, body);
     const { data } = resp;
-    console.log(data);
     return data;
   }
+
+  async TestSubjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI){
+   
+    const body = {
+
+        "horizonteTemporal": perfilInversorUsuario.horizonteTemporal,
+        "toleranciaRiesgo": perfilInversorUsuario.toleranciaRiesgo,
+        "usuarioDTO": {
+          "version": 0,
+          "deleted": false,
+          "nombreUsuario": perfilInversorUsuario.UsuarioDTO.username,
+        }
+
+    }
+    const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-subjetivo`,body);
+
+    const { data } = resp;
+    return data;
+
+  }
+
+
 }
