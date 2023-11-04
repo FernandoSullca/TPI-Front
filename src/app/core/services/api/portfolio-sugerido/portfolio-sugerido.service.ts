@@ -28,11 +28,8 @@ export class PortfolioSugeridoService {
     );
   }
   obtenerNuevoPortfolioSugerido(idProducto: number): Observable<any> {
-
-    var perfilInversorUsuario=this.localStorage.GetPerfilActualLocal();
-
-    var tipoPerfil = perfilInversorUsuario.perfilInversor
-    // debugger;
+    const perfilInversorUsuario=this.localStorage.GetPerfilActualLocal();
+    let tipoPerfil = perfilInversorUsuario.perfilInversor
    return this.getPortfolioSugerido(tipoPerfil, idProducto);
 }
 }
