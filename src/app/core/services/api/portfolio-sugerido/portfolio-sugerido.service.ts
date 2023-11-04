@@ -13,7 +13,8 @@ import { TestPerfilInversorObjetivoComponent } from 'src/app/presentation/featur
 export class PortfolioSugeridoService {
 
   constructor(private http : HttpClient,private handleErrorService: HandleErrorApiService, private localStorage : LocalStorageService) { }
-  
+  private simboloSeleccionado : string = "";
+
   getPortfolioSugerido(tipoPerfil?:string,idProducto?:number): Observable<PortfolioSugerido[]>{
    
     if (idProducto == null) {
@@ -32,7 +33,6 @@ export class PortfolioSugeridoService {
     var perfilInversorUsuario=this.localStorage.GetPerfilActualLocal();
 
     var tipoPerfil = perfilInversorUsuario.perfilInversor
-    // debugger;
    return this.getPortfolioSugerido(tipoPerfil, idProducto);
 }
 }
