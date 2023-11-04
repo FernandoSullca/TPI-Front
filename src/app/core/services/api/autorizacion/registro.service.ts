@@ -33,7 +33,7 @@ export class RegistroService {
   verificarExistencia(usuario: any) {
     const body =
     {
-      "email": usuario.eusername,
+      "email": usuario.email,
 
     }
     return this.http.post(this.apiEndpoint, body);
@@ -45,17 +45,15 @@ export class RegistroService {
   
 /**********Registro Via Tohen*************/
   registrarNuevoUsuario(usuario: any) {
-   
+   console.log("🚀 ~ file: registro.service.ts:48 ~ RegistroService ~ registrarNuevoUsuario ~ usuario:", usuario)
+   debugger
     const body =
     {
-      "cuentaConfirmada": false,
-      "activo": false,
-      "username": usuario.username,
       "nombre": usuario.name,
       "apellido": usuario.lastname,
-      "pass": usuario.pass,
-      "email": usuario.email,
-
+      "nombre_usuario": usuario.username,
+      "email":  usuario.email,
+      "contraseña":  usuario.password
     }
     return this.http.post(`${environment.API}/api/guardar-usuario`, body);
   }
