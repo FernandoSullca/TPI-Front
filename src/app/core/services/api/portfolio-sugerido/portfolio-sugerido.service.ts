@@ -19,10 +19,8 @@ export class PortfolioSugeridoService {
     if (idProducto == null) {
       idProducto = 0; 
     }
-    
-    var urlLocal = "https://localhost:7011/PortfolioRecomender/RecomendarPortafolio";
-    var urlRemota = "https://recomendaciondeportafolio20231028200959.azurewebsites.net/PortfolioRecomender/RecomendarPortafolio";
-    let resp = `${environment.API}/IA/portafolio/sugerido?tipoPerfil=${tipoPerfil}&url=${urlLocal}&idProducto=${idProducto}`;
+        
+    let resp = `${environment.API}/IA/portafolio/sugerido?tipoPerfil=${tipoPerfil}&idProducto=${idProducto}`;
     return this.http.get<PortfolioSugerido[]>(resp).pipe(
       catchError((error)=>{
         return this.handleErrorService.errorHandler(error);

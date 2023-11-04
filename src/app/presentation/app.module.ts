@@ -2,14 +2,14 @@ import { NgModule,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
-
+import { NgbProgressbar ,NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './features/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { LandingComponent } from './features/landing/landing.component';
 import { CommonModule, DatePipe } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
@@ -32,6 +32,8 @@ import { RegistroComponent } from './common/components/registro/registro.compone
 import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
 import { ModalSugeridoComponent } from './common/components/modal-sugerido/modal-sugerido.component';
 import { LoadingComponent } from './common/components/loading/loading.component';
+import { RegistarUsuarioComponent } from './features/registar-usuario/registar-usuario.component';
+import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { LoadingComponent } from './common/components/loading/loading.component'
     FormatoValorPipe,
     PrediccionComponent,
     ModalSugeridoComponent,
-    LoadingComponent
+    LoadingComponent,
+    RegistarUsuarioComponent,
+    ActivarCuentaComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +72,7 @@ import { LoadingComponent } from './common/components/loading/loading.component'
     FormsModule,
     NgChartsModule,
     QRCodeModule,
+    NgbProgressbar
 
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
