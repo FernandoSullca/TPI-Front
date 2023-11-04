@@ -7,8 +7,6 @@ import { Observable, throwError } from 'rxjs';
 })
 export class HandleErrorApiService {
 
-  constructor() { }
-
   errorHandler(error: HttpErrorResponse): Observable<never> {
 		if (error instanceof HttpErrorResponse) {
 			if (error.error instanceof ErrorEvent) {

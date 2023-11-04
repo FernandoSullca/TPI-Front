@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { environment } from 'environments/environment';
+import { BehaviorSubject } from 'rxjs';
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 
 @Injectable({
@@ -9,6 +10,8 @@ import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 export class PricePanelService {
 
   private simbolos: string[] = [];
+  private instrumentoSeleccionado : string ="";
+  private behaviorSubjectIntrumentoSeleccionado  = new BehaviorSubject <string>(this.instrumentoSeleccionado);
 
   constructor() { }
 
@@ -28,7 +31,6 @@ export class PricePanelService {
 
 
   public getSimbolosEnMemoria(): string[] {
-    console.log(this.simbolos);
     return this.simbolos;
   }
   // todo separar logica
@@ -51,5 +53,11 @@ export class PricePanelService {
     const { data } = resp;
 
     return data;
+  }
+  setearSimboloDePortafolioSugerido(simbolo:string){
+    this.behaviorSubjectIntrumentoSeleccionado.next(simbolo);
+  }
+  obtenerSimboloDePortafolioSugerido(){
+    return this.behaviorSubjectIntrumentoSeleccionado.asObservable();
   }
 }
