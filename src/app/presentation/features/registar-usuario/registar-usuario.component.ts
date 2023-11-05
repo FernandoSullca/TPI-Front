@@ -48,7 +48,6 @@ export class RegistarUsuarioComponent implements OnInit{
   
     console.log("🚀 ~ file: registar-usuario.component.ts:15 ~ RegistarUsuarioComponent ~ usuarioForm:", this.usuarioForm)
     console.log("🚀 ~ file: registar-usuario.component.ts:15 ~ RegistarUsuarioComponent ~ usuarioForm:", this.usuarioForm.password)
-    debugger;
     if (!this.validarCampos()) {
       this.errorEntradas = true;
       console.log("Error de campos enviados")
