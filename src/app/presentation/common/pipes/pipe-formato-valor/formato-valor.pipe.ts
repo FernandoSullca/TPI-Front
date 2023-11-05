@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FormatoValorPipe implements PipeTransform {
 
   transform(value: number | undefined): string {
-    if (!value) {
+    if (value === undefined || isNaN(value)) {
       return '-'; // o algún valor predeterminado si lo deseas
     }
 
