@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { environment } from 'environments/environment';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 
 @Injectable({
@@ -57,7 +57,7 @@ export class PricePanelService {
   setearSimboloDePortafolioSugerido(simbolo:string){
     this.behaviorSubjectIntrumentoSeleccionado.next(simbolo);
   }
-  obtenerSimboloDePortafolioSugerido(){
+  obtenerSimboloDePortafolioSugerido(): Observable<string>{
     return this.behaviorSubjectIntrumentoSeleccionado.asObservable();
   }
 }

@@ -46,7 +46,6 @@ export class RegistroService {
 /**********Registro Via Tohen*************/
   registrarNuevoUsuario(usuario: any) {
    console.log("🚀 ~ file: registro.service.ts:48 ~ RegistroService ~ registrarNuevoUsuario ~ usuario:", usuario)
-   debugger
     const body =
     {
       "nombre": usuario.name,
