@@ -12,14 +12,14 @@
               <div class="card">
                 <div class="card-body">
                   <h6 class="card-title small-text">Último precio</h6>
-                  <p class="card-text fw-bolder small-text">${{detalleInstrumento.ultimoPrecio}}</p>
+                  <p class="card-text fw-bolder small-text">{{detalleInstrumento.ultimoPrecio | formatoValor}}</p>
                 </div>
               </div>
             </div>
             <div class="small-card">
               <div class="card">
                 <div class="card-body">
-                  <h6 class="card-title small-text">Variación diaría</h6>
+                  <h6 class="card-title small-text">Variación diaria</h6>
                   <message class="card-text small-text" [textMessage]="textMessage" [typeMessage]="typeMessage">
                     {{textMessage}}</message>
                 </div>
@@ -38,15 +38,15 @@
               <div class="card">
                 <div class="card-body">
                   <h6 class="card-title small-text">Puntas de venta</h6>
-                  <p class="card-text small-text">{{detalleInstrumento.puntas?.cantidadVenta}} x
-                    ${{detalleInstrumento.puntas?.precioVenta}}</p>
+                  <p class="card-text small-text">{{detalleInstrumento.puntas?.cantidadVenta | formatoValor}} x
+                    {{detalleInstrumento.puntas?.precioVenta | formatoValor}}</p>
                 </div>
               </div>
             </div>
             <div class="small-card">
               <div class="card">
                 <div class="card-body">
-                  <h6 class="card-title small-text">Cantidad de operaciones</h6>
+                  <h6 class="card-title small-text">Volumen operado</h6>
                   <p class="card-text small-text">{{detalleInstrumento.cantidadOperaciones}}</p>
                 </div>
               </div>
@@ -55,8 +55,8 @@
               <div class="card">
                 <div class="card-body">
                   <h6 class="card-title small-text">Rango de precios</h6>
-                  <p class="card-text small-text">Max: ${{detalleInstrumento.maximo}} - Min:
-                    ${{detalleInstrumento.minimo}}</p>
+                  <p class="card-text small-text">Max: {{detalleInstrumento.maximo | formatoValor}} - Min:
+                    {{detalleInstrumento.minimo | formatoValor}}</p>
                 </div>
               </div>
             </div>

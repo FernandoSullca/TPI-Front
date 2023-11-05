@@ -21,7 +21,7 @@ export class CarteraComponent implements OnInit {
   cartera: Cartera | undefined;
   valorActualDolarMEP: DolarBolsa | undefined;
   fechaCompletaDolarMEP: string = '';
-  tituloGraficoTorta : string ="Total valorizado";
+  tituloGraficoTorta : string ="Instrumentos en posesión";
   tituloGraficoLinea : string ="Mi progreso";
 
   ngOnInit(): void {
@@ -38,9 +38,9 @@ export class CarteraComponent implements OnInit {
       // TODO limpiar
       const responseFormated: Cartera = {
         ...response,
-        totalCartera: Number((Math.round(Number(totalCartera) * 100) / 100).toFixed(2)),
-        totalInstrumentos: Number((Math.round(Number(totalInstrumentos) * 100) / 100).toFixed(2)),
-        totalMonedas: Number((Math.round(Number(totalMonedas) * 100) / 100).toFixed(2)),
+        totalCartera: Number(totalCartera),
+        totalInstrumentos: Number(totalInstrumentos),
+        totalMonedas: Number(totalMonedas),
       }
       this.cartera = responseFormated
     });

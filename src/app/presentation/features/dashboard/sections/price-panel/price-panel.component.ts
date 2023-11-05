@@ -74,8 +74,10 @@ export class PricePanelComponent implements OnInit {
 
   public getDineroDisponible(){
     return this.carteraService.getCartera().subscribe((response) => {
-      if(response.totalMonedas)
-        this.totalDineroDisponible=response.totalMonedas;
+      if(response.totalMonedas){
+        const totalMonedas = Number(response.totalMonedas);
+        this.totalDineroDisponible=totalMonedas
+      }
     })
   }
   onInputChange() {
