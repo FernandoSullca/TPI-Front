@@ -124,12 +124,33 @@
       width: 100%;
     }
 }
-@media (min-width: 770px) and (max-width: 1200px) {
+@media (min-width: 770px) and (max-width: 1062px) {
   .valores{
     width: 100%;
   }
   .perfil{
     width: 100% !important;
+  }
+  .valores{
+    flex-direction: column-reverse;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+  .container-fluid{
+    display: flex;
+    gap:30px;
+  
+  }
+  .card-valores{
+    width: 100%;
+  }
+}
+@media (min-width: 1062px) and (max-width: 1500px) {
+  .valores{
+    width: 100%;
   }
 }
 @media (min-width: 1500px){
