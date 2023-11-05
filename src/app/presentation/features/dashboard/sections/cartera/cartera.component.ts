@@ -33,7 +33,16 @@ export class CarteraComponent implements OnInit {
   /// local-storage.service
   getCartera() {
     return this.carteraService.getCartera().subscribe((response) => {
-      this.cartera=response;
+      const { totalCartera = '', totalInstrumentos = '', totalMonedas = '' } = response;
+
+      // TODO limpiar
+      const responseFormated: Cartera = {
+        ...response,
+        totalCartera: Number(totalCartera),
+        totalInstrumentos: Number(totalInstrumentos),
+        totalMonedas: Number(totalMonedas),
+      }
+      this.cartera = responseFormated
     });
   }
   mostrarValuacionTotalCartera(): number {
