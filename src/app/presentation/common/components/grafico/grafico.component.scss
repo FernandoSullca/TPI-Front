@@ -1,7 +1,32 @@
 .chart-container{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
 }
-.chart-container .chart .chart-legend{
-    width: 200px;
-    border-style: dotted;
+#MyChart{
+    width: 35%;
+}
+@media (max-width: 770px) {
+    #MyChart{
+        width: 65%;
+    }
+    .chart-container{
+        width: 95%;
+      }
+}
+@media (min-width: 770px) and (max-width: 1200px) {
+  .chart-container{
+    width: 90%;
+  }
+  #MyChart{
+    width: 45%;
+  }
+}
+@media (min-width: 1200) and (max-width: 1500px) {
+    .chart-container{
+        width: 85%;
+    }
+    #MyChart{
+        width: 45%;
+    }
 }
