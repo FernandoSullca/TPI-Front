@@ -15,6 +15,7 @@ import { PerfilInversorService } from 'src/app/core/services/api/perfil-inversor
 export class LoginComponent implements OnInit {
 
   errorLogin: boolean = false;
+  errorform: boolean = false;
   usuarioForm: any = {
     email: '',
     password: ''
@@ -49,11 +50,17 @@ export class LoginComponent implements OnInit {
     console.log("🚀 ~ file: login.component.ts:46 ~ LoginComponent ~ verificarUsuario ~ verificarUsuario:")
 
     this.errorLogin = false;
+    if(!this.validarEntradas()){
+      this.errorform = true;
+      console.log("Error de campos enviados");
+      return
+    }
 
     this.registroUsuarioService.buscarUsuario(this.usuarioForm.email).subscribe(
       (usuarioRecibido: UsuarioAPI) => {
         this.usuariodb = usuarioRecibido;
-
+        this.errorform = false;
+        this.errorLogin = false;
         this.buscarPerfilUsuario(this.usuariodb).subscribe(
           (perfilUsuario: PerfilInversorAPI | null) => {
             if (perfilUsuario === null || perfilUsuario === undefined) {
@@ -67,6 +74,7 @@ export class LoginComponent implements OnInit {
             }
           },
           (error) => {
+            this.errorLogin = true;
             console.error("Error al buscar el perfil", error);
           }
         );
@@ -81,6 +89,13 @@ export class LoginComponent implements OnInit {
 
   }
 
+  validarEntradas(){
+    if(!this.usuarioForm.email||!this.usuarioForm.password)
+    {
+      return false;
+    }
+    return true;
+  }
   navegarAPerfil() {
     this.router.navigate(['/perfil']);
   }
