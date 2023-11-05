@@ -13,20 +13,23 @@
                 </div>
                 <p>Bienvenido a la plataforma donde aprenderás sobre el mercado.</p>
             </div>
-            
+
             <h3>Ingresar a <span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h3>
             <input type="text" [(ngModel)]="usuarioForm.email" name="email" id="email" placeholder="Email">
 
             <input type="password" [(ngModel)]="usuarioForm.password" name="password" id="password"
                 placeholder="Contraseña">
             <label *ngIf="errorLogin" for="{{errorLogin}}" class="error-message">
-                    Error durante el Login... Verifique los datos ingresados.
-                </label>
+                Error durante el Login... Verifique los datos ingresados.
+            </label>
+            <label *ngIf="errorform" for="{{errorform}}" class="error-message">
+                Recuerde completar los campos.
+            </label>
 
-            <div class="btn-gral" (click)="verificarUsuario()">Iniciar sesión</div> 
-            <div class="btn-secundario btn-gral " routerLink='/registrarme'>Registrarme</div> 
+            <div class="btn-gral" (click)="loguearme()">Iniciar sesión</div>
+            <div class="btn-secundario btn-gral " routerLink='/registrarme'>Registrarme</div>
         </div>
-       
-        
+
+
     </div>
 </section>
