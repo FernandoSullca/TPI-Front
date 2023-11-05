@@ -1,10 +1,11 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import { PricePanelService } from 'src/app/core/services/api/price-panel/price-panel.service';
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 import { mockAcciones } from 'src/app/core/services/api/price-panel/mock'
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
 import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
 import { environment } from 'environments/environment';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-price-panel',
@@ -25,19 +26,38 @@ export class PricePanelComponent implements OnInit {
   public filteredTitulos: string[] = [];
   public totalDineroDisponible:number=0;
   public detalleInstrumento!:Titulo;
+  public tipoModal:string|undefined;
+  public instrumentoSeleccionadoSubject! : Subscription;
 
-  constructor(private pricePanelService: PricePanelService,public modalService : ModalService,private carteraService : CarteraService) { }
-
+  constructor(private pricePanelService: PricePanelService,public modalService : ModalService,private carteraService : CarteraService) {
+    
+   }
+  ngOnDestroy(): void {
+    if (this.instrumentoSeleccionadoSubject) {
+      this.instrumentoSeleccionadoSubject.unsubscribe();
+      this.pricePanelService.setearSimboloDePortafolioSugerido('');
+    }
+  }
   ngOnInit(): void {
+    this.generarSubjectASimbolo();
     this.getDineroDisponible();
     this.getTitulos();
     this.updateTitulosEvery(environment.UPDATE_PRICE_PANEL_EVERY_SECONDS);
     this.titulosSimbolo = this.pricePanelService.getSimbolosEnMemoria();
   }
-
+  public generarSubjectASimbolo(){
+    this.instrumentoSeleccionadoSubject =this.pricePanelService.obtenerSimboloDePortafolioSugerido().subscribe({
+      next: instrumentoSeleccionado =>{
+        this.simbolo=instrumentoSeleccionado;
+      },
+      error: error =>{
+        this.simbolo=''
+        console.log("Error al recuperar datos");
+      }
+    })
+  }
   public openModal(instrumento: string) {
       const detalleInstrumento = this.filtrarPorInstrumento(instrumento);
-      console.log(detalleInstrumento);
       if (detalleInstrumento) {
         this.detalleInstrumento = detalleInstrumento;
         this.modalService.openModal();
@@ -45,17 +65,19 @@ export class PricePanelComponent implements OnInit {
         console.log('Instrumento no encontrado');
       }
   } 
-  openModalPrueba(){
+  openModalService(){
     this.modalService.openModal();
-  }
+  } 
   public filtrarPorInstrumento(instrumento:string){
     return this.titulos.find(titulo => titulo.simbolo === instrumento);
   }
 
   public getDineroDisponible(){
     return this.carteraService.getCartera().subscribe((response) => {
-      if(response.totalMonedas)
-        this.totalDineroDisponible=response.totalMonedas;
+      if(response.totalMonedas){
+        const totalMonedas = Number(response.totalMonedas);
+        this.totalDineroDisponible=totalMonedas
+      }
     })
   }
   onInputChange() {

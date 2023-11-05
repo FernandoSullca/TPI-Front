@@ -184,9 +184,16 @@ h1 {
  
 }
 
+.navbar-inverse .navbar-brand {
+  color: #ffffff;
+}
+
 .container-descargar-template{
 	display: flex;
     justify-content: center;
+    button{
+      width: auto;
+    }
 }
 
   body {
@@ -344,3 +351,17 @@ h1 {
   .as-sortable-drag {
     opacity: .8
   }
+
+  /*************/
+  .btn-danger {
+    width: 5rem;
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+  }
+  .panel-body {
+    padding: 15px;
+    button{
+      width: auto;
+    }
+}

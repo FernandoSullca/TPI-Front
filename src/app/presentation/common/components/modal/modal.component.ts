@@ -11,6 +11,7 @@ import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
 })
 export class ModalComponent implements OnInit {
   @Input() detalleInstrumento!: Titulo;
+  @Input() tipoModal : string |undefined;
   textMessage: string = '';
   typeMessage: string = '';
   instrumento: string = '';
@@ -19,9 +20,8 @@ export class ModalComponent implements OnInit {
   constructor(private detalleInstrumentoService: DetalleInstrumentoService,private modalService : ModalService) { }
 
   ngOnInit(): void {
-    debugger
-    this.seleccionarInstrumento();
-    this.mostrarVariacionDiaria();
+      this.seleccionarInstrumento();
+      this.mostrarVariacionDiaria();
   }
   public seleccionarInstrumento() {
       const simbolo = this.detalleInstrumento?.simbolo;

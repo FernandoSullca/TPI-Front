@@ -5,7 +5,7 @@ export class PerfilInversorAPI {
     constructor(
 
         public oid: number,
-
+        public deleted: number,
         public version: number,
 
         public horizonteTemporal: number,
@@ -13,10 +13,12 @@ export class PerfilInversorAPI {
         public toleranciaRiesgo: number,
 
         public tipoPerfilSubjetivo: string,
-
+   
         public nivelConocimiento: number,
 
         public tipoNivelConocimiento: string,
+
+        public resultadoPerfilado: string,
 
         public perfilInversor: string,
 
