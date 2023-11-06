@@ -67,7 +67,7 @@ export class QuestionsTargetService {
         "nombre": perfilInversorUsuario.UsuarioDTO.nombre,
         "apellido": perfilInversorUsuario.UsuarioDTO.apellido,
         "email": perfilInversorUsuario.UsuarioDTO.email,
-        "nombreUsuario": perfilInversorUsuario.UsuarioDTO.username,
+        "nombreUsuario": perfilInversorUsuario.UsuarioDTO.nombreUsuario,
       }
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-inversor`, body);
