@@ -70,10 +70,12 @@ export class LoginComponent implements OnInit {
         this.buscarPerfilUsuario(this.usuariodb).subscribe(
           (perfilUsuario: PerfilInversorAPI|null) => {
             if (perfilUsuario === null || perfilUsuario === undefined) {
+              //Al loguearse se guarda el usuario mas el perfil(Nulo)
               this.LocalStorageService.setUsuarioPerfilActualLocal(this.usuariodb);
               this.LocalStorageService.SetPerfilActualLocal();
               this.navegarAPerfil();
             } else {
+              //Al loguearse se guarda el usuario mas el perfil
               this.LocalStorageService.setPerfilSubjetivo(perfilUsuario);
               this.LocalStorageService.SetPerfilActualLocal();
               this.navegarAHome();
