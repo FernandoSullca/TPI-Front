@@ -156,51 +156,41 @@ export class TestPerfilSubjetivoComponent implements OnInit {
   }
 
   guardarrespuestas(seccion: string, tipo: string) {
-
+    let Sumatoria=0;
     switch (tipo) {
       case 'CHECKBOX':
         const valoresCheckbox = this.opcionesSeleccionadas.map(respuesta => respuesta.valor);
         const sumaCheckbox = valoresCheckbox.reduce((total, valor) => total + valor, 0);
+        Sumatoria=sumaCheckbox;
 
-        if (!this.AnalisisSubjetivo[seccion]) {
-          this.AnalisisSubjetivo[seccion] = 0;
-        }
-        this.AnalisisSubjetivo[seccion] += sumaCheckbox;
-        this.opcionesSeleccionadas = [];
         break;
       case 'RADIO':
         let valorRadio = this.opcionSeleccionada;
+        Sumatoria=valorRadio
 
-        if (!this.AnalisisSubjetivo[seccion]) {
-          this.AnalisisSubjetivo[seccion] = 0;
-        }
-        this.AnalisisSubjetivo[seccion] += valorRadio;
-
-        this.opcionSeleccionada = 0;
         break;
       case 'BOTON':
         let suma = 0;
         for (const instrumento in this.respuestasSeleccionadasPorInstrumento) {
-          if (this.respuestasSeleccionadasPorInstrumento.hasOwnProperty(instrumento)) {
+          // if (this.respuestasSeleccionadasPorInstrumento.hasOwnProperty(instrumento)) {
             suma += this.respuestasSeleccionadasPorInstrumento[instrumento];
-            // console.log("🚀 ~ file: test-perfil-subjetivo.component.ts:186 ~ TestPerfilSubjetivoComponent ~ guardarrespuestas ~ instrumento:", instrumento)
-            // console.log("🚀 ~ file: test-perfil-subjetivo.component.ts:186 ~ TestPerfilSubjetivoComponent ~ guardarrespuestas ~ respuestasSeleccionadasPorInstrumento:", this.respuestasSeleccionadasPorInstrumento[instrumento])
             this.respuestasSeleccionadasPorInstrumento[instrumento] = 0;
-          }
+          // }
         }
-
-        if (!this.AnalisisSubjetivo[seccion]) {
-          this.AnalisisSubjetivo[seccion] = 0;
-        }
-        this.AnalisisSubjetivo[seccion] += suma;
-
-        // console.log("🚀 ~ file: test-perfil-subjetivo.component.ts:196 ~ TestPerfilSubjetivoComponent ~ guardarrespuestas ~ respuestasSeleccionadasPorInstrumento:", this.respuestasSeleccionadasPorInstrumento)
+        Sumatoria=suma
         break;
       default:
         // Tipo de pregunta no reconocido
         console.error('Tipo de pregunta no reconocido-para valorizar respuesta');
         break;
     }
+
+    if (!this.AnalisisSubjetivo[seccion]) {
+      this.AnalisisSubjetivo[seccion] = 0;
+    }
+    this.AnalisisSubjetivo[seccion] += Sumatoria;
+    this.opcionesSeleccionadas = [];
+    this.opcionSeleccionada = 0;
   }
 
   public FinalizarTestSubjetivo() {

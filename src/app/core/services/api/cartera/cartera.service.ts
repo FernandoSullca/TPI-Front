@@ -31,7 +31,16 @@ export class CarteraService {
       "cantidadPorAcreditar": cantidad,
       "concepto": concepto
     }
-    const resp = await axios.post(`${environment.API}/cartera/acreditar/dinero`, body);
+
+    try {
+      const resp = await axios.post(`${environment.API}/cartera/acreditar/dinero`, body);
+      console.info(resp)
+    } catch (error) {
+      console.error('Error al acreditar dinero:', error);
+      // Puedes mostrar un mensaje de error o realizar otras acciones de manejo de errores aquí
+    }
+    // const resp = await axios.post(`${environment.API}/cartera/acreditar/dinero`, body);
+  
   } 
   
   getPrecioDolarMEP(): Observable<DolarBolsa>{
