@@ -16,7 +16,6 @@ import { PerfilInversorObjetivoPresentacionComponent } from './features/dashboar
 import { TestPerfilInversorObjetivoComponent } from './features/dashboard/sections/perfil-inversor-objetivo/stage/test-perfil-inversor-objetivo/test-perfil-inversor-objetivo.component';
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
-import { RegistroComponent } from './common/components/registro/registro.component';
 import { DefaultPathComponent } from './features/default-path/default-path.component';
 import { RegistarUsuarioComponent } from './features/registar-usuario/registar-usuario.component';
 import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta.component';
@@ -30,7 +29,6 @@ const routes: Routes = [
   { path: '', component: LandingComponent }, // Redirección por defecto
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
-  { path: "registro", component:  RegistroComponent},
   { path: "registrarme", component:  RegistarUsuarioComponent},
   { path: "activar-cuenta", component:  ActivarCuentaComponent},
   { path: "perfil", component:  PerfilSubjetivoComponent},

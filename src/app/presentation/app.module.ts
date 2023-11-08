@@ -28,7 +28,6 @@ import { QRCodeModule } from 'angularx-qrcode';
 
 import { GraficoLineaComponent } from 'src/app/presentation/common/components/grafico-linea/grafico-linea.component';
 import { FormatoValorPipe } from 'src/app/presentation/common/pipes/pipe-formato-valor/formato-valor.pipe';
-import { RegistroComponent } from './common/components/registro/registro.component';
 import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
 import { ModalSugeridoComponent } from './common/components/modal-sugerido/modal-sugerido.component';
 import { LoadingComponent } from './common/components/loading/loading.component';
@@ -54,7 +53,6 @@ import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta
     AdministrarPreguntasComponent,
     ModalComponent,
     GraficoVelasComponent,
-    RegistroComponent,
     GraficoLineaComponent,
     FormatoValorPipe,
     PrediccionComponent,
