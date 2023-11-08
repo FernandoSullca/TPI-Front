@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { UsuarioAPI } from 'src/app/core/models/API/Usuario-API.model';
-import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { RegistroService } from 'src/app/core/services/api/autorizacion/registro.service';
 
 @Component({
@@ -36,19 +34,19 @@ export class RegistarUsuarioComponent implements OnInit{
   errorReg: boolean = false;
   registro: boolean = false;
 
-  constructor(private registroUsuarioService: RegistroService
-    , private router: Router
-    , private LocalStorageService: LocalStorageService) { }
+  constructor(private registroUsuarioService: RegistroService) 
+  {
+
+   }
 
     ngOnInit(): void {
     this.errorReg = false;
     }
 
-  registrarUsuario() {
+  public registrarUsuario() {
   
     console.log("🚀 ~ file: registar-usuario.component.ts:15 ~ RegistarUsuarioComponent ~ usuarioForm:", this.usuarioForm)
     console.log("🚀 ~ file: registar-usuario.component.ts:15 ~ RegistarUsuarioComponent ~ usuarioForm:", this.usuarioForm.password)
-    debugger;
     if (!this.validarCampos()) {
       this.errorEntradas = true;
       console.log("Error de campos enviados")
@@ -81,8 +79,6 @@ export class RegistarUsuarioComponent implements OnInit{
     console.log("🚀 ~ file: registar-usuario.component.ts:65 ~ RegistarUsuarioComponent ~ validarCampos ~ usuarioForm:", this.usuarioForm)
     return true;
   }
-
-
 
 
 }

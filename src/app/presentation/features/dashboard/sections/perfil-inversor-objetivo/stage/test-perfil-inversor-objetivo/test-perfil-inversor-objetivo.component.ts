@@ -36,8 +36,8 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   AnalisisObjetivo: Record<string, number> = {};
   public ResultadoPerfilObjetivo: string = "";
   PerfilSubjetivoObtenido: string = "";
-  public portfolioSugerido!:PortfolioSugerido[];
-  public tipoPerfil : string |undefined
+  public portfolioSugerido!: PortfolioSugerido[];
+  public tipoPerfil: string | undefined
 
   dataPerfil = [
     {
@@ -63,19 +63,19 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   perfilInversorUsuario: PerfilInversorAPI = {
     oid: 0,
     version: 0,
-    deleted:0,
+    deleted: 0,
     horizonteTemporal: 0,
     toleranciaRiesgo: 0,
     tipoPerfilSubjetivo: "",
     nivelConocimiento: 0,
     tipoNivelConocimiento: "",
     perfilInversor: "",
-    resultadoPerfilado:"",
+    resultadoPerfilado: "",
     UsuarioDTO: {
       oid: 0,
       version: 0,
       pass: "",
-      username:"",
+      username: "",
       nombreUsuario: "",
       nombre: "",
       apellido: "",
@@ -89,13 +89,13 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
     private localStorageService: LocalStorageService, private carteraService: CarteraService,
-    public modalService : ModalService,private portfolioSugeridoService : PortfolioSugeridoService, private dashboardComponent: DashboardComponent) {
+    public modalService: ModalService, private portfolioSugeridoService: PortfolioSugeridoService, private dashboardComponent: DashboardComponent) {
   }
 
   ngOnInit(): void {
     this.loading = true;
     /*********Area Preguntas onjetivas*********/
-    const storedProfile = this.localStorageService.getItem('perfil');
+    const storedProfile = this.localStorageService.getItem('perfilinversor');
     // this.AnalisisObjetivo["toleranciaRiesgo"] = this.localStorageService.getItem('toleranciaRiesgo');
     // this.AnalisisObjetivo["horizonteTemporal"] = this.localStorageService.getItem('horizonteTemporal');
     if (storedProfile) {
@@ -129,7 +129,12 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
       .finally(() => {
         // this.Username = this.localStorageService.getItem("Username");
         this.perfilInversorUsuario = this.localStorageService.GetPerfilActualLocal();
-        this.Username= this.perfilInversorUsuario.UsuarioDTO.username; 
+        this.perfilInversorUsuario.UsuarioDTO = this.localStorageService.GetUsuarioPerfilActualLocal();
+        console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:132 ~ TestPerfilInversorObjetivoComponent ~ .finally ~ perfilInversorUsuario:", this.perfilInversorUsuario)
+        console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:132 ~ TestPerfilInversorObjetivoComponent ~ .finally ~ perfilInversorUsuario:", this.perfilInversorUsuario.UsuarioDTO)
+        this.Username = this.perfilInversorUsuario.UsuarioDTO.nombreUsuario;
+        console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:134 ~ TestPerfilInversorObjetivoComponent ~ .finally ~ Username:", this.perfilInversorUsuario.UsuarioDTO.nombreUsuario)
+        console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:134 ~ TestPerfilInversorObjetivoComponent ~ .finally ~ Username:", this.Username)
         this.loading = false;
       }
       );
@@ -157,7 +162,8 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
 
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
-          this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
+          console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:161 ~ TestPerfilInversorObjetivoComponent ~ this.entregarResultados ~ data:", data)
+          this.localStorageService.setItem('perfilinversor', this.respuestasPerfil.perfilInversor);
 
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
           ////Objeto general
@@ -170,7 +176,7 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
           this.acreditarDinero();
           this.armardescripcion();
           //this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario, this.ResultadoPerfilObjetivo);
-          this.dataurlcertificado= this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(this.Username, this.ResultadoPerfilObjetivo);
+          this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(this.Username, this.ResultadoPerfilObjetivo);
 
           this.dashboardComponent.obtenerPortfolioSugerido(this.ResultadoPerfilObjetivo);
         }
@@ -197,11 +203,11 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
     if (!this.validateData()) {
       return;
     }
-    
+
     this.perfilInversorUsuario.nivelConocimiento = this.AnalisisObjetivo["Conocimento"];
-  
+
     try {
-      
+
       // const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
       const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
       // data && data.perfilInversor
@@ -318,10 +324,10 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
     this.router.navigate(['/dashboard/precios']);
     this.buttonText = 'Continuar';
   }
-  openModal(){
+  openModal() {
     this.modalService.openModal();
   }
-  public obtenerTipoPerfil(){
+  public obtenerTipoPerfil() {
     return this.tipoPerfil;
   }
 }

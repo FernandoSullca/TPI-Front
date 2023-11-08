@@ -1,9 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { PortfolioSugerido } from 'src/app/core/models/portfolio-sugerido/portfolio-sugerido';
 import { PortfolioSugeridoService } from 'src/app/core/services/api/portfolio-sugerido/portfolio-sugerido.service';
+import { PricePanelService } from 'src/app/core/services/api/price-panel/price-panel.service';
 import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
 import { DashboardComponent } from 'src/app/presentation/features/dashboard/dashboard.component';
+import { PricePanelComponent } from 'src/app/presentation/features/dashboard/sections/price-panel/price-panel.component';
 
 @Component({
   selector: 'app-modal-sugerido',
@@ -18,27 +21,27 @@ export class ModalSugeridoComponent {
 
   
   public ngOnInit(): void {
-    // debugger;
-    if (this.portfolioSugerido.length > 0) {
-      this.instrumentoSeleccionadoId = this.portfolioSugerido[0].oid;
-    }
+    // if (this.portfolioSugerido.length > 0) {
+    //   this.instrumentoSeleccionadoId = this.portfolioSugerido[0].oid;
+    // }  VERIFICAR PORQUE ROMPE AL SELECCIONAR EL PRIMER INSTRUMENTO EN PANEL DE PRECIOS PARA MOSTRAR GRAFICO
   }
   
   
-  constructor(public modalService: ModalService, private router : Router,private portfolioSugeridoService : PortfolioSugeridoService, private dashboardComponent: DashboardComponent){}
+  constructor(public modalService: ModalService, private router : Router,private portfolioSugeridoService : PortfolioSugeridoService,
+    private dashboardComponent: DashboardComponent,private pricePanelService : PricePanelService  ){}
 
   public cerrarModal(){
     this.modalService.closeModal();
   }
-  direccionar(componente: string) {
-    this.router.navigate([`/dashboard/${componente}`]);
+  irAComprarInstrumento(simbolo : string) {
+    this.router.navigate([`/dashboard/precios`]);
     this.cerrarModal();
+    this.pricePanelService.setearSimboloDePortafolioSugerido(simbolo);
   }
   obtenerNuevoPortfolioSugerido(){
-    // debugger;
     this.portfolioSugeridoService.obtenerNuevoPortfolioSugerido(this.instrumentoSeleccionadoId).subscribe(response => {
-      // debugger;
       this.dashboardComponent.portfolioSugerido = response;
     });
   }
+  
 }

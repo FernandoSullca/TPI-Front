@@ -99,6 +99,12 @@ section.login {
                 background-color: #FFF;
                 color: rgb(52 76 154);
             }
+            .error-message{
+                display: flex;
+                color: red;
+                font-family: 'Poppins';
+                justify-content: center;
+            }
             
         }
         p {

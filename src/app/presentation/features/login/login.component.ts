@@ -15,6 +15,7 @@ import { PerfilInversorService } from 'src/app/core/services/api/perfil-inversor
 export class LoginComponent implements OnInit {
 
   errorLogin: boolean = false;
+  errorform: boolean = false;
   usuarioForm: any = {
     email: '',
     password: ''
@@ -41,26 +42,40 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  
+
   }
 
-  public verificarUsuario() {
-
-    console.log("🚀 ~ file: login.component.ts:46 ~ LoginComponent ~ verificarUsuario ~ verificarUsuario:")
-
+  public loguearme() {
+    console.log("🚀 ~ file: login.component.ts:49 ~ LoginComponent ~ loguearme ~ loguearme:")
+    
+    this.errorform = false;
     this.errorLogin = false;
+
+    if (!this.validarEntradas()) {
+      this.errorform = true;
+      console.log("Error de campos enviados");
+      return
+    }
+
+    this.verfificarUsuario();
+
+  }
+
+  public verfificarUsuario() {
 
     this.registroUsuarioService.buscarUsuario(this.usuarioForm.email).subscribe(
       (usuarioRecibido: UsuarioAPI) => {
         this.usuariodb = usuarioRecibido;
-
+  
         this.buscarPerfilUsuario(this.usuariodb).subscribe(
-          (perfilUsuario: PerfilInversorAPI | null) => {
+          (perfilUsuario: PerfilInversorAPI|null) => {
             if (perfilUsuario === null || perfilUsuario === undefined) {
+              //Al loguearse se guarda el usuario mas el perfil(Nulo)
               this.LocalStorageService.setUsuarioPerfilActualLocal(this.usuariodb);
               this.LocalStorageService.SetPerfilActualLocal();
               this.navegarAPerfil();
             } else {
+              //Al loguearse se guarda el usuario mas el perfil
               this.LocalStorageService.setPerfilSubjetivo(perfilUsuario);
               this.LocalStorageService.SetPerfilActualLocal();
               this.navegarAHome();
@@ -70,17 +85,27 @@ export class LoginComponent implements OnInit {
             console.error("Error al buscar el perfil", error);
           }
         );
+      },
+      (error) => {
+        this.errorform = false;
+        this.errorLogin = true;
+        console.log("🚀 ~ file: login.component.ts:82 ~ LoginComponent ~ verfificarUsuario ~ errorLogin:", this.errorLogin)
+        console.error("Error al buscar Usuario", error);
       });
-
-
   }
 
-  buscarPerfilUsuario(usuariodb: UsuarioAPI): Observable<PerfilInversorAPI> {
+  buscarPerfilUsuario(usuariodb: UsuarioAPI): Observable<PerfilInversorAPI|null> {
 
     return this.perfilesServicios.obtenerPerfil(usuariodb)
 
   }
 
+  validarEntradas() {
+    if (!this.usuarioForm.email || !this.usuarioForm.password) {
+      return false;
+    }
+    return true;
+  }
   navegarAPerfil() {
     this.router.navigate(['/perfil']);
   }

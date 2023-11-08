@@ -222,7 +222,7 @@ xdescribe('TestPerfilInversorObjetivoComponent', () => {
     component.loadNextQuestion();
 
     // Asegúrate de que las respuestas se han almacenado en el servicio LocalStorage
-    const respuestasAlmacenadas = LocalStorageServiceStub.getItem('perfil');
+    const respuestasAlmacenadas = LocalStorageServiceStub.getItem('perfilinversor');
     expect(respuestasAlmacenadas).toBeDefined();
     // Realiza más expectativas según lo que necesites verificar
   });

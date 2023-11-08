@@ -771,13 +771,13 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     component.currentQuestionIndex = 0;
 
     // Espía la función de finalización para verificar si se llamó
-    spyOn(component, 'FinalizarCargaYEntrega');
+    spyOn(component, 'FinalizarTestSubjetivo');
 
     // Llama a la función que deseas probar
     component.loadNextQuestion();
 
     // Verifica si la función de finalización se llamó .toHaveBeenCalled()
-    expect(component.FinalizarCargaYEntrega).toHaveBeenCalled();
+    expect(component.FinalizarTestSubjetivo).toHaveBeenCalled();
   });
 
   /***** Verificando guardarrespuestas(seccion: string, tipo: string)*************/
@@ -837,8 +837,8 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
       perfilInversor: "Moderado",
     }));
 
-    // Llama a la función FinalizarCargaYEntrega
-    await component.FinalizarCargaYEntrega();
+    // Llama a la función FinalizarTestSubjetivo
+    await component.FinalizarTestSubjetivo();
 
     // Verifica que los valores se hayan guardado correctamente en el localStorage
     // expect(localStorageServiceMock.getItem('toleranciaRiesgo')).toBe(10);

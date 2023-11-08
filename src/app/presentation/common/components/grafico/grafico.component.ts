@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Chart, ChartConfiguration, ChartData, ChartType } from 'chart.js';
-import { Value } from 'sass';
+import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-grafico',
@@ -34,28 +33,30 @@ export class GraficoComponent implements OnInit{
   
   public opcionesGrafico: ChartConfiguration['options'] = {
     maintainAspectRatio:false,
-    responsive: true,
     plugins: {
       title:{
         display:true,
         text:this.tituloGrafico,
         color:'#00000',
+        align:'center',
+        position:'bottom',
+        fullSize: false,
         font:{
-          size:20
+          size:18,
         }
       },
+
       legend: {
         display: true,
         position: 'right',
         labels:{
-          boxWidth:40,
           color:'#00000'
           
         }
       },
       tooltip:{
         enabled:true,
-      }
+      },
     },
   };
 

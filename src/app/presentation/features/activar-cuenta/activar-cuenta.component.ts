@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { RegistroService } from 'src/app/core/services/api/autorizacion/registro.service';
 
 @Component({
@@ -13,8 +13,7 @@ export class ActivarCuentaComponent {
   public error : boolean = false;
   constructor(
     private registroUsuarioService: RegistroService,
-    private activateRoute: ActivatedRoute,
-    private router: Router
+    private activateRoute: ActivatedRoute
   ) { }
   
 
@@ -37,6 +36,7 @@ export class ActivarCuentaComponent {
         console.error('Error al registrar el usuario', error);
       }
     );
+    
   }
 
 }
