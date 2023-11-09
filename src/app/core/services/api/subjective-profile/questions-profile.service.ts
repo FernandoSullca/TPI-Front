@@ -38,7 +38,8 @@ export class QuestionsProfileService {
     return data;
   }
 
-  async TestSubjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI){
+  async TestSubjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI,username: String){
+   console.log("🚀 ~ file: questions-profile.service.ts:42 ~ QuestionsProfileService ~ TestSubjetivoResultadosObtenidos ~ username:", username)
    console.log("🚀 ~ file: questions-profile.service.ts:41 ~ QuestionsProfileService ~ TestSubjetivoResultadosObtenidos ~ perfilInversorUsuario:", perfilInversorUsuario)
    
     const body = {
@@ -46,7 +47,7 @@ export class QuestionsProfileService {
         "horizonteTemporal": perfilInversorUsuario.horizonteTemporal,
         "toleranciaRiesgo": perfilInversorUsuario.toleranciaRiesgo,
         "usuarioDTO": {
-          "nombreUsuario": perfilInversorUsuario.UsuarioDTO.nombreUsuario,
+          "nombreUsuario": username,
         }
 
     }

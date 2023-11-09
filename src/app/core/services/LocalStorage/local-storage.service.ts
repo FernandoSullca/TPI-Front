@@ -48,11 +48,6 @@ export class LocalStorageService {
     localStorage.removeItem(key);
   }
 
-
-  setUsuarioPerfilActualLocal(data: any) {
-    this.perfilInversor.UsuarioDTO = data;
-  }
-
   setPerfilSubjetivo(data: any) {
     this.perfilInversor = data;
   }
@@ -69,9 +64,14 @@ export class LocalStorageService {
     return this.getItem("Perfil");
   }
 
+  setUsuarioPerfilActualLocal(data: any) {
+    this.perfilInversor.UsuarioDTO = data;
+  }
+
   GetUsuarioPerfilActualLocal() {
     return this.getItem("Perfil").usuarioDTO;
   }
+
   RemovePerfilActualLocal() {
     localStorage.removeItem("Perfil");
   }

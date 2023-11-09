@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
   }
 
   public loguearme() {
-    console.log("🚀 ~ file: login.component.ts:49 ~ LoginComponent ~ loguearme ~ loguearme:")
 
     this.errorform = false;
     this.errorLogin = false;
@@ -66,24 +65,14 @@ export class LoginComponent implements OnInit {
     this.loading = true;
 
     this.registroUsuarioService.buscarUsuario(this.usuarioForm.email).subscribe(
-      (usuarioRecibido: UsuarioAPI) => {
+      (usuarioRecibido: UsuarioAPI) => {   
+        this.LocalStorageService.setUsuarioPerfilActualLocal(null);
+        this.LocalStorageService.RemovePerfilActualLocal();
+        this.LocalStorageService.removeItem('Username');
         this.usuariodb = usuarioRecibido;
-
         this.buscarPerfilUsuario(this.usuariodb).subscribe(
           (perfilUsuario: PerfilInversorAPI | null) => {
-            if (perfilUsuario === null || perfilUsuario === undefined) {
-              this.loading = false;
-              //Al loguearse se guarda el usuario mas el perfil(Nulo)
-              this.LocalStorageService.setUsuarioPerfilActualLocal(this.usuariodb);
-              this.LocalStorageService.SetPerfilActualLocal();
-              this.navegarAPerfil();
-            } else {
-              this.loading = false;
-              //Al loguearse se guarda el usuario mas el perfil
-              this.LocalStorageService.setPerfilSubjetivo(perfilUsuario);
-              this.LocalStorageService.SetPerfilActualLocal();
-              this.navegarAHome();
-            }
+            this.AlmacenarUsuario_Perfil(perfilUsuario);
           }
         );
       },
@@ -94,6 +83,25 @@ export class LoginComponent implements OnInit {
         console.log("🚀 ~ file: login.component.ts:82 ~ LoginComponent ~ verfificarUsuario ~ errorLogin:", this.errorLogin)
         console.error("Error al buscar Usuario", error);
       });
+  }
+
+  private AlmacenarUsuario_Perfil(perfilUsuario: PerfilInversorAPI | null) {
+    //A nivel login la variable se llama username
+    this.LocalStorageService.setItem('Username', this.usuariodb.username);
+    console.log("🚀 ~ file: login.component.ts:78 ~ LoginComponent ~ verfificarUsuario ~ this.usuariodb.nombreUsuario:", this.usuariodb.username)
+    if (perfilUsuario === null || perfilUsuario === undefined) {
+      console.log("El usuario no tiene un perfil asociado");
+      this.loading = false;
+      this.LocalStorageService.setUsuarioPerfilActualLocal(this.usuariodb);
+      this.LocalStorageService.SetPerfilActualLocal();
+      this.navegarAPerfil();
+    } else {
+      console.log("El usuario con perfil asociado");
+      this.loading = false;
+      this.LocalStorageService.setPerfilSubjetivo(perfilUsuario);
+      this.LocalStorageService.SetPerfilActualLocal();
+      this.navegarAHome();
+    }
   }
 
   buscarPerfilUsuario(usuariodb: UsuarioAPI): Observable<PerfilInversorAPI | null> {
