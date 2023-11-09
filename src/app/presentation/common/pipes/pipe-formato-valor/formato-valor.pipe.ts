@@ -19,6 +19,6 @@ export class FormatoValorPipe implements PipeTransform {
       useGrouping: true,
     };
 
-    return value.toLocaleString('es-AR', options); // 'es-AR' para el español de Argentina
+    return value && value.toLocaleString('es-AR', options) || ''; // 'es-AR' para el español de Argentina
   }
 }
