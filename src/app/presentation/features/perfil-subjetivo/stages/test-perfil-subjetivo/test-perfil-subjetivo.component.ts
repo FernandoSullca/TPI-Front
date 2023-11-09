@@ -200,19 +200,24 @@ export class TestPerfilSubjetivoComponent implements OnInit {
 
     /////Si es correcto Almaceno el perfil en el Perfil en Local
     this.entregarResultados().then((data) => {
+      debugger
       this.respuestasPerfil = data;
       // console.log("🚀 ~ file: test-perfil-subjetivo.component.ts:213 ~ TestPerfilSubjetivoComponent ~ this.entregarResultados ~ data:", data)
       this.respPerfilResultante = data.perfilInversor;
       //VAriables locales Perfil y Usuario...
       this.localStorageService.setItem('perfilinversor', this.respuestasPerfil.perfilInversor);
+     
       this.localStorageService.setItem('perfilsubjetivo', this.respuestasPerfil.tipoPerfilSubjetivo);
-      this.localStorageService.setItem('Username', this.perfilInversorUsuario.UsuarioDTO.nombreUsuario);
+       console.log("🚀 ~ file: test-perfil-subjetivo.component.ts:208 ~ TestPerfilSubjetivoComponent ~ this.entregarResultados ~ this.respuestasPerfil:", this.respuestasPerfil)
+      // this.localStorageService.setItem('Username', this.perfilInversorUsuario.UsuarioDTO.nombreUsuario);
+      // this.localStorageService.setItem('Username', this.perfilInversorUsuario.UsuarioDTO.nombreUsuario);
      
       this.perfilInversorUsuario.perfilInversor = this.respuestasPerfil.perfilInversor;
       this.perfilInversorUsuario.tipoPerfilSubjetivo = this.respuestasPerfil.tipoPerfilSubjetivo;
       this.perfilInversorUsuario.oid = data.oid;
-      this.localStorageService.setPerfilSubjetivo(this.perfilInversorUsuario);
-      this.localStorageService.SetPerfilActualLocal();
+      this.localStorageService.UpdatePerfilActualLocal(this.perfilInversorUsuario);
+      // this.localStorageService.setPerfilSubjetivo(this.perfilInversorUsuario);
+      // this.localStorageService.SetPerfilActualLocal();
       this.loadPageResultado();
     });
   }
@@ -231,8 +236,10 @@ export class TestPerfilSubjetivoComponent implements OnInit {
 
       this.perfilInversorUsuario.horizonteTemporal = this.AnalisisSubjetivo["Horizonte Temporal"];
       this.perfilInversorUsuario.toleranciaRiesgo = this.AnalisisSubjetivo["Tolerancia al riesgo"];
+      const username=this.localStorageService.getItem("Username");
+      console.log("🚀 ~ file: test-perfil-subjetivo.component.ts:235 ~ TestPerfilSubjetivoComponent ~ entregarResultados ~ username:", username)
       
-      const data = await from(this.profileServiceAPI_.TestSubjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
+      const data = await from(this.profileServiceAPI_.TestSubjetivoResultadosObtenidos(this.perfilInversorUsuario,username)).toPromise();
       if (data && data.perfilInversor) {
         return data;
       } else {

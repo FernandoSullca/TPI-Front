@@ -128,7 +128,8 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
       .finally(() => {
         this.perfilInversorUsuario = this.localStorageService.GetPerfilActualLocal();
         this.perfilInversorUsuario.UsuarioDTO = this.localStorageService.GetUsuarioPerfilActualLocal();
-        this.Username = this.perfilInversorUsuario.UsuarioDTO.nombreUsuario;
+        this.Username = this.localStorageService.getItem('Username');
+        // this.Username = this.perfilInversorUsuario.UsuarioDTO.nombreUsuario;
         this.loading = false;
       }
       );
