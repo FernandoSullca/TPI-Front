@@ -34,7 +34,7 @@ export class CarteraService {
 
     try {
       const resp = await axios.post(`${environment.API}/cartera/acreditar/dinero`, body);
-      console.info(resp)
+      console.info(resp.data)
     } catch (error) {
       console.error('Error al acreditar dinero:', error);
       // Puedes mostrar un mensaje de error o realizar otras acciones de manejo de errores aquí
