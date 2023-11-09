@@ -38,9 +38,11 @@ export class AdministrarPreguntasComponent {
   typeProgressCategorias: string="primary";
   typeProgressPreguntas: string="primary";
 
+  errorTipo:string="";
+
   constructor(private servicioPreguntasAPI_: AdministrarPreguntasService,
     private configBar: NgbProgressbarConfig) {
-    configBar.type = "success";
+    // configBar.type = "success";
   }
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
   // selectedFile: File | null = null;
@@ -53,8 +55,6 @@ export class AdministrarPreguntasComponent {
       this.fileInput.nativeElement.click();
     }
   }
-
- 
 
   onFileSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;
@@ -186,56 +186,52 @@ export class AdministrarPreguntasComponent {
     }
   }
 
-  uploadFile() {
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile, this.selectedFile.name);
+  // uploadFile() {
+  //   if (this.selectedFile) {
+  //     const formData = new FormData();
+  //     formData.append('file', this.selectedFile, this.selectedFile.name);
 
-      // Simula la carga del archivo y actualiza la barra de progreso
-      const totalSize = this.selectedFile.size;
-      const chunkSize = 1024 * 1024; // Tamaño del fragmento (1 MB en este ejemplo)
-      let loaded = 0;
+  //     // Simula la carga del archivo y actualiza la barra de progreso
+  //     const totalSize = this.selectedFile.size;
+  //     const chunkSize = 1024 * 1024; // Tamaño del fragmento (1 MB en este ejemplo)
+  //     let loaded = 0;
 
-      const uploadInterval = setInterval(() => {
-        if (loaded >= totalSize) {
-          clearInterval(uploadInterval);
-          return;
-        }
+  //     const uploadInterval = setInterval(() => {
+  //       if (loaded >= totalSize) {
+  //         clearInterval(uploadInterval);
+  //         return;
+  //       }
 
-        loaded += chunkSize;
-        this.uploadProgress = (loaded / totalSize) * 100;
-      }, 1000); // Actualiza la barra de progreso cada segundo
+  //       loaded += chunkSize;
+  //       this.uploadProgress = (loaded / totalSize) * 100;
+  //     }, 1000); // Actualiza la barra de progreso cada segundo
 
 
-      this.servicioPreguntasAPI_.CargarExcelDePreguntas(this.selectedFile).subscribe(
-        (data) => {
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // Puedes realizar acciones adicionales aquí 
-          // if (this.resp != null) {
-            this.uploadProgress = 100;
-          // }
-        },
-        (error) => {
-          console.error('Error en la carga de datos', error);
-          // Puedes manejar el error y mostrar un mensaje al usuario
-        }
-      );
+  //     this.servicioPreguntasAPI_.CargarExcelDePreguntas(this.selectedFile).subscribe(
+  //       (data) => {
+  //         // this.resp = data;
+  //         console.log('Todas las solicitudes se completaron con éxito');
+  //         // Puedes realizar acciones adicionales aquí 
+  //         // if (this.resp != null) {
+  //           this.uploadProgress = 100;
+  //         // }
+  //       },
+  //       (error) => {
+  //         console.error('Error en la carga de datos', error);
+  //         // Puedes manejar el error y mostrar un mensaje al usuario
+  //       }
+  //     );
 
-    }
+  //   }
 
-    if (!this.selectedFile) {
-      alert('Por favor, seleccione un archivo antes de cargarlo.');
-    }
+  //   if (!this.selectedFile) {
+  //     alert('Por favor, seleccione un archivo antes de cargarlo.');
+  //   }
 
-  }
+  // }
   /***************************** */
   uploadFileSecciones() {
     console.log("uploadFileSecciones()");
-
-    console.log("----------");
-
-    console.log(this.selectedFile);
 
     if (this.selectedFile) {
       const formData = new FormData();
@@ -244,7 +240,6 @@ export class AdministrarPreguntasComponent {
       // Simula la carga del archivo y actualiza la barra de progreso
       this.servicioPreguntasAPI_.CargarSeccionesExcel(this.selectedFile).subscribe(
         (data) => {
-          console.log(data);
           // this.resp = data;
           console.log('Todas las solicitudes se completaron con éxito');
           // if (this.resp != null) {
@@ -269,12 +264,8 @@ export class AdministrarPreguntasComponent {
 
   }
 
- uploadFileCategorias() {
+  uploadFileCategorias() {
     console.log("uploadFileSecciones()");
-
-    console.log("----------");
-
-    console.log(this.selectedFile);
 
     if (this.selectedFile) {
       const formData = new FormData();
@@ -282,7 +273,6 @@ export class AdministrarPreguntasComponent {
 
       this.servicioPreguntasAPI_.CargarCategoriasExcel(this.selectedFile).subscribe(
         (data) => {
-          console.log(data);
           // this.resp = data;
           console.log('Todas las solicitudes se completaron con éxito');
           // if (this.resp != null) {
@@ -307,7 +297,6 @@ export class AdministrarPreguntasComponent {
 
   }
 
- 
   uploadFilePreguntas() {
     console.log("uploadFilePreguntas()");
 
@@ -370,9 +359,11 @@ export class AdministrarPreguntasComponent {
         },
         (error) => {
           console.error('Error en la carga de datos', error);
+          console.info(error.message);
+          console.info(error.error.message);
+          this.errorTipo=error.error.message;
           this.uploadProgress = 50;
           this.typeProgress="danger"
-          this.configBar.type = "danger";
           this.configBar.textType= "danger";
           this.configBar.animated = false;
         }
@@ -385,6 +376,5 @@ export class AdministrarPreguntasComponent {
     }
 
   }
-
 
 }
