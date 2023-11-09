@@ -7,11 +7,11 @@ import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-st
 import { of } from 'rxjs';
 import { PreguntaApi } from 'src/app/core/models/API/Pregunta-APi.model';
 
-xdescribe('TestPerfilSubjetivoComponent', () => {
+describe('TestPerfilSubjetivoComponent', () => {
   let component: TestPerfilSubjetivoComponent;
   let fixture: ComponentFixture<TestPerfilSubjetivoComponent>;
   let questionsProfileService: QuestionsProfileService;
- 
+
   // Creamos stubs de los servicios
   const preguntaSubjetivasServiceStub = {
     // Define aquí tus métodos simulados
@@ -272,255 +272,7 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
 
   /********Verificando NGonit********/
 
-  // it('debería cargar la/s Pregunta/s en el cuestionario API', async () => {
-  //   // Configura el spy para devolver los datos del servicio
-  //   const testData =
-  //   {
-  //     "enunciado": "",
-  //     "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
-  //     "tipoComponente": "CHECKBOX",
-  //     "orden": 0,
-  //     "categoria": {
-  //       "nombre": "Test Inversor",
-  //       "descripcion": ""
-  //     },
-  //     "seccion": {
-  //       "nombre": "Tolerancia al riesgo",
-  //       "descripcion": ""
-  //     },
-  //     "respuestas": [{
-  //       "nombre": "Plazo Fijo",
-  //       "valor": 0,
-  //       "orden": 1
 
-  //     },
-  //     {
-  //       "nombre": "Fondos Comunes de Inversion (De renta fija)",
-  //       "valor": 0,
-  //       "orden": 2
-
-  //     },
-  //     {
-  //       "nombre": "Bonos",
-  //       "valor": 1,
-  //       "orden": 3
-  //     },
-  //     {
-  //       "nombre": "Acciones",
-  //       "valor": 2,
-  //       "orden": 3
-
-  //     },
-  //     {
-  //       "nombre": "Opciones",
-  //       "valor": 3,
-  //       "orden": 4
-
-  //     },
-  //     {
-  //       "nombre": "Futuros",
-  //       "valor": 4,
-  //       "orden": 5
-  //     }
-  //     ]
-  //   }
-  //     ;
-  //   // Crear un espía para questionsProfileService.obtenerTestSubjetivo
-  //   const obtenerTestSubjetivoSpy = jasmine.createSpy('obtenerTestSubjetivo');
-  //   obtenerTestSubjetivoSpy.and.returnValue(Promise.resolve(testData));
-
-  //   // Asignar el espía al objeto service
-  //   questionsProfileService.obtenerTestSubjetivo = obtenerTestSubjetivoSpy;
-
-  //   // Crea una instancia del componente
-  //   fixture = TestBed.createComponent(StageOneComponent);
-  //   component = fixture.componentInstance;
-
-  //   // Ejecuta ngOnInit y espera a que las Promises se resuelvan
-  //   await component.ngOnInit();
-
-  //   // Verifica que el cuestionario se cargue correctamente
-  //   expect(component.cuestionario).toEqual(testData);
-  // });
-
-  // it('deberia Cargar la/las pregunta/s desde .local caundo la  API call falle', async () => {
-  //   const testData =
-  //   {
-  //     "enunciado": "",
-  //     "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
-  //     "tipoComponente": "CHECKBOX",
-  //     "orden": 0,
-  //     "categoria": {
-  //       "nombre": "Test Inversor",
-  //       "descripcion": ""
-  //     },
-  //     "seccion": {
-  //       "nombre": "Tolerancia al riesgo",
-  //       "descripcion": ""
-  //     },
-  //     "respuestas": [{
-  //       "nombre": "Plazo Fijo",
-  //       "valor": 0,
-  //       "orden": 1
-
-  //     },
-  //     {
-  //       "nombre": "Fondos Comunes de Inversion (De renta fija)",
-  //       "valor": 0,
-  //       "orden": 2
-
-  //     },
-  //     {
-  //       "nombre": "Bonos",
-  //       "valor": 1,
-  //       "orden": 3
-  //     },
-  //     {
-  //       "nombre": "Acciones",
-  //       "valor": 2,
-  //       "orden": 3
-
-  //     },
-  //     {
-  //       "nombre": "Opciones",
-  //       "valor": 3,
-  //       "orden": 4
-
-  //     },
-  //     {
-  //       "nombre": "Futuros",
-  //       "valor": 4,
-  //       "orden": 5
-  //     }
-  //     ]
-  //   } 
-    
-  //   //Configura el spy para que la llamada al servicio falle
-  //   const obtenerTestSubjetivoSpy = jasmine.createSpy('obtenerTestSubjetivo');
-  //   obtenerTestSubjetivoSpy.and.returnValue(Promise.reject('Error'));
-  //   questionsProfileService.obtenerTestSubjetivo = obtenerTestSubjetivoSpy;
-
-  //   // Crea una instancia del componente
-  //   fixture = TestBed.createComponent(StageOneComponent);
-  //   component = fixture.componentInstance;
-
-  //   // Ejecuta ngOnInit y espera a que las Promises se resuelvan
-  //   await component.ngOnInit();
-
-  //   // Verifica que el cuestionario se cargue desde local
-  //   expect(component.cuestionario).toEqual(testData);
-  // });
-
-
-
-  // it('debería cargar la/s pregunta en el cuestionario API o local', () => {
-  //   component.ngOnInit();
-  //   fixture.detectChanges();
-
-  //   // Comprueba que las preguntas se carguen correctamente, ya sea del servicio o local
-  //   expect(component.resCuestionarioAPI).toEqual(
-  //     [
-  //       {
-  //         "enunciado": "",
-  //         "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
-  //         "categoria": {
-  //           "nombre": "Test Inversor",
-  //           "descripcion": ""
-  //         },
-  //         "seccion": {
-  //           "nombre": "Tolerancia al riesgo",
-  //           "descripcion": ""
-  //         },
-  //         "tipoComponente": "CHECKBOX",
-  //         "orden": 0,
-  //         "respuestas": [{
-  //           "nombre": "Plazo Fijo",
-  //           "valor": 0,
-  //           "orden": 0
-  //         },
-  //         {
-  //           "nombre": "Fondos Comunes de Inversion (De renta fija)",
-  //           "valor": 0,
-  //           "orden": 1
-
-  //         },
-  //         {
-  //           "nombre": "Bonos",
-  //           "valor": 1,
-  //           "orden": 3
-  //         },
-  //         {
-  //           "nombre": "Acciones",
-  //           "valor": 2,
-  //           "orden": 4
-
-  //         },
-  //         {
-  //           "nombre": "Opciones",
-  //           "valor": 3,
-  //           "orden": 5
-
-  //         },
-  //         {
-  //           "nombre": "Futuros",
-  //           "valor": 4,
-  //           "orden": 6
-  //         }
-  //         ]
-  //       }
-  //     ]
-  //   );
-  //   expect(component.cuestionario).toEqual(
-  //     {
-  //       "enunciado": "",
-  //       "descripcion": "¿En cuáles de éstos instrumentos has invertido alguna vez?",
-  //       "categoria": {
-  //         "nombre": "Test Inversor",
-  //         "descripcion": ""
-  //       },
-  //       "seccion": {
-  //         "nombre": "Tolerancia al riesgo",
-  //         "descripcion": ""
-  //       },
-  //       "tipoComponente": "CHECKBOX",
-  //       "orden": 0,
-  //       "respuestas": [{
-  //         "nombre": "Plazo Fijo",
-  //         "valor": 0,
-  //         "orden": 0
-  //       },
-  //       {
-  //         "nombre": "Fondos Comunes de Inversion (De renta fija)",
-  //         "valor": 0,
-  //         "orden": 1
-
-  //       },
-  //       {
-  //         "nombre": "Bonos",
-  //         "valor": 1,
-  //         "orden": 3
-  //       },
-  //       {
-  //         "nombre": "Acciones",
-  //         "valor": 2,
-  //         "orden": 4
-
-  //       },
-  //       {
-  //         "nombre": "Opciones",
-  //         "valor": 3,
-  //         "orden": 5
-
-  //       },
-  //       {
-  //         "nombre": "Futuros",
-  //         "valor": 4,
-  //         "orden": 6
-  //       }
-  //       ]
-  //     }
-  //   );
-  // });
 
   /********Verificando LoadQuestion********/
   it('debería cargar la primera pregunta en el cuestionario', () => {
@@ -771,17 +523,17 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     component.currentQuestionIndex = 0;
 
     // Espía la función de finalización para verificar si se llamó
-    spyOn(component, 'FinalizarCargaYEntrega');
+    spyOn(component, 'FinalizarTestSubjetivo');
 
     // Llama a la función que deseas probar
     component.loadNextQuestion();
 
     // Verifica si la función de finalización se llamó .toHaveBeenCalled()
-    expect(component.FinalizarCargaYEntrega).toHaveBeenCalled();
+    expect(component.FinalizarTestSubjetivo).toHaveBeenCalled();
   });
 
   /***** Verificando guardarrespuestas(seccion: string, tipo: string)*************/
-  /***** guardarrespuestas(seccion: string, tipo: string) tipo = 'CHECKBOX'*************/
+  /***** tipo = 'CHECKBOX'*************/
   it('debería guardar respuestas para preguntas de tipo CHECKBOX', () => {
     const seccion = 'Tolerancia al riesgo';
     const tipo = 'CHECKBOX';
@@ -793,8 +545,28 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.AnalisisSubjetivo[seccion]).toBe(31);
 
   });
+  /**** guardarrespuestas(seccion: string, tipo: string)****/
+  it('debería sumar valores de un arreglo de checkboxes', () => {
 
-  /***** guardarrespuestas(seccion: string, tipo: string) tipo = ''RADIO''*************/
+    component.opcionesSeleccionadas = [{ seccion: "Tolerancia al riesgo", pregunta: "", valor: 1 }, { seccion: "Tolerancia al riesgo", pregunta: "", valor: 1 }, { seccion: "Tolerancia al riesgo", pregunta: "", valor: 4 }];
+    component.AnalisisSubjetivo = {};
+    component.guardarrespuestas('seccion', 'CHECKBOX');
+    expect(component.AnalisisSubjetivo['seccion']).toBe(6);
+  });
+
+  it('debería sumar valores de un arreglo de checkboxes Vaciado de opciones', () => {
+
+    component.opcionesSeleccionadas = [{ seccion: "Tolerancia al riesgo", pregunta: "", valor: 1 }, 
+    { seccion: "Tolerancia al riesgo", pregunta: "", valor: 1 },
+     { seccion: "Tolerancia al riesgo", pregunta: "", valor: 4 }];
+    component.AnalisisSubjetivo = {};
+    component.guardarrespuestas('seccion', 'CHECKBOX');
+    expect(component.opcionesSeleccionadas).toBeNull;
+    expect(component.AnalisisSubjetivo['seccion']).toBe(6);
+  });
+
+
+  /*****  tipo = ''RADIO''*************/
   it('debería guardar respuestas para preguntas de tipo RADIO', () => {
     const seccion = 'Tolerancia al riesgo';
     const tipo = 'RADIO';
@@ -807,8 +579,15 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.AnalisisSubjetivo[seccion]).toBe(5);
 
   });
-
-  /***** guardarrespuestas(seccion: string, tipo: string) tipo = '''BOTON'''*************/
+  /***** guardarrespuestas(seccion: string, tipo: string)****/
+  it('debería asignar un valor de radio', () => {
+    component.opcionSeleccionada = 5;
+    component.AnalisisSubjetivo = {};
+    component.guardarrespuestas('seccion', 'RADIO');
+    expect(component.opcionSeleccionada).toBeNull;
+    expect(component.AnalisisSubjetivo['seccion']).toBe(5);
+  });
+  /*****  tipo = '''BOTON'''*************/
   it('debería guardar respuestas para preguntas de tipo BOTON', () => {
     const seccion = 'Tolerancia al riesgo';
     const tipo = 'BOTON';
@@ -827,6 +606,41 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.AnalisisSubjetivo[seccion]).toBe(30);
   });
 
+  /***** guardarrespuestas(seccion: string, tipo: string)****/
+  it('debería sumar valores de un conjunto de botones', () => {
+    component.respuestasSeleccionadasPorInstrumento = { instrumento1: 2, instrumento2: 3 };
+    component.AnalisisSubjetivo = {};
+    component.guardarrespuestas('seccion', 'BOTON');
+    expect(component.AnalisisSubjetivo['seccion']).toBe(5);
+    expect(component.respuestasSeleccionadasPorInstrumento).toBeNull;
+    expect(component.respuestasSeleccionadasPorInstrumento['instrumento1']).toBe(0);
+    expect(component.respuestasSeleccionadasPorInstrumento['instrumento2']).toBe(0);
+  });
+  /***** guardarrespuestas(seccion: string, tipo: string)****/
+  
+  it('debería manejar un caso predeterminado', () => {
+    // Supongamos que el código no muestra mensajes de error, solo realiza acciones específicas para cada tipo.
+    component.AnalisisSubjetivo = {};
+    component.guardarrespuestas('seccion', 'OTRO_TIPO');
+    // Agregar expect o aserciones según lo que se espera que haga en el caso predeterminado.
+  });
+
+  it('debería manejar un tipo de pregunta no reconocido', () => {
+    const seccion = 'Seccion Desconocida';
+    component.opcionesSeleccionadas = [{ seccion: "Tolerancia al riesgo", pregunta: "", valor: 1 }]
+    component.AnalisisSubjetivo = {};
+    component.AnalisisSubjetivo["Horizonte Temporal"] = 10;
+    const consoleErrorSpy = spyOn(console, 'error');
+
+    component.guardarrespuestas(seccion, 'OTRO_TIPO');
+  
+    expect(component.AnalisisSubjetivo['Seccion Desconocida']).toBeNull;
+    expect(component.AnalisisSubjetivo['Seccion Desconocida']).toBe(0);
+    expect(component.AnalisisSubjetivo["Horizonte Temporal"]).toBe(10);
+    expect(consoleErrorSpy).toHaveBeenCalledWith('Tipo de pregunta no reconocido-para valorizar respuesta');
+  
+  });
+
   /***** Finalizar y entregar ()*************/
   it('debería finalizar la carga y entrega de resultados', async () => {
 
@@ -837,27 +651,27 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
       perfilInversor: "Moderado",
     }));
 
-    // Llama a la función FinalizarCargaYEntrega
-    await component.FinalizarCargaYEntrega();
+    // Llama a la función FinalizarTestSubjetivo
+    await component.FinalizarTestSubjetivo();
 
     // Verifica que los valores se hayan guardado correctamente en el localStorage
     // expect(localStorageServiceMock.getItem('toleranciaRiesgo')).toBe(10);
     // expect(localStorageServiceMock.getItem('horizonteTemporal')).toBe(10);
-    expect(localStorageServiceMock.getItem('perfil')).toBe("Moderado");
+    expect(localStorageServiceMock.getItem('perfilinversor')).toBe("Moderado");
   });
 
   /***** public async entregarResultados(): Promise<any> *************/
   it('debería validar contenido para resultados exitosamente', async () => {
-    
+
     // Crea un mock del servicio API
     const profileServiceAPIMock = jasmine.createSpyObj('QuestionsProfileService', ['TestSubjetivoResultadosObtenidos']);
 
     profileServiceAPIMock.TestSubjetivoResultadosObtenidos.and.resolveTo(
       Promise.resolve({
-      toleranciaRiesgo: 10,
-      horizonteTemporal: 10,
-      perfilInversor: "Moderado",
-    }));
+        toleranciaRiesgo: 10,
+        horizonteTemporal: 10,
+        perfilInversor: "Moderado",
+      }));
 
     //   const component = new StageOneComponent(
     //     profileServiceAPIMock,preguntaSubjetivasServiceStub,RouterTestingModule ,localStorageServiceMock
@@ -867,7 +681,7 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
 
     // Llama a la función directamente
     const resultados = await component.entregarResultados();
-    expect(component.validateData).toBeTrue();
+    expect(component.validateData).toBeTruthy();
     // Verifica que los resultados sean los esperados
     // expect(resultados).toEqual({
     // profileServiceAPIMock.TestSubjetivoResultadosObtenidos.and.returnValue(Promise.resolve({

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PricePanelService } from 'src/app/core/services/api/price-panel/price-panel.service';
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 import { mockAcciones } from 'src/app/core/services/api/price-panel/mock'
@@ -20,18 +20,20 @@ export class PricePanelComponent implements OnInit {
   public textMessage: string = '';
   public typeMessage: string = '';
   public lastUpdatePanel: string = '';
-  public instrumento : string=''
-  public titulosSimbolo: string[] = []; 
-  public simbolo: string = ''; 
+  public instrumento: string = ''
+  public titulosSimbolo: string[] = [];
+  public simbolo: string = '';
   public filteredTitulos: string[] = [];
-  public totalDineroDisponible:number=0;
-  public detalleInstrumento!:Titulo;
-  public tipoModal:string|undefined;
-  public instrumentoSeleccionadoSubject! : Subscription;
+  public totalDineroDisponible: number = 0;
+  public detalleInstrumento!: Titulo;
+  public tipoModal: string | undefined;
+  public instrumentoSeleccionadoSubject!: Subscription;
+  public loadingButton = false;
+  public panel: string = 'acciones';
 
-  constructor(private pricePanelService: PricePanelService,public modalService : ModalService,private carteraService : CarteraService) {
-    
-   }
+  constructor(private pricePanelService: PricePanelService, public modalService: ModalService, private carteraService: CarteraService) {
+
+  }
   ngOnDestroy(): void {
     if (this.instrumentoSeleccionadoSubject) {
       this.instrumentoSeleccionadoSubject.unsubscribe();
@@ -45,38 +47,44 @@ export class PricePanelComponent implements OnInit {
     this.updateTitulosEvery(environment.UPDATE_PRICE_PANEL_EVERY_SECONDS);
     this.titulosSimbolo = this.pricePanelService.getSimbolosEnMemoria();
   }
-  public generarSubjectASimbolo(){
-    this.instrumentoSeleccionadoSubject =this.pricePanelService.obtenerSimboloDePortafolioSugerido().subscribe({
-      next: instrumentoSeleccionado =>{
-        this.simbolo=instrumentoSeleccionado;
+
+  public seleccionarPanel(panel: string) {
+    this.titulos = [];
+    this.panel = panel;
+    this.getTitulos();
+  }
+  public generarSubjectASimbolo() {
+    this.instrumentoSeleccionadoSubject = this.pricePanelService.obtenerSimboloDePortafolioSugerido().subscribe({
+      next: instrumentoSeleccionado => {
+        this.simbolo = instrumentoSeleccionado;
       },
-      error: error =>{
-        this.simbolo=''
+      error: error => {
+        this.simbolo = ''
         console.log("Error al recuperar datos");
       }
     })
   }
   public openModal(instrumento: string) {
-      const detalleInstrumento = this.filtrarPorInstrumento(instrumento);
-      if (detalleInstrumento) {
-        this.detalleInstrumento = detalleInstrumento;
-        this.modalService.openModal();
-      } else {
-        console.log('Instrumento no encontrado');
-      }
-  } 
-  openModalService(){
+    const detalleInstrumento = this.filtrarPorInstrumento(instrumento);
+    if (detalleInstrumento) {
+      this.detalleInstrumento = detalleInstrumento;
+      this.modalService.openModal();
+    } else {
+      console.log('Instrumento no encontrado');
+    }
+  }
+  openModalService() {
     this.modalService.openModal();
-  } 
-  public filtrarPorInstrumento(instrumento:string){
+  }
+  public filtrarPorInstrumento(instrumento: string) {
     return this.titulos.find(titulo => titulo.simbolo === instrumento);
   }
 
-  public getDineroDisponible(){
+  public getDineroDisponible() {
     return this.carteraService.getCartera().subscribe((response) => {
-      if(response.totalMonedas){
+      if (response.totalMonedas) {
         const totalMonedas = Number(response.totalMonedas);
-        this.totalDineroDisponible=totalMonedas
+        this.totalDineroDisponible = totalMonedas
       }
     })
   }
@@ -106,7 +114,7 @@ export class PricePanelComponent implements OnInit {
   }
 
   public getTitulos() {
-    return this.pricePanelService.obtenerTitulos()
+    return this.pricePanelService.obtenerTitulos(this.panel)
       .then((titulos) => {
         this.titulos = titulos;
         this.titulosSimbolo = titulos.map((t) => t.simbolo || 'Desconocido')
@@ -138,12 +146,18 @@ export class PricePanelComponent implements OnInit {
       this.typeMessage = "error"
       return false;
     }
+
+    this.loadingButton = true;
+
     return this.pricePanelService.capturarOrden('venta', this.simbolo, this.cantidad, this.titulosSimboloMapa)
       .then(() => {
+        this.loadingButton = false;
+
         this.textMessage = "Operacion realizada"
         this.typeMessage = "success"
       })
       .catch((error) => {
+        this.loadingButton = false;
         this.textMessage = error.response.data;
         this.typeMessage = "error"
         console.error(error)
@@ -158,13 +172,17 @@ export class PricePanelComponent implements OnInit {
       return false;
     }
 
+    this.loadingButton = true;
+
     return this.pricePanelService.capturarOrden('compra', this.simbolo, this.cantidad, this.titulosSimboloMapa)
       .then(() => {
+        this.loadingButton = false;
         this.textMessage = "Operacion realizada"
         this.typeMessage = "success"
         this.getDineroDisponible();
       })
       .catch((error) => {
+        this.loadingButton = false;
         this.textMessage = error.response.data
         this.typeMessage = "error"
         console.error(error)

@@ -36,8 +36,8 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   AnalisisObjetivo: Record<string, number> = {};
   public ResultadoPerfilObjetivo: string = "";
   PerfilSubjetivoObtenido: string = "";
-  public portfolioSugerido!:PortfolioSugerido[];
-  public tipoPerfil : string |undefined
+  public portfolioSugerido!: PortfolioSugerido[];
+  public tipoPerfil: string | undefined
 
   dataPerfil = [
     {
@@ -63,19 +63,19 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   perfilInversorUsuario: PerfilInversorAPI = {
     oid: 0,
     version: 0,
-    deleted:0,
+    deleted: 0,
     horizonteTemporal: 0,
     toleranciaRiesgo: 0,
     tipoPerfilSubjetivo: "",
     nivelConocimiento: 0,
     tipoNivelConocimiento: "",
     perfilInversor: "",
-    resultadoPerfilado:"",
+    resultadoPerfilado: "",
     UsuarioDTO: {
       oid: 0,
       version: 0,
       pass: "",
-      username:"",
+      username: "",
       nombreUsuario: "",
       nombre: "",
       apellido: "",
@@ -89,15 +89,13 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
     private localStorageService: LocalStorageService, private carteraService: CarteraService,
-    public modalService : ModalService,private portfolioSugeridoService : PortfolioSugeridoService, private dashboardComponent: DashboardComponent) {
+    public modalService: ModalService, private portfolioSugeridoService: PortfolioSugeridoService, private dashboardComponent: DashboardComponent) {
   }
 
   ngOnInit(): void {
     this.loading = true;
     /*********Area Preguntas onjetivas*********/
-    const storedProfile = this.localStorageService.getItem('perfil');
-    // this.AnalisisObjetivo["toleranciaRiesgo"] = this.localStorageService.getItem('toleranciaRiesgo');
-    // this.AnalisisObjetivo["horizonteTemporal"] = this.localStorageService.getItem('horizonteTemporal');
+    const storedProfile = this.localStorageService.getItem('perfilinversor');
     if (storedProfile) {
       this.PerfilSubjetivoObtenido = storedProfile;
     }
@@ -127,9 +125,9 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
         }
       )
       .finally(() => {
-        // this.Username = this.localStorageService.getItem("Username");
         this.perfilInversorUsuario = this.localStorageService.GetPerfilActualLocal();
-        this.Username= this.perfilInversorUsuario.UsuarioDTO.username; 
+        this.perfilInversorUsuario.UsuarioDTO = this.localStorageService.GetUsuarioPerfilActualLocal();
+        this.Username = this.perfilInversorUsuario.UsuarioDTO.nombreUsuario;
         this.loading = false;
       }
       );
@@ -157,31 +155,21 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
 
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
-          this.localStorageService.setItem('perfil', this.respuestasPerfil.perfilInversor);
-
+          this.localStorageService.setItem('perfilinversor', this.respuestasPerfil.perfilInversor);
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
-          ////Objeto general
-
           this.perfilInversorUsuario.perfilInversor = this.respuestasPerfil.perfilInversor;
-
-          // this.localStorageService.SetPerfilActualLocal();
-
         }).finally(() => {
           this.acreditarDinero();
           this.armardescripcion();
           //this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario, this.ResultadoPerfilObjetivo);
-          this.dataurlcertificado= this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(this.Username, this.ResultadoPerfilObjetivo);
+          this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(this.Username, this.ResultadoPerfilObjetivo);
 
           this.dashboardComponent.obtenerPortfolioSugerido(this.ResultadoPerfilObjetivo);
         }
         );;
 
-        const usuario = this.Username;
-        // this.dataurlcertificado= this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(usuario,this.ResultadoPerfilObjetivo);
-
-
         this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
-        this.buttonText = 'Obtener portfolio sugerido';//Podria unificar el loadRoadMap y que sea un control en lugar de cambiar botones
+        this.buttonText = 'Obtener portfolio sugerido';
 
       }
     } else {
@@ -190,6 +178,7 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   }
 
   public acreditarDinero() {
+	
     this.carteraService.acreditarDinero(5000, "premio preguntas objetivas");
   }
 
@@ -197,11 +186,11 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
     if (!this.validateData()) {
       return;
     }
-    
+
     this.perfilInversorUsuario.nivelConocimiento = this.AnalisisObjetivo["Conocimento"];
-  
+
     try {
-      
+
       // const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
       const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
       // data && data.perfilInversor
@@ -210,11 +199,11 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
         return this.respuestasPerfil;
       } else {
         console.error('No se recibió una respuesta válida de la API.');
-        // Maneja el error como sea necesario
+
       }
     } catch (error) {
       console.error('Error al enviar los resultados:', error);
-      // Maneja el error como sea necesario
+
     }
   }
 
@@ -241,20 +230,29 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
     }
 
   }
+
   validateData() {
-    return true;
+    if(this.perfilInversorUsuario.UsuarioDTO!=null && this.perfilInversorUsuario!=null){
+      console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:235 ~ TestPerfilInversorObjetivoComponent ~ validateData ~ this.perfilInversorUsuario:", this.perfilInversorUsuario)
+      console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:235 ~ TestPerfilInversorObjetivoComponent ~ validateData ~ this.perfilInversorUsuario.UsuarioDTO:", this.perfilInversorUsuario.UsuarioDTO)
+      return true;
+    }
+    else{
+      return false
+    }
+
   }
 
   guardarRespuestas() {
-    console.log("Entrando en guardar respuestas");
-    console.log(this.AnalisisObjetivo["Conocimento"]);
+    // console.log("Entrando en guardar respuestas");
+    // console.log(this.AnalisisObjetivo["Conocimento"]);
     if (!this.AnalisisObjetivo["Conocimento"]) {
       this.AnalisisObjetivo["Conocimento"] = 0;
     }
     this.AnalisisObjetivo["Conocimento"] += this.opcionSeleccionada;
     this.opcionSeleccionada = 0;
-    console.log("Ver respuestas almacenadas");
-    console.log(this.AnalisisObjetivo["Conocimento"]);
+    // console.log("Ver respuestas almacenadas");
+    // console.log(this.AnalisisObjetivo["Conocimento"]);
   }
 
   async solicitarcertificado() {
@@ -318,10 +316,10 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
     this.router.navigate(['/dashboard/precios']);
     this.buttonText = 'Continuar';
   }
-  openModal(){
+  openModal() {
     this.modalService.openModal();
   }
-  public obtenerTipoPerfil(){
+  public obtenerTipoPerfil() {
     return this.tipoPerfil;
   }
 }

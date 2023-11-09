@@ -45,7 +45,7 @@ describe('PerfilSubjetivoResultadoComponent', () => {
 
     component.ngOnInit();
 
-    expect(localStorageService.getItem).toHaveBeenCalledWith('perfil');
+    expect(localStorageService.getItem).toHaveBeenCalledWith('perfilsubjetivo');
     // expect(component.valorRecibido).toEqual(storedProfile);
   });
 

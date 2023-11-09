@@ -24,8 +24,8 @@ export class PricePanelService {
     });
   }
 
-  public async obtenerTitulos() {
-    const resp = await axios.get(`${environment.API}/panel/acciones`);
+  public async obtenerTitulos(panel:string) {
+    const resp = await axios.get(`${environment.API}/panel/${panel}`);
     return this.mapToTitulos(resp);
   }
 
