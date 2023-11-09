@@ -33,6 +33,7 @@ import { PrediccionComponent } from './features/dashboard/sections/prediccion/pr
 import { ModalSugeridoComponent } from './common/components/modal-sugerido/modal-sugerido.component';
 import { RegistarUsuarioComponent } from './features/registar-usuario/registar-usuario.component';
 import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta.component';
+import { RendimientoComponent } from './features/dashboard/sections/rendimiento/rendimiento.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta
     ModalSugeridoComponent,
     RegistarUsuarioComponent,
     ActivarCuentaComponent,
+    RendimientoComponent,
   ],
   imports: [
     BrowserModule,

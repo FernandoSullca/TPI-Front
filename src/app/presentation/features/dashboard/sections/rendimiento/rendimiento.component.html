@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row text-center table-price">
+      <div class="text-start">
+        <h3>Rendimiento de cartera</h3>
+  
+      </div>
+      <div class="col-sm-12">
+        <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
+          <div class="col mobile-col">Simbolo</div>
+          <div class="col d-none d-xl-block">Total dinero general</div>
+          <div class="col d-none d-xl-block">Total porcentaje general</div>
+          <div class="col mobile-col">Total valorizado general</div>
+        </div>
+        <div class="row filas">
+          <div>
+            <div class="fila-instrumento" data-toggle="modal" data-target="#myModal">
+              <div class="row">
+                <div class="col overflow-hidden text-start mobile-col">
+                  <strong>
+                  </strong>
+                </div>
+                <div class="col overflow-hidden d-none d-xl-block alinearDerecha"></div>
+                <div class="col overflow-hidden d-none d-xl-block">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: inline-block;">
+                    </div>
+                    <div style="display: inline-block;">
+                      <div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col overflow-hidden mobile-col columna-verde alinearDerecha"></div>
+                <div class="col overflow-hidden mobile-col columna-verde alinearDerecha">
+                </div>
+                <div class="col overflow-hidden mobile-col columna-rojo alinearDerecha"></div>
+                <div class="col overflow-hidden mobile-col columna-rojo alinearDerecha"></div>
+                <div class="col overflow-hidden d-none d-xl-block alinearDerecha"></div>
+                <div class="col overflow-hidden d-none d-xl-block alinearDerecha"></div>
+                <div class="col overflow-hidden d-none d-xl-block alinearDerecha"></div>
+                <div class="col overflow-hidden d-none d-xl-block alinearDerecha"></div>
+                <div class="col overflow-hidden d-none d-xl-block alinearDerecha"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <ng-template #loading>
+          <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
+            <div class="spinner-border loading-spiner" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <h3>Cargando panel de precios ...</h3>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+</div>
