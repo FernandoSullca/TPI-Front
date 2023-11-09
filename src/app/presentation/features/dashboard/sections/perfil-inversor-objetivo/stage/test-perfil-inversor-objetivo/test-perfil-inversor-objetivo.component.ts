@@ -89,7 +89,8 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   constructor(private preguntaObjetivasServiceAPI_: QuestionsTargetService,
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
     private localStorageService: LocalStorageService, private carteraService: CarteraService,
-    public modalService: ModalService, private portfolioSugeridoService: PortfolioSugeridoService, private dashboardComponent: DashboardComponent) {
+    public modalService: ModalService, private portfolioSugeridoService: PortfolioSugeridoService,
+    private dashboardComponent: DashboardComponent) {
   }
 
   ngOnInit(): void {
@@ -163,7 +164,6 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
           this.armardescripcion();
           //this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario, this.ResultadoPerfilObjetivo);
           this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(this.Username, this.ResultadoPerfilObjetivo);
-
           this.dashboardComponent.obtenerPortfolioSugerido(this.ResultadoPerfilObjetivo);
         }
         );;

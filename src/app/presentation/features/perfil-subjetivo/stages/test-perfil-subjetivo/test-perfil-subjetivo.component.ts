@@ -108,6 +108,7 @@ export class TestPerfilSubjetivoComponent implements OnInit {
         .finally(() => {
           this.loading = false;
           this.perfilInversorUsuario = this.localStorageService.GetPerfilActualLocal();
+          console.log("🚀 ~ file: test-perfil-subjetivo.component.ts:111 ~ TestPerfilSubjetivoComponent ~ .finally ~ perfilInversorUsuario:", this.perfilInversorUsuario)
           this.perfilInversorUsuario.UsuarioDTO = this.localStorageService.GetUsuarioPerfilActualLocal();   
          })
   }
