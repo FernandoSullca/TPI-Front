@@ -29,6 +29,7 @@ export class PricePanelComponent implements OnInit {
   public tipoModal: string | undefined;
   public instrumentoSeleccionadoSubject!: Subscription;
   public loadingButton = false;
+  public panel: string = 'acciones';
 
   constructor(private pricePanelService: PricePanelService, public modalService: ModalService, private carteraService: CarteraService) {
 
@@ -45,6 +46,12 @@ export class PricePanelComponent implements OnInit {
     this.getTitulos();
     this.updateTitulosEvery(environment.UPDATE_PRICE_PANEL_EVERY_SECONDS);
     this.titulosSimbolo = this.pricePanelService.getSimbolosEnMemoria();
+  }
+
+  public seleccionarPanel(panel: string) {
+    this.titulos = [];
+    this.panel = panel;
+    this.getTitulos();
   }
   public generarSubjectASimbolo() {
     this.instrumentoSeleccionadoSubject = this.pricePanelService.obtenerSimboloDePortafolioSugerido().subscribe({
@@ -107,7 +114,7 @@ export class PricePanelComponent implements OnInit {
   }
 
   public getTitulos() {
-    return this.pricePanelService.obtenerTitulos()
+    return this.pricePanelService.obtenerTitulos(this.panel)
       .then((titulos) => {
         this.titulos = titulos;
         this.titulosSimbolo = titulos.map((t) => t.simbolo || 'Desconocido')

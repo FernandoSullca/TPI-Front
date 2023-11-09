@@ -1,11 +1,12 @@
 @import "../../../../../../variables";
 
-.container-fluid{
+.container-fluid {
     padding: 1.5rem;
     background-color: #fff;
     width: 100%;
     border-radius: 15px;
 }
+
 .filas {
     overflow-y: scroll;
     overflow-x: hidden;
@@ -13,12 +14,23 @@
 }
 
 .fila-instrumento :hover {
-    cursor: pointer;
-    background-color: $primary-color;
-    color: $color-white;
+    background-color: #ECEEFB;
 
     div {
-        background-color: $primary-color !important;
+        background-color: #ECEEFB !important;
+    }
+}
+
+.accion {
+    cursor: pointer;
+}
+
+.pestanias {
+    button {
+        color: inherit;
+        /* blue colors for links too */
+        text-decoration: inherit;
+        /* no underline */
     }
 }
 
@@ -138,8 +150,8 @@
     animation: flash-neutro-rojo 4.5s ease forwards
 }
 
-.alinearDerecha{
-   text-align: right;
+.alinearDerecha {
+    text-align: right;
 }
 
 @media (max-width: 420px) {
