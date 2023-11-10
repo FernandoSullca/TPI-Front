@@ -9,7 +9,7 @@ import { concatMap, catchError } from 'rxjs/operators';
 })
 export class AdministrarPreguntasService {
 
-  
+
   constructor(private http: HttpClient) { }
 
   // Define un observable para la secuencia
@@ -108,58 +108,58 @@ export class AdministrarPreguntasService {
         }
       );
   }
-/**********************************************************************/
-  public CargarSeccionesExcel(selectedFile: File):Observable<FormData>{
-    console.log("Cargando Respuesta...");
+  /**********************************************************************/
 
-    const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
-    headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type' 
-    
-    const formData = new FormData();
-    formData.append('excelSeccion', selectedFile, selectedFile.name);
+  public CargarSeccionesExcel(archivoSeleccionado: File): Observable<FormData> {
+    console.log("Cargando Secciones...");
+
+    const encabezado = this.configurarEncabezado();
+    const formularioDeDatos = new FormData();
+    formularioDeDatos.append('excelSeccion', archivoSeleccionado, archivoSeleccionado.name);
 
     return this.http
-      .post<FormData>(`${environment.API}/api/seccion/carga-seccion-excel`, formData, { headers: headers });
+      .post<FormData>(`${environment.API}/api/seccion/carga-seccion-excel`, formularioDeDatos, { headers: encabezado });
   }
 
-  public CargarCategoriasExcel(selectedFile: File):Observable<FormData>{
-    console.log("Cargando Respuesta...");
+  public CargarCategoriasExcel(archivoSeleccionado: File): Observable<FormData> {
+    console.log("Cargando Categoria...");
 
-    const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
-    headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type' 
-    
-    const formData = new FormData();
-    formData.append('excelCategoria', selectedFile, selectedFile.name);
+    const encabezado = this.configurarEncabezado();
+    const formularioDeDatos = new FormData();
+    formularioDeDatos.append('excelCategoria', archivoSeleccionado, archivoSeleccionado.name);
 
     return this.http
-      .post<FormData>(`${environment.API}/api/categoria/carga-categoria-excel`, formData, { headers: headers });
+      .post<FormData>(`${environment.API}/api/categoria/carga-categoria-excel`, formularioDeDatos, { headers: encabezado });
   }
 
-  public CargarPreguntasExcel(selectedFile: File):Observable<FormData>{
-    console.log("Cargando Respuesta...");
+  public CargarPreguntasExcel(archivoSeleccionado: File): Observable<FormData> {
+    console.log("Cargando Preguntas...");
 
-    const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
-    headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type' 
-    
-    const formData = new FormData();
-    formData.append('excelPregunta', selectedFile, selectedFile.name);
+    const encabezado = this.configurarEncabezado();
+    const formularioDeDatos = new FormData();
+    formularioDeDatos.append('excelPregunta', archivoSeleccionado, archivoSeleccionado.name);
 
     return this.http
-      .post<FormData>(`${environment.API}/api/respuesta/carga-pregunta-excel`, formData, { headers: headers });
+      .post<FormData>(`${environment.API}/api/pregunta/carga-pregunta-excel`, formularioDeDatos, { headers: encabezado });
   }
- 
 
-  public CargarRespuestasExcel(selectedFile: File):Observable<FormData>{
+  public CargarRespuestasExcel(archivoSeleccionado: File): Observable<FormData> {
     console.log("Cargando Respuesta...");
 
-    const headers = new HttpHeaders(); // Importa HttpHeaders desde '@angular/common/http'
-    headers.append('Content-Type', 'multipart/form-data'); // Configura el encabezado 'Content-Type' 
-    
-    const formData = new FormData();
-    formData.append('excelRespuesta', selectedFile, selectedFile.name);
+    const encabezado = this.configurarEncabezado();
+
+    const formularioDeDatos = new FormData();
+    formularioDeDatos.append('excelRespuesta', archivoSeleccionado, archivoSeleccionado.name);
 
     return this.http
-      .post<FormData>(`${environment.API}/api/respuesta/carga-respuesta-excel`, formData, { headers: headers });
+      .post<FormData>(`${environment.API}/api/respuesta/carga-respuesta-excel`, formularioDeDatos, { headers: encabezado });
+  }
+
+  private configurarEncabezado() {
+    // Configura el encabezado 'Content-Type' 
+    const encabezados = new HttpHeaders();
+    encabezados.append('Content-Type', 'multipart/form-data');
+    return encabezados;
   }
 
   getExcelTemplate() {
