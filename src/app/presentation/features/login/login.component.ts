@@ -57,15 +57,52 @@ export class LoginComponent implements OnInit {
       return
     }
 
-    this.verfificarUsuario();
+    this.loginUsuario();
+    // this.verfificarUsuario();
 
   }
+
+  public loginUsuario() {
+    this.loading = true;
+
+    this.registroUsuarioService.loginUsuario(this.usuarioForm.email, this.usuarioForm.password).subscribe(
+      (data) => {
+        this.LocalStorageService.setItem("token", data.token);
+        this.registroUsuarioService.buscarUsuario(this.usuarioForm.email).subscribe(
+          (usuarioRecibido: UsuarioAPI) => {
+            this.LocalStorageService.setUsuarioPerfilActualLocal(null);
+            this.LocalStorageService.RemovePerfilActualLocal();
+            this.LocalStorageService.removeItem('Username');
+            this.usuariodb = usuarioRecibido;
+            this.buscarPerfilUsuario(this.usuariodb).subscribe(
+              (perfilUsuario: PerfilInversorAPI | null) => {
+                this.AlmacenarUsuario_Perfil(perfilUsuario);
+              }
+            );
+          },
+          (error) => {
+            this.loading = false;
+            this.errorform = false;
+            this.errorLogin = true;
+            console.log("🚀 ~ file: login.component.ts:82 ~ LoginComponent ~ verfificarUsuario ~ errorLogin:", this.errorLogin)
+            console.error("Error al buscar Usuario", error);
+          });
+      },
+      (error) => {
+        this.loading = false;
+        this.errorform = false;
+        this.errorLogin = true;
+        console.log("🚀 ~ file: login.component.ts:82 ~ LoginComponent ~ verfificarUsuario ~ errorLogin:", this.errorLogin)
+        console.error("Error al buscar Usuario", error);
+      });
+  }
+
 
   public verfificarUsuario() {
     this.loading = true;
 
     this.registroUsuarioService.buscarUsuario(this.usuarioForm.email).subscribe(
-      (usuarioRecibido: UsuarioAPI) => {   
+      (usuarioRecibido: UsuarioAPI) => {
         this.LocalStorageService.setUsuarioPerfilActualLocal(null);
         this.LocalStorageService.RemovePerfilActualLocal();
         this.LocalStorageService.removeItem('Username');

@@ -36,6 +36,7 @@
             </b>
             <h2 *ngIf="cartera?.totalCartera; else elseBlock">ARS {{cartera.totalCartera|formatoValor}}</h2>
             <ng-template #elseBlock>{{totalValorizadoNulo|formatoValor}}</ng-template>
+            <span class="aclaracion">Recuerda: el saldo mostrado <strong>NO</strong> es dinero real.</span>
         </div>
     </div>
     <div class="cartera-grafico-section">

@@ -365,3 +365,16 @@ h1 {
       width: auto;
     }
 }
+
+.exit {
+  margin-top: .5rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+  p {
+    color: #3261A8;
+    float: left;
+    cursor: pointer;
+  }
+}

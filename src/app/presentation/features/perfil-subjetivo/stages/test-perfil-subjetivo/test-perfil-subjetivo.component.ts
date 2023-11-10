@@ -200,7 +200,6 @@ export class TestPerfilSubjetivoComponent implements OnInit {
 
     /////Si es correcto Almaceno el perfil en el Perfil en Local
     this.entregarResultados().then((data) => {
-      debugger
       this.respuestasPerfil = data;
       // console.log("🚀 ~ file: test-perfil-subjetivo.component.ts:213 ~ TestPerfilSubjetivoComponent ~ this.entregarResultados ~ data:", data)
       this.respPerfilResultante = data.perfilInversor;
