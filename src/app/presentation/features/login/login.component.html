@@ -15,7 +15,7 @@
             </div>
 
             <h3>Ingresar a <span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h3>
-            <input type="text" [(ngModel)]="usuarioForm.email" name="email" id="email" placeholder="Email">
+            <!-- <input type="text" [(ngModel)]="usuarioForm.email" name="email" id="email" placeholder="Email">
 
             <input type="password" [(ngModel)]="usuarioForm.password" name="password" id="password"
                 placeholder="Contraseña">
@@ -28,7 +28,38 @@
 
             <div *ngIf="!loading; else showloading" class="btn-gral" (click)="loguearme()">
                 Iniciar sesión
-            </div>
+            </div> -->
+
+            <form (ngSubmit)="loguearme()" #formLogin="ngForm">
+
+                <input type="text" [(ngModel)]="usuarioForm.email" name="email" id="email" placeholder="Email" required
+                    #email="ngModel">
+
+                <div class="alert alert-danger error-message" [hidden]="email.valid ||email.pristine">
+                        El Email es obligatorio
+                </div>
+                
+                <input type="password" [(ngModel)]="usuarioForm.password" name="password" id="password"
+                    placeholder="Contraseña" required #pass="ngModel">
+                
+                <div class="alert alert-danger error-message" [hidden]="pass.valid ||pass.pristine">
+                        La Contraseña es obligatoria
+                </div>
+
+                <label *ngIf="errorLogin" for="{{errorLogin}}" class="alert alert-danger error-message">
+                    Error durante el Login... <br>Verifique los datos ingresados.
+                </label>
+
+                <label *ngIf="errorform" for="{{errorform}}" class="error-message">
+                    Recuerde completar los campos.
+                </label>
+
+                <div *ngIf="!loading; else showloading" class="btn-gral" >
+                    <button class="btn-gral-Grey" [disabled]="formLogin.invalid">
+                        Iniciar sesión
+                    </button>
+                </div>
+            </form>
             <ng-template #showloading>
                 <div class="btn-gral p-2">
                     <div class="spinner-border loading-spiner" role="status">

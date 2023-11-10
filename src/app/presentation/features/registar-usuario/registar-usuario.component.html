@@ -13,7 +13,46 @@
                 <p>Bienvenido a la plataforma donde aprenderás sobre el mercado.</p>
             </div>
             <h3>Registrese en <span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h3>
-            <input type="text" [(ngModel)]="usuarioForm.email" name="email" id="email" placeholder="Email">
+            <form (ngSubmit)="registrarUsuario()" #formRegistro="ngForm">
+
+                <input type="email" [(ngModel)]="usuarioForm.email" name="email" id="email" placeholder="Email" required #email="ngModel">
+
+                <div class="alert alert-danger error-message" [hidden]="email.valid ||email.pristine">
+                    El Email es obligatorio
+                </div>
+                <input type="password" [(ngModel)]="usuarioForm.password" name="password" id="password"
+                    placeholder="Contraseña" required #pass="ngModel">
+
+                <div class="alert alert-danger error-message" [hidden]="pass.valid ||pass.pristine">
+                    La Contraseña es obligatoria
+                </div>
+                <input type="text" [(ngModel)]="usuarioForm.username" name="username" id="username"
+                    placeholder="Nombre de usuario" required #user="ngModel">
+
+                <div class="alert alert-danger error-message" [hidden]="user.valid ||user.pristine">
+                    El Nombre de Usuario es obligatorio
+                </div>
+                <input type="text" [(ngModel)]="usuarioForm.name" name="name" id="name" placeholder="Nombre" required #name="ngModel"> 
+
+                <div class="alert alert-danger error-message" [hidden]="name.valid ||name.pristine">
+                    El Nombre es obligatorio
+                </div>
+                <input type="text" [(ngModel)]="usuarioForm.lastname" name="lastname" id="lastname"
+                    placeholder="Apellido"  required #lastName="ngModel" >
+
+
+                <div class="alert alert-danger error-message" [hidden]="lastName.valid ||lastName.pristine">
+                    El Apellido es obligatorio
+                </div>
+
+                <div *ngIf="!loading; else showloading" class="btn-gral">
+                    <button class="btn-gral-Grey" [disabled]="formRegistro.invalid">
+                        registrarme
+                    </button>
+                </div>
+            </form>
+
+            <!-- <input type="text" [(ngModel)]="usuarioForm.email" name="email" id="email" placeholder="Email">
 
             <input type="password" [(ngModel)]="usuarioForm.password" name="password" id="password"
                 placeholder="Contraseña">
@@ -24,17 +63,17 @@
             <input type="text" [(ngModel)]="usuarioForm.name" name="name" id="name" placeholder="Nombre" required>
 
             <input type="text" [(ngModel)]="usuarioForm.lastname" name="lastname" id="lastname" placeholder="Apellido"
-                required>
+                required> -->
 
-            <label *ngIf="errorReg" for="{{errorReg}}" class="error-message">
-                Error durante el registro... Verifique los datos ingresados.
+            <label *ngIf="errorReg" for="{{errorReg}}" class=" alert alert-danger  error-message">
+                Error durante el registro...<br> Verifique los datos ingresados.
             </label>
 
-            <label *ngIf="errorEntradas" for="{{errorReg}}" class="error-message">
+            <label *ngIf="errorEntradas" for="{{errorReg}}" class=" alert alert-danger error-message">
                 Error!Todos los campos son obligatorios.
             </label>
 
-            <div *ngIf="!loading; else showloading" class="btn-gral" (click)="registrarUsuario()">registrarme</div>
+            <!-- <div *ngIf="!loading; else showloading" class="btn-gral" (click)="registrarUsuario()">registrarme</div> -->
             <ng-template #showloading>
                 <div class="btn-gral p-2">
                     <div class="spinner-border loading-spiner" role="status">

@@ -85,5 +85,4 @@ export class RegistarUsuarioComponent implements OnInit {
     return true;
   }
 
-
 }

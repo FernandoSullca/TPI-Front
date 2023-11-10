@@ -99,27 +99,29 @@ export class LoginComponent implements OnInit {
 
 
   public verfificarUsuario() {
-    this.loading = true;
 
-    this.registroUsuarioService.buscarUsuario(this.usuarioForm.email).subscribe(
-      (usuarioRecibido: UsuarioAPI) => {
-        this.LocalStorageService.setUsuarioPerfilActualLocal(null);
-        this.LocalStorageService.RemovePerfilActualLocal();
-        this.LocalStorageService.removeItem('Username');
-        this.usuariodb = usuarioRecibido;
-        this.buscarPerfilUsuario(this.usuariodb).subscribe(
-          (perfilUsuario: PerfilInversorAPI | null) => {
-            this.AlmacenarUsuario_Perfil(perfilUsuario);
-          }
-        );
-      },
-      (error) => {
-        this.loading = false;
-        this.errorform = false;
-        this.errorLogin = true;
-        console.log("🚀 ~ file: login.component.ts:82 ~ LoginComponent ~ verfificarUsuario ~ errorLogin:", this.errorLogin)
-        console.error("Error al buscar Usuario", error);
-      });
+    console.log("Verificar Usuario");
+    // this.loading = true;
+
+    // this.registroUsuarioService.buscarUsuario(this.usuarioForm.email).subscribe(
+    //   (usuarioRecibido: UsuarioAPI) => {
+    //     this.LocalStorageService.setUsuarioPerfilActualLocal(null);
+    //     this.LocalStorageService.RemovePerfilActualLocal();
+    //     this.LocalStorageService.removeItem('Username');
+    //     this.usuariodb = usuarioRecibido;
+    //     this.buscarPerfilUsuario(this.usuariodb).subscribe(
+    //       (perfilUsuario: PerfilInversorAPI | null) => {
+    //         this.AlmacenarUsuario_Perfil(perfilUsuario);
+    //       }
+    //     );
+    //   },
+    //   (error) => {
+    //     this.loading = false;
+    //     this.errorform = false;
+    //     this.errorLogin = true;
+    //     console.log("🚀 ~ file: login.component.ts:82 ~ LoginComponent ~ verfificarUsuario ~ errorLogin:", this.errorLogin)
+    //     console.error("Error al buscar Usuario", error);
+    //   });
   }
 
   private AlmacenarUsuario_Perfil(perfilUsuario: PerfilInversorAPI | null) {
