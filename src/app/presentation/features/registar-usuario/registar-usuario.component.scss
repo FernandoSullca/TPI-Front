@@ -96,10 +96,28 @@ section.login {
 
             }
             
+            .btn-gral-Grey{
+                background-color: #495057;
+                color: white;
+                /* color: #000;*/
+                text-align: center;
+            }
+
             .error-message{
+                   display: flex;
                 color: red;
+                font-family: 'Poppins';
+                justify-content: center;
+                font-size: small;
             }
             
+            .alert-danger{
+
+            } 
+            .alert{
+                padding: 0.25rem;
+                border-radius: 0.75rem;
+            } 
         }
         p {
             text-align: center;
@@ -168,7 +186,7 @@ section.login {
         .login-content {
             width: 100%;
             padding-top: 10vh;
-
+            padding-bottom: 1rem;
             .brand {
                 display: initial;
             }
