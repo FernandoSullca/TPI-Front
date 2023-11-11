@@ -30,7 +30,7 @@
                 Iniciar sesión
             </div> -->
 
-            <form (ngSubmit)="loguearme()" #formLogin="ngForm">
+            <form (ngSubmit)="loguearme()" #formLogin="ngForm"   autocomplete="true">
 
                 <input type="text" [(ngModel)]="usuarioForm.email" name="email" id="email" placeholder="Email" required
                     #email="ngModel">
@@ -54,11 +54,20 @@
                     Recuerde completar los campos.
                 </label>
 
-                <div *ngIf="!loading; else showloading" class="btn-gral" >
+                <!-- <div *ngIf="!loading; else showloading" class="btn-gral" >
                     <button class="btn-gral-Grey" [disabled]="formLogin.invalid">
                         Iniciar sesión
                     </button>
+                </div> -->
+                <div *ngIf="!loading; else showloading" >
+                    <button class=" btn-gral btn-gral-Grey" [disabled]="formLogin.invalid">
+                        Iniciar sesión
+                    </button>
                 </div>
+                <!-- <button class=" btn-gral btn-gral-Grey" [disabled]="formLogin.invalid">
+                    Iniciar sesión
+                </button> -->
+           
             </form>
             <ng-template #showloading>
                 <div class="btn-gral p-2">
