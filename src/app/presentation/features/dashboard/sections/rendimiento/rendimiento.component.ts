@@ -6,15 +6,17 @@ import { HistoricoInstrumento, RendimientoTotalInstrumento } from 'src/app/core/
   templateUrl: './rendimiento.component.html',
   styleUrls: ['./rendimiento.component.scss']
 })
-export class RendimientoComponent implements OnInit{
-  public rendimientoInstrumento! : RendimientoTotalInstrumento[];
-  public historicoInstrumento! : HistoricoInstrumento[];
-  public historico1! : HistoricoInstrumento[];
+export class RendimientoComponent implements OnInit {
+  public rendimientoInstrumento!: RendimientoTotalInstrumento[];
+  public historicoInstrumento!: HistoricoInstrumento[];
+  public historico1!: HistoricoInstrumento[];
+  public typeMessage: string = '';
+
 
   ngOnInit(): void {
     this.obtenerRendimientoTotal();
   }
-  obtenerRendimientoTotal(){
+  obtenerRendimientoTotal() {
     this.rendimientoInstrumento = [
       {
         simbolo: 'AAPL',
@@ -31,7 +33,7 @@ export class RendimientoComponent implements OnInit{
         ultimoPrecio: 3000,
         precioInicialDeCompra: 2800,
         totalPorcentajeGeneral: 7.14,
-        totalGananaciaPerdidaPesos: 100,
+        totalGananaciaPerdidaPesos: 1000,
         totalValorizadoPesos: 15000
       },
       {
@@ -44,9 +46,9 @@ export class RendimientoComponent implements OnInit{
         totalValorizadoPesos: 2560
       }
     ];
-   
+
   }
-  obtenerHistoricoInstrumento(simbolo:string){
+  obtenerHistoricoInstrumento(simbolo: string) {
     this.historico1 = [
       {
         simbolo: simbolo,
@@ -73,5 +75,27 @@ export class RendimientoComponent implements OnInit{
         totalValorizadoDiario: 1620
       }
     ];
+  }
+  public mostrarVariacionPorcentual(valor: number) {
+    let textoPorcentual :string;
+    if (valor > 0) {
+      this.typeMessage = 'success';
+      textoPorcentual = `+${valor.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
+    } else {
+      this.typeMessage = 'error';
+      textoPorcentual = `${valor.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
+    }
+    return textoPorcentual;
+  }
+  public mostrarVariacionMonto(valor: number) {
+    let textoMonto :string;
+    if (valor > 0) {
+      this.typeMessage = 'success';
+      textoMonto = `+${valor.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    } else {
+      this.typeMessage = 'error';
+      textoMonto = `${valor.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+    return textoMonto;
   }
 }

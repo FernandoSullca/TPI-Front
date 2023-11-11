@@ -1,12 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { PortfolioSugerido } from 'src/app/core/models/portfolio-sugerido/portfolio-sugerido';
 import { PortfolioSugeridoService } from 'src/app/core/services/api/portfolio-sugerido/portfolio-sugerido.service';
 import { PricePanelService } from 'src/app/core/services/api/price-panel/price-panel.service';
 import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
 import { DashboardComponent } from 'src/app/presentation/features/dashboard/dashboard.component';
-import { PricePanelComponent } from 'src/app/presentation/features/dashboard/sections/price-panel/price-panel.component';
 
 @Component({
   selector: 'app-modal-sugerido',

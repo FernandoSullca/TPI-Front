@@ -27,12 +27,20 @@
               <div class="col overflow-hidden d-none d-xl-block"> {{item.cantidad}}</div>
               <div class="col overflow-hidden d-none d-xl-block">{{item.ultimoPrecio | formatoValor}}</div>
               <div class="col overflow-hidden d-xl-block">{{item.precioInicialDeCompra | formatoValor}}</div>
-              <div class="col overflow-hidden d-xl-block"> {{item.totalPorcentajeGeneral}}</div>
-              <div class="col overflow-hidden d-xl-block"> {{item.totalGananaciaPerdidaPesos}}</div>
-              <div class="col overflow-hidden d-xl-block"> {{item.totalValorizadoPesos}}</div>
+              <div class="col overflow-hidden d-xl-block"> 
+                <message class="card-text small-text" [textMessage]="mostrarVariacionPorcentual(item.totalPorcentajeGeneral)" [typeMessage]="typeMessage">
+                  {{mostrarVariacionPorcentual(item.totalPorcentajeGeneral)}}
+                </message>
+              </div>
+              <div class="col overflow-hidden d-xl-block"> 
+                <message class="card-text small-text" [textMessage]="mostrarVariacionMonto(item.totalGananaciaPerdidaPesos)" [typeMessage]="typeMessage">
+                  {{mostrarVariacionMonto(item.totalGananaciaPerdidaPesos)}}
+                </message>
+              </div>
+              <div class="col overflow-hidden d-xl-block"> {{item.totalValorizadoPesos | formatoValor}}</div>
             </div>
           </div>
-          <div class="col-sm-12 dropdown-menu" aria-labelledby="dropdownHistoricoInstrumento">
+          <div class="col-sm-12 dropdown-menu" aria-labelledby="dropdownHistoricoInstrumento" style="border: 2px solid #3261A8;">
             <div class="row text-center" style="font-weight: bold;">
               <div class="col d-none d-xl-block">Cantidad</div>
               <div class="col mobile-col">Fecha</div>
@@ -47,9 +55,17 @@
                   <div class="row text-center" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
                     <div class="col overflow-hidden d-none d-xl-block"> {{item.cantidad}}</div>
                     <div class="col overflow-hidden d-xl-block">{{item.fecha|fechaLocal}}</div>
-                    <div class="col overflow-hidden d-xl-block">{{item.porcentajeRendimiento}}</div>
-                    <div class="col overflow-hidden d-xl-block"> {{item.gananciaPerdidaDiaria}}</div>
-                    <div class="col overflow-hidden d-none d-xl-block"> {{item.totalValorizadoDiario}}</div>
+                    <div class="col overflow-hidden d-xl-block">
+                      <message class="card-text small-text" [textMessage]="mostrarVariacionPorcentual(item.porcentajeRendimiento)" [typeMessage]="typeMessage">
+                        {{mostrarVariacionPorcentual(item.porcentajeRendimiento)}}
+                      </message>
+                    </div>
+                    <div class="col overflow-hidden d-xl-block">
+                      <message class="card-text small-text" [textMessage]="mostrarVariacionMonto(item.gananciaPerdidaDiaria)" [typeMessage]="typeMessage">
+                        {{mostrarVariacionMonto(item.gananciaPerdidaDiaria)}}
+                      </message>
+                    </div>
+                    <div class="col overflow-hidden d-none d-xl-block"> {{item.totalValorizadoDiario | formatoValor}}</div>
                   </div>
                 </div>
               </div>
