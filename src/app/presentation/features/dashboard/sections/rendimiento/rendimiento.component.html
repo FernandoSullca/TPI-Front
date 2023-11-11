@@ -25,8 +25,8 @@
                 </strong>
               </div>
               <div class="col overflow-hidden d-none d-xl-block"> {{item.cantidad}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{item.ultimoPrecio}}</div>
-              <div class="col overflow-hidden d-xl-block">{{item.precioInicialDeCompra}}</div>
+              <div class="col overflow-hidden d-none d-xl-block">{{item.ultimoPrecio | formatoValor}}</div>
+              <div class="col overflow-hidden d-xl-block">{{item.precioInicialDeCompra | formatoValor}}</div>
               <div class="col overflow-hidden d-xl-block"> {{item.totalPorcentajeGeneral}}</div>
               <div class="col overflow-hidden d-xl-block"> {{item.totalGananaciaPerdidaPesos}}</div>
               <div class="col overflow-hidden d-xl-block"> {{item.totalValorizadoPesos}}</div>

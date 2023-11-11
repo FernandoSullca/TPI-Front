@@ -181,7 +181,7 @@ section {
       height: 100%;
      }
   }
-  @media(max-width:1600px) {
+  @media(max-width:1800px) {
     section {
       nav {
         width: 18rem;
@@ -276,10 +276,11 @@ section {
       }
     }
   }
-  @media (max-height: 1000px) {
+  @media (max-height: 920px) {
     section {
       .brand-box{
         height: auto !important;
+        margin:20% 10% 5% 10%!important;
       }
       nav {
         ul {
