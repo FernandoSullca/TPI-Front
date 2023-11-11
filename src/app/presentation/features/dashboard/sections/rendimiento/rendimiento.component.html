@@ -1,57 +1,72 @@
 <div class="container-fluid">
-    <div class="row text-center table-price">
-      <div class="text-start">
-        <h3>Rendimiento de cartera</h3>
-  
+  <div class="row text-center table-price">
+    <div class="text-start">
+      <h3>Rendimiento de cartera</h3>
+
+    </div>
+    <div class="col-sm-12">
+      <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
+        <div class="col mobile-col text-start">Simbolo</div>
+        <div class="col mobile-col">Cantidad</div>
+        <div class="col mobile-col">Último precio</div>
+        <div class="col mobile-col">Precio inicial de compra</div>
+        <div class="col d-none d-xl-block">Total porcentaje general</div>
+        <div class="col d-none d-xl-block">Total ganancia/perdida</div>
+        <div class="col mobile-col">Total valorizado general</div>
       </div>
-      <div class="col-sm-12">
-        <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
-          <div class="col mobile-col">Simbolo</div>
-          <div class="col d-none d-xl-block">Total dinero general</div>
-          <div class="col d-none d-xl-block">Total porcentaje general</div>
-          <div class="col mobile-col">Total valorizado general</div>
-        </div>
-        <div class="row filas">
-          <div>
-            <div class="fila-instrumento" data-toggle="modal" data-target="#myModal">
-              <div class="row">
-                <div class="col overflow-hidden text-start mobile-col">
-                  <strong>
-                  </strong>
-                </div>
-                <div class="col overflow-hidden d-none d-xl-block alinearDerecha"></div>
-                <div class="col overflow-hidden d-none d-xl-block">
-                  <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <div style="display: inline-block;">
-                    </div>
-                    <div style="display: inline-block;">
-                      <div></div>
+      <div class="row filas">
+        <div *ngFor="let item of rendimientoInstrumento; index as i">
+          <div class="fila-instrumento" data-toggle="dropdown" id="dropdownHistoricoInstrumento" (click)="obtenerHistoricoInstrumento(item.simbolo)">
+            <div class="row" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
+              <div class="col overflow-hidden text-start mobile-col">
+                <strong>
+                  {{item.simbolo}}
+                </strong>
+              </div>
+              <div class="col overflow-hidden d-none d-xl-block"> {{item.cantidad}}</div>
+              <div class="col overflow-hidden d-none d-xl-block">{{item.ultimoPrecio}}</div>
+              <div class="col overflow-hidden d-none d-xl-block">{{item.precioInicialDeCompra}}</div>
+              <div class="col overflow-hidden d-none d-xl-block"> {{item.totalPorcentajeGeneral}}</div>
+              <div class="col overflow-hidden d-none d-xl-block"> {{item.totalGananaciaPerdidaPesos}}</div>
+              <div class="col overflow-hidden d-none d-xl-block"> {{item.totalValorizadoPesos}}</div>
+            </div>
+          </div>
+          <div class="col-sm-12 dropdown-menu" aria-labelledby="dropdownHistoricoInstrumento">
+            <div class="row text-center" style="font-weight: bold;">
+              <div class="col mobile-col">Cantidad</div>
+              <div class="col mobile-col">fecha</div>
+              <div class="col mobile-col">Variación diaria porcentual</div>
+              <div class="col d-none d-xl-block">Variación diaria pesos</div>
+              <div class="col d-none d-xl-block">Total valorizado</div>
+              <div class="row filas">
+                <div *ngFor="let item of historico1; index as i">
+                  <div class="fila-historico-instrumento" data-toggle="dropdown" aria-expanded="false"
+                    id="dropdownHistoricoInstrumento">
+                    <div class="row text-center" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
+                      <div class="col overflow-hidden"> {{item.cantidad}}</div>
+                      <div class="col overflow-hidden d-none d-xl-block">{{item.fecha|fechaLocal}}</div>
+                      <div class="col overflow-hidden d-none d-xl-block">{{item.porcentajeRendimiento}}</div>
+                      <div class="col overflow-hidden d-none d-xl-block"> {{item.gananciaPerdidaDiaria}}</div>
+                      <div class="col overflow-hidden d-none d-xl-block"> {{item.totalValorizadoDiario}}</div>
                     </div>
                   </div>
                 </div>
-                <div class="col overflow-hidden mobile-col columna-verde alinearDerecha"></div>
-                <div class="col overflow-hidden mobile-col columna-verde alinearDerecha">
-                </div>
-                <div class="col overflow-hidden mobile-col columna-rojo alinearDerecha"></div>
-                <div class="col overflow-hidden mobile-col columna-rojo alinearDerecha"></div>
-                <div class="col overflow-hidden d-none d-xl-block alinearDerecha"></div>
-                <div class="col overflow-hidden d-none d-xl-block alinearDerecha"></div>
-                <div class="col overflow-hidden d-none d-xl-block alinearDerecha"></div>
-                <div class="col overflow-hidden d-none d-xl-block alinearDerecha"></div>
-                <div class="col overflow-hidden d-none d-xl-block alinearDerecha"></div>
               </div>
             </div>
           </div>
         </div>
-  
-        <ng-template #loading>
-          <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
-            <div class="spinner-border loading-spiner" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-            <h3>Cargando panel de precios ...</h3>
-          </div>
-        </ng-template>
       </div>
+
+      <ng-template #loading>
+        <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
+          <div class="spinner-border loading-spiner" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <h3>Cargando panel de precios ...</h3>
+        </div>
+      </ng-template>
     </div>
+  </div>
+
+
 </div>
