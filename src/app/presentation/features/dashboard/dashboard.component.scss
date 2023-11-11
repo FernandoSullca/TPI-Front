@@ -276,4 +276,17 @@ section {
       }
     }
   }
-  
+  @media (max-height: 1000px) {
+    section {
+      .brand-box{
+        height: auto !important;
+      }
+      nav {
+        ul {
+          li{
+            margin-bottom: 1vh !important;
+        }
+      }
+    }
+  }
+}

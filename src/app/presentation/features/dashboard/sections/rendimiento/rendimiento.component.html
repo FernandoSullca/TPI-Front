@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row text-center table-price">
+  <div class="row text-center table-rendimiento">
     <div class="text-start">
       <h3>Rendimiento de cartera</h3>
 
@@ -7,16 +7,17 @@
     <div class="col-sm-12">
       <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
         <div class="col mobile-col text-start">Simbolo</div>
-        <div class="col mobile-col">Cantidad</div>
-        <div class="col mobile-col">Último precio</div>
-        <div class="col mobile-col">Precio inicial de compra</div>
-        <div class="col d-none d-xl-block">Total porcentaje general</div>
-        <div class="col d-none d-xl-block">Total ganancia/perdida</div>
-        <div class="col mobile-col">Total valorizado general</div>
+        <div class="col d-none d-xl-block">Cantidad</div>
+        <div class="col d-none d-xl-block">Último precio</div>
+        <div class="col mobile-col">Precio inicial</div>
+        <div class="col mobile-col">Total porcentual</div>
+        <div class="col mobile-col">Total monto</div>
+        <div class="col mobile-col">Total valorizado</div>
       </div>
       <div class="row filas">
         <div *ngFor="let item of rendimientoInstrumento; index as i">
-          <div class="fila-instrumento" data-toggle="dropdown" id="dropdownHistoricoInstrumento" (click)="obtenerHistoricoInstrumento(item.simbolo)">
+          <div class="fila-instrumento" data-toggle="dropdown" id="dropdownHistoricoInstrumento"
+            (click)="obtenerHistoricoInstrumento(item.simbolo)">
             <div class="row" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
               <div class="col overflow-hidden text-start mobile-col">
                 <strong>
@@ -25,30 +26,30 @@
               </div>
               <div class="col overflow-hidden d-none d-xl-block"> {{item.cantidad}}</div>
               <div class="col overflow-hidden d-none d-xl-block">{{item.ultimoPrecio}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{item.precioInicialDeCompra}}</div>
-              <div class="col overflow-hidden d-none d-xl-block"> {{item.totalPorcentajeGeneral}}</div>
-              <div class="col overflow-hidden d-none d-xl-block"> {{item.totalGananaciaPerdidaPesos}}</div>
-              <div class="col overflow-hidden d-none d-xl-block"> {{item.totalValorizadoPesos}}</div>
+              <div class="col overflow-hidden d-xl-block">{{item.precioInicialDeCompra}}</div>
+              <div class="col overflow-hidden d-xl-block"> {{item.totalPorcentajeGeneral}}</div>
+              <div class="col overflow-hidden d-xl-block"> {{item.totalGananaciaPerdidaPesos}}</div>
+              <div class="col overflow-hidden d-xl-block"> {{item.totalValorizadoPesos}}</div>
             </div>
           </div>
           <div class="col-sm-12 dropdown-menu" aria-labelledby="dropdownHistoricoInstrumento">
             <div class="row text-center" style="font-weight: bold;">
-              <div class="col mobile-col">Cantidad</div>
-              <div class="col mobile-col">fecha</div>
+              <div class="col d-none d-xl-block">Cantidad</div>
+              <div class="col mobile-col">Fecha</div>
               <div class="col mobile-col">Variación diaria porcentual</div>
-              <div class="col d-none d-xl-block">Variación diaria pesos</div>
+              <div class="col mobile-col">Variación diaria pesos</div>
               <div class="col d-none d-xl-block">Total valorizado</div>
-              <div class="row filas">
-                <div *ngFor="let item of historico1; index as i">
-                  <div class="fila-historico-instrumento" data-toggle="dropdown" aria-expanded="false"
-                    id="dropdownHistoricoInstrumento">
-                    <div class="row text-center" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
-                      <div class="col overflow-hidden"> {{item.cantidad}}</div>
-                      <div class="col overflow-hidden d-none d-xl-block">{{item.fecha|fechaLocal}}</div>
-                      <div class="col overflow-hidden d-none d-xl-block">{{item.porcentajeRendimiento}}</div>
-                      <div class="col overflow-hidden d-none d-xl-block"> {{item.gananciaPerdidaDiaria}}</div>
-                      <div class="col overflow-hidden d-none d-xl-block"> {{item.totalValorizadoDiario}}</div>
-                    </div>
+            </div>
+            <div class="row historicoDiarioFilas">
+              <div *ngFor="let item of historico1; index as i">
+                <div class="fila-historico-instrumento" data-toggle="dropdown" aria-expanded="false"
+                  id="dropdownHistoricoInstrumento">
+                  <div class="row text-center" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
+                    <div class="col overflow-hidden d-none d-xl-block"> {{item.cantidad}}</div>
+                    <div class="col overflow-hidden d-xl-block">{{item.fecha|fechaLocal}}</div>
+                    <div class="col overflow-hidden d-xl-block">{{item.porcentajeRendimiento}}</div>
+                    <div class="col overflow-hidden d-xl-block"> {{item.gananciaPerdidaDiaria}}</div>
+                    <div class="col overflow-hidden d-none d-xl-block"> {{item.totalValorizadoDiario}}</div>
                   </div>
                 </div>
               </div>
