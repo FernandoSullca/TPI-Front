@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   API:'http://localhost:8080',
-  UPDATE_PRICE_PANEL_EVERY_SECONDS: 30
+  UPDATE_PRICE_PANEL_EVERY_SECONDS: 90
 };
 
 /*
