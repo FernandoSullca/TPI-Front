@@ -33,6 +33,7 @@ export class CarteraComponent implements OnInit {
   /// local-storage.service
   getCartera() {
     return this.carteraService.getCartera().subscribe((response) => {
+      console.log("🚀 ~ file: cartera.component.ts:36 ~ CarteraComponent ~ returnthis.carteraService.getCartera ~ response:", response)
       const { totalCartera = '', totalInstrumentos = '', totalMonedas = '' } = response;
 
       // TODO limpiar

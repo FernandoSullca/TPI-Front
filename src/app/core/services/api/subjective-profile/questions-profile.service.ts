@@ -3,6 +3,7 @@ import { Injectable, Output } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import axios from 'axios';
 import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
+import { UsuarioAPI } from 'src/app/core/models/API/Usuario-API.model'; 
 import { environment } from 'environments/environment';
 
 @Injectable({
@@ -37,19 +38,20 @@ export class QuestionsProfileService {
     return data;
   }
 
-  async TestSubjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI){
+  async TestSubjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI,username: String){
+   console.log("🚀 ~ file: questions-profile.service.ts:42 ~ QuestionsProfileService ~ TestSubjetivoResultadosObtenidos ~ username:", username)
+   console.log("🚀 ~ file: questions-profile.service.ts:41 ~ QuestionsProfileService ~ TestSubjetivoResultadosObtenidos ~ perfilInversorUsuario:", perfilInversorUsuario)
    
     const body = {
 
         "horizonteTemporal": perfilInversorUsuario.horizonteTemporal,
         "toleranciaRiesgo": perfilInversorUsuario.toleranciaRiesgo,
         "usuarioDTO": {
-          "version": 0,
-          "deleted": false,
-          "nombreUsuario": perfilInversorUsuario.UsuarioDTO.username,
+          "nombreUsuario": username,
         }
 
     }
+   
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-subjetivo`,body);
 
     const { data } = resp;

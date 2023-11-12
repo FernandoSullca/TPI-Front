@@ -9,7 +9,7 @@ import { environment } from 'environments/environment';
 })
 
 export class RegistroService {
- 
+
 
   private apiEndpoint = `${environment.API}/api/guardar-usuario`; // Reemplaza con la URL de la API real
 
@@ -39,30 +39,34 @@ export class RegistroService {
     return this.http.post(this.apiEndpoint, body);
   }
 
-  buscarUsuario(usuario: string):Observable<UsuarioAPI> {
+  buscarUsuario(usuario: string): Observable<UsuarioAPI> {
     return this.http.get<UsuarioAPI>(`${environment.API}/api/obtener-usuario/${usuario}`);
   }
-  
-/**********Registro Via Tohen*************/
+
+  loginUsuario(email: string, password: string): Observable<any> {
+    return this.http.post<UsuarioAPI>(`${environment.API}/login/iniciar-sesion`, { email, pass: password });
+  }
+
+  /**********Registro Via Tohen*************/
   registrarNuevoUsuario(usuario: any) {
-   console.log("🚀 ~ file: registro.service.ts:48 ~ RegistroService ~ registrarNuevoUsuario ~ usuario:", usuario)
+    console.log("🚀 ~ file: registro.service.ts:48 ~ RegistroService ~ registrarNuevoUsuario ~ usuario:", usuario)
     const body =
     {
       "nombre": usuario.name,
       "apellido": usuario.lastname,
       "nombre_usuario": usuario.username,
-      "email":  usuario.email,
-      "contraseña":  usuario.password
+      "email": usuario.email,
+      "contraseña": usuario.password
     }
     return this.http.post(`${environment.API}/api/guardar-usuario`, body);
   }
 
   ActivarConToken(token: string) {
-      
+
     const body =
     {
       "token": token,
-   
+
     }
     return this.http.post(`${environment.API}/api/activar-cuenta`, body);
   }

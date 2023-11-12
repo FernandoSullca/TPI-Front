@@ -36,7 +36,7 @@ export class PerfilSubjetivoResultadoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const storedProfile = this.localStorageService.getItem('perfil');
+    const storedProfile = this.localStorageService.getItem('perfilsubjetivo');
     if (storedProfile) {
     this.respPerfilResultante = storedProfile;  
     this.URLQRPerfil=this.QrLocal.solicitarQRLocal(this.respPerfilResultante);

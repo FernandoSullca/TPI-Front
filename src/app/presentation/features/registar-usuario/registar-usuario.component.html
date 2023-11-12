@@ -14,28 +14,44 @@
             </div>
             <h3>Registrese en <span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h3>
             <input type="text" [(ngModel)]="usuarioForm.email" name="email" id="email" placeholder="Email">
-
+            <div class="alert alert-danger error-message" *ngIf="!usuarioForm.email">
+                El Email es obligatorio
+            </div>
             <input type="password" [(ngModel)]="usuarioForm.password" name="password" id="password"
                 placeholder="Contraseña">
-
+            <div class="alert alert-danger error-message" *ngIf="!usuarioForm.password">
+                La Contraseña es obligatoria
+            </div>
             <input type="text" [(ngModel)]="usuarioForm.username" name="username" id="username"
                 placeholder="Nombre de usuario" required>
-
-            <input type="text" [(ngModel)]="usuarioForm.name" name="name" id="name" placeholder="Nombre" required>
-
+            <div class="alert alert-danger error-message" *ngIf="!usuarioForm.username">
+                El Nombre de Usuario es obligatorio
+            </div>
+            <input type="text" [(ngModel)]="usuarioForm.name" name="name" id="name" placeholder="Nombre" required autocomplete="on">
+            <div class="alert alert-danger error-message" *ngIf="!usuarioForm.name">
+                El Nombre es obligatorio
+            </div>
             <input type="text" [(ngModel)]="usuarioForm.lastname" name="lastname" id="lastname" placeholder="Apellido"
                 required>
-
-            <label *ngIf="errorReg" for="{{errorReg}}" class="error-message">
-                Error durante el registro... Verifique los datos ingresados.
+            <div class="alert alert-danger error-message" *ngIf="!usuarioForm.lastname">
+                El Apellido es obligatorio
+            </div>
+            <label *ngIf="errorReg" for="{{errorReg}}" class=" alert alert-danger  error-message">
+                Error durante el registro...<br> Verifique los datos ingresados.
             </label>
 
-            <label *ngIf="errorEntradas" for="{{errorReg}}" class="error-message">
+            <label *ngIf="errorEntradas" for="{{errorReg}}" class=" alert alert-danger error-message">
                 Error!Todos los campos son obligatorios.
             </label>
 
-            <div class="btn-gral" (click)="registrarUsuario()">registrarme</div>
-
+            <div *ngIf="!loading; else showloading" class="btn-gral" (click)="registrarUsuario()">registrarme</div>
+            <ng-template #showloading>
+                <div class="btn-gral p-2">
+                    <div class="spinner-border loading-spiner" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-template>
         </div>
 
         <div *ngIf="registro" class="fields-box">

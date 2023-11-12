@@ -16,9 +16,14 @@
 
             <h3>Ingresar a <span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h3>
             <input type="text" [(ngModel)]="usuarioForm.email" name="email" id="email" placeholder="Email">
-
+            <div class="alert alert-danger error-message" *ngIf="!usuarioForm.email">
+                El Email es obligatorio
+            </div>
             <input type="password" [(ngModel)]="usuarioForm.password" name="password" id="password"
                 placeholder="Contraseña">
+            <div class="alert alert-danger error-message" *ngIf="!usuarioForm.password">
+                La Contraseña es obligatoria
+            </div>
             <label *ngIf="errorLogin" for="{{errorLogin}}" class="error-message">
                 Error durante el Login... Verifique los datos ingresados.
             </label>
@@ -26,7 +31,16 @@
                 Recuerde completar los campos.
             </label>
 
-            <div class="btn-gral" (click)="loguearme()">Iniciar sesión</div>
+            <div *ngIf="!loading; else showloading" class="btn-gral" (click)="loguearme()">
+                Iniciar sesión
+            </div>
+            <ng-template #showloading>
+                <div class="btn-gral p-2">
+                    <div class="spinner-border loading-spiner" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-template>
             <div class="btn-secundario btn-gral " routerLink='/registrarme'>Registrarme</div>
         </div>
 

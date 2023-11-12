@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PerfilInversorAPI } from '../../models/API/Perfil-Inversor-API.model';
+import { UsuarioAPI } from '../../models/API/Usuario-API.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,6 @@ export class LocalStorageService {
   constructor() { }
 
   public perfilInversor: PerfilInversorAPI = {
-
     oid: 0,
     deleted: 0,
     version: 0,
@@ -31,8 +31,7 @@ export class LocalStorageService {
       email: "",
       cuentaConfirmada: false,
       activo: false,
-    },
-
+    }
   }
 
   // Métodos para guardar y obtener datos en localStorage
@@ -45,13 +44,12 @@ export class LocalStorageService {
     return item ? JSON.parse(item) : null;
   }
 
-  removeItem(key: string): void {
-    localStorage.removeItem(key);
+  removeAllItems() {
+    localStorage.clear();
   }
 
-
-  setUsuarioPerfilActualLocal(data: any) {
-    this.perfilInversor.UsuarioDTO = data;
+  removeItem(key: string): void {
+    localStorage.removeItem(key);
   }
 
   setPerfilSubjetivo(data: any) {
@@ -68,6 +66,14 @@ export class LocalStorageService {
 
   GetPerfilActualLocal() {
     return this.getItem("Perfil");
+  }
+
+  setUsuarioPerfilActualLocal(data: any) {
+    this.perfilInversor.UsuarioDTO = data;
+  }
+
+  GetUsuarioPerfilActualLocal() {
+    return this.getItem("Perfil").usuarioDTO;
   }
 
   RemovePerfilActualLocal() {
