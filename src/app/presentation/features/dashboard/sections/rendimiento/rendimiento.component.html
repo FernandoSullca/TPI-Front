@@ -28,13 +28,11 @@
               <div class="col overflow-hidden d-none d-xl-block">{{item.ultimoPrecio | formatoValor}}</div>
               <div class="col overflow-hidden d-xl-block">{{item.precioInicialDeCompra | formatoValor}}</div>
               <div class="col overflow-hidden d-xl-block"> 
-                <message class="card-text small-text" [textMessage]="mostrarVariacionPorcentual(item.totalPorcentajeGeneral)" [typeMessage]="typeMessage">
-                  {{mostrarVariacionPorcentual(item.totalPorcentajeGeneral)}}
+                <message class="card-text small-text" [textMessage]="item.totalPorcentajeGeneral| porcentajeValorCustomizado : 'porcentual'" [typeMessage]="validacionDeSigno(item.totalPorcentajeGeneral)">
                 </message>
               </div>
-              <div class="col overflow-hidden d-xl-block"> 
-                <message class="card-text small-text" [textMessage]="mostrarVariacionMonto(item.totalGananaciaPerdidaPesos)" [typeMessage]="typeMessage">
-                  {{mostrarVariacionMonto(item.totalGananaciaPerdidaPesos)}}
+              <div class="col overflow-hidden d-xl-block">
+                <message class="card-text small-text" [textMessage]="item.totalGananaciaPerdidaPesos| porcentajeValorCustomizado : 'monto'" [typeMessage]="validacionDeSigno(item.totalGananaciaPerdidaPesos)">
                 </message>
               </div>
               <div class="col overflow-hidden d-xl-block"> {{item.totalValorizadoPesos | formatoValor}}</div>
@@ -56,13 +54,11 @@
                     <div class="col overflow-hidden d-none d-xl-block"> {{item.cantidad}}</div>
                     <div class="col overflow-hidden d-xl-block">{{item.fecha|fechaLocal}}</div>
                     <div class="col overflow-hidden d-xl-block">
-                      <message class="card-text small-text" [textMessage]="mostrarVariacionPorcentual(item.porcentajeRendimiento)" [typeMessage]="typeMessage">
-                        {{mostrarVariacionPorcentual(item.porcentajeRendimiento)}}
+                      <message class="card-text small-text" [textMessage]="item.porcentajeRendimiento | porcentajeValorCustomizado : 'porcentual'" [typeMessage]="validacionDeSigno(item.porcentajeRendimiento)">
                       </message>
                     </div>
                     <div class="col overflow-hidden d-xl-block">
-                      <message class="card-text small-text" [textMessage]="mostrarVariacionMonto(item.gananciaPerdidaDiaria)" [typeMessage]="typeMessage">
-                        {{mostrarVariacionMonto(item.gananciaPerdidaDiaria)}}
+                      <message class="card-text small-text" [textMessage]="item.gananciaPerdidaDiaria| porcentajeValorCustomizado : 'monto'" [typeMessage]="validacionDeSigno(item.porcentajeRendimiento)">
                       </message>
                     </div>
                     <div class="col overflow-hidden d-none d-xl-block"> {{item.totalValorizadoDiario | formatoValor}}</div>
