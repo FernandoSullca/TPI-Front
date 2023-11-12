@@ -38,8 +38,8 @@ export class CarteraService {
 
 
   }
-  // {hola: "mundo"} typeof JSON ....>>>>> DolarBolsa
-  public async acreditarDinero(cantidad: number, concepto: string) {
+  
+  public async acreditarDinero(cantidad : number, concepto : string) {
     const body = {
       "cantidadPorAcreditar": cantidad,
       "concepto": concepto

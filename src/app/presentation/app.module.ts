@@ -10,7 +10,7 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { LandingComponent } from './features/landing/landing.component';
 import { CommonModule, DatePipe } from '@angular/common';
 
-import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
+import { HttpClientModule } from '@angular/common/http'; 
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { TestPerfilSubjetivoComponent } from './features/perfil-subjetivo/stages/test-perfil-subjetivo/test-perfil-subjetivo.component';
@@ -27,12 +27,15 @@ import { GraficoVelasComponent } from 'src/app/presentation/common/components/gr
 import { QRCodeModule } from 'angularx-qrcode';
 
 import { GraficoLineaComponent } from 'src/app/presentation/common/components/grafico-linea/grafico-linea.component';
-import { FormatoValorPipe } from 'src/app/presentation/common/pipes/pipe-formato-valor/formato-valor.pipe';
+import { FormatoValorPipe } from 'src/app/presentation/common/pipes/formato-valor/formato-valor.pipe';
 import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
 import { ModalSugeridoComponent } from './common/components/modal-sugerido/modal-sugerido.component';
 import { LoadingComponent } from './common/components/loading/loading.component';
 import { RegistarUsuarioComponent } from './features/registar-usuario/registar-usuario.component';
 import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta.component';
+import { RendimientoComponent } from './features/dashboard/sections/rendimiento/rendimiento.component';
+import { FechaLocalPipe } from './common/pipes/fecha-local/fecha-local.pipe';
+import { PorcentajeValorCustomizadoPipe } from './common/pipes/porcentaje-valor-customizado/porcentaje-valor-customizado.pipe';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,9 @@ import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta
     LoadingComponent,
     RegistarUsuarioComponent,
     ActivarCuentaComponent,
+    RendimientoComponent,
+    FechaLocalPipe,
+    PorcentajeValorCustomizadoPipe,
   ],
   imports: [
     BrowserModule,
