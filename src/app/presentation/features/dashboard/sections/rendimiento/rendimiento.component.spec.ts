@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RendimientoComponent } from './rendimiento.component';
+import { FormatoValorPipe } from 'src/app/presentation/common/pipes/formato-valor/formato-valor.pipe';
+import { MessageComponent } from 'src/app/presentation/common/components/message/message.component';
 
 describe('RendimientoComponent', () => {
   let component: RendimientoComponent;
@@ -8,7 +10,7 @@ describe('RendimientoComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RendimientoComponent]
+      declarations: [RendimientoComponent,FormatoValorPipe,MessageComponent]
     });
     fixture = TestBed.createComponent(RendimientoComponent);
     component = fixture.componentInstance;
