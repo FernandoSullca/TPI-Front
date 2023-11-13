@@ -1,9 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { HandleErrorApiService } from '../../manejo-errores/handle-error-api.service';
 import { Observable, catchError } from 'rxjs';
 import { HistoricoInstrumento, RendimientoTotalInstrumento } from 'src/app/core/models/rendimiento/rendimiento';
+import { LocalStorageService } from '../../LocalStorage/local-storage.service';
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -11,49 +13,26 @@ import { HistoricoInstrumento, RendimientoTotalInstrumento } from 'src/app/core/
 export class RendimientoService {
   public rendimientoInstrumento!: RendimientoTotalInstrumento[];
   public historicoInstrumento!: HistoricoInstrumento[];
-  resp = `${environment.API}/loQueSigue`;
-  constructor(private http: HttpClient,private handleErrorService : HandleErrorApiService ) {}
+  resp = `${environment.API}/rendimiento/instrumentos/actual`;
+  constructor(private http: HttpClient,private handleErrorService : HandleErrorApiService, private localStorage: LocalStorageService) {}
 
-  getRendimiento(): Observable<any>{
-    return this.http.get<any>(this.resp).pipe(
-      catchError((error)=>{
-        return this.handleErrorService.errorHandler(error);
-      })
-    );
+  getHeaders() {
+    const token = this.localStorage.getItem("token");
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return headers;
   }
-  obtenerRendimientoTotal() {
-    this.rendimientoInstrumento = [
-      {
-        simbolo: 'AAPL',
-        cantidad: 10,
-        ultimoPrecio: 160,
-        precioInicialDeCompra: 150,
-        totalPorcentajeGeneral: 6.67,
-        totalGananaciaPerdidaPesos: 100,
-        totalValorizadoPesos: 1600
-      },
-      {
-        simbolo: 'GOOGL',
-        cantidad: 5,
-        ultimoPrecio: 3000,
-        precioInicialDeCompra: 2800,
-        totalPorcentajeGeneral: 7.14,
-        totalGananaciaPerdidaPesos: 1000,
-        totalValorizadoPesos: 15000
-      },
-      {
-        simbolo: 'MSFT',
-        cantidad: 8,
-        ultimoPrecio: 320,
-        precioInicialDeCompra: 300,
-        totalPorcentajeGeneral: 6.67,
-        totalGananaciaPerdidaPesos: 160,
-        totalValorizadoPesos: 2560
-      }
-    ];
-    return this.rendimientoInstrumento;
 
-  }
+  public async getRendimiento()  {
+    const token = this.localStorage.getItem("token");
+    const resp = await axios.get(this.resp, {headers: {Authorization:`Bearer ${token}`}});
+
+    const { data } = resp;
+    return data;
+}
+ 
   obtenerHistoricoInstrumento(simbolo: string) {
     this.historicoInstrumento = [
       {
