@@ -1,8 +1,19 @@
 <div class="container-fluid">
   <div class="row text-center table-price">
     <div class="text-start">
-      <h3>Panel de Acciones</h3>
-
+      <h3>Panel precios</h3>
+    </div>
+    <div class="px-0">
+      <nav>
+        <div class="nav nav-tabs pestanias">
+          <button class="nav-link" [ngClass]="{'active': panel === 'acciones'}"
+            (click)="seleccionarPanel('acciones')">Acciones</button>
+          <button class="nav-link" [ngClass]="{'active': panel === 'bonos'}"
+            (click)="seleccionarPanel('bonos')">Bonos</button>
+          <button class="nav-link" [ngClass]="{'active': panel === 'cedears'}"
+            (click)="seleccionarPanel('cedears')">Cedears</button>
+        </div>
+      </nav>
     </div>
     <div class="col-sm-12">
       <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
@@ -18,17 +29,19 @@
         <div class="col d-none d-xl-block">Máximo</div>
         <div class="col d-none d-xl-block">Último Cierre</div>
         <div class="col d-none d-xl-block">Monto Operado</div>
+        <div class="col d-none d-xl-block">Acciones</div>
       </div>
       <div class="row filas" *ngIf="titulos.length > 1; else loading">
         <div *ngFor="let titulo of titulos; index as i;">
-          <div class="fila-instrumento" (click)="openModal(''+titulo.simbolo+'')" data-toggle="modal" data-target="#myModal">
+          <div class="fila-instrumento">
             <div class="row" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
               <div class="col overflow-hidden text-start mobile-col">
                 <strong>
                   {{titulo.simbolo}}
                 </strong>
               </div>
-              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.ultimoPrecio | formatoValor}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.ultimoPrecio | formatoValor}}
+              </div>
               <div class="col overflow-hidden d-none d-xl-block">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                   <div style="display: inline-block;">
@@ -42,32 +55,57 @@
                   </div>
                 </div>
               </div>
-              <div class="col overflow-hidden mobile-col columna-verde alinearDerecha">{{titulo.puntas?.cantidadCompra || "-"}}</div>
+              <div class="col overflow-hidden mobile-col columna-verde alinearDerecha">{{titulo.puntas?.cantidadCompra
+                || "-"}}</div>
               <div class="col overflow-hidden mobile-col columna-verde alinearDerecha"
-                [ngClass]="titulo.flashCompra !== 0 ? 'flash-neutro-verde': ''">{{titulo.puntas?.precioCompra |formatoValor}}
+                [ngClass]="titulo.flashCompra !== 0 ? 'flash-neutro-verde': ''">{{titulo.puntas?.precioCompra
+                |formatoValor}}
               </div>
               <div class="col overflow-hidden mobile-col columna-rojo alinearDerecha"
-                [ngClass]="titulo.flashVenta !== 0 ? 'flash-neutro-rojo': ''">{{titulo.puntas?.precioVenta | formatoValor}}
+                [ngClass]="titulo.flashVenta !== 0 ? 'flash-neutro-rojo': ''">{{titulo.puntas?.precioVenta
+                |
+                formatoValor}}
               </div>
-              <div class="col overflow-hidden mobile-col columna-rojo alinearDerecha">{{titulo.puntas?.cantidadVenta || '-'}}</div>
-              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.apertura | formatoValor}}</div>
-              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.minimo | formatoValor}}</div>
-              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.maximo | formatoValor}}</div>
-              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.ultimoCierre | formatoValor}}</div>
-              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.ultimoPrecio | formatoValor}}</div>
+              <div class="col overflow-hidden mobile-col columna-rojo alinearDerecha">{{titulo.puntas?.cantidadVenta
+                ||
+                '-'}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.apertura
+                | formatoValor}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.minimo
+                | formatoValor}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.maximo
+                | formatoValor}}</div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.ultimoCierre
+                | formatoValor}}
+              </div>
+              <div class="col overflow-hidden d-none d-xl-block alinearDerecha">{{titulo.ultimoPrecio
+                | formatoValor}}
+              </div>
+              <div class="col overflow-hidden d-none d-xl-inline-flex justify-content-around mx-0 px-0">
+                <div class="accion" (click)="openModal(''+titulo.simbolo+'')" data-toggle="modal"
+                  data-target="#myModal">
+                  <i class="fa-solid fa-chart-line mx-1" title="Ver grafico"></i>
+                </div>
+                <div class="accion" (click)="seleccionarInstrumento(''+titulo.simbolo+'')">
+                  <i class="fa-solid fa-money-bill-transfer" title="Operar"></i>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row float-end" *ngIf="lastUpdatePanel" style="margin-top: 0.5rem;">Última actualización del mercado real: {{lastUpdatePanel}}</div>
+      <div class="row float-end" *ngIf="lastUpdatePanel" style="margin-top: 0.5rem;">Última actualización del mercado
+        real: {{lastUpdatePanel}}</div>
 
       <ng-template #loading>
-        <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
+        <app-loading class="container-loading filas flex-column"
+          [textoLoading]="'Cargando panel de precios ...'"></app-loading>
+        <!-- <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
           <div class="spinner-border loading-spiner" role="status">
             <span class="sr-only">Loading...</span>
           </div>
           <h3>Cargando panel de precios ...</h3>
-        </div>
+        </div> -->
       </ng-template>
     </div>
   </div>
@@ -79,8 +117,8 @@
             <h3>Capturar orden</h3>
           </div>
           <div class="col-md-6 text-end">
-            <h3>Saldo: ARS. ${{totalDineroDisponible | formatoValor}}</h3>
-          </div>
+            <h3>Saldo: ARS. {{totalDineroDisponible | formatoValor}}</h3>
+            <span class="aclaracion">Recuerda: el saldo mostrado <strong>NO</strong> es dinero real.</span>          </div>
         </div>
         <div class="col d-flex justify-content-around" style="font-weight: 700; font-size: 18px;">
           <message [textMessage]="textMessage" [typeMessage]="typeMessage"></message>
@@ -110,20 +148,22 @@
       </div>
 
       <div class="row mb-3">
-        <div class="col d-flex justify-content-around">
+        <div *ngIf="!loadingButton; else showloading" class="col d-flex justify-content-around">
           <button type="button" class="boton btn btn-lg" (click)="vender()"
             style="background-color:#DC3545">VENDER</button>
           <button type="button" class="boton btn btn-lg" (click)="comprar()"
             style="background-color: #198754">COMPRAR</button>
         </div>
+        <ng-template #showloading>
+          <div class="col d-flex justify-content-around">
+            <div class="spinner-border loading-spiner" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </ng-template>
       </div>
-
-
-
     </div>
-
- 
-
   </div>
-  <app-modal *ngIf="modalService.isModalOpen()" [detalleInstrumento]="detalleInstrumento" [tipoModal]="tipoModal"></app-modal>
+  <app-modal *ngIf="modalService.isModalOpen()" [detalleInstrumento]="detalleInstrumento"
+    [tipoModal]="tipoModal"></app-modal>
 </div>

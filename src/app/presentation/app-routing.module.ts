@@ -16,11 +16,12 @@ import { PerfilInversorObjetivoPresentacionComponent } from './features/dashboar
 import { TestPerfilInversorObjetivoComponent } from './features/dashboard/sections/perfil-inversor-objetivo/stage/test-perfil-inversor-objetivo/test-perfil-inversor-objetivo.component';
 import { AdministrarComponent } from './features/dashboard/sections/administrar/administrar.component';
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
-import { RegistroComponent } from './common/components/registro/registro.component';
 import { DefaultPathComponent } from './features/default-path/default-path.component';
 import { RegistarUsuarioComponent } from './features/registar-usuario/registar-usuario.component';
 import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta.component';
 import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
+import { RendimientoComponent } from './features/dashboard/sections/rendimiento/rendimiento.component';
+import { LoadingComponent } from './common/components/loading/loading.component';
 
 
 
@@ -29,7 +30,6 @@ const routes: Routes = [
   { path: '', component: LandingComponent }, // Redirección por defecto
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
-  { path: "registro", component:  RegistroComponent},
   { path: "registrarme", component:  RegistarUsuarioComponent},
   { path: "activar-cuenta", component:  ActivarCuentaComponent},
   { path: "perfil", component:  PerfilSubjetivoComponent},
@@ -46,11 +46,12 @@ const routes: Routes = [
       { path: "Administrar", component: AdministrarComponent},
       { path: "Administrar-Preguntas", component: AdministrarPreguntasComponent},
       { path: "cartera", component: CarteraComponent},
-      { path: "prediccion", component : PrediccionComponent}
+      { path: "prediccion", component : PrediccionComponent},
+      { path: "rendimiento", component : RendimientoComponent}
     ],
   },
   // Otras rutas o manejo de errores
-  { path: '**', component: DefaultPathComponent }, // Manejo de rutas no encontradas
+  { path: '**', component: LoadingComponent }, // Manejo de rutas no encontradas
 ];
 
 @NgModule({

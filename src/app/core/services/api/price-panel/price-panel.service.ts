@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { environment } from 'environments/environment';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
+import { LocalStorageService } from '../../LocalStorage/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +11,10 @@ import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
 export class PricePanelService {
 
   private simbolos: string[] = [];
+  private instrumentoSeleccionado: string = "";
+  private behaviorSubjectIntrumentoSeleccionado = new BehaviorSubject<string>(this.instrumentoSeleccionado);
 
-  constructor() { }
+  constructor(private localStorage: LocalStorageService) { }
 
   mapToTitulos(resp: any) {
     const { data } = resp;
@@ -21,14 +25,13 @@ export class PricePanelService {
     });
   }
 
-  public async obtenerTitulos() {
-    const resp = await axios.get(`${environment.API}/panel/acciones`);
+  public async obtenerTitulos(panel: string) {
+    const resp = await axios.get(`${environment.API}/panel/${panel}`);
     return this.mapToTitulos(resp);
   }
 
 
   public getSimbolosEnMemoria(): string[] {
-    console.log(this.simbolos);
     return this.simbolos;
   }
   // todo separar logica
@@ -47,9 +50,21 @@ export class PricePanelService {
       "sentido": sentido, // venta
       "categoriaInstrumento": categoriaInstrumento
     }
-    const resp = await axios.post(`${environment.API}/orden/capturar`, body);
+    const token = this.localStorage.getItem("token");
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    };
+
+    const resp = await axios.post(`${environment.API}/orden/capturar`, body, { headers });
     const { data } = resp;
 
     return data;
+  }
+  setearSimboloDePortafolioSugerido(simbolo: string) {
+    this.behaviorSubjectIntrumentoSeleccionado.next(simbolo);
+  }
+  obtenerSimboloDePortafolioSugerido(): Observable<string> {
+    return this.behaviorSubjectIntrumentoSeleccionado.asObservable();
   }
 }

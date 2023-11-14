@@ -19,7 +19,8 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/dashboard/Administrar"> Carga de Archivo para administrar las pregunta y sus categorias</a>
+                Carga de Archivo para administrar las pregunta y sus categorias
+                <!-- <a class="navbar-brand" href="/dashboard/Administrar"> Carga de Archivo para administrar las pregunta y sus categorias</a> -->
             </div>
         </div>
     </nav>
@@ -38,7 +39,7 @@
                         <a data-toggle="collapse" data-target="#collapse0" class="ng-binding collapsed"
                             aria-expanded="false">Secciones
                             <i class="chevron fa fa-fw"></i>
-                        </a> <span class="badge ng-binding">0</span>
+                        </a> <span class="badge ng-binding">{{selectedFileSeccion?.size?1:0}}</span>
                         <a class="close-ribbon pull-right" ng-click="vm.removeDoc($index)"><i
                                 class="fa fa-times"></i></a>
                     </h4>
@@ -87,7 +88,7 @@
                                     Drop Images or PDFs files here.
                                 </li>
 
-                                <li *ngIf="selectedFile" ng-repeat="f in selectedFile?" class="list-group-item xlist ng-scope as-sortable-item"
+                                <li *ngIf="selectedFileSeccion" ng-repeat="f in selectedFile?" class="list-group-item xlist ng-scope as-sortable-item"
                                   data-as-sortable-item="" style="">
                                   <div class="row">
                                       <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
@@ -101,18 +102,20 @@
                                       <div class="col-lg-11 col-md-11 col-sm-7 col-xs-7">
                                           <div class="row">
                                               <div class="col-lg-5 col-md-5 col-sm-11 col-xs-10 wraptext ng-binding">
-                                                {{ selectedFile.name }}
+                                                {{ selectedFileSeccion.name }}
                                               </div>
                                               <div class="col-lg-2 col-md-2 hidden-sm hidden-xs ng-binding">
-                                                  {{selectedFile.size}}</div>
+                                                {{formattedSize}}</div>
                                               <div class="col-lg-2 col-md-2 hidden-sm hidden-xs ng-binding">
-                                                <!-- {{getShortFileType(selectedFile?.type)}}-->
+                                                {{formattedType}}
                                                 </div>
                                               <div class="col-lg-2 col-md-2 hidden-sm hidden-xs ng-binding">
-                                                {{selectedFile.lastModified | date: 'short'}}</div>
+                                                {{selectedFileSeccion.lastModified | date: 'short'}}</div>
                                               <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
                                                   <button type="button" class="btn btn-xs btn-danger"
-                                                      ng-click="vm.removeFile(doc.files,$index)">
+                                                      ng-click="vm.removeFile(doc.files,$index)"
+                                                      (click)="RemoveFile('Secciones')"
+                                                      >
                                                       <span><i class="fa fa-trash"></i></span>
                                                   </button>
                                               </div>
@@ -120,7 +123,7 @@
                                       </div>
                                   </div>
                                 </li>
-                                <ngb-progressbar [value]="uploadProgressSecciones" [striped]="true" [max]="100" [type]="typeProgressSecciones"></ngb-progressbar>
+                                <ngb-progressbar [value]="uploadProgressSecciones" [striped]="true" [max]="100" [type]="typeProgressSecciones">{{errorTipo}}</ngb-progressbar>
                             </ul>
                         </div>
                     </div>
@@ -137,7 +140,7 @@
                             data-as-sortable-item-handle=""></i>
                         <a data-toggle="collapse" data-target="#collapse1" class="ng-binding collapsed"
                             aria-expanded="false">Categorias<i class="chevron fa fa-fw"></i></a> <span
-                            class="badge ng-binding">0</span>
+                            class="badge ng-binding">{{selectedFileCategoria?.size?1:0}}</span>
                         <a class="close-ribbon pull-right" ng-click="vm.removeDoc($index)"><i
                                 class="fa fa-times"></i></a>
                     </h4>
@@ -183,7 +186,7 @@
                                     Drop Images or PDFs files here.
                                 </li>
                                 <!-- ngRepeat: f in doc.files -->
-                                <li *ngIf="selectedFile" ng-repeat="f in selectedFile?" class="list-group-item xlist ng-scope as-sortable-item"
+                                <li *ngIf="selectedFileCategoria" ng-repeat="f in selectedFile?" class="list-group-item xlist ng-scope as-sortable-item"
                                 data-as-sortable-item="" style="">
                                 <div class="row">
                                     <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
@@ -197,18 +200,19 @@
                                     <div class="col-lg-11 col-md-11 col-sm-7 col-xs-7">
                                         <div class="row">
                                             <div class="col-lg-5 col-md-5 col-sm-11 col-xs-10 wraptext ng-binding">
-                                              {{ selectedFile.name }}
+                                              {{ selectedFileCategoria.name }}
                                             </div>
                                             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs ng-binding">
-                                                {{selectedFile.size}}</div>
+                                                {{formattedSize}}</div>
                                             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs ng-binding">
-                                              <!-- {{getShortFileType(selectedFile?.type)}}-->
+                                              {{formattedType}}
                                               </div>
                                             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs ng-binding">
-                                              {{selectedFile.lastModified | date: 'short'}}</div>
+                                              {{selectedFileCategoria.lastModified | date: 'short'}}</div>
                                             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
                                                 <button type="button" class="btn btn-xs btn-danger"
-                                                    ng-click="vm.removeFile(doc.files,$index)">
+                                                    ng-click="vm.removeFile(doc.files,$index)"
+                                                    (click)="RemoveFile('Categorias')">
                                                     <span><i class="fa fa-trash"></i></span>
                                                 </button>
                                             </div>
@@ -216,7 +220,7 @@
                                     </div>
                                 </div>
                               </li>
-                              <ngb-progressbar [value]="uploadProgressCategorias" [striped]="true" [max]="100" [type]="typeProgressCategorias"></ngb-progressbar>
+                              <ngb-progressbar [value]="uploadProgressCategorias" [striped]="true" [max]="100" [type]="typeProgressCategorias">{{errorTipo}}</ngb-progressbar>
                                 <!-- ngRepeat: f in doc.files -->
                             </ul>
                         </div>
@@ -234,7 +238,7 @@
                             data-as-sortable-item-handle=""></i>
                         <a data-toggle="collapse" data-target="#collapse2" class="ng-binding collapsed"
                             aria-expanded="false">Preguntas<i class="chevron fa fa-fw"></i></a> <span
-                            class="badge ng-binding">0</span>
+                            class="badge ng-binding">{{selectedFilePregunta?.size?1:0}}</span>
                         <a class="close-ribbon pull-right" ng-click="vm.removeDoc($index)"><i
                                 class="fa fa-times"></i></a>
                     </h4>
@@ -242,10 +246,7 @@
                 </div>
                 <div id="collapse2" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                     <div class="panel-body">
-                        <!-- <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
-                            ngf-select="vm.addFiles($files,doc.files)" accept="*/*" multiple="multiple"
-                            ng-model="vm.files" ngf-max-height="1000" ngf-max-size="5MB">
-                            Select Files</button> -->
+
                             <button class="btn btn-primary ng-pristine ng-untouched ng-valid ng-empty"
                             ngf-select="vm.addFiles($files,doc.files)" (click)="openFileInput()" accept="*/*"
                             multiple="multiple" ng-model="vm.files" ngf-max-height="1000" ngf-max-size="5MB">
@@ -282,7 +283,7 @@
                                     Drop Images or PDFs files here.
                                 </li>
                                  <!-- ngRepeat: f in doc.files -->
-                                 <li *ngIf="selectedFile" ng-repeat="f in selectedFile?" class="list-group-item xlist ng-scope as-sortable-item"
+                                 <li *ngIf="selectedFilePregunta" ng-repeat="f in selectedFile?" class="list-group-item xlist ng-scope as-sortable-item"
                                  data-as-sortable-item="" style="">
                                  <div class="row">
                                      <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
@@ -296,18 +297,20 @@
                                      <div class="col-lg-11 col-md-11 col-sm-7 col-xs-7">
                                          <div class="row">
                                              <div class="col-lg-5 col-md-5 col-sm-11 col-xs-10 wraptext ng-binding">
-                                               {{ selectedFile.name }}
+                                               {{ selectedFilePregunta.name }}
                                              </div>
                                              <div class="col-lg-2 col-md-2 hidden-sm hidden-xs ng-binding">
-                                                 {{selectedFile.size}}</div>
+                                                 {{formattedSize}}</div>
                                              <div class="col-lg-2 col-md-2 hidden-sm hidden-xs ng-binding">
-                                               <!-- {{getShortFileType(selectedFile?.type)}}-->
+                                                {{formattedType}}
                                                </div>
                                              <div class="col-lg-2 col-md-2 hidden-sm hidden-xs ng-binding">
-                                               {{selectedFile.lastModified | date: 'short'}}</div>
+                                               {{selectedFilePregunta.lastModified | date: 'short'}}</div>
                                              <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
                                                  <button type="button" class="btn btn-xs btn-danger"
-                                                     ng-click="vm.removeFile(doc.files,$index)">
+                                                     ng-click="vm.removeFile(doc.files,$index)"
+                                                     (click)="RemoveFile('Preguntas')"
+                                                     >
                                                      <span><i class="fa fa-trash"></i></span>
                                                  </button>
                                              </div>
@@ -316,7 +319,7 @@
                                  </div>
                                </li>
                                 <!-- ngRepeat: f in doc.files -->
-                                <ngb-progressbar [value]="uploadProgressPreguntas" [striped]="true" [max]="100" [type]="typeProgressPreguntas"></ngb-progressbar>
+                                <ngb-progressbar [value]="uploadProgressPreguntas" [striped]="true" [max]="100" [type]="typeProgressPreguntas">{{errorTipo}}</ngb-progressbar>
                             </ul>
                         </div>
                     </div>
@@ -333,7 +336,7 @@
                             data-as-sortable-item-handle=""></i>
                         <a data-toggle="collapse" data-target="#collapse3" class="ng-binding collapsed"
                             aria-expanded="false">Respuestas<i class="chevron fa fa-fw"></i></a> <span
-                            class="badge ng-binding">0</span>
+                            class="badge ng-binding">{{selectedFileRespuesta?.size?1:0}}</span>
                         <a class="close-ribbon pull-right" ng-click="vm.removeDoc($index)"><i
                                 class="fa fa-times"></i></a>
                     </h4>
@@ -380,7 +383,7 @@
                                     Drop Images or PDFs files here.
                                 </li>
                                  <!-- ngRepeat: f in doc.files -->
-                                 <li *ngIf="selectedFile" ng-repeat="f in selectedFile?" class="list-group-item xlist ng-scope as-sortable-item"
+                                 <li *ngIf="selectedFileRespuesta" ng-repeat="f in selectedFile?" class="list-group-item xlist ng-scope as-sortable-item"
                                  data-as-sortable-item="" style="">
                                  <div class="row">
                                      <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
@@ -394,18 +397,20 @@
                                      <div class="col-lg-11 col-md-11 col-sm-7 col-xs-7">
                                          <div class="row">
                                              <div class="col-lg-5 col-md-5 col-sm-11 col-xs-10 wraptext ng-binding">
-                                               {{ selectedFile.name }}
+                                               {{ selectedFileRespuesta.name }}
                                              </div>
                                              <div class="col-lg-2 col-md-2 hidden-sm hidden-xs ng-binding">
-                                                 {{selectedFile.size}}</div>
+                                                 {{formattedSize}}</div>
                                              <div class="col-lg-2 col-md-2 hidden-sm hidden-xs ng-binding">
-                                               <!-- {{getShortFileType(selectedFile?.type)}}-->
+                                                {{formattedType}}
                                                </div>
                                              <div class="col-lg-2 col-md-2 hidden-sm hidden-xs ng-binding">
-                                               {{selectedFile.lastModified | date: 'short'}}</div>
+                                               {{selectedFileRespuesta.lastModified | date: 'short'}}</div>
                                              <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
                                                  <button type="button" class="btn btn-xs btn-danger"
-                                                     ng-click="vm.removeFile(doc.files,$index)">
+                                                     ng-click="vm.removeFile(doc.files,$index)"
+                                                     (click)="RemoveFile('Respuestas')"
+                                                >
                                                      <span><i class="fa fa-trash"></i></span>
                                                  </button>
                                              </div>
@@ -413,9 +418,8 @@
                                      </div>
                                  </div>
                                </li>
-                               <!-- <progress [value]="uploadProgress " role="progressbar" max="100"></progress> -->
-                               <ngb-progressbar [value]="uploadProgressRespuestas" [striped]="true" [max]="100" [type]="typeProgress"></ngb-progressbar>
-                               <!-- ngRepeat: f in doc.files -->
+
+                               <ngb-progressbar [value]="uploadProgressRespuestas" [striped]="true" [max]="100"  [type]="typeProgressRespuesta" >{{errorTipo}}</ngb-progressbar>
                             </ul>
                         </div>
                     </div>
@@ -430,6 +434,10 @@
     <!-- /***************Descarga de Archivo .xlsx************************/ -->
     <div class="container-descargar-template">
         <button class="btn btn-primary" (click)="downloadExcelTemplate()">Descargar Plantilla Excel</button>
+    </div>
+
+    <div class="exit">
+        <p (click)="loadAdministracion()">Administracion</p>
     </div>
 </div>
 <!-- /****************************************************************/ -->

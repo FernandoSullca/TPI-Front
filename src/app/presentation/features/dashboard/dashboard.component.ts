@@ -37,10 +37,7 @@ export class DashboardComponent implements OnInit {
   }
 
   cerrarSesion() {
-    /*this.localstorage.RemovePerfilActualLocal();
-    this.localstorage.removeItem("perfil");
-    this.localstorage.removeItem("horizonteTemporal"); 
-    this.localstorage.removeItem("toleranciaRiesgo"); */
+    this.localstorage.removeAllItems();
     this.router.navigate(["/"]);
   }
   obtenerPrecioDolarMEP(){

@@ -95,10 +95,38 @@ section.login {
                 margin-top: 2rem;
 
             }
+            .btn-gral-Grey{
+                width: 100%;
+                background-color: #495057;
+                color: white;
+                /* color: #000;*/
+                text-align: center;
+            }
+
+            .btn-gral-Grey:disabled{
+                background-color: #616468;
+                color: white;
+                /* color: #000;*/
+                text-align: center;
+            }
             .btn-secundario{
                 background-color: #FFF;
                 color: rgb(52 76 154);
             }
+            .error-message{
+                display: flex;
+                color: red;
+                font-family: 'Poppins';
+                justify-content: center;
+                font-size: small;
+            }
+            .alert-danger{
+
+            } 
+            .alert{
+                padding: 0.25rem;
+                border-radius: 0.75rem;
+            } 
             
         }
         p {

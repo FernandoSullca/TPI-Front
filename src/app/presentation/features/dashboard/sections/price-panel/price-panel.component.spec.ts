@@ -10,9 +10,9 @@ import { NgbModal, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule } from "@angular/forms";
 import { Titulo } from "src/app/core/models/price-panel/titulo.model";
 import { By } from "@angular/platform-browser";
-import { FormatoValorPipe } from "src/app/presentation/common/pipes/pipe-formato-valor/formato-valor.pipe";
+import { FormatoValorPipe } from "src/app/presentation/common/pipes/formato-valor/formato-valor.pipe";
 import { CarteraService } from "src/app/core/services/api/cartera/cartera.service";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { Cartera } from "src/app/core/models/cartera/cartera";
 
 describe('PricePanelComponent', () => {
@@ -36,7 +36,11 @@ describe('PricePanelComponent', () => {
         return resolver({})
       })
     },
-    getSimbolosEnMemoria: () => "texto"
+    getSimbolosEnMemoria: () => "texto",
+
+    setearSimboloDePortafolioSugerido: ()=> '',
+
+    obtenerSimboloDePortafolioSugerido: ()=>new Observable<string>
   }
   const carteraServiceStub = {
     getCartera: () => {
@@ -74,7 +78,7 @@ describe('PricePanelComponent', () => {
     // router = TestBed.inject(Router) as jasmine.SpyObj<Router>
     fixture.detectChanges();
   });
-
+  
   it('should create', () => {
     component.ngOnInit();
     expect(component).toBeTruthy();

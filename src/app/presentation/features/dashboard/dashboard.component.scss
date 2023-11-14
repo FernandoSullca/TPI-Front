@@ -199,7 +199,8 @@ section {
           li {
             font-size: .9rem;
             padding: 1rem 0.9rem;
-  
+            margin-bottom: 2vh !important;
+
             img {
               width: 1.4rem;
               height: 1.4rem;
@@ -276,4 +277,18 @@ section {
       }
     }
   }
-  
+  @media (max-height: 850px) {
+    section {
+      .brand-box{
+        height: auto !important;
+        margin:20% 10% 5% 10%!important;
+      }
+      nav {
+        ul {
+          li{
+            margin-bottom: 1vh !important;
+        }
+      }
+    }
+  }
+}

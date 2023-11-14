@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { UsuarioAPI } from 'src/app/core/models/API/Usuario-API.model';
-import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { RegistroService } from 'src/app/core/services/api/autorizacion/registro.service';
 
 @Component({
@@ -9,7 +7,7 @@ import { RegistroService } from 'src/app/core/services/api/autorizacion/registro
   templateUrl: './registar-usuario.component.html',
   styleUrls: ['./registar-usuario.component.scss']
 })
-export class RegistarUsuarioComponent implements OnInit{
+export class RegistarUsuarioComponent implements OnInit {
 
   usuarioForm: any = {
     username: '',
@@ -32,34 +30,41 @@ export class RegistarUsuarioComponent implements OnInit{
     activo: false
   }
 
+  loading = false;
   errorEntradas: boolean = false;
   errorReg: boolean = false;
   registro: boolean = false;
 
-  constructor(private registroUsuarioService: RegistroService
-    , private router: Router
-    , private LocalStorageService: LocalStorageService) { }
+  constructor(private registroUsuarioService: RegistroService) {
 
-    ngOnInit(): void {
+  }
+
+  ngOnInit(): void {
     this.errorReg = false;
-    }
+    
+    console.log("🚀 ~ file: registar-usuario.component.ts:45 ~ RegistarUsuarioComponent ~ ngOnInit ~ this.usuarioForm:", this.usuarioForm)
+  }
 
-  registrarUsuario() {
-  
+  public registrarUsuario() {
+
     console.log("🚀 ~ file: registar-usuario.component.ts:15 ~ RegistarUsuarioComponent ~ usuarioForm:", this.usuarioForm)
     console.log("🚀 ~ file: registar-usuario.component.ts:15 ~ RegistarUsuarioComponent ~ usuarioForm:", this.usuarioForm.password)
-    debugger;
     if (!this.validarCampos()) {
       this.errorEntradas = true;
       console.log("Error de campos enviados")
       return;
     }
+
+    this.loading = true;
+
     this.registroUsuarioService.registrarNuevoUsuario(this.usuarioForm).subscribe(
       (response) => {
+        this.loading = false;
         console.log('Usuario registrado con éxito', response);
         this.registro = true;
       },
       (error) => {
+        this.loading = false;
         this.errorReg = true;
         this.registro = false;
         console.error('Error al registrar el usuario', error);
@@ -81,8 +86,5 @@ export class RegistarUsuarioComponent implements OnInit{
     console.log("🚀 ~ file: registar-usuario.component.ts:65 ~ RegistarUsuarioComponent ~ validarCampos ~ usuarioForm:", this.usuarioForm)
     return true;
   }
-
-
-
 
 }

@@ -22,7 +22,7 @@
           <img src="/assets/image/foro.svg" alt=""><span>Foro</span> -->
           <!--           *ngIf="quantityNotifications > 0"
           {{quantityNotifications}}
- -->
+        -->
           <!-- <p class="notif">
             3
           </p>
@@ -30,14 +30,16 @@
         <li routerLink='/dashboard/cartera' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/cartera-icon.svg" alt=""><span>Mi Cuenta</span>
         </li>
-        <li routerLink='/dashboard/perfil-inversor-cuestionario' routerLinkActive="active" (click)="actionMenuMobile()">
+        <li routerLink='/dashboard/perfil-inversor' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/perfil-icon.svg" alt="">
           <span>Perfil Inversor</span>
           <p *ngIf="false" class="notif">1</p>
         </li>
         <li routerLink='/dashboard/precios' routerLinkActive="active" (click)="actionMenuMobile()">
-
           <img src="/assets/image/panel-precios-icon.svg" alt=""><span>Panel Precios</span>
+        </li>
+        <li routerLink='/dashboard/rendimiento' routerLinkActive="active" (click)="actionMenuMobile()">
+          <img src="/assets/image/rendimiento-icon.svg" alt=""><span>Rendimiento</span>
         </li>
         <li  routerLinkActive="active" routerLink='/dashboard/prediccion' (click)="actionMenuMobile()">
           <img src="/assets/image/prediccion-icon.svg" alt=""><span>Predicción</span>

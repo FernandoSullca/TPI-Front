@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AdministrarPreguntasService } from 'src/app/core/services/api/administracion/administrar-preguntas.service';
 import { NgbProgressbar, NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-administrar-preguntas',
   templateUrl: './administrar-preguntas.component.html',
@@ -9,6 +10,295 @@ import { NgbProgressbar, NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap
 
 export class AdministrarPreguntasComponent {
 
+
+
+  selectedFile: File | null = null;
+  selectedFileSeccion: File | null = null;
+  selectedFileCategoria: File | null = null;
+  selectedFilePregunta: File | null = null;
+  selectedFileRespuesta: File | null = null;
+  selectedFileName: string = 'Nombre del archivo: No seleccionado';
+  uploadProgress: number = 0;
+  uploadProgressSecciones: number = 0;
+  uploadProgressCategorias: number = 0;
+  uploadProgressPreguntas: number = 0;
+  uploadProgressRespuestas: number = 0;
+  typeProgress: string = "primary";
+  typeProgressSecciones: string = "primary";
+  typeProgressCategorias: string = "primary";
+  typeProgressPreguntas: string = "primary";
+  typeProgressRespuesta: string = "primary";
+
+  errorTipo: string = "";
+
+  constructor(private servicioPreguntasAPI_: AdministrarPreguntasService,
+    private configBar: NgbProgressbarConfig,
+    private router: Router) {
+
+  }
+  @ViewChild('fileInput') fileInput: ElementRef | undefined;
+  // selectedFile: File | null = null;
+  formattedSize: string = 'Tamaño no disponible';
+  formattedType: string = 'Tipo no disponible';
+  formattedLastModified: string = 'Última modificación no disponible';
+
+  openFileInput() {
+    console.log("SSolicitando menu");
+    if (this.fileInput) {
+      this.fileInput.nativeElement.click();
+    }
+
+  }
+  ///Seleccion Arrastrar y soltar
+  onFileSelected(event: Event) {
+    console.log("Selecionar Archivo con Soltar");
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    if (file) {
+      this.selectedFileSeccion = file;
+      this.selectedFileCategoria = file;
+      this.selectedFilePregunta = file;
+      this.selectedFileRespuesta = file;
+      this.selectedFile = file;
+      this.selectedFileName = `Nombre del archivo: ${file.name}`;
+
+    } else {
+      this.selectedFile = null;
+      this.selectedFileName = 'Nombre del archivo: No seleccionado';
+    }
+  }
+
+  /***************************** */
+  onFileSelectedSecciones(event: Event) {
+    console.log("Selecionar Archivo con Boton");
+    console.log("Area preguntas secciones")
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    this.asignacionDeArchivo(file);
+    // this.selectedFileSeccion=file;
+
+
+  }
+
+
+  onFileSelectedCategorias(event: Event) {
+    console.log("Area preguntas Categoria")
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    this.asignacionDeArchivo(file);
+    // this.selectedFileCategoria= null;
+
+  }
+
+  onFileSelectedPreguntas(event: Event) {
+    console.log("Area preguntas Preguntas")
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    this.asignacionDeArchivo(file);
+    // this.selectedFilePregunta= null;
+  }
+
+  onFileSelectedRespuestas(event: Event) {
+    console.log("Area preguntas Respuestas")
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    this.asignacionDeArchivo(file);
+    // this.selectedFileRespuesta= null;
+  }
+
+  private asignacionDeArchivo(file: File | undefined) {
+    console.log(file);
+    if (file) {
+      this.selectedFile = file;
+      this.selectedFileSeccion = file;
+      this.selectedFileCategoria = file;
+      this.selectedFilePregunta = file;
+      this.selectedFileRespuesta = file;
+      console.log(`Nombre del archivo: ${file.name}`);
+      this.construirDatosTabla(file);
+    }
+    else {
+      this.selectedFile = null;
+      this.selectedFileSeccion = null;
+      this.selectedFileCategoria = null;
+      this.selectedFilePregunta = null;
+      this.selectedFileRespuesta = null;
+      this.selectedFileName = 'Nombre del archivo: No seleccionado';
+    }
+  }
+
+  private construirDatosTabla(file: File) {
+    if (file.size !== undefined) {
+      this.formattedSize = `${(file.size / 1024 / 1024).toPrecision(2)} MB`;
+      console.log(this.formattedSize);
+    }
+    if (file.type !== undefined) {
+      const extension = file.name.split('.').pop();
+      console.log(`Extensión del archivo: ${extension}`);
+      // this.formattedType = file.type;
+
+      this.formattedType = extension !== undefined ? extension : 'Tipo no disponible';
+
+      console.log(this.formattedType);
+    }
+    if (file.lastModified !== undefined) {
+      this.formattedLastModified = new Date(file.lastModified).toLocaleDateString();
+      console.log(this.formattedLastModified);
+    }
+  }
+
+  uploadFileSecciones() {
+    console.log("uploadFileSecciones()");
+    this.errorTipo = "";
+    if (this.selectedFile) {
+
+      // Simula la carga del archivo y actualiza la barra de progreso
+      this.servicioPreguntasAPI_.CargarSeccionesExcel(this.selectedFile).subscribe(
+        (data) => {
+          // this.resp = data;
+          console.log('Todas las solicitudes se completaron con éxito');
+          // if (this.resp != null) {
+          this.uploadProgressSecciones = 100;
+          this.typeProgressSecciones = "success"
+          this.configBar.type = "success";
+          this.configBar.animated = true;
+        },
+        (error) => {
+          console.error('Error en la carga de datos', error);
+          console.info(error.error.message);
+          this.errorTipo = error.error.message;
+          this.uploadProgressSecciones = 50;
+          this.typeProgressSecciones = "danger"
+        }
+      );
+
+    }
+
+    if (!this.selectedFile) {
+      alert('Por favor, seleccione un archivo antes de cargarlo.');
+    }
+
+  }
+
+  uploadFileCategorias() {
+    console.log("uploadFileSecciones()");
+    this.errorTipo = "";
+    if (this.selectedFile) {
+
+      this.servicioPreguntasAPI_.CargarCategoriasExcel(this.selectedFile).subscribe(
+        (data) => {
+          // this.resp = data;
+          console.log('Todas las solicitudes se completaron con éxito');
+          // if (this.resp != null) {
+          this.uploadProgressCategorias = 100;
+          this.typeProgressCategorias = "success"
+          this.configBar.type = "success";
+          this.configBar.animated = true;
+        },
+        (error) => {
+          console.error('Error en la carga de datos', error);
+          console.info(error.error.message);
+          this.errorTipo = error.error.message;
+          this.uploadProgressCategorias = 50;
+          this.typeProgressCategorias = "danger"
+        }
+      );
+
+    }
+
+    if (!this.selectedFile) {
+      alert('Por favor, seleccione un archivo antes de cargarlo.');
+    }
+
+  }
+
+  uploadFilePreguntas() {
+    console.log("uploadFilePreguntas()");
+    this.errorTipo = "";
+    if (this.selectedFile) {
+
+      this.servicioPreguntasAPI_.CargarPreguntasExcel(this.selectedFile).subscribe(
+        (data) => {
+          console.log(data);
+          // this.resp = data;
+          console.log('Todas las solicitudes se completaron con éxito');
+          // if (this.resp != null) {
+          this.uploadProgressPreguntas = 100;
+          this.typeProgressPreguntas = "success"
+          this.configBar.type = "success";
+          this.configBar.animated = true;
+        },
+        (error) => {
+          console.error('Error en la carga de datos', error);
+          console.info(error.error.message);
+          this.errorTipo = error.error.message;
+          this.uploadProgressPreguntas = 50;
+          this.typeProgressPreguntas = "danger"
+        }
+      );
+
+    }
+
+    if (!this.selectedFile) {
+      alert('Por favor, seleccione un archivo antes de cargarlo.');
+    }
+
+  }
+
+  uploadFileRespuestas() {
+    console.log("uploadFileRespuestas");
+    this.errorTipo = "";
+    if (this.selectedFile) {
+      this.servicioPreguntasAPI_.CargarRespuestasExcel(this.selectedFile).subscribe(
+        (data) => {
+          console.log(data);
+          // this.resp = data;
+          console.log('Todas las solicitudes se completaron con éxito');
+          // if (this.resp != null) {
+          this.uploadProgressRespuestas = 100;
+          this.typeProgressRespuesta = "success"
+          this.configBar.type = "success";
+          this.configBar.animated = true;
+          // }
+        },
+        (error) => {
+          console.error('Error en la carga de datos', error);
+          console.info(error.error.message);
+          this.errorTipo = error.error.message;
+          this.uploadProgressRespuestas = 50;
+          this.typeProgressRespuesta = "danger"
+
+        }
+      );
+
+    }
+
+    if (!this.selectedFile) {
+      alert('Por favor, seleccione un archivo antes de cargarlo.');
+    }
+
+  }
+
+  RemoveFile(file: string) {
+    switch (file) {
+      case 'Secciones':
+        this.selectedFileSeccion = null;
+
+        break;
+      case 'Categorias':
+        this.selectedFileCategoria = null;
+
+        break;
+      case 'Preguntas':
+        this.selectedFilePregunta = null;
+
+        break;
+      case 'Respuestas':
+        this.selectedFileRespuesta = null;
+        break;
+    }
+
+  }
 
   downloadExcelTemplate() {
     this.servicioPreguntasAPI_.getExcelTemplate().subscribe((data) => {
@@ -22,369 +312,9 @@ export class AdministrarPreguntasComponent {
     });
   }
 
-  selectedFile: File | null = null;
-  selectedFileSeccion: File | null = null;
-  selectedFileCategoria: File | null = null;
-  selectedFilePregunta: File | null = null;
-  selectedFileRespuesta: File | null = null;
-  selectedFileName: string = 'Nombre del archivo: No seleccionado';
-  uploadProgress: number = 0;
-  uploadProgressSecciones: number=0;
-  uploadProgressCategorias: number=0;
-  uploadProgressPreguntas: number=0;
-  uploadProgressRespuestas: number=0;
-  typeProgress:string="primary";
-  typeProgressSecciones: string="primary";
-  typeProgressCategorias: string="primary";
-  typeProgressPreguntas: string="primary";
-
-  constructor(private servicioPreguntasAPI_: AdministrarPreguntasService,
-    private configBar: NgbProgressbarConfig) {
-    configBar.type = "success";
-  }
-  @ViewChild('fileInput') fileInput: ElementRef | undefined;
-  // selectedFile: File | null = null;
- formattedSize: string = 'Tamaño no disponible';
-  formattedType: string = 'Tipo no disponible';
-  formattedLastModified: string = 'Última modificación no disponible';
-
-  openFileInput() {
-    if (this.fileInput) {
-      this.fileInput.nativeElement.click();
-    }
-  }
-
- 
-
-  onFileSelected(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    const file = inputElement.files?.[0];
-    if (file) {
-      this.selectedFile = file;
-      console.log(this.selectedFile);
-      this.selectedFileName = `Nombre del archivo: ${file.name}`;
-
-    } else {
-      this.selectedFile = null;
-      this.selectedFileName = 'Nombre del archivo: No seleccionado';
-    }
-  }
-
-  /***************************** */
-  onFileSelectedSecciones(event: Event) {
-    console.log("Area preguntas secciones")
-    const inputElement = event.target as HTMLInputElement;
-    const file = inputElement.files?.[0];
-    console.log(file)
-    if (file) {
-      this.selectedFile = file;
-      console.log(`Nombre del archivo: ${file.name}`);
-      // Puedes realizar otras operaciones con el archivo aquí
-      // Formatear los valores
-      if (file.size !== undefined) {
-        this.formattedSize = `${(file.size / 1024 / 1024).toPrecision(2)} MB`;
-        console.log(this.formattedSize)
-      }
-      if (file.type !== undefined) {
-        this.formattedType = file.type;
-        console.log(this.formattedType)
-      }
-      if (file.lastModified !== undefined) {
-        this.formattedLastModified = new Date(file.lastModified).toLocaleDateString();
-        console.log(this.formattedLastModified)
-      }
-    }
-    else {
-      this.selectedFile = null;
-      this.selectedFileName = 'Nombre del archivo: No seleccionado';
-    }
-  }
-  onFileSelectedCategorias(event: Event) {
-    console.log("Area preguntas Categoria")
-    const inputElement = event.target as HTMLInputElement;
-    const file = inputElement.files?.[0];
-    console.log(file)
-    if (file) {
-      this.selectedFile = file;
-      console.log(`Nombre del archivo: ${file.name}`);
-      // Puedes realizar otras operaciones con el archivo aquí
-      // Formatear los valores
-      if (file.size !== undefined) {
-        this.formattedSize = `${(file.size / 1024 / 1024).toPrecision(2)} MB`;
-        console.log(this.formattedSize)
-      }
-      if (file.type !== undefined) {
-        this.formattedType = file.type;
-        console.log(this.formattedType)
-      }
-      if (file.lastModified !== undefined) {
-        this.formattedLastModified = new Date(file.lastModified).toLocaleDateString();
-        console.log(this.formattedLastModified)
-      }
-    }
-    else {
-      this.selectedFile = null;
-      this.selectedFileName = 'Nombre del archivo: No seleccionado';
-    }
-  }
-
-  onFileSelectedPreguntas(event: Event) {
-    console.log("Area preguntas Preguntas")
-    const inputElement = event.target as HTMLInputElement;
-    const file = inputElement.files?.[0];
-    console.log(file)
-    if (file) {
-      this.selectedFile = file;
-      console.log(`Nombre del archivo: ${file.name}`);
-      // Puedes realizar otras operaciones con el archivo aquí
-      // Formatear los valores
-      if (file.size !== undefined) {
-        this.formattedSize = `${(file.size / 1024 / 1024).toPrecision(2)} MB`;
-        console.log(this.formattedSize)
-      }
-      if (file.type !== undefined) {
-        this.formattedType = file.type;
-        console.log(this.formattedType)
-      }
-      if (file.lastModified !== undefined) {
-        this.formattedLastModified = new Date(file.lastModified).toLocaleDateString();
-        console.log(this.formattedLastModified)
-      }
-    }
-    else {
-      this.selectedFile = null;
-      this.selectedFileName = 'Nombre del archivo: No seleccionado';
-    }
-  }
-
-  onFileSelectedRespuestas(event: Event) {
-    console.log("Area preguntas Respuestas")
-    const inputElement = event.target as HTMLInputElement;
-    const file = inputElement.files?.[0];
-    console.log(file)
-    if (file) {
-      this.selectedFile = file;
-      console.log(`Nombre del archivo: ${file.name}`);
-      // Puedes realizar otras operaciones con el archivo aquí
-      // Formatear los valores
-      if (file.size !== undefined) {
-        this.formattedSize = `${(file.size / 1024 / 1024).toPrecision(2)} MB`;
-        console.log(this.formattedSize)
-      }
-      if (file.type !== undefined) {
-        this.formattedType = file.type;
-        console.log(this.formattedType)
-      }
-      if (file.lastModified !== undefined) {
-        this.formattedLastModified = new Date(file.lastModified).toLocaleDateString();
-        console.log(this.formattedLastModified)
-      }
-    }
-    else {
-      this.selectedFile = null;
-      this.selectedFileName = 'Nombre del archivo: No seleccionado';
-    }
-  }
-
-  uploadFile() {
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile, this.selectedFile.name);
-
-      // Simula la carga del archivo y actualiza la barra de progreso
-      const totalSize = this.selectedFile.size;
-      const chunkSize = 1024 * 1024; // Tamaño del fragmento (1 MB en este ejemplo)
-      let loaded = 0;
-
-      const uploadInterval = setInterval(() => {
-        if (loaded >= totalSize) {
-          clearInterval(uploadInterval);
-          return;
-        }
-
-        loaded += chunkSize;
-        this.uploadProgress = (loaded / totalSize) * 100;
-      }, 1000); // Actualiza la barra de progreso cada segundo
-
-
-      this.servicioPreguntasAPI_.CargarExcelDePreguntas(this.selectedFile).subscribe(
-        (data) => {
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // Puedes realizar acciones adicionales aquí 
-          // if (this.resp != null) {
-            this.uploadProgress = 100;
-          // }
-        },
-        (error) => {
-          console.error('Error en la carga de datos', error);
-          // Puedes manejar el error y mostrar un mensaje al usuario
-        }
-      );
-
-    }
-
-    if (!this.selectedFile) {
-      alert('Por favor, seleccione un archivo antes de cargarlo.');
-    }
+  loadAdministracion() {
+    this.router.navigate(['/dashboard/Administrar']);
 
   }
-  /***************************** */
-  uploadFileSecciones() {
-    console.log("uploadFileSecciones()");
-
-    console.log("----------");
-
-    console.log(this.selectedFile);
-
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile, this.selectedFile.name);
-
-      // Simula la carga del archivo y actualiza la barra de progreso
-      this.servicioPreguntasAPI_.CargarSeccionesExcel(this.selectedFile).subscribe(
-        (data) => {
-          console.log(data);
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // if (this.resp != null) {
-          this.uploadProgressPreguntas = 100;
-          this.typeProgressPreguntas="success"
-          this.configBar.type = "success";
-          this.configBar.animated = true;
-        },
-        (error) => {
-          console.error('Error en la carga de datos', error);
-    
-          this.uploadProgressSecciones= 50;
-          this.typeProgressSecciones="danger"
-        }
-      );
-
-    }
-
-    if (!this.selectedFile) {
-      alert('Por favor, seleccione un archivo antes de cargarlo.');
-    }
-
-  }
-
- uploadFileCategorias() {
-    console.log("uploadFileSecciones()");
-
-    console.log("----------");
-
-    console.log(this.selectedFile);
-
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile, this.selectedFile.name);
-
-      this.servicioPreguntasAPI_.CargarCategoriasExcel(this.selectedFile).subscribe(
-        (data) => {
-          console.log(data);
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // if (this.resp != null) {
-          this.uploadProgressCategorias = 100;
-          this.typeProgressCategorias="success"
-          this.configBar.type = "success";
-          this.configBar.animated = true;
-        },
-        (error) => {
-          console.error('Error en la carga de datos', error);
-    
-          this.uploadProgressCategorias = 50;
-          this.typeProgressCategorias="danger"
-        }
-      );
-
-    }
-
-    if (!this.selectedFile) {
-      alert('Por favor, seleccione un archivo antes de cargarlo.');
-    }
-
-  }
-
- 
-  uploadFilePreguntas() {
-    console.log("uploadFilePreguntas()");
-
-    console.log("----------");
-
-    console.log(this.selectedFile);
-
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile, this.selectedFile.name);
-
-
-      this.servicioPreguntasAPI_.CargarPreguntasExcel(this.selectedFile).subscribe(
-        (data) => {
-          console.log(data);
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // if (this.resp != null) {
-          this.uploadProgressPreguntas = 100;
-          this.typeProgressPreguntas="success"
-          this.configBar.type = "success";
-          this.configBar.animated = true;
-        },
-        (error) => {
-          console.error('Error en la carga de datos', error);
-    
-          this.uploadProgressPreguntas = 50;
-          this.typeProgressPreguntas="danger"
-        }
-      );
-
-    }
-
-    if (!this.selectedFile) {
-      alert('Por favor, seleccione un archivo antes de cargarlo.');
-    }
-
-  }
-
-  uploadFileRespuestas() {
-
-    console.log("uploadFileRespuestas");
-
-    console.log("----------");
-
-    console.log(this.selectedFile);
-
-    if (this.selectedFile) {
-      this.servicioPreguntasAPI_.CargarRespuestasExcel(this.selectedFile).subscribe(
-        (data) => {
-          console.log(data);
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // if (this.resp != null) {
-          this.uploadProgress = 100;
-          this.typeProgress="success"
-          this.configBar.type = "success";
-          this.configBar.animated = true;
-          // }
-        },
-        (error) => {
-          console.error('Error en la carga de datos', error);
-          this.uploadProgress = 50;
-          this.typeProgress="danger"
-          this.configBar.type = "danger";
-          this.configBar.textType= "danger";
-          this.configBar.animated = false;
-        }
-      );
-
-    }
-
-    if (!this.selectedFile) {
-      alert('Por favor, seleccione un archivo antes de cargarlo.');
-    }
-
-  }
-
 
 }

@@ -5,7 +5,6 @@ import { Observable, catchError } from 'rxjs';
 import { environment } from 'environments/environment';
 import { PortfolioSugerido } from 'src/app/core/models/portfolio-sugerido/portfolio-sugerido';
 import { LocalStorageService } from '../../LocalStorage/local-storage.service';
-import { TestPerfilInversorObjetivoComponent } from 'src/app/presentation/features/dashboard/sections/perfil-inversor-objetivo/stage/test-perfil-inversor-objetivo/test-perfil-inversor-objetivo.component';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,8 @@ import { TestPerfilInversorObjetivoComponent } from 'src/app/presentation/featur
 export class PortfolioSugeridoService {
 
   constructor(private http : HttpClient,private handleErrorService: HandleErrorApiService, private localStorage : LocalStorageService) { }
-  
+  private simboloSeleccionado : string = "";
+
   getPortfolioSugerido(tipoPerfil?:string,idProducto?:number): Observable<PortfolioSugerido[]>{
    
     if (idProducto == null) {
@@ -28,11 +28,8 @@ export class PortfolioSugeridoService {
     );
   }
   obtenerNuevoPortfolioSugerido(idProducto: number): Observable<any> {
-
-    var perfilInversorUsuario=this.localStorage.GetPerfilActualLocal();
-
-    var tipoPerfil = perfilInversorUsuario.perfilInversor
-    // debugger;
+    const perfilInversorUsuario=this.localStorage.GetPerfilActualLocal();
+    let tipoPerfil = perfilInversorUsuario.perfilInversor
    return this.getPortfolioSugerido(tipoPerfil, idProducto);
 }
 }

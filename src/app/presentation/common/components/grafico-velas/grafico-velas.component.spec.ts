@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GraficoVelasComponent } from './grafico-velas.component';
-import { FormatoValorPipe } from '../../pipes/pipe-formato-valor/formato-valor.pipe';
+import { FormatoValorPipe } from '../../pipes/formato-valor/formato-valor.pipe';
 import { SolapaDetalleInstrumento } from 'src/app/core/models/detalle-instrumento/detalle-instrumento';
 
   describe('GraficoVelasComponent', () => {
