@@ -23,10 +23,12 @@ export class CarteraComponent implements OnInit {
   fechaCompletaDolarMEP: string = '';
   tituloGraficoTorta : string ="Instrumentos en posesión";
   tituloGraficoLinea : string ="Mi progreso";
+  
 
   ngOnInit(): void {
     this.getCartera();
-    this.generarAleatorioTotalValorizado()
+    this.generarAleatorioTotalValorizado();
+    const intrumentosEnPosicion = localStorage.getItem('miDato');
   }
   // core      |||||   component
   // llamado a api  !== exceso logica en componente angular

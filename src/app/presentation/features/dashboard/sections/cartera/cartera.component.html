@@ -39,10 +39,15 @@
             <span class="aclaracion">Recuerda: el saldo mostrado <strong>NO</strong> es dinero real.</span>
         </div>
     </div>
-    <div class="cartera-grafico-section">
-        <app-grafico *ngIf="cartera.cantidadPorInstrumento" [datosGrafico]="cartera.cantidadPorInstrumento"
-            [tipoGrafico]="tipoGrafico" [tituloGrafico]='tituloGraficoTorta'></app-grafico>
+    <div *ngIf="!cartera.totalInstrumentos; else AdquirirInstrumento">
+        asdasdasdasdasdasdasd
     </div>
+    <ng-template #AdquirirInstrumento>
+        <div class="cartera-grafico-section" >
+            <app-grafico *ngIf="cartera.cantidadPorInstrumento" [datosGrafico]="cartera.cantidadPorInstrumento"
+                [tipoGrafico]="tipoGrafico" [tituloGrafico]='tituloGraficoTorta'></app-grafico>
+        </div>
+    </ng-template>
     <div class="perfil">
         <b>
             <h3>Todavía no realizaste el test</h3>
