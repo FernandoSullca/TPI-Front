@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit {
   }
 
   cerrarSesion() {
+    this.localstorage.removeAllItems();
     this.router.navigate(["/"]);
   }
   obtenerPrecioDolarMEP(){

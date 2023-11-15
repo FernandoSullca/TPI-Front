@@ -44,6 +44,10 @@ export class LocalStorageService {
     return item ? JSON.parse(item) : null;
   }
 
+  removeAllItems() {
+    localStorage.clear();
+  }
+
   removeItem(key: string): void {
     localStorage.removeItem(key);
   }

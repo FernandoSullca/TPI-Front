@@ -41,6 +41,8 @@ export class RegistarUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.errorReg = false;
+    
+    console.log("🚀 ~ file: registar-usuario.component.ts:45 ~ RegistarUsuarioComponent ~ ngOnInit ~ this.usuarioForm:", this.usuarioForm)
   }
 
   public registrarUsuario() {

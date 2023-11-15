@@ -19,27 +19,34 @@ export class CarteraService {
   resp = `${environment.API}/cartera/valuacion/total`;
   constructor(private http: HttpClient, private handleErrorService: HandleErrorApiService, private localStorage: LocalStorageService) { }
 
-  getCartera(): Observable<Cartera> {
+
+  getHeaders() {
     const token = this.localStorage.getItem("token");
-    const headers = new HttpHeaders ({
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<Cartera>(this.resp, { headers }).pipe(
+    return headers;
+  }
+
+  getCartera(): Observable<Cartera> {
+    return this.http.get<Cartera>(this.resp, { headers: this.getHeaders() }).pipe(
       catchError((error) => {
         return this.handleErrorService.errorHandler(error);
       })
     );
+
+
   }
-  // {hola: "mundo"} typeof JSON ....>>>>> DolarBolsa
-  public async acreditarDinero(cantidad: number, concepto: string) {
+  
+  public async acreditarDinero(cantidad : number, concepto : string) {
     const body = {
       "cantidadPorAcreditar": cantidad,
       "concepto": concepto
     }
 
     try {
-      const resp = await axios.post(`${environment.API}/cartera/acreditar/dinero`, body);
+      const resp = await axios.post(`${environment.API}/cartera/acreditar/dinero`, body, { headers: { Authorization: 'Bearer ' + this.localStorage.getItem("token") } });
       console.info(resp.data)
     } catch (error) {
       console.error('Error al acreditar dinero:', error);

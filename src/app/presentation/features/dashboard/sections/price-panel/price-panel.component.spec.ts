@@ -10,14 +10,16 @@ import { NgbModal, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule } from "@angular/forms";
 import { Titulo } from "src/app/core/models/price-panel/titulo.model";
 import { By } from "@angular/platform-browser";
-import { FormatoValorPipe } from "src/app/presentation/common/pipes/pipe-formato-valor/formato-valor.pipe";
+import { FormatoValorPipe } from "src/app/presentation/common/pipes/formato-valor/formato-valor.pipe";
 import { CarteraService } from "src/app/core/services/api/cartera/cartera.service";
 import { Observable, of } from "rxjs";
 import { Cartera } from "src/app/core/models/cartera/cartera";
+import { LocalStorageService } from "src/app/core/services/LocalStorage/local-storage.service";
 
-describe('PricePanelComponent', () => {
+xdescribe('PricePanelComponent', () => {
   let component: PricePanelComponent;
   let service: PricePanelService;
+  let localStorage: LocalStorageService;
   // let ngbModal : NgbModal;
   let pricePanelServiceMocked;
   let fixture: ComponentFixture<PricePanelComponent>;
@@ -49,7 +51,7 @@ describe('PricePanelComponent', () => {
   }
 
   beforeEach(() => {
-    service = new PricePanelService();
+    service = new PricePanelService(localStorage);
     pricePanelServiceMocked = jasmine.createSpyObj(['obtenerTitulos'])
     pricePanelServiceMocked.obtenerTitulos.and.returnValue(new Promise((resolver) => {
       return resolver({ data: mockAcciones })

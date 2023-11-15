@@ -91,7 +91,11 @@
       }
     }
 }
-
+@media (max-width: 480px) {
+  h5{
+    text-align: center;
+  }
+}
 @media (max-width: 770px) {
     .container-fluid{
         flex-direction: column;

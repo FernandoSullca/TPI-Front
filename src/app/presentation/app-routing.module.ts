@@ -20,6 +20,7 @@ import { DefaultPathComponent } from './features/default-path/default-path.compo
 import { RegistarUsuarioComponent } from './features/registar-usuario/registar-usuario.component';
 import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta.component';
 import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
+import { RendimientoComponent } from './features/dashboard/sections/rendimiento/rendimiento.component';
 import { LoadingComponent } from './common/components/loading/loading.component';
 
 
@@ -45,7 +46,8 @@ const routes: Routes = [
       { path: "Administrar", component: AdministrarComponent},
       { path: "Administrar-Preguntas", component: AdministrarPreguntasComponent},
       { path: "cartera", component: CarteraComponent},
-      { path: "prediccion", component : PrediccionComponent}
+      { path: "prediccion", component : PrediccionComponent},
+      { path: "rendimiento", component : RendimientoComponent}
     ],
   },
   // Otras rutas o manejo de errores
