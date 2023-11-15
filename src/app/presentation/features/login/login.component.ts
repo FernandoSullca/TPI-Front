@@ -56,10 +56,20 @@ export class LoginComponent implements OnInit {
       console.log("Error de campos enviados");
       return
     }
-
+    this.loginAdministrador();
     this.loginUsuario();
     // this.verfificarUsuario();
 
+  }
+  loginAdministrador() {
+    this.loading = true;
+    this.registroUsuarioService.loginAdministrador(this.usuarioForm.email, this.usuarioForm.password).subscribe(
+      (data) => {
+        this.loading = false;
+        this.navegarAHomeAdministrador();
+      },
+      (error) => { 
+      });
   }
 
   public loginUsuario() {
@@ -161,6 +171,10 @@ export class LoginComponent implements OnInit {
 
   navegarAHome() {
     this.router.navigate(['dashboard/cartera']);
+  }
+  
+  navegarAHomeAdministrador() {
+    this.router.navigate(['dashboard/administrar']);
   }
 
 }
