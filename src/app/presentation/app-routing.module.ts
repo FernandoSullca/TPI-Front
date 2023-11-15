@@ -43,15 +43,15 @@ const routes: Routes = [
       { path: 'precios', component: PricePanelComponent },
       { path: "perfil-inversor", component: PerfilInversorObjetivoPresentacionComponent},
       { path: "perfil-inversor-cuestionario", component: TestPerfilInversorObjetivoComponent},
-      { path: "Administrar", component: AdministrarComponent},
-      { path: "Administrar-Preguntas", component: AdministrarPreguntasComponent},
+      { path: "administrar", component: AdministrarComponent},
+      { path: "administrar-Preguntas", component: AdministrarPreguntasComponent},
       { path: "cartera", component: CarteraComponent},
       { path: "prediccion", component : PrediccionComponent},
       { path: "rendimiento", component : RendimientoComponent}
     ],
   },
   // Otras rutas o manejo de errores
-  { path: '**', component: LoadingComponent }, // Manejo de rutas no encontradas
+  { path: '**', component: DefaultPathComponent}, // Manejo de rutas no encontradas
 ];
 
 @NgModule({

@@ -72,7 +72,7 @@ export class RegistroService {
     return this.http.post(`${environment.API}/api/activar-cuenta`, body);
   }
 
-  loginAdministrador(email: any, password: any) {
+  loginAdministrador(email: any, password: any) :Observable<any>{
     return this.http.post<UsuarioAPI>(`${environment.API}/login/iniciar-administrador`, { email, pass: password });
   }
 }

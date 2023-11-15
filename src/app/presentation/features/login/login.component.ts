@@ -61,14 +61,19 @@ export class LoginComponent implements OnInit {
     // this.verfificarUsuario();
 
   }
-  loginAdministrador() {
+  public loginAdministrador() {
     this.loading = true;
     this.registroUsuarioService.loginAdministrador(this.usuarioForm.email, this.usuarioForm.password).subscribe(
       (data) => {
+        console.log("🚀 ~ file: login.component.ts:68 ~ LoginComponent ~ loginAdministrador ~ data:", data)
+        // if(data.UsuarioAPI.isdamin){
         this.loading = false;
+        this.LocalStorageService.setItem("token", data.token);
         this.navegarAHomeAdministrador();
+      // }
       },
       (error) => { 
+        // console.log("Login usuario", this.errorLogin)
       });
   }
 
@@ -106,7 +111,6 @@ export class LoginComponent implements OnInit {
         console.error("Error al buscar Usuario", error);
       });
   }
-
 
   public verfificarUsuario() {
 
