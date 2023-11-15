@@ -8,8 +8,6 @@
       <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
         <div class="col mobile-col text-start">Simbolo</div>
         <div class="col d-none d-xl-block">Cantidad</div>
-        <div class="col d-none d-xl-block">Último precio</div>
-        <div class="col mobile-col">Precio inicial</div>
         <div class="col mobile-col">Total porcentual</div>
         <div class="col mobile-col">Total monto</div>
         <div class="col mobile-col">Total valorizado</div>
@@ -25,8 +23,6 @@
                 </strong>
               </div>
               <div class="col overflow-hidden d-none d-xl-block"> {{item.cantidad}}</div>
-              <div class="col overflow-hidden d-none d-xl-block">{{item.ultimoPrecio | formatoValor}}</div>
-              <div class="col overflow-hidden d-xl-block">{{item.precioInicialDeCompra | formatoValor}}</div>
               <div class="col overflow-hidden d-xl-block"> 
                 <message class="card-text small-text" [textMessage]="item.totalPorcentajeGeneral| porcentajeValorCustomizado : 'porcentual'" [typeMessage]="validacionDeSigno(item.totalPorcentajeGeneral)">
                 </message>

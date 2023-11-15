@@ -13,7 +13,8 @@ import axios from 'axios';
 export class RendimientoService {
   public rendimientoInstrumento!: RendimientoTotalInstrumento[];
   public historicoInstrumento!: HistoricoInstrumento[];
-  resp = `${environment.API}/rendimiento/instrumentos/actual`;
+  respRendimientoActual = `${environment.API}/rendimiento/instrumentos/actual`;
+  respRendimientoHistorico = `${environment.API}/rendimiento/instrumentos/historico`;
   constructor(private http: HttpClient,private handleErrorService : HandleErrorApiService, private localStorage: LocalStorageService) {}
 
   getHeaders() {
@@ -27,39 +28,22 @@ export class RendimientoService {
 
   public async getRendimiento()  {
     const token = this.localStorage.getItem("token");
-    const resp = await axios.get(this.resp, {headers: {Authorization:`Bearer ${token}`}});
+    const resp = await axios.get(this.respRendimientoActual, {headers: {Authorization:`Bearer ${token}`}});
 
     const { data } = resp;
+    debugger;
     return data;
 }
  
-  obtenerHistoricoInstrumento(simbolo: string) {
-    this.historicoInstrumento = [
-      {
-        simbolo: simbolo,
-        cantidad: 10,
-        fecha: new Date('2023-11-08'),
-        porcentajeRendimiento: 1.5,
-        gananciaPerdidaDiaria: 15,
-        totalValorizadoDiario: 1600
-      },
-      {
-        simbolo: simbolo,
-        cantidad: 10,
-        fecha: new Date('2023-11-09'),
-        porcentajeRendimiento: -0.8,
-        gananciaPerdidaDiaria: -8,
-        totalValorizadoDiario: 1585
-      },
-      {
-        simbolo: simbolo,
-        cantidad: 10,
-        fecha: new Date('2023-11-10'),
-        porcentajeRendimiento: 2.3,
-        gananciaPerdidaDiaria: 23,
-        totalValorizadoDiario: 1620
-      }
-    ];
-    return this.historicoInstrumento;
+  public async obtenerHistoricoInstrumento(simbolo: string) {
+    const body = {
+      simboloInstrumento: simbolo
+    }
+
+    const token = this.localStorage.getItem("token");
+    const resp = await axios.post(this.respRendimientoHistorico, body, {headers: {Authorization:`Bearer ${token}`}});
+
+    const { data } = resp;
+    return data;
   }
 }
