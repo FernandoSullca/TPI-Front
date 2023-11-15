@@ -73,6 +73,6 @@ export class RegistroService {
   }
 
   loginAdministrador(email: any, password: any) {
-    return this.http.post<UsuarioAPI>(`${environment.API}/login/administrador`, { email, pass: password });
+    return this.http.post<UsuarioAPI>(`${environment.API}/login/iniciar-administrador`, { email, pass: password });
   }
 }
