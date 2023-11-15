@@ -39,11 +39,19 @@
             <span class="aclaracion">Recuerda: el saldo mostrado <strong>NO</strong> es dinero real.</span>
         </div>
     </div>
-    <div *ngIf="!cartera.totalInstrumentos; else AdquirirInstrumento">
-        asdasdasdasdasdasdasd
+    <div class="cartera-sin-instrumentos" *ngIf="!cartera.totalInstrumentos; else AdquirirInstrumento">
+        <div class="titulo">
+            <h3>
+                Aún no contas con instrumentos
+            </h3>
+        </div>
+        <div class="boton-ir-a-comprar">
+            <button type="button" class="boton btn btn-sm mx-auto" (click)="direccionar('precios')">IR AL PANEL DE PRECIOS
+            </button>
+        </div>
     </div>
     <ng-template #AdquirirInstrumento>
-        <div class="cartera-grafico-section" >
+        <div class="cartera-grafico-section">
             <app-grafico *ngIf="cartera.cantidadPorInstrumento" [datosGrafico]="cartera.cantidadPorInstrumento"
                 [tipoGrafico]="tipoGrafico" [tituloGrafico]='tituloGraficoTorta'></app-grafico>
         </div>
@@ -54,7 +62,7 @@
         </b>
         <div class="button-container">
             <button type="button" class="boton btn btn-sm mx-auto"
-            (click)="direccionar('perfil-inversor-cuestionario')">OBTENÉ TU PERFIL</button>
+                (click)="direccionar('perfil-inversor-cuestionario')">OBTENÉ TU PERFIL</button>
         </div>
     </div>
     <!-- <div class="cartera-grafico-section linea">
