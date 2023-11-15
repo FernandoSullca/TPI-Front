@@ -56,25 +56,10 @@ export class LoginComponent implements OnInit {
       console.log("Error de campos enviados");
       return
     }
-    this.loginAdministrador();
+
     this.loginUsuario();
     // this.verfificarUsuario();
 
-  }
-  public loginAdministrador() {
-    this.loading = true;
-    this.registroUsuarioService.loginAdministrador(this.usuarioForm.email, this.usuarioForm.password).subscribe(
-      (data) => {
-        console.log("🚀 ~ file: login.component.ts:68 ~ LoginComponent ~ loginAdministrador ~ data:", data)
-        // if(data.UsuarioAPI.isdamin){
-        this.loading = false;
-        this.LocalStorageService.setItem("token", data.token);
-        this.navegarAHomeAdministrador();
-      // }
-      },
-      (error) => { 
-        // console.log("Login usuario", this.errorLogin)
-      });
   }
 
   public loginUsuario() {
@@ -83,6 +68,11 @@ export class LoginComponent implements OnInit {
     this.registroUsuarioService.loginUsuario(this.usuarioForm.email, this.usuarioForm.password).subscribe(
       (data) => {
         this.LocalStorageService.setItem("token", data.token);
+        if (data.esAdministrador) {
+          this.loginAdministrador();
+          return
+        }
+
         this.registroUsuarioService.buscarUsuario(this.usuarioForm.email).subscribe(
           (usuarioRecibido: UsuarioAPI) => {
             this.LocalStorageService.setUsuarioPerfilActualLocal(null);
@@ -110,6 +100,11 @@ export class LoginComponent implements OnInit {
         console.log("🚀 ~ file: login.component.ts:82 ~ LoginComponent ~ verfificarUsuario ~ errorLogin:", this.errorLogin)
         console.error("Error al buscar Usuario", error);
       });
+  }
+
+  public loginAdministrador() {
+        this.loading = false;
+        this.navegarAHomeAdministrador();
   }
 
   public verfificarUsuario() {
@@ -176,7 +171,7 @@ export class LoginComponent implements OnInit {
   navegarAHome() {
     this.router.navigate(['dashboard/cartera']);
   }
-  
+
   navegarAHomeAdministrador() {
     this.router.navigate(['dashboard/administrar']);
   }
