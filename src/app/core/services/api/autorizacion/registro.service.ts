@@ -11,6 +11,7 @@ import { environment } from 'environments/environment';
 export class RegistroService {
 
 
+
   private apiEndpoint = `${environment.API}/api/guardar-usuario`; // Reemplaza con la URL de la API real
 
   constructor(private http: HttpClient) { }
@@ -44,7 +45,7 @@ export class RegistroService {
   }
 
   loginUsuario(email: string, password: string): Observable<any> {
-    return this.http.post<UsuarioAPI>(`${environment.API}/login/iniciar-sesion`, { email, pass: password });
+    return this.http.post<UsuarioAPI>(`${environment.API}/login/iniciar-sesion-usuario`, { email, pass: password });
   }
 
   /**********Registro Via Tohen*************/
@@ -71,4 +72,7 @@ export class RegistroService {
     return this.http.post(`${environment.API}/api/activar-cuenta`, body);
   }
 
+  // loginAdministrador(email: any, password: any) :Observable<any>{
+  //   return this.http.post<UsuarioAPI>(`${environment.API}/login/iniciar-session-usuario`, { email, pass: password });
+  // }
 }
