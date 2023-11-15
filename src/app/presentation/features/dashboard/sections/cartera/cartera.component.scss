@@ -92,20 +92,28 @@ div{
 
   .cartera-sin-instrumentos {
     display: flex;
-    height: auto;
-    width: 100%;
-    justify-content: center;
-    align-self: self-start;
-    flex-direction: column;
-    .titulo{
-      display:flex;
-      justify-content: center;
+    height: 5%;
+    width: 90%;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin-bottom: 5%;
+
+    .titulo {
+      width: 40%;
+      display: flex;
+      text-align: center;
+      .texto{
+        width: 100%;
+      }
     }
-    .boton-ir-a-comprar{
+
+    .boton-ir-a-comprar {
       display: flex;
       height: auto;
+      width: auto;
+
       .boton {
-        height: 100%;
+        height: auto;
         background-color: $primary-color;
         color: $color-white;
         border-radius: 100px;
@@ -132,6 +140,21 @@ div{
       }
     }
   }
+
+  .resultado-perfil-objetivo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 90%;
+    .resultado {
+      h4 {
+        color: #3261A8;
+        font-weight: bold;
+      }
+    }
+  }
+
 }
 
 @media (max-width: 480px) {
@@ -144,8 +167,25 @@ div{
   .container-fluid {
     flex-direction: column;
     flex-wrap: nowrap;
-    align-items: center;
+    justify-content: space-around;
     gap: 4rem;
+    .cartera-sin-instrumentos{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width:100%;
+      .titulo{
+        align-items: center;
+        margin:0;
+        width:100% !important;
+        .texto{
+          width: 100%;
+        }
+      }
+    }
+    .resultado-perfil-objetivo{
+      width: 100%;
+    }
   }
 
   .valores {
@@ -155,12 +195,12 @@ div{
     align-items: center;
     gap: 40px;
   }
-
-  .perfil {
+  .perfil,
+  .resultado-perfil-objetivo {
     flex-direction: column !important;
     flex-wrap: wrap;
     width: 100% !important;
-
+    text-align: center;
     .button-container {
       display: flex;
       justify-content: center;
@@ -168,6 +208,7 @@ div{
       width: 100%;
     }
   }
+
 
   .card-valores {
     width: 100%;
@@ -199,7 +240,13 @@ div{
   .container-fluid {
     display: flex;
     gap: 30px;
-
+    .cartera-sin-instrumentos {
+      align-self: center;
+      width: 100%;
+    }
+    .resultado-perfil-objetivo{
+      width: 100%;
+    }
   }
 
   .card-valores {
@@ -207,14 +254,28 @@ div{
   }
 }
 
-@media (min-width: 1062px) and (max-width: 1500px) {
-  .valores {
-    width: 100%;
+@media (min-width: 1062px) and (max-width: 1567px) {
+  .valores,.cartera-sin-instrumentos,.resultado-perfil-objetivo,.perfil {
+    width: 100% !important;
   }
 }
+@media (min-width: 1062px) and (max-width: 1360px) {
+  .container-fluid {
+    .cartera-sin-instrumentos {
+      
+      .titulo {
+        margin-right: 8vw;
+      }
+    }
 
-@media (min-width: 1500px) {
-  .perfil {
-    margin-left: 2vw;
+  }
+}
+@media (min-width: 1360px) and (max-width: 1567px) {
+  .container-fluid {
+    .cartera-sin-instrumentos {
+      .titulo {
+        margin-right: 8vw;
+      }
+    }
   }
 }
