@@ -23,27 +23,15 @@ export class CarteraComponent implements OnInit {
   fechaCompletaDolarMEP: string = '';
   tituloGraficoTorta : string ="Instrumentos en posesión";
   tituloGraficoLinea : string ="Mi progreso";
+  perfil? :string;
 
   ngOnInit(): void {
     this.getCartera();
-    this.generarAleatorioTotalValorizado()
+    this.perfil=this.obtenerTipoNivelConocimiento();
   }
-  // core      |||||   component
-  // llamado a api  !== exceso logica en componente angular
-  /// local-storage.service
   getCartera() {
     return this.carteraService.getCartera().subscribe((response) => {
-      console.log("🚀 ~ file: cartera.component.ts:36 ~ CarteraComponent ~ returnthis.carteraService.getCartera ~ response:", response)
-      const { totalCartera = '', totalInstrumentos = '', totalMonedas = '' } = response;
-
-      // TODO limpiar
-      const responseFormated: Cartera = {
-        ...response,
-        totalCartera: Number(totalCartera),
-        totalInstrumentos: Number(totalInstrumentos),
-        totalMonedas: Number(totalMonedas),
-      }
-      this.cartera = responseFormated
+      this.cartera = this.formatearRespuesa(response);
     });
   }
   mostrarValuacionTotalCartera(): number {
@@ -62,23 +50,21 @@ export class CarteraComponent implements OnInit {
       this.fechaCompletaDolarMEP = fecha;
     })
   }
-  // TODO limpiar
-  generarAleatorioTotalValorizado() {
-    const aleatorios = [];
-    let valorInicial = 4000;
-    const maxFluctuacion = 200;
-    
-    for (let i = 0; i < 20; i++) {
-      const valorActual = valorInicial + Math.random() * maxFluctuacion;
-      aleatorios.push({ [i]: valorActual });
-      valorInicial = valorActual;
-    }
-    
-    const formattedData = {
-      "Progreso": aleatorios
-    };
-    
-    this.datosGrafico = formattedData;
+  formatearRespuesa(response:Cartera):Cartera{
+    const { totalCartera = '', totalInstrumentos = '', totalMonedas = '' } = response;
+      const responseFormated: Cartera = {
+        ...response,
+        totalCartera: Number(totalCartera),
+        totalInstrumentos: Number(totalInstrumentos),
+        totalMonedas: Number(totalMonedas),
+      }
+      return responseFormated;
   }
-  
+  obtenerTipoNivelConocimiento(){
+    const perfilString = localStorage.getItem('Perfil');
+    if(perfilString){
+      const perfil = JSON.parse(perfilString);
+      return perfil.tipoNivelConocimiento;
+    }
+  }
 }
