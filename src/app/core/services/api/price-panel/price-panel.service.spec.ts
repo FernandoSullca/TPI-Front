@@ -6,11 +6,12 @@ import { PricePanelService } from './price-panel.service';
 import { obtenerTitulosMock, capturarOrdenMock } from './price-panel.service.spec.helper';
 import { mockAcciones } from 'src/app/core/services/api/price-panel/mock'
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
+import { LocalStorageService } from '../../LocalStorage/local-storage.service';
 describe('PricePanelService', () => {
     let service: PricePanelService;
-
+    let localStorageService: LocalStorageService
     beforeEach(() => {
-        service = new PricePanelService();
+        service = new PricePanelService(localStorageService);
     });
 
     const datos = Array.from(mockAcciones);
@@ -33,7 +34,7 @@ describe('PricePanelService', () => {
 
         spyOn(axios, 'get').and.returnValue(mockAxiosResponse);
 
-        return service.obtenerTitulos()
+        return service.obtenerTitulos("acciones")
             .then((titulos: Titulo[]) => {
                 const [primer, segundo] = titulos;
                 expect(titulos).toHaveSize(81);
