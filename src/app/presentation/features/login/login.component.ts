@@ -68,6 +68,11 @@ export class LoginComponent implements OnInit {
     this.registroUsuarioService.loginUsuario(this.usuarioForm.email, this.usuarioForm.password).subscribe(
       (data) => {
         this.LocalStorageService.setItem("token", data.token);
+        if (data.esAdministrador) {
+          this.loginAdministrador();
+          return
+        }
+
         this.registroUsuarioService.buscarUsuario(this.usuarioForm.email).subscribe(
           (usuarioRecibido: UsuarioAPI) => {
             this.LocalStorageService.setUsuarioPerfilActualLocal(null);
@@ -97,6 +102,10 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  public loginAdministrador() {
+        this.loading = false;
+        this.navegarAHomeAdministrador();
+  }
 
   public verfificarUsuario() {
 
@@ -161,6 +170,10 @@ export class LoginComponent implements OnInit {
 
   navegarAHome() {
     this.router.navigate(['dashboard/cartera']);
+  }
+
+  navegarAHomeAdministrador() {
+    this.router.navigate(['dashboard/administrar']);
   }
 
 }
