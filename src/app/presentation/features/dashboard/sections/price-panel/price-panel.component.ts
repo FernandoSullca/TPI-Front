@@ -14,22 +14,23 @@ import { Subscription } from 'rxjs';
 })
 export class PricePanelComponent implements OnInit {
   public titulos: Titulo[] = [];
-  public titulosSimboloMapa = new Map<string, string>();
+  public titulosSimboloObjeto: any = {};
   public simboloByCartera: string = '';
   public cantidad: number = 0;
   public textMessage: string = '';
   public typeMessage: string = '';
   public lastUpdatePanel: string = '';
   public instrumento: string = ''
-  public titulosSimbolo: string[] = [];
+  public titulosSimbolo: any[] = [];
   public simbolo: string = '';
-  public filteredTitulos: string[] = [];
+  public filteredTitulos: any[] = [];
   public totalDineroDisponible: number = 0;
   public detalleInstrumento!: Titulo;
   public tipoModal: string | undefined;
   public instrumentoSeleccionadoSubject!: Subscription;
   public loadingButton = false;
   public panel: string = 'acciones';
+  public loading = false;
 
   constructor(private pricePanelService: PricePanelService, public modalService: ModalService, private carteraService: CarteraService) {
 
@@ -43,15 +44,15 @@ export class PricePanelComponent implements OnInit {
   ngOnInit(): void {
     this.generarSubjectASimbolo();
     this.getDineroDisponible();
-    this.getTitulos();
+    this.getTitulos(this.panel);
     this.updateTitulosEvery(environment.UPDATE_PRICE_PANEL_EVERY_SECONDS);
-    this.titulosSimbolo = this.pricePanelService.getSimbolosEnMemoria();
   }
 
-  public seleccionarPanel(panel: string) {
-    this.titulos = [];
-    this.panel = panel;
-    this.getTitulos();
+  public async seleccionarPanel(panel: string) {
+    if (!this.loading) {
+      await this.getTitulos(panel);
+      this.panel = panel;
+    }
   }
   public generarSubjectASimbolo() {
     this.instrumentoSeleccionadoSubject = this.pricePanelService.obtenerSimboloDePortafolioSugerido().subscribe({
@@ -89,17 +90,18 @@ export class PricePanelComponent implements OnInit {
     })
   }
   onInputChange() {
-    this.filteredTitulos = this.titulosSimbolo.filter(simbolo =>
-      simbolo.toLowerCase().includes(this.simbolo.toLowerCase())
+    this.filteredTitulos = this.titulosSimbolo.filter(titulo =>
+      titulo.simbolo.toLowerCase().includes(this.simbolo.toLowerCase())
     );
   }
 
-  selectSymbol(simbolo: string) {
+  selectSymbol(simbolo: string, instrumento: string) {
     this.simbolo = simbolo;
+    this.titulosSimboloObjeto = { simbolo, instrumento };
     this.filteredTitulos = [];
   }
 
-  public seleccionarInstrumento(instrumento: string) {
+  public seleccionarInstrumento(instrumento: string, tipoInstrumento: string) {
     this.simboloByCartera = instrumento;
     this.simbolo = instrumento;
   }
@@ -107,37 +109,30 @@ export class PricePanelComponent implements OnInit {
   public updateTitulosEvery(segundos: number) {
     if (segundos > 0) {
       setInterval(() => {
-        console.log("🚀 ~ file: price-panel.component.ts:52 ~ PricePanelComponent ~ updateTitulosEvery ~ this.titulos:", this.titulos)
-        return this.getTitulos()
+        return this.getTitulos(this.panel)
       }, segundos * 1000)
     }
   }
 
-  public getTitulos() {
-    return this.pricePanelService.obtenerTitulos(this.panel)
-      .then((titulos) => {
+  public async getTitulos(panel: string) {
+    try {
+      try {
+        this.loading = true;
+        const titulos = await this.pricePanelService.obtenerTitulos(panel);
         this.titulos = titulos;
-        this.titulosSimbolo = titulos.map((t) => t.simbolo || 'Desconocido')
-        titulos.forEach((titulo) => {
-          if (titulo.simbolo && titulo.categoriaInstrumento) {
-            this.titulosSimboloMapa.set(titulo.simbolo, titulo.categoriaInstrumento);
-          }
-        });
-      })
-      .catch((error) => {
+        this.titulosSimbolo = titulos.map((t) => { return { simbolo: t.simbolo || 'Desconocido', instrumento: t.categoriaInstrumento || 'Desconocido' } });
+        this.loading = false;
+      } catch (error) {
         const mockSerializado = mockAcciones.map(m => Titulo.serializar(m));
         this.titulos = mockSerializado;
-        this.titulosSimbolo = mockSerializado.map((t) => t.simbolo || 'Desconocido')
-        mockSerializado.forEach((titulo) => {
-          if (titulo.simbolo && titulo.categoriaInstrumento) {
-            this.titulosSimboloMapa.set(titulo.simbolo, titulo.categoriaInstrumento);
-          }
-        });
-        console.error(error)
-      })
-      .finally(() => {
-        this.lastUpdatePanel = new Date().toLocaleDateString('es-es', { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }) + " hs."
-      });
+        this.titulosSimbolo = mockSerializado.map((t) => { return { simbolo: t.simbolo || 'Desconocido', instrumento: t.categoriaInstrumento || 'Desconocido' } });
+        this.loading = false;
+        console.error(error);
+      }
+    } finally {
+      this.lastUpdatePanel = new Date().toLocaleDateString('es-es', { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }) + " hs.";
+      this.loading = false;
+    }
   }
 
   public vender() {
@@ -149,10 +144,9 @@ export class PricePanelComponent implements OnInit {
 
     this.loadingButton = true;
 
-    return this.pricePanelService.capturarOrden('venta', this.simbolo, this.cantidad, this.titulosSimboloMapa)
+    return this.pricePanelService.capturarOrden('venta', this.simbolo, this.cantidad, this.titulosSimboloObjeto)
       .then(() => {
         this.loadingButton = false;
-
         this.textMessage = "Operacion realizada"
         this.typeMessage = "success"
       })
@@ -174,7 +168,7 @@ export class PricePanelComponent implements OnInit {
 
     this.loadingButton = true;
 
-    return this.pricePanelService.capturarOrden('compra', this.simbolo, this.cantidad, this.titulosSimboloMapa)
+    return this.pricePanelService.capturarOrden('compra', this.simbolo, this.cantidad, this.titulosSimboloObjeto)
       .then(() => {
         this.loadingButton = false;
         this.textMessage = "Operacion realizada"

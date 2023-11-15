@@ -6,11 +6,11 @@
     <div class="px-0">
       <nav>
         <div class="nav nav-tabs pestanias">
-          <button class="nav-link" [ngClass]="{'active': panel === 'acciones'}"
+          <button class="nav-link" [ngClass]="{'active': panel === 'acciones'}" [ngClass]="{'disabled': loading}"
             (click)="seleccionarPanel('acciones')">Acciones</button>
-          <button class="nav-link" [ngClass]="{'active': panel === 'bonos'}"
+          <button class="nav-link" [ngClass]="{'active': panel === 'bonos'}" [ngClass]="{'disabled': loading}"
             (click)="seleccionarPanel('bonos')">Bonos</button>
-          <button class="nav-link" [ngClass]="{'active': panel === 'cedears'}"
+          <button class="nav-link" [ngClass]="{'active': panel === 'cedears'}" [ngClass]="{'disabled': loading}"
             (click)="seleccionarPanel('cedears')">Cedears</button>
         </div>
       </nav>
@@ -31,7 +31,7 @@
         <div class="col d-none d-xl-block">Monto Operado</div>
         <div class="col d-none d-xl-block">Acciones</div>
       </div>
-      <div class="row filas" *ngIf="titulos.length > 1; else loading">
+      <div class="row filas" *ngIf="!loading; else showloading">
         <div *ngFor="let titulo of titulos; index as i;">
           <div class="fila-instrumento">
             <div class="row" [ngClass]="i % 2 ? 'filasClaras' : 'filasOscuras'">
@@ -86,7 +86,8 @@
                   data-target="#myModal">
                   <i class="fa-solid fa-chart-line mx-1" title="Ver grafico"></i>
                 </div>
-                <div class="accion" (click)="seleccionarInstrumento(''+titulo.simbolo+'')">
+                <div class="accion"
+                  (click)="seleccionarInstrumento(''+titulo.simbolo+'', ''+titulo.categoriaInstrumento+'')">
                   <i class="fa-solid fa-money-bill-transfer" title="Operar"></i>
                 </div>
               </div>
@@ -97,7 +98,7 @@
       <div class="row float-end" *ngIf="lastUpdatePanel" style="margin-top: 0.5rem;">Última actualización del mercado
         real: {{lastUpdatePanel}}</div>
 
-      <ng-template #loading>
+      <ng-template #showloading>
         <app-loading class="container-loading filas flex-column"
           [textoLoading]="'Cargando panel de precios ...'"></app-loading>
         <!-- <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
@@ -118,7 +119,8 @@
           </div>
           <div class="col-md-6 text-end">
             <h3>Saldo: ARS. {{totalDineroDisponible | formatoValor}}</h3>
-            <span class="aclaracion">Recuerda: el saldo mostrado <strong>NO</strong> es dinero real.</span>          </div>
+            <span class="aclaracion">Recuerda: el saldo mostrado <strong>NO</strong> es dinero real.</span>
+          </div>
         </div>
         <div class="col d-flex justify-content-around" style="font-weight: 700; font-size: 18px;">
           <message [textMessage]="textMessage" [typeMessage]="typeMessage"></message>
@@ -132,8 +134,9 @@
           <div>
             <input type="text" class="form-control" [(ngModel)]="simbolo" (input)="onInputChange()">
             <ul class="desplegableSimbolos" *ngIf="filteredTitulos.length > 0">
-              <div class="simboloBuscador" *ngFor="let simbolo of filteredTitulos" (click)="selectSymbol(simbolo)">
-                {{simbolo}}</div>
+              <div class="simboloBuscador" *ngFor="let titulo of filteredTitulos"
+                (click)="selectSymbol(titulo.simbolo,titulo.instrumento)">
+                {{titulo.simbolo}}</div>
             </ul>
           </div>
         </div>
