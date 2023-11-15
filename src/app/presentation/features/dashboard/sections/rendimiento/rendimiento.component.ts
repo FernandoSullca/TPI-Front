@@ -22,8 +22,47 @@ export class RendimientoComponent implements OnInit {
   public validacionDeSigno(valor: number) {
     return valor > 0 ? 'success' : 'error'
   }
-  obtenerHistoricoInstrumento(simbolo:string){
-    this.historico1 = this.rendimientoService.obtenerHistoricoInstrumento(simbolo);
+  obtenerHistoricoInstrumento(simbolo:string){      
+    debugger;
+    this.rendimientoService.obtenerHistoricoInstrumento(simbolo).then((rendimiento) => {
+      debugger;
+      // Accede a la propiedad rendimientosActuales
+      var rendimientosActuales = rendimiento
+
+      // Recorre las propiedades dentro de rendimientosActuales
+      const keys = Object.keys(rendimientosActuales);
+      debugger;
+      const nuevo = keys.map((clave) => {
+        const rendimiento = rendimientosActuales[clave];
+        debugger;
+        return {
+          simbolo: rendimiento.simbolo,
+          cantidad: rendimiento.cantidadDeTitulos,
+          fecha: rendimiento.fecha,
+          porcentajeRendimiento: rendimiento.rendimientoTotalPorcentaje,
+          gananciaPerdidaDiaria: rendimiento.rendimientoTotal,          
+          totalValorizadoDiario: rendimiento.valorInversion
+        };
+      })
+
+      /*simbolo:string
+    cantidad: number,
+    fecha:Date,
+    porcentajeRendimiento: number,
+    gananciaPerdidaDiaria: number,
+    totalValorizadoDiario:number*/
+
+       this.historico1 = nuevo;
+
+       return this.historico1;
+
+    }).catch((error) =>{
+      return [];
+    });
+
+
+
+    //this.rendimientoInstrumento =this.rendimientoService.obtenerRendimientoTotal();
   }
   obtenerRendimientoTotal(){
    
