@@ -7,6 +7,8 @@ import { UsuarioAPI } from 'src/app/core/models/API/Usuario-API.model';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { RegistroService } from 'src/app/core/services/api/autorizacion/registro.service';
 import { PerfilInversorService } from 'src/app/core/services/api/perfil-inversor/perfil-inversor.service';
+import { jwtDecode } from "jwt-decode";
+
 
 @Component({
   selector: 'app-login',
@@ -68,7 +70,8 @@ export class LoginComponent implements OnInit {
     this.registroUsuarioService.loginUsuario(this.usuarioForm.email, this.usuarioForm.password).subscribe(
       (data) => {
         this.LocalStorageService.setItem("token", data.token);
-        if (data.esAdministrador) {
+        const tokenDecoded: any = { ...jwtDecode(data.token) };
+        if (tokenDecoded.esAdministrador) {
           this.loginAdministrador();
           return
         }
@@ -103,8 +106,8 @@ export class LoginComponent implements OnInit {
   }
 
   public loginAdministrador() {
-        this.loading = false;
-        this.navegarAHomeAdministrador();
+    this.loading = false;
+    this.navegarAHomeAdministrador();
   }
 
   public verfificarUsuario() {

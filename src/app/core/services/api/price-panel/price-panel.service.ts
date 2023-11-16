@@ -10,7 +10,6 @@ import { LocalStorageService } from '../../LocalStorage/local-storage.service';
 })
 export class PricePanelService {
 
-  private simbolos: string[] = [];
   private instrumentoSeleccionado: string = "";
   private behaviorSubjectIntrumentoSeleccionado = new BehaviorSubject<string>(this.instrumentoSeleccionado);
 
@@ -19,8 +18,13 @@ export class PricePanelService {
   mapToTitulos(resp: any) {
     const { data } = resp;
     const datos = Array.from(data);
-    return datos.map((titulo: any) => {
-      this.simbolos.push(titulo.simbolo);
+    const maximoPorPerfil = 20;
+    const conservador = datos.filter((instrumento: any) => instrumento?.categoriaPerfil === 'Conservador').slice(0, maximoPorPerfil)
+    const agresivo = datos.filter((instrumento: any) => instrumento?.categoriaPerfil === 'Agresivo').slice(0, maximoPorPerfil)
+    const moderado = datos.filter((instrumento: any) => instrumento?.categoriaPerfil === 'Moderado').slice(0, maximoPorPerfil)
+    const titulos = [...conservador, ...moderado, ...agresivo].sort((a: any, b: any) => a.simbolo > b.simbolo ? 1 : -1);
+
+    return titulos.map((titulo: any) => {
       return Titulo.serializar(titulo);
     });
   }
@@ -30,18 +34,14 @@ export class PricePanelService {
     return this.mapToTitulos(resp);
   }
 
-
-  public getSimbolosEnMemoria(): string[] {
-    return this.simbolos;
-  }
   // todo separar logica
-  public async capturarOrden(sentido: string, simbolo: string, cantidad: number, mapa: Map<string, string>) {
+  public async capturarOrden(sentido: string, simbolo: string, cantidad: number, objeto: any) {
     let date = new Date()
     let day = `${(date.getDate())}`.padStart(2, '0');
     let month = `${(date.getMonth() + 1)}`.padStart(2, '0');
     let year = date.getFullYear();
     const fecha = `${year}-${month}-${day}`;
-    const categoriaInstrumento = mapa.get(simbolo);
+    const categoriaInstrumento = objeto.instrumento;
     const body = {
       "simboloInstrumento": simbolo,
       "monedaOid": 1, // siempre 1 moneda peso

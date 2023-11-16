@@ -31,7 +31,6 @@ export class RendimientoService {
     const resp = await axios.get(this.respRendimientoActual, {headers: {Authorization:`Bearer ${token}`}});
 
     const { data } = resp;
-    debugger;
     return data;
 }
  

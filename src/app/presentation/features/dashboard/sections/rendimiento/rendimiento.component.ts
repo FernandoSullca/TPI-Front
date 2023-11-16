@@ -23,18 +23,14 @@ export class RendimientoComponent implements OnInit {
     return valor > 0 ? 'success' : 'error'
   }
   obtenerHistoricoInstrumento(simbolo:string){      
-    debugger;
     this.rendimientoService.obtenerHistoricoInstrumento(simbolo).then((rendimiento) => {
-      debugger;
       // Accede a la propiedad rendimientosActuales
       var rendimientosActuales = rendimiento
 
       // Recorre las propiedades dentro de rendimientosActuales
       const keys = Object.keys(rendimientosActuales);
-      debugger;
       const nuevo = keys.map((clave) => {
         const rendimiento = rendimientosActuales[clave];
-        debugger;
         return {
           simbolo: rendimiento.simbolo,
           cantidad: rendimiento.cantidadDeTitulos,
