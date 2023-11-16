@@ -45,7 +45,7 @@ export class RegistroService {
   }
 
   loginUsuario(email: string, password: string): Observable<any> {
-    return this.http.post<UsuarioAPI>(`${environment.API}/login/iniciar-sesion-usuario`, { email, pass: password });
+    return this.http.post<UsuarioAPI>(`${environment.API}/login/iniciar-sesion`, { email, pass: password });
   }
 
   /**********Registro Via Tohen*************/
