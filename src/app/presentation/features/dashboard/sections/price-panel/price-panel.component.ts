@@ -103,6 +103,7 @@ export class PricePanelComponent implements OnInit {
   public seleccionarInstrumento(instrumento: string, tipoInstrumento: string) {
     this.simboloByCartera = instrumento;
     this.simbolo = instrumento;
+    this.titulosSimboloObjeto.instrumento = tipoInstrumento;
   }
 
   public updateTitulosEvery(segundos: number) {
@@ -114,6 +115,8 @@ export class PricePanelComponent implements OnInit {
   }
 
   public async getTitulos(panel: string) {
+    this.textMessage = '';
+    this.typeMessage = '';
     try {
       try {
         this.loading = true;
@@ -150,8 +153,13 @@ export class PricePanelComponent implements OnInit {
         this.typeMessage = "success"
       })
       .catch((error) => {
+        
         this.loadingButton = false;
-        this.textMessage = error.response.data;
+        if (error.response.data === "Error al crear la orden: Puede operar hasta: 0") {
+          this.textMessage = 'Usted no posee este instrumento.'
+        } else {
+          this.textMessage = error.response.data;
+        }
         this.typeMessage = "error"
         console.error(error)
       })

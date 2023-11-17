@@ -18,11 +18,9 @@ export class PricePanelService {
   mapToTitulos(resp: any) {
     const { data } = resp;
     const datos = Array.from(data);
-    const maximoPorPerfil = 20;
-    const conservador = datos.filter((instrumento: any) => instrumento?.categoriaPerfil === 'Conservador').slice(0, maximoPorPerfil)
-    const agresivo = datos.filter((instrumento: any) => instrumento?.categoriaPerfil === 'Agresivo').slice(0, maximoPorPerfil)
-    const moderado = datos.filter((instrumento: any) => instrumento?.categoriaPerfil === 'Moderado').slice(0, maximoPorPerfil)
-    const titulos = [...conservador, ...moderado, ...agresivo].sort((a: any, b: any) => a.simbolo > b.simbolo ? 1 : -1);
+    const maximoPorPerfil = 60;
+    const titulosFiltrados = datos.slice(0, maximoPorPerfil)
+    const titulos = [...titulosFiltrados].sort((a: any, b: any) => a.simbolo > b.simbolo ? 1 : -1);
 
     return titulos.map((titulo: any) => {
       return Titulo.serializar(titulo);
