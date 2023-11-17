@@ -34,7 +34,7 @@ export class QuestionsTargetService {
     }
     const resp = await axios.get(`${environment.API}/api/pregunta/listar-por-categoria?categoria=${this.preguntasObjetivas}`);
     const { data } = resp;
- 
+
     const datos = Array.from(data);
     return data;
   }
@@ -42,7 +42,7 @@ export class QuestionsTargetService {
   public async TestObjetivoResultados(Analisisobjetivo: Record<string, number>, username: String): Promise<any> {
 
     const body = {
-      
+
       "horizonteTemporal": Analisisobjetivo["horizonteTemporal"],
       "toleranciaRiesgo": Analisisobjetivo["toleranciaRiesgo"],
       "nivelConocimiento": Analisisobjetivo["Conocimento"],
@@ -56,18 +56,15 @@ export class QuestionsTargetService {
   }
 
   async TestObjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI): Promise<any> {
+    const regex = /\"/ig;
+    const username = localStorage.getItem("Username")?.replace(regex, "");
+    console.log("🚀 ~ file: questions-target-profile.service.ts:60 ~ QuestionsTargetService ~ TestObjetivoResultadosObtenidos ~ username:", username)
     const body = {
-      "oid": perfilInversorUsuario.oid,
       "horizonteTemporal": perfilInversorUsuario.horizonteTemporal,
       "toleranciaRiesgo": perfilInversorUsuario.toleranciaRiesgo,
       "nivelConocimiento": perfilInversorUsuario.nivelConocimiento,
-      "tipoPerfilSubjetivo": perfilInversorUsuario.tipoPerfilSubjetivo,
       "usuarioDTO": {
-        "oid":perfilInversorUsuario.UsuarioDTO.oid,
-        "nombre": perfilInversorUsuario.UsuarioDTO.nombre,
-        "apellido": perfilInversorUsuario.UsuarioDTO.apellido,
-        "email": perfilInversorUsuario.UsuarioDTO.email,
-        "nombreUsuario": perfilInversorUsuario.UsuarioDTO.nombreUsuario,
+        nombreUsuario: username,
       }
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-inversor`, body);
@@ -128,7 +125,7 @@ export class QuestionsTargetService {
 
 
   urlcertificadoLocal(perfil: string) {
-  
+
 
     switch (perfil) {
       case 'CONSERVADOR':
@@ -151,7 +148,7 @@ export class QuestionsTargetService {
     let urlQR: string = "";
     let urllocal = this.urlcertificadoLocal(tipo);
     urlQR = `https://mercadojunior.com.ar/${urllocal}`;
-    return urlQR;    
+    return urlQR;
   }
 
 }

@@ -154,7 +154,6 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
       } else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
         //Anteds de mostrar la sig pan
-
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
           this.localStorageService.setItem('perfilinversor', this.respuestasPerfil.perfilInversor);
@@ -184,14 +183,14 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   }
 
   public async entregarResultados(): Promise<any> {
-    if (!this.validateData()) {
+    /* if (!this.validateData()) {
+      debugger;
       return;
-    }
+    } */
 
     this.perfilInversorUsuario.nivelConocimiento = this.AnalisisObjetivo["Conocimento"];
 
     try {
-
       // const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
       const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
       // data && data.perfilInversor

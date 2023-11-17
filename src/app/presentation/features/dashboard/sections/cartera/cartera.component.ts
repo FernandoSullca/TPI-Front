@@ -63,9 +63,7 @@ export class CarteraComponent implements OnInit {
     return responseFormated;
   }
   obtenerTipoNivelConocimiento() {
-    const perfil = this.localStorageService.getItem('Perfil');
     const resultadoObjetivo = this.localStorageService.getItem('perfilinversor');
-    if(perfil.tipoNivelConocimiento)
-      return resultadoObjetivo;
+    return resultadoObjetivo;
   }
 }
