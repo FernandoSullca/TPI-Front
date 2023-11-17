@@ -22,6 +22,7 @@ import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta
 import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
 import { RendimientoComponent } from './features/dashboard/sections/rendimiento/rendimiento.component';
 import { LoadingComponent } from './common/components/loading/loading.component';
+import { RecuperarCuentaComponent } from './features/recuperar-cuenta/recuperar-cuenta.component';
 
 
 
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: "registrarme", component:  RegistarUsuarioComponent},
   { path: "activar-cuenta", component:  ActivarCuentaComponent},
+  { path: "recuperar-cuenta", component:  RecuperarCuentaComponent},
   { path: "perfil", component:  PerfilSubjetivoComponent},
   { path: "perfil-inversor", component:  TestPerfilSubjetivoComponent},
   { path: 'perfil-inversor-resultado', component:  PerfilSubjetivoResultadoComponent},

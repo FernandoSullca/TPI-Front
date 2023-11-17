@@ -36,6 +36,7 @@ import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta
 import { RendimientoComponent } from './features/dashboard/sections/rendimiento/rendimiento.component';
 import { FechaLocalPipe } from './common/pipes/fecha-local/fecha-local.pipe';
 import { PorcentajeValorCustomizadoPipe } from './common/pipes/porcentaje-valor-customizado/porcentaje-valor-customizado.pipe';
+import { RecuperarCuentaComponent } from './features/recuperar-cuenta/recuperar-cuenta.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { PorcentajeValorCustomizadoPipe } from './common/pipes/porcentaje-valor-
     RendimientoComponent,
     FechaLocalPipe,
     PorcentajeValorCustomizadoPipe,
+    RecuperarCuentaComponent,
   ],
   imports: [
     BrowserModule,
