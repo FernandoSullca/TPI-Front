@@ -62,8 +62,11 @@ export class CarteraComponent implements OnInit {
   }
   obtenerTipoNivelConocimiento(){
     const perfilString = localStorage.getItem('Perfil');
+    console.log("🚀 ~ file: cartera.component.ts:65 ~ CarteraComponent ~ obtenerTipoNivelConocimiento ~ perfilString:", perfilString)
+    
     if(perfilString){
       const perfil = JSON.parse(perfilString);
+      console.log("🚀 ~ file: cartera.component.ts:65 ~ CarteraComponent ~ obtenerTipoNivelConocimiento ~ perfilString:", perfil)
       return perfil.tipoNivelConocimiento;
     }
   }
