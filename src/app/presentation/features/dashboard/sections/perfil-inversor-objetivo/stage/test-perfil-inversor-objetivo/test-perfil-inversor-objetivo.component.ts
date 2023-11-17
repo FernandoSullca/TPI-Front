@@ -160,6 +160,8 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
           this.localStorageService.setItem('perfilinversor', this.respuestasPerfil.perfilInversor);
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
           this.perfilInversorUsuario.perfilInversor = this.respuestasPerfil.perfilInversor;
+          this.perfilInversorUsuario.tipoNivelConocimiento = this.respuestasPerfil.tipoNivelConocimiento;
+          this.localStorageService.UpdatePerfilActualLocal(this.perfilInversorUsuario);          ;
         }).finally(() => {
           this.acreditarDinero();
           this.armardescripcion();
