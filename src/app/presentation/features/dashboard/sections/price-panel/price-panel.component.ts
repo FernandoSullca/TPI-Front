@@ -61,7 +61,6 @@ export class PricePanelComponent implements OnInit {
       },
       error: error => {
         this.simbolo = ''
-        console.log("Error al recuperar datos");
       }
     })
   }
