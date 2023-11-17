@@ -1,0 +1,41 @@
+<div id="main-doc">
+    <section id="welcome-section">
+        <div *ngIf="loading">
+            <div class="logo animado">
+                <img src="/assets/image/logo.svg" alt="" width="15%">
+            </div>
+            <h2>Actualizando contraseña ...</h2>
+        </div>
+
+        <div *ngIf="success">
+            <div class="logo">
+                <img src="/assets/image/logo.svg" alt="" width="15%">
+            </div>
+            <h2>Contraseña actualizada.</h2>
+            <div class="fields-box ">
+                <div class="btn-gral " [routerLink]="['/login']" routerLinkActive="router-link-active">Iniciar sesion.
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!success">
+            <div class="logo">
+                <img src="/assets/image/logo.svg" alt="" width="15%">
+            </div>
+            <div class="fields-box">
+                <h3>Ingresar a <span class="bold-text-Marca">Mercado</span><span class="bold-Marca">JR</span></h3>
+                <input type="password" [(ngModel)]="newPassword" name="newPassword" id="newPassword"
+                    placeholder="Nueva contraseña">
+                <input type="password" [(ngModel)]="newPasswordRepeat" name="newPasswordRepeat" id="newPasswordRepeat"
+                    placeholder="Repetir contraseña">
+                <div class="alert alert-danger error-message my-1" *ngIf="error">
+                    La contraseñas no coinciden.
+                </div>
+                <div class="alert alert-danger error-message my-1" *ngIf="errorServer">
+                    Error al cambiar contraseña.
+                </div>
+                <div class="btn-gral " (click)="recuperarCuenta()">Cambiar contraseña</div>
+            </div>
+        </div>
+        <br>
+    </section>
+</div>
