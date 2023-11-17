@@ -100,6 +100,7 @@ export class LoginComponent implements OnInit {
             this.LocalStorageService.setUsuarioPerfilActualLocal(null);
             this.LocalStorageService.RemovePerfilActualLocal();
             this.LocalStorageService.removeItem('Username');
+            this.LocalStorageService.removeItem('perfilObjetivoCartera')
             this.usuariodb = usuarioRecibido;
             this.buscarPerfilUsuario(this.usuariodb).subscribe(
               (perfilUsuario: PerfilInversorAPI | null) => {
@@ -144,6 +145,11 @@ export class LoginComponent implements OnInit {
       this.loading = false;
       this.LocalStorageService.setPerfilSubjetivo(perfilUsuario);
       this.LocalStorageService.SetPerfilActualLocal();
+      ///Verifica si el test que completo esra el objetivo , ebn caso de serlo actualiza la flag que usa cartera, y muestra el perfil obtenido
+      if(perfilUsuario.tipoNivelConocimiento!=null||perfilUsuario.tipoNivelConocimiento!="" ||perfilUsuario.nivelConocimiento!=null)
+      console.log("🚀 ~ file: login.component.ts:150 ~ LoginComponent ~ AlmacenarUsuario_Perfil ~ tipoNivelConocimiento:", perfilUsuario.tipoNivelConocimiento)
+      console.log("🚀 ~ file: login.component.ts:150 ~ LoginComponent ~ AlmacenarUsuario_Perfil ~ tipoNivelConocimiento:", perfilUsuario.nivelConocimiento)
+      this.LocalStorageService.setItem('perfilObjetivoCartera', perfilUsuario.perfilInversor);
       this.navegarAHome();
     }
   }

@@ -157,6 +157,7 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
           this.localStorageService.setItem('perfilinversor', this.respuestasPerfil.perfilInversor);
+          this.localStorageService.setItem('perfilObjetivoCartera', this.respuestasPerfil.perfilInversor);
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
           this.perfilInversorUsuario.perfilInversor = this.respuestasPerfil.perfilInversor;
         }).finally(() => {
