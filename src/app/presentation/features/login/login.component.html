@@ -24,7 +24,7 @@
                 <div class="alert alert-danger error-message" *ngIf="!usuarioForm.password">
                     La Contraseña es obligatoria
                 </div>
-                <label *ngIf="errorLogin" for="{{errorLogin}}" class="error-message">
+                <label *ngIf="errorLogin" for="{{errorLogin}}" class="alert alert-danger error-message">
                     Error durante el Login... Verifique los datos ingresados.
                 </label>
                 <label *ngIf="errorform" for="{{errorform}}" class="error-message">
