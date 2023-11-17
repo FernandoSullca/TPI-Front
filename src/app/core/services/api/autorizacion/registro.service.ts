@@ -72,6 +72,22 @@ export class RegistroService {
     return this.http.post(`${environment.API}/api/activar-cuenta`, body);
   }
 
+  RecuperarCuenta(email: string) {
+    const body =
+    {
+      email
+    }
+    return this.http.post(`${environment.API}/api/recuperar-cuenta`, body);
+  }
+  CambiarPassword(token: string, newPassword: string) {
+    const body =
+    {
+      token,
+      newPassword
+    }
+    return this.http.post(`${environment.API}/api/cambiar-password`, body);
+  }
+
   // loginAdministrador(email: any, password: any) :Observable<any>{
   //   return this.http.post<UsuarioAPI>(`${environment.API}/login/iniciar-session-usuario`, { email, pass: password });
   // }
