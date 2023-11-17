@@ -2,6 +2,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AdministrarPreguntasService } from 'src/app/core/services/api/administracion/administrar-preguntas.service';
 import { NgbProgressbar, NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
+import { jwtDecode } from "jwt-decode";
 @Component({
   selector: 'app-administrar-preguntas',
   templateUrl: './administrar-preguntas.component.html',
@@ -33,7 +35,8 @@ export class AdministrarPreguntasComponent {
 
   constructor(private servicioPreguntasAPI_: AdministrarPreguntasService,
     private configBar: NgbProgressbarConfig,
-    private router: Router) {
+    private router: Router,
+    private LocalStorageService: LocalStorageService) {
 
   }
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
@@ -41,6 +44,23 @@ export class AdministrarPreguntasComponent {
   formattedSize: string = 'Tamaño no disponible';
   formattedType: string = 'Tipo no disponible';
   formattedLastModified: string = 'Última modificación no disponible';
+
+  ngOnInit(): void {
+    this.verificarAdministracion();
+    }
+  
+    verificarAdministracion(){
+      let token = this.LocalStorageService.getItem("token");
+      const tokenDecoded: any = { ...jwtDecode(token) };
+      if (!tokenDecoded.esAdministrador) {
+        this.loadHome();
+        return;
+      }
+    }
+  
+    loadHome() {
+      this.router.navigate(['/login']);
+    }
 
   openFileInput() {
     console.log("SSolicitando menu");
@@ -313,7 +333,7 @@ export class AdministrarPreguntasComponent {
   }
 
   loadAdministracion() {
-    this.router.navigate(['/dashboard/Administrar']);
+    this.router.navigate(['/dashboard/administrar']);
 
   }
 

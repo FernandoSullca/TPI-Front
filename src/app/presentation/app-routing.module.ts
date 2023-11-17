@@ -46,7 +46,7 @@ const routes: Routes = [
       { path: "perfil-inversor", component: PerfilInversorObjetivoPresentacionComponent},
       { path: "perfil-inversor-cuestionario", component: TestPerfilInversorObjetivoComponent},
       { path: "administrar", component: AdministrarComponent},
-      { path: "administrar-Preguntas", component: AdministrarPreguntasComponent},
+      { path: "administrar-preguntas", component: AdministrarPreguntasComponent},
       { path: "cartera", component: CarteraComponent},
       { path: "prediccion", component : PrediccionComponent},
       { path: "rendimiento", component : RendimientoComponent}
