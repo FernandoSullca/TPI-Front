@@ -40,11 +40,9 @@
         </div>
     </div>
     <div class="cartera-sin-instrumentos" *ngIf="!cartera.totalInstrumentos; else AdquirirInstrumento">
-        <div class="titulo">
             <h3 class="texto">
                 Aún no contás con instrumentos
             </h3>
-        </div>
         <div class="boton-ir-a-comprar">
             <button type="button" class="boton btn btn-sm mx-auto" (click)="direccionar('precios')">IR AL PANEL DE PRECIOS
             </button>
@@ -58,17 +56,17 @@
     </ng-template>
     <div class="perfil" *ngIf="!perfil; else conResultado">
         <b>
-            <h3>Todavía no realizaste el test</h3>
+            <h3>Todavía no realizaste el test objetivo</h3>
         </b>
         <div class="button-container">
             <button type="button" class="boton btn btn-sm mx-auto"
-                (click)="direccionar('perfil-inversor-cuestionario')">OBTENÉ TU PERFIL</button>
+                (click)="direccionar('perfil-inversor')">OBTENÉ TU PERFIL AHORA</button>
         </div>
     </div>
     <ng-template #conResultado>
         <div class="resultado-perfil-objetivo">
             <b>
-                <h3>Tu perfil de inversor : </h3>
+                <h3>Tu perfil de inversor es: </h3>
             </b>
             <div class="resultado">
                 <h4>{{perfil}}</h4>

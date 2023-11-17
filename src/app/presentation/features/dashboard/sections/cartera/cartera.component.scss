@@ -1,8 +1,6 @@
 @import "../../../../../../variables";
 
-div{
-  border-style: groove;
-}
+
 .valores {
   display: flex;
   height: 20%;
@@ -92,10 +90,10 @@ div{
 
   .cartera-sin-instrumentos {
     display: flex;
-    height: 5%;
-    width: 90%;
-    justify-content: space-evenly;
+    width: 80%;
+    justify-content: space-around;
     flex-direction: row;
+    align-items: center;
     margin-bottom: 5%;
 
     .titulo {
