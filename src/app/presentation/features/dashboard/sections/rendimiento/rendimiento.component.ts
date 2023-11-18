@@ -11,7 +11,8 @@ export class RendimientoComponent implements OnInit {
   public rendimientoInstrumento!: RendimientoTotalInstrumento[];
   public historico1!: HistoricoInstrumento[];
   public typeMessage: string = '';
-  constructor (private rendimientoService : RendimientoService){}
+  public loading = false;
+  constructor(private rendimientoService: RendimientoService) { }
 
   ngOnInit(): void {
     this.obtenerRendimientoTotal();
@@ -22,19 +23,37 @@ export class RendimientoComponent implements OnInit {
   public validacionDeSigno(valor: number) {
     return valor > 0 ? 'success' : 'error'
   }
-  obtenerHistoricoInstrumento(simbolo:string){
-    this.historico1 = this.rendimientoService.obtenerHistoricoInstrumento(simbolo);
+  obtenerHistoricoInstrumento(simbolo: string) {
+    this.rendimientoService.obtenerHistoricoInstrumento(simbolo).then((rendimiento) => {
+      let rendimientosActuales = rendimiento;
+      const keys = Object.keys(rendimientosActuales);
+      const nuevo = keys.map((clave) => {
+        const rendimiento = rendimientosActuales[clave];
+        return {
+          simbolo: rendimiento.simbolo,
+          cantidad: rendimiento.cantidadDeTitulos,
+          fecha: rendimiento.fecha,
+          porcentajeRendimiento: rendimiento.rendimientoTotalPorcentaje,
+          gananciaPerdidaDiaria: rendimiento.rendimientoTotal,
+          totalValorizadoDiario: rendimiento.valorInversion
+        };
+      })
+
+      this.historico1 = nuevo;
+
+      return this.historico1;
+
+    }).catch((error) => {
+      return [];
+    });
+
   }
-  obtenerRendimientoTotal(){
-   
+  obtenerRendimientoTotal() {
+    this.loading = true;
 
     this.rendimientoService.getRendimiento().then((rendimiento) => {
-      // Accede a la propiedad rendimientosActuales
-      var rendimientosActuales = rendimiento.rendimientosActuales;
-
-      // Recorre las propiedades dentro de rendimientosActuales
+      let rendimientosActuales = rendimiento.rendimientosActuales;
       const keys = Object.keys(rendimientosActuales);
-
       const nuevo = keys.map((clave) => {
         const rendimiento = rendimientosActuales[clave];
         return {
@@ -48,16 +67,15 @@ export class RendimientoComponent implements OnInit {
         };
       })
 
-       this.rendimientoInstrumento = nuevo;
+      this.rendimientoInstrumento = nuevo;
+      this.loading = false;
 
-       return this.rendimientoInstrumento;
+      return this.rendimientoInstrumento;
 
-    }).catch((error) =>{
+    }).catch((error) => {
+      this.loading = false;
+
       return [];
     });
-
-
-
-    //this.rendimientoInstrumento =this.rendimientoService.obtenerRendimientoTotal();
   }
 }

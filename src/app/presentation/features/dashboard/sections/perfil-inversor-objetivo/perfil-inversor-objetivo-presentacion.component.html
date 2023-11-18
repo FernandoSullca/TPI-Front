@@ -6,6 +6,9 @@
         </div>
         <p>¡Te damos la bienvenida!</p>
     </div>
+    <div style="display: flex;" *ngIf="perfilObjetivoActual">
+        Resultado actual: <h5 style="color: #3261A8;font-weight: bold;font-size: 1.2rem;">{{perfilObjetivoActual}}</h5>
+    </div>
     <div class="introduccion-perfil-objetivo" >
         <p> Te invitamos a realizar un test de conocimiento financiero para poder determinar un perfil de inversor mas especifico y poder hacerte mejores recomendaciones de portafolio o productos que te puedan interesar. Completar el siguiente test te sumará saldo para poder simular operatorias en el mercado.</p>
     </div>
@@ -22,6 +25,6 @@
     </div>
     <div class="exit">
         <p (click)="loadHome()">OMITIR TEST</p>
-    </div>>
+    </div>
 
 </div>

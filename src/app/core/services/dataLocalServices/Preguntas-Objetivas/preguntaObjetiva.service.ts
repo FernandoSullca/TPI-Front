@@ -8,12 +8,10 @@ import { PreguntaApi } from 'src/app/core/models/API/Pregunta-APi.model';
 })
 export class PreguntaObjetivasService {
 
-  //Por defecto Busco el conservador
-  private preguntasUrlMOCK = 'assets\\mock\\Perfil Objetivo Moderado V1.0.json'; // Ruta al archivo JSON
-
-  private preguntasConservadorUrl = 'assets\\mock\\Perfil Objetivo Conservador V1.0.json'; // Ruta al archivo JSON
-  private preguntasModeradoUrl = 'assets\\mock\\Perfil Objetivo Moderado V1.0.json'; // Ruta al archivo JSON
-  private preguntasArriesgadoUrl = 'assets\\mock\\Perfil Objetivo Arriesgado V1.0.json'; // Ruta al archivo JSON
+  private preguntasUrlMOCK = 'assets\\mock\\Perfil Objetivo Moderado V1.0.json';
+  private preguntasConservadorUrl = 'assets\\mock\\Perfil Objetivo Conservador V1.0.json'; 
+  private preguntasModeradoUrl = 'assets\\mock\\Perfil Objetivo Moderado V1.0.json'; 
+  private preguntasArriesgadoUrl = 'assets\\mock\\Perfil Objetivo Arriesgado V1.0.json'; 
   private Res:PreguntaApi[]=[];
   constructor(private http: HttpClient) {}
 
@@ -21,7 +19,7 @@ export class PreguntaObjetivasService {
 
     switch(tipo){
       case 'CONSERVADOR':
-        this.preguntasUrlMOCK = this.preguntasConservadorUrl; // Ruta al archivo JSON
+        this.preguntasUrlMOCK = this.preguntasConservadorUrl; 
         break;
       case 'MODERADO': 
         this.preguntasUrlMOCK = this.preguntasModeradoUrl; 

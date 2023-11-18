@@ -9,8 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { LandingComponent } from './features/landing/landing.component';
 import { CommonModule, DatePipe } from '@angular/common';
-
 import { HttpClientModule } from '@angular/common/http'; 
+import { QRCodeModule } from 'angularx-qrcode';
+
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { TestPerfilSubjetivoComponent } from './features/perfil-subjetivo/stages/test-perfil-subjetivo/test-perfil-subjetivo.component';
@@ -24,8 +25,6 @@ import { AdministrarComponent } from './features/dashboard/sections/administrar/
 import { AdministrarPreguntasComponent } from './features/dashboard/sections/administrar-preguntas/administrar-preguntas.component';
 import { ModalComponent } from 'src/app/presentation/common/components/modal/modal.component';
 import { GraficoVelasComponent } from 'src/app/presentation/common/components/grafico-velas/grafico-velas.component';
-import { QRCodeModule } from 'angularx-qrcode';
-
 import { GraficoLineaComponent } from 'src/app/presentation/common/components/grafico-linea/grafico-linea.component';
 import { FormatoValorPipe } from 'src/app/presentation/common/pipes/formato-valor/formato-valor.pipe';
 import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
@@ -36,6 +35,7 @@ import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta
 import { RendimientoComponent } from './features/dashboard/sections/rendimiento/rendimiento.component';
 import { FechaLocalPipe } from './common/pipes/fecha-local/fecha-local.pipe';
 import { PorcentajeValorCustomizadoPipe } from './common/pipes/porcentaje-valor-customizado/porcentaje-valor-customizado.pipe';
+import { RecuperarCuentaComponent } from './features/recuperar-cuenta/recuperar-cuenta.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +66,7 @@ import { PorcentajeValorCustomizadoPipe } from './common/pipes/porcentaje-valor-
     RendimientoComponent,
     FechaLocalPipe,
     PorcentajeValorCustomizadoPipe,
+    RecuperarCuentaComponent,
   ],
   imports: [
     BrowserModule,

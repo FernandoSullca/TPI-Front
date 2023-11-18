@@ -8,7 +8,6 @@ import { from } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
 import { CarteraService } from 'src/app/core/services/api/cartera/cartera.service';
 import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
-import { ModalSugeridoComponent } from 'src/app/presentation/common/components/modal-sugerido/modal-sugerido.component';
 import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
 import { PortfolioSugerido } from 'src/app/core/models/portfolio-sugerido/portfolio-sugerido';
 import { PortfolioSugeridoService } from 'src/app/core/services/api/portfolio-sugerido/portfolio-sugerido.service';
@@ -22,7 +21,7 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
 
   Username: string = "";
 
-  buttonText: string = 'Continuar'; // Texto del botón por defecto
+  buttonText: string = 'Continuar';
 
   isLastQuestion: boolean = false;
   currentQuestionIndex: number = 0;
@@ -95,7 +94,6 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    /*********Area Preguntas onjetivas*********/
     const storedProfile = this.localStorageService.getItem('perfilinversor');
     if (storedProfile) {
       this.PerfilSubjetivoObtenido = storedProfile;
@@ -129,7 +127,6 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
         this.perfilInversorUsuario = this.localStorageService.GetPerfilActualLocal();
         this.perfilInversorUsuario.UsuarioDTO = this.localStorageService.GetUsuarioPerfilActualLocal();
         this.Username = this.localStorageService.getItem('Username');
-        // this.Username = this.perfilInversorUsuario.UsuarioDTO.nombreUsuario;
         this.loading = false;
       }
       );
@@ -143,7 +140,6 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
 
   loadNextQuestion(): void {
     if (this.resPreguntas) {
-      // Verifica si todavía hay preguntas disponibles 
       this.currentQuestionIndex++;
 
       this.guardarRespuestas();
@@ -152,24 +148,21 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
         this.preguntas[0] = this.resPreguntas[this.currentQuestionIndex];
 
       } else {
-        // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
-        //Anteds de mostrar la sig pan
-
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
           this.localStorageService.setItem('perfilinversor', this.respuestasPerfil.perfilInversor);
+          this.localStorageService.setItem('perfilObjetivoCartera', this.respuestasPerfil.perfilInversor);
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
           this.perfilInversorUsuario.perfilInversor = this.respuestasPerfil.perfilInversor;
         }).finally(() => {
           this.acreditarDinero();
           this.armardescripcion();
-          //this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificadoLocal(usuario, this.ResultadoPerfilObjetivo);
           this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(this.Username, this.ResultadoPerfilObjetivo);
           this.dashboardComponent.obtenerPortfolioSugerido(this.ResultadoPerfilObjetivo);
         }
         );;
 
-        this.isLastQuestion = true;// Habilita Control de pregunta finalizada y habilita boton para volver al home
+        this.isLastQuestion = true;
         this.buttonText = 'Obtener portfolio sugerido';
 
       }
@@ -184,17 +177,9 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   }
 
   public async entregarResultados(): Promise<any> {
-    if (!this.validateData()) {
-      return;
-    }
-
     this.perfilInversorUsuario.nivelConocimiento = this.AnalisisObjetivo["Conocimento"];
-
     try {
-
-      // const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
       const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
-      // data && data.perfilInversor
       if (data?.perfilInversor) {
         this.respuestasPerfil = data;
         return this.respuestasPerfil;
@@ -234,8 +219,6 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
 
   validateData() {
     if(this.perfilInversorUsuario.UsuarioDTO!=null && this.perfilInversorUsuario!=null){
-      console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:235 ~ TestPerfilInversorObjetivoComponent ~ validateData ~ this.perfilInversorUsuario:", this.perfilInversorUsuario)
-      console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:235 ~ TestPerfilInversorObjetivoComponent ~ validateData ~ this.perfilInversorUsuario.UsuarioDTO:", this.perfilInversorUsuario.UsuarioDTO)
       return true;
     }
     else{
@@ -245,15 +228,11 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   }
 
   guardarRespuestas() {
-    // console.log("Entrando en guardar respuestas");
-    // console.log(this.AnalisisObjetivo["Conocimento"]);
     if (!this.AnalisisObjetivo["Conocimento"]) {
       this.AnalisisObjetivo["Conocimento"] = 0;
     }
     this.AnalisisObjetivo["Conocimento"] += this.opcionSeleccionada;
     this.opcionSeleccionada = 0;
-    // console.log("Ver respuestas almacenadas");
-    // console.log(this.AnalisisObjetivo["Conocimento"]);
   }
 
   async solicitarcertificado() {

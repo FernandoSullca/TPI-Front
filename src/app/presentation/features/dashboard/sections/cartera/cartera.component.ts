@@ -4,6 +4,7 @@ import { CarteraService } from 'src/app/core/services/api/cartera/cartera.servic
 import { Cartera } from 'src/app/core/models/cartera/cartera';
 import { DolarBolsa } from 'src/app/core/models/dolar-bolsa/dolar-bolsa';
 import { ChartType } from 'chart.js';
+import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 
 
 @Component({
@@ -13,37 +14,26 @@ import { ChartType } from 'chart.js';
 })
 export class CarteraComponent implements OnInit {
 
-  constructor(private carteraService: CarteraService, private router: Router) { }
-  datosGrafico : any;
+  constructor(private carteraService: CarteraService, private router: Router, private localStorageService: LocalStorageService) { }
+  datosGrafico: any;
   tipoGrafico: ChartType = 'pie';
   tipoGraficoLinea: ChartType = 'line';
   totalValorizadoNulo: number = 0;
   cartera: Cartera | undefined;
   valorActualDolarMEP: DolarBolsa | undefined;
   fechaCompletaDolarMEP: string = '';
-  tituloGraficoTorta : string ="Instrumentos en posesión";
-  tituloGraficoLinea : string ="Mi progreso";
+  tituloGraficoTorta: string = "Instrumentos en posesión";
+  tituloGraficoLinea: string = "Mi progreso";
+  perfil: string | null | undefined;
 
   ngOnInit(): void {
     this.getCartera();
-    this.generarAleatorioTotalValorizado()
+    if (this.obtenerTipoNivelConocimiento())
+      this.perfil = this.obtenerTipoNivelConocimiento();
   }
-  // core      |||||   component
-  // llamado a api  !== exceso logica en componente angular
-  /// local-storage.service
   getCartera() {
     return this.carteraService.getCartera().subscribe((response) => {
-      console.log("🚀 ~ file: cartera.component.ts:36 ~ CarteraComponent ~ returnthis.carteraService.getCartera ~ response:", response)
-      const { totalCartera = '', totalInstrumentos = '', totalMonedas = '' } = response;
-
-      // TODO limpiar
-      const responseFormated: Cartera = {
-        ...response,
-        totalCartera: Number(totalCartera),
-        totalInstrumentos: Number(totalInstrumentos),
-        totalMonedas: Number(totalMonedas),
-      }
-      this.cartera = responseFormated
+      this.cartera = this.formatearRespuesta(response);
     });
   }
   mostrarValuacionTotalCartera(): number {
@@ -62,23 +52,18 @@ export class CarteraComponent implements OnInit {
       this.fechaCompletaDolarMEP = fecha;
     })
   }
-  // TODO limpiar
-  generarAleatorioTotalValorizado() {
-    const aleatorios = [];
-    let valorInicial = 4000;
-    const maxFluctuacion = 200;
-    
-    for (let i = 0; i < 20; i++) {
-      const valorActual = valorInicial + Math.random() * maxFluctuacion;
-      aleatorios.push({ [i]: valorActual });
-      valorInicial = valorActual;
+  formatearRespuesta(response: Cartera): Cartera {
+    const { totalCartera = '', totalInstrumentos = '', totalMonedas = '' } = response;
+    const responseFormated: Cartera = {
+      ...response,
+      totalCartera: Number(totalCartera),
+      totalInstrumentos: Number(totalInstrumentos),
+      totalMonedas: Number(totalMonedas),
     }
-    
-    const formattedData = {
-      "Progreso": aleatorios
-    };
-    
-    this.datosGrafico = formattedData;
+    return responseFormated;
   }
-  
+  obtenerTipoNivelConocimiento() {
+    const resultadoObjetivoCartera=this.localStorageService.getItem('perfilObjetivoCartera') ;
+    return resultadoObjetivoCartera || '';
+  }
 }
