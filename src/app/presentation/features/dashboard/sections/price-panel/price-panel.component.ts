@@ -154,12 +154,15 @@ export class PricePanelComponent implements OnInit {
         this.getDineroDisponible();
       })
       .catch((error) => {
-        
         this.loadingButton = false;
-        if (error.response.data === "Error al crear la orden: Puede operar hasta: 0") {
-          this.textMessage = 'Usted no posee este instrumento.'
+        const mesaggeError = error.response.data.message.includes("Ocurrió un error en el servicio");
+        const index = error.response.data.message.indexOf("Puede operar");
+        const subString = error.response.data.message.substring(index);
+
+        if (mesaggeError) {
+          this.textMessage = subString;
         } else {
-          this.textMessage = error.response.data;
+          this.textMessage = error.response.data.message;
         }
         this.typeMessage = "error"
         console.error(error)

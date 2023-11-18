@@ -2,9 +2,8 @@
   <div class="row text-center table-rendimiento">
     <div class="text-start">
       <h3>Rendimiento de cartera</h3>
-
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-12" *ngIf="rendimientoInstrumento && rendimientoInstrumento.length > 0; else loading">
       <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
         <div class="col mobile-col text-start">Simbolo</div>
         <div class="col d-none d-xl-block">Cantidad</div>
@@ -23,18 +22,23 @@
                 </strong>
               </div>
               <div class="col overflow-hidden d-none d-xl-block"> {{item.cantidad}}</div>
-              <div class="col overflow-hidden d-xl-block"> 
-                <message class="card-text small-text" [textMessage]="item.totalPorcentajeGeneral| porcentajeValorCustomizado : 'porcentual'" [typeMessage]="validacionDeSigno(item.totalPorcentajeGeneral)">
+              <div class="col overflow-hidden d-xl-block">
+                <message class="card-text small-text"
+                  [textMessage]="item.totalPorcentajeGeneral| porcentajeValorCustomizado : 'porcentual'"
+                  [typeMessage]="validacionDeSigno(item.totalPorcentajeGeneral)">
                 </message>
               </div>
               <div class="col overflow-hidden d-xl-block">
-                <message class="card-text small-text" [textMessage]="item.totalGananaciaPerdidaPesos| porcentajeValorCustomizado : 'monto'" [typeMessage]="validacionDeSigno(item.totalGananaciaPerdidaPesos)">
+                <message class="card-text small-text"
+                  [textMessage]="item.totalGananaciaPerdidaPesos| porcentajeValorCustomizado : 'monto'"
+                  [typeMessage]="validacionDeSigno(item.totalGananaciaPerdidaPesos)">
                 </message>
               </div>
               <div class="col overflow-hidden d-xl-block"> {{item.totalValorizadoPesos | formatoValor}}</div>
             </div>
           </div>
-          <div class="col-sm-12 dropdown-menu" aria-labelledby="dropdownHistoricoInstrumento" style="border: 2px solid #3261A8;">
+          <div class="col-sm-12 dropdown-menu" aria-labelledby="dropdownHistoricoInstrumento"
+            style="border: 2px solid #3261A8;">
             <div class="row text-center" style="font-weight: bold;">
               <div class="col d-none d-xl-block">Cantidad</div>
               <div class="col mobile-col">Fecha</div>
@@ -50,14 +54,19 @@
                     <div class="col overflow-hidden d-none d-xl-block"> {{item.cantidad}}</div>
                     <div class="col overflow-hidden d-xl-block">{{item.fecha|fechaLocal}}</div>
                     <div class="col overflow-hidden d-xl-block">
-                      <message class="card-text small-text" [textMessage]="item.porcentajeRendimiento | porcentajeValorCustomizado : 'porcentual'" [typeMessage]="validacionDeSigno(item.porcentajeRendimiento)">
+                      <message class="card-text small-text"
+                        [textMessage]="item.porcentajeRendimiento | porcentajeValorCustomizado : 'porcentual'"
+                        [typeMessage]="validacionDeSigno(item.porcentajeRendimiento)">
                       </message>
                     </div>
                     <div class="col overflow-hidden d-xl-block">
-                      <message class="card-text small-text" [textMessage]="item.gananciaPerdidaDiaria| porcentajeValorCustomizado : 'monto'" [typeMessage]="validacionDeSigno(item.porcentajeRendimiento)">
+                      <message class="card-text small-text"
+                        [textMessage]="item.gananciaPerdidaDiaria| porcentajeValorCustomizado : 'monto'"
+                        [typeMessage]="validacionDeSigno(item.porcentajeRendimiento)">
                       </message>
                     </div>
-                    <div class="col overflow-hidden d-none d-xl-block"> {{item.totalValorizadoDiario | formatoValor}}</div>
+                    <div class="col overflow-hidden d-none d-xl-block"> {{item.totalValorizadoDiario | formatoValor}}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -65,17 +74,18 @@
           </div>
         </div>
       </div>
-
-      <ng-template #loading>
-        <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
-          <div class="spinner-border loading-spiner" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-          <h3>Cargando panel de precios ...</h3>
-        </div>
-      </ng-template>
     </div>
   </div>
-
-
+  <ng-template #loading>
+    <!-- <app-loading [textoLoading]="'Cargando rendimientos ...'"></app-loading> -->
+    <div class="cartera-sin-instrumentos">
+      <h3 class="texto">
+        Aún no contás con instrumentos
+      </h3>
+      <div class="boton-ir-a-comprar">
+        <button type="button" class="boton btn btn-sm mx-auto" [routerLink]="['/dashboard/panel-precios']" >IR AL PANEL DE PRECIOS
+        </button>
+      </div>
+    </div>
+  </ng-template>
 </div>

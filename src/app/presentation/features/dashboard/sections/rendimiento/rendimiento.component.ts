@@ -41,13 +41,6 @@ export class RendimientoComponent implements OnInit {
         };
       })
 
-      /*simbolo:string
-    cantidad: number,
-    fecha:Date,
-    porcentajeRendimiento: number,
-    gananciaPerdidaDiaria: number,
-    totalValorizadoDiario:number*/
-
        this.historico1 = nuevo;
 
        return this.historico1;
@@ -56,9 +49,6 @@ export class RendimientoComponent implements OnInit {
       return [];
     });
 
-
-
-    //this.rendimientoInstrumento =this.rendimientoService.obtenerRendimientoTotal();
   }
   obtenerRendimientoTotal(){
    

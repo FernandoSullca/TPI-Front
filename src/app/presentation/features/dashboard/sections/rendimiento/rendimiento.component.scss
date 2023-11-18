@@ -16,7 +16,19 @@
         background-color: $primary-color !important;
     }
 }
+.boton-ir-a-comprar {
+    display: flex;
+    height: auto;
+    width: auto;
 
+    .boton {
+      height: auto;
+      background-color: $primary-color;
+      color: $color-white;
+      border-radius: 100px;
+      font-weight: bold;
+    }
+  }
 .filasClaras {
     background-color: white;
 }

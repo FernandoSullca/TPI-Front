@@ -87,7 +87,4 @@ export class RegistroService {
     return this.http.post(`${environment.API}/api/cambiar-password`, body);
   }
 
-  // loginAdministrador(email: any, password: any) :Observable<any>{
-  //   return this.http.post<UsuarioAPI>(`${environment.API}/login/iniciar-session-usuario`, { email, pass: password });
-  // }
 }
