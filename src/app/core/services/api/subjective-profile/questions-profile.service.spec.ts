@@ -6,7 +6,6 @@ import { environment } from 'environments/environment';
 
 import axios from 'axios';
 import { PreguntaApi } from 'src/app/core/models/API/Pregunta-APi.model';
-// import nock  from 'nock';
 describe('QuestionsProfileService', () => {
   let service: QuestionsProfileService;
   let httpTestingController: HttpTestingController;

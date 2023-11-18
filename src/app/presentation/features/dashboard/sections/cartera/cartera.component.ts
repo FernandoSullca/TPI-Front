@@ -63,7 +63,6 @@ export class CarteraComponent implements OnInit {
     return responseFormated;
   }
   obtenerTipoNivelConocimiento() {
-    //Con login y test se carga la variable o queda null si es que no hizo el perfil objetivo
     const resultadoObjetivoCartera=this.localStorageService.getItem('perfilObjetivoCartera') ;
     return resultadoObjetivoCartera || '';
   }

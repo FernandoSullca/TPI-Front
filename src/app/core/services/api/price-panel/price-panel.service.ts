@@ -32,31 +32,12 @@ export class PricePanelService {
     return this.mapToTitulos(resp);
   }
 
-  // todo separar logica
   public async capturarOrden(sentido: string, simbolo: string, cantidad: number, objeto: any) {
-    let date = new Date()
-    let day = `${(date.getDate())}`.padStart(2, '0');
-    let month = `${(date.getMonth() + 1)}`.padStart(2, '0');
-    let year = date.getFullYear();
-    const fecha = `${year}-${month}-${day}`;
-    const categoriaInstrumento = objeto.instrumento;
-    const body = {
-      "simboloInstrumento": simbolo,
-      "monedaOid": 1, // siempre 1 moneda peso
-      "fecha_orden": fecha, // fecha actual
-      "cantidad": cantidad, // cantidad de "acciones" del instrumento
-      "sentido": sentido, // venta
-      "categoriaInstrumento": categoriaInstrumento
-    }
+    const body = this.creacionBody(sentido, simbolo, cantidad, objeto);
     const token = this.localStorage.getItem("token");
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    };
-
+    const headers = this.creacionHeader(token);
     const resp = await axios.post(`${environment.API}/orden/capturar`, body, { headers });
     const { data } = resp;
-
     return data;
   }
   setearSimboloDePortafolioSugerido(simbolo: string) {
@@ -64,5 +45,32 @@ export class PricePanelService {
   }
   obtenerSimboloDePortafolioSugerido(): Observable<string> {
     return this.behaviorSubjectIntrumentoSeleccionado.asObservable();
+  }
+  creacionFecha(){
+    let date = new Date()
+    let day = `${(date.getDate())}`.padStart(2, '0');
+    let month = `${(date.getMonth() + 1)}`.padStart(2, '0');
+    let year = date.getFullYear();
+    const fecha = `${year}-${month}-${day}`;
+    return fecha;
+  }
+  creacionBody(sentido: string, simbolo: string, cantidad: number, objeto: any){
+    const categoriaInstrumento = objeto.instrumento;
+    const body = {
+      "simboloInstrumento": simbolo,
+      "monedaOid": 1,
+      "fecha_orden": this.creacionFecha(),
+      "cantidad": cantidad,
+      "sentido": sentido,
+      "categoriaInstrumento": categoriaInstrumento
+    }
+    return body
+  }
+  creacionHeader(token:any){
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    };
+    return headers;
   }
 }

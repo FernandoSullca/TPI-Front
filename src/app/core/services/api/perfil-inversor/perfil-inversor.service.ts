@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import axios from 'axios';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';

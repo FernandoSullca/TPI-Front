@@ -12,21 +12,6 @@
     </div>
     <div class="container-ul" style="width: 90%; height: 50%; margin-left: -1.5rem;">
     <ul>
-      <!-- *ngIf="!enabledAdminMode" -->
-        <!-- *ngIf="enabledPerfil" -->
-        <!-- <li routerLink='/dashboard/aprender' routerLinkActive="active" (click)="actionMenuMobile()">
-          <img src="/assets/image/aprender.svg" alt="">
-          <span>Aprender</span>
-        </li> -->
-        <!-- <li routerLink='/dashboard/foro' routerLinkActive="active" (click)="actionMenuMobile()">
-          <img src="/assets/image/foro.svg" alt=""><span>Foro</span> -->
-          <!--           *ngIf="quantityNotifications > 0"
-          {{quantityNotifications}}
-        -->
-          <!-- <p class="notif">
-            3
-          </p>
-        </li> -->
         <li routerLink='/dashboard/cartera' routerLinkActive="active" (click)="actionMenuMobile()">
           <img src="/assets/image/cartera-icon.svg" alt=""><span>Mi Cuenta</span>
         </li>
@@ -46,26 +31,6 @@
         </li>
     </ul>
   </div>
-  <!--
-  <div class="card-dolar">
-    <div class="titulo-mep">
-        <b>
-            <h4>Dolar MEP</h4>
-        </b>
-    </div>
-    <div class="compra">
-        <h5 >$ {{valorActualDolarMEP?.compra}}</h5>
-        <ng-template #elseBlock><h2>$ {{valorActualDolarMEP?.compra| number: '1.2-2'}}</h2></ng-template>
-        <button type="button" class="boton btn btn-sm mx-auto custom-button">COMPRA</button>
-    </div>
-    <div class="venta">
-        <h5 >$ {{valorActualDolarMEP?.venta}}</h5>
-        <ng-template #elseBlock><h2>$ {{valorActualDolarMEP?.venta}}</h2></ng-template>
-        <button type="button" class="boton btn btn-sm mx-auto custom-button">VENTA</button>
-    </div>
-    <div class="fecha">{{fechaCompletaDolarMEP}}</div>
-</div>-->
-    <!-- (click)="logout()" -->
     <div class="portfolio-sugerido-container" (click)="openModal()" data-toggle="modal" data-target="#sugerido" >
       <img class="portfolio-sugerido" src="/assets/image/portfolio-sugerido-icon.svg" alt="Portofolio sugerido">
     </div>
@@ -78,7 +43,6 @@
   <div class="main-content">
     <app-modal-sugerido *ngIf="modalService.isModalOpen()" [portfolioSugerido]="portfolioSugerido"></app-modal-sugerido>
     <router-outlet></router-outlet>
-    <!-- <app-price-panel></app-price-panel> -->
   </div>
 </section>
 

@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { error } from 'console';
 import { Observable } from 'rxjs';
 import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
 import { UsuarioAPI } from 'src/app/core/models/API/Usuario-API.model';
@@ -15,7 +14,7 @@ import { jwtDecode } from "jwt-decode";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
   opcion = 'login';
   errorLogin: boolean = false;
   errorform: boolean = false;
@@ -45,10 +44,6 @@ export class LoginComponent implements OnInit {
     private perfilesServicios: PerfilInversorService,
     private router: Router
   ) { }
-
-  ngOnInit(): void {
-
-  }
 
   public opcionRecuperar() {
     this.opcion = 'recuperar';
@@ -129,7 +124,6 @@ export class LoginComponent implements OnInit {
   }
 
   private AlmacenarUsuario_Perfil(perfilUsuario: PerfilInversorAPI | null) {
-    //A nivel login la variable se llama username
     this.LocalStorageService.setItem('Username', this.usuariodb.username);
     if (perfilUsuario === null || perfilUsuario === undefined) {
       console.log("El usuario no tiene un perfil asociado");
@@ -142,7 +136,6 @@ export class LoginComponent implements OnInit {
       this.loading = false;
       this.LocalStorageService.setPerfilSubjetivo(perfilUsuario);
       this.LocalStorageService.SetPerfilActualLocal();
-      ///Verifica si el test que completo esra el objetivo , ebn caso de serlo actualiza la flag que usa cartera, y muestra el perfil obtenido
       this.LocalStorageService.setItem('perfilinversor', perfilUsuario.perfilInversor);
       if(perfilUsuario.tipoNivelConocimiento!=null||perfilUsuario.nivelConocimiento!=null){
       this.LocalStorageService.setItem('perfilObjetivoCartera', perfilUsuario.perfilInversor);
@@ -153,9 +146,7 @@ export class LoginComponent implements OnInit {
   }
 
   buscarPerfilUsuario(usuariodb: UsuarioAPI): Observable<PerfilInversorAPI | null> {
-
     return this.perfilesServicios.obtenerPerfil(usuariodb)
-
   }
 
   validarEntradas() {

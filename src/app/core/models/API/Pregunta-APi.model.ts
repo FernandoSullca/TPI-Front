@@ -17,7 +17,7 @@ export class RespuestaAPI {
       public nombre: string,
       public valor: number,
       public orden: number,
-      public instrumento?: string, // Es opcional y va al final
+      public instrumento?: string, 
     ) {}
 }
 

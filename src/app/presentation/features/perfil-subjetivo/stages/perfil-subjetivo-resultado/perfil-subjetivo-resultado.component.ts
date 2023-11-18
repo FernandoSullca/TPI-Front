@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 import { QRLocalService } from 'src/app/core/services/dataLocalServices/QR/qrlocal.service';
 
@@ -35,7 +35,6 @@ export class PerfilSubjetivoResultadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     const storedProfile = this.localStorageService.getItem('perfilsubjetivo');
     if (storedProfile) {
     this.respPerfilResultante = storedProfile;  
@@ -50,9 +49,7 @@ export class PerfilSubjetivoResultadoComponent implements OnInit {
   }
   
   loadPagePerfilObjetivo(): void {
-
     this.router.navigate(['dashboard/perfil-inversor']);
-
   }
 
 }
