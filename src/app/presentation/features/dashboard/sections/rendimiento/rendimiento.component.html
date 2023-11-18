@@ -3,7 +3,7 @@
     <div class="text-start">
       <h3>Rendimiento de cartera</h3>
     </div>
-    <div class="col-sm-12" *ngIf="rendimientoInstrumento && rendimientoInstrumento.length > 0; else loading">
+    <div class="col-sm-12" *ngIf="!loading; else showloading">
       <div class="row" style="background-color: #ECEEFB; font-weight: bold;">
         <div class="col mobile-col text-start">Simbolo</div>
         <div class="col d-none d-xl-block">Cantidad</div>
@@ -76,16 +76,17 @@
       </div>
     </div>
   </div>
-  <ng-template #loading>
-    <!-- <app-loading [textoLoading]="'Cargando rendimientos ...'"></app-loading> -->
-    <div class="cartera-sin-instrumentos">
-      <h3 class="texto">
-        Aún no contás con instrumentos
-      </h3>
-      <div class="boton-ir-a-comprar">
-        <button type="button" class="boton btn btn-sm mx-auto" [routerLink]="['/dashboard/panel-precios']" >IR AL PANEL DE PRECIOS
-        </button>
-      </div>
+  <div class="cartera-sin-instrumentos" *ngIf="rendimientoInstrumento && rendimientoInstrumento.length === 0">
+    <h3>
+      Aún no contás con instrumentos
+    </h3>
+    <div class="boton-ir-a-comprar">
+      <button type="button" class="boton btn btn-sm mx-auto" [routerLink]="['/dashboard/precios']">IR AL PANEL DE
+        PRECIOS
+      </button>
     </div>
+  </div>
+  <ng-template #showloading>
+    <app-loading [textoLoading]="'Cargando rendimientos ...'"></app-loading>
   </ng-template>
 </div>
