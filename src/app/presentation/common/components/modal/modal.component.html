@@ -1,81 +1,85 @@
-<div class="modal fade" id="myModal" role="dialog" tabindex="-1" data-keyboard="false" data-backdrop="static" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" role="dialog" tabindex="-1" data-keyboard="false" data-backdrop="static"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered my-horizontal-center modal-xl">
     <h4 class="modal-title"></h4>
-      <div class="modal-content" *ngIf="detalleInstrumento">
-        <div class="modal-header">
-          <h4 class="modal-title">{{detalleInstrumento.descripcion}} ({{detalleInstrumento.simbolo}})</h4>
-          <button type="button" class="close" data-dismiss="modal" (click)="cerrarModal()">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="d-flex flex-row flex-wrap">
-            <div class="small-card">
-              <div class="card">
-                <div class="card-body">
-                  <h6 class="card-title small-text">Último precio</h6>
-                  <p class="card-text fw-bolder small-text">{{detalleInstrumento.ultimoPrecio | formatoValor}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="small-card">
-              <div class="card">
-                <div class="card-body">
-                  <h6 class="card-title small-text">Variación diaria</h6>
-                  <message class="card-text small-text" [textMessage]="textMessage" [typeMessage]="typeMessage">
-                    {{textMessage}}</message>
-                </div>
-              </div>
-            </div>
-            <div class="small-card">
-              <div class="card">
-                <div class="card-body">
-                  <h6 class="card-title small-text">Puntas de compra</h6>
-                  <p class="card-text small-text">{{detalleInstrumento.puntas?.cantidadCompra}} x
-                    ${{detalleInstrumento.puntas?.precioCompra}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="small-card">
-              <div class="card">
-                <div class="card-body">
-                  <h6 class="card-title small-text">Puntas de venta</h6>
-                  <p class="card-text small-text">{{detalleInstrumento.puntas?.cantidadVenta | formatoValor}} x
-                    {{detalleInstrumento.puntas?.precioVenta | formatoValor}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="small-card">
-              <div class="card">
-                <div class="card-body">
-                  <h6 class="card-title small-text">Volumen operado</h6>
-                  <p class="card-text small-text">{{detalleInstrumento.cantidadOperaciones}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="small-card">
-              <div class="card">
-                <div class="card-body">
-                  <h6 class="card-title small-text">Rango de precios</h6>
-                  <p class="card-text small-text">Max: {{detalleInstrumento.maximo | formatoValor}} - Min:
-                    {{detalleInstrumento.minimo | formatoValor}}</p>
-                </div>
+    <div class="modal-content" *ngIf="detalleInstrumento">
+      <div class="modal-header">
+        <h4 class="modal-title">{{detalleInstrumento.descripcion}} ({{detalleInstrumento.simbolo}})
+          <div (click)="ayuda()" style="display: contents; cursor: pointer;">
+            <i class="fa-regular fa-circle-question"></i>
+          </div>
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="cerrarModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-row flex-wrap">
+          <div class="small-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title small-text">Último precio</h6>
+                <p class="card-text fw-bolder small-text">{{detalleInstrumento.ultimoPrecio | formatoValor}}</p>
               </div>
             </div>
           </div>
-          <app-grafico-velas class="grafico-velas"
-            *ngIf="datosGraficoVelas && datosGraficoVelas.length >0; else loading"
-            [solapaDetalleInstrumento]="solapaDetalleInstrumento"></app-grafico-velas>
-          <ng-template #loading>
-            <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
-              <div class="spinner-border loading-spiner" role="status">
-                <span class="sr-only">Loading...</span>
+          <div class="small-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title small-text">Variación diaria</h6>
+                <message class="card-text small-text" [textMessage]="textMessage" [typeMessage]="typeMessage">
+                  {{textMessage}}</message>
               </div>
-              <h3>Cargando gráfico</h3>
             </div>
-          </ng-template>
+          </div>
+          <div class="small-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title small-text">Puntas de compra</h6>
+                <p class="card-text small-text">{{detalleInstrumento.puntas?.cantidadCompra}} x
+                  ${{detalleInstrumento.puntas?.precioCompra}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="small-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title small-text">Puntas de venta</h6>
+                <p class="card-text small-text">{{detalleInstrumento.puntas?.cantidadVenta | formatoValor}} x
+                  {{detalleInstrumento.puntas?.precioVenta | formatoValor}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="small-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title small-text">Volumen operado</h6>
+                <p class="card-text small-text">{{detalleInstrumento.cantidadOperaciones}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="small-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title small-text">Rango de precios</h6>
+                <p class="card-text small-text">Max: {{detalleInstrumento.maximo | formatoValor}} - Min:
+                  {{detalleInstrumento.minimo | formatoValor}}</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-default" data-dismiss="modal" (click)="cerrarModal()">Close</button> -->
-        </div>
+        <app-grafico-velas class="grafico-velas" *ngIf="datosGraficoVelas && datosGraficoVelas.length >0; else loading"
+          [solapaDetalleInstrumento]="solapaDetalleInstrumento"></app-grafico-velas>
+        <ng-template #loading>
+          <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
+            <div class="spinner-border loading-spiner" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <h3>Cargando gráfico</h3>
+          </div>
+        </ng-template>
       </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal" (click)="cerrarModal()">Close</button> -->
+      </div>
+    </div>
   </div>
 </div>

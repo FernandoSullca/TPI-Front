@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 import { DolarBolsa } from 'src/app/core/models/dolar-bolsa/dolar-bolsa';
 import { PortfolioSugerido } from 'src/app/core/models/portfolio-sugerido/portfolio-sugerido';
 import { Titulo } from 'src/app/core/models/price-panel/titulo.model';
@@ -20,13 +20,13 @@ export class DashboardComponent implements OnInit {
   public enabledAdminMode = false;
   public quantityNotifications = 0;
   public valorActualDolarMEP: DolarBolsa | undefined;
-  public fechaCompletaDolarMEP: string='';
-  public portfolioSugerido!:PortfolioSugerido[];
-  public tipoPerfil : string |undefined
+  public fechaCompletaDolarMEP: string = '';
+  public portfolioSugerido!: PortfolioSugerido[];
+  public tipoPerfil: string | undefined
 
-  constructor(private router : Router,private localstorage:LocalStorageService,
-    private carteraService : CarteraService, public modalService : ModalService,
-    private portfolioSugeridoService : PortfolioSugeridoService) { }
+  constructor(private router: Router, private localstorage: LocalStorageService,
+    private carteraService: CarteraService, public modalService: ModalService,
+    private portfolioSugeridoService: PortfolioSugeridoService) { }
 
   public ngOnInit(): void {
     this.obtenerPortfolioSugerido(this.obtenerTipoPerfil());
@@ -40,22 +40,23 @@ export class DashboardComponent implements OnInit {
     this.localstorage.removeAllItems();
     this.router.navigate(["/"]);
   }
-  obtenerPrecioDolarMEP(){
-    return this.carteraService.getPrecioDolarMEP().subscribe((response)=>{
-    this.valorActualDolarMEP=response;
-    const fecha = (new Date(this.valorActualDolarMEP.fechaActualizacion)).toLocaleString();
-    this.fechaCompletaDolarMEP = fecha;
+  obtenerPrecioDolarMEP() {
+    return this.carteraService.getPrecioDolarMEP().subscribe((response) => {
+      this.valorActualDolarMEP = response;
+      const fecha = (new Date(this.valorActualDolarMEP.fechaActualizacion)).toLocaleString();
+      this.fechaCompletaDolarMEP = fecha;
     })
   }
-  openModal(){
+  openModal() {
     this.modalService.openModal();
   }
-  public obtenerPortfolioSugerido(tipoPerfil:string|undefined) {
+  public obtenerPortfolioSugerido(tipoPerfil: string | undefined) {
     this.portfolioSugeridoService.getPortfolioSugerido(tipoPerfil).subscribe((response) => {
       this.portfolioSugerido = response;
     });
   }
-  public obtenerTipoPerfil(){
-    return this.tipoPerfil;
+  public obtenerTipoPerfil() {
+    const regex = /\"/ig;
+    return localStorage.getItem('perfilObjetivoCartera')?.replace(regex, "") || this.tipoPerfil || '';
   }
 }

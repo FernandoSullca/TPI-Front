@@ -45,8 +45,8 @@ describe('PricePanelService', () => {
 
     });
     it('should obtain suggested portfolio symbol', () => {
-        const symbol = 'AAPL'; // Reemplaza esto con el símbolo deseado
-        service.setearSimboloDePortafolioSugerido(symbol);
+        const symbol = 'APPL,cedears'; // Reemplaza esto con el símbolo deseado
+        service.setearSimboloDePortafolioSugerido('APPL','cedears');
       
         service.obtenerSimboloDePortafolioSugerido().subscribe((obtainedSymbol) => {
           expect(obtainedSymbol).toEqual(symbol);
