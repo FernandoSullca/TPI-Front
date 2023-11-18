@@ -40,8 +40,8 @@ export class PricePanelService {
     const { data } = resp;
     return data;
   }
-  setearSimboloDePortafolioSugerido(simbolo: string) {
-    this.behaviorSubjectIntrumentoSeleccionado.next(simbolo);
+  setearSimboloDePortafolioSugerido(simbolo: string, categoriaInstrumento: string) {
+    this.behaviorSubjectIntrumentoSeleccionado.next(simbolo + ',' + categoriaInstrumento);
   }
   obtenerSimboloDePortafolioSugerido(): Observable<string> {
     return this.behaviorSubjectIntrumentoSeleccionado.asObservable();

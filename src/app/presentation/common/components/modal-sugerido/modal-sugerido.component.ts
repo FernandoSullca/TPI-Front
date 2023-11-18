@@ -13,33 +13,40 @@ import { DashboardComponent } from 'src/app/presentation/features/dashboard/dash
 })
 export class ModalSugeridoComponent {
   @Input() portfolioSugerido!: PortfolioSugerido[];
-  elementosArray: any []=[];
-
+  elementosArray: any[] = [];
+  public perfilObjetivoUsuario: string = '';
   public instrumentoSeleccionadoId: number = 0;
 
-  
+
   public ngOnInit(): void {
+    this.perfilObjetivoUsuario = localStorage.getItem('perfilObjetivoCartera') || '';
      if (this.portfolioSugerido.length > 0) {
        this.instrumentoSeleccionadoId = this.portfolioSugerido[0].oid;
      }  
   }
-  
-  
-  constructor(public modalService: ModalService, private router : Router,private portfolioSugeridoService : PortfolioSugeridoService,
-    private dashboardComponent: DashboardComponent,private pricePanelService : PricePanelService  ){}
 
-  public cerrarModal(){
+
+  constructor(public modalService: ModalService, private router: Router, private portfolioSugeridoService: PortfolioSugeridoService,
+    private dashboardComponent: DashboardComponent, private pricePanelService: PricePanelService) { }
+
+  public cerrarModal() {
     this.modalService.closeModal();
   }
-  irAComprarInstrumento(simbolo : string) {
+
+  public obtenerPerfil() {
+    this.router.navigate([`/dashboard/perfil-inversor`]);
+    this.modalService.closeModal();
+  }
+
+  irAComprarInstrumento(simbolo: string, categoriaInstrumento: string) {
     this.router.navigate([`/dashboard/precios`]);
     this.cerrarModal();
-    this.pricePanelService.setearSimboloDePortafolioSugerido(simbolo);
+    this.pricePanelService.setearSimboloDePortafolioSugerido(simbolo, categoriaInstrumento);
   }
-  obtenerNuevoPortfolioSugerido(){
+  obtenerNuevoPortfolioSugerido() {
     this.portfolioSugeridoService.obtenerNuevoPortfolioSugerido(this.instrumentoSeleccionadoId).subscribe(response => {
       this.dashboardComponent.portfolioSugerido = response;
     });
   }
-  
+
 }
