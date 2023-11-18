@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { error } from 'console';
 import { Observable } from 'rxjs';
 import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
 import { UsuarioAPI } from 'src/app/core/models/API/Usuario-API.model';
@@ -15,7 +14,7 @@ import { jwtDecode } from "jwt-decode";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
   opcion = 'login';
   errorLogin: boolean = false;
   errorform: boolean = false;
@@ -45,10 +44,6 @@ export class LoginComponent implements OnInit {
     private perfilesServicios: PerfilInversorService,
     private router: Router
   ) { }
-
-  ngOnInit(): void {
-
-  }
 
   public opcionRecuperar() {
     this.opcion = 'recuperar';
@@ -100,6 +95,7 @@ export class LoginComponent implements OnInit {
             this.LocalStorageService.setUsuarioPerfilActualLocal(null);
             this.LocalStorageService.RemovePerfilActualLocal();
             this.LocalStorageService.removeItem('Username');
+            this.LocalStorageService.removeItem('perfilObjetivoCartera')
             this.usuariodb = usuarioRecibido;
             this.buscarPerfilUsuario(this.usuariodb).subscribe(
               (perfilUsuario: PerfilInversorAPI | null) => {
@@ -111,7 +107,6 @@ export class LoginComponent implements OnInit {
             this.loading = false;
             this.errorform = false;
             this.errorLogin = true;
-            console.log("🚀 ~ file: login.component.ts:82 ~ LoginComponent ~ verfificarUsuario ~ errorLogin:", this.errorLogin)
             console.error("Error al buscar Usuario", error);
           });
       },
@@ -119,7 +114,6 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         this.errorform = false;
         this.errorLogin = true;
-        console.log("🚀 ~ file: login.component.ts:82 ~ LoginComponent ~ verfificarUsuario ~ errorLogin:", this.errorLogin)
         console.error("Error al buscar Usuario", error);
       });
   }
@@ -130,9 +124,7 @@ export class LoginComponent implements OnInit {
   }
 
   private AlmacenarUsuario_Perfil(perfilUsuario: PerfilInversorAPI | null) {
-    //A nivel login la variable se llama username
     this.LocalStorageService.setItem('Username', this.usuariodb.username);
-    console.log("🚀 ~ file: login.component.ts:78 ~ LoginComponent ~ verfificarUsuario ~ this.usuariodb.nombreUsuario:", this.usuariodb.username)
     if (perfilUsuario === null || perfilUsuario === undefined) {
       console.log("El usuario no tiene un perfil asociado");
       this.loading = false;
@@ -144,14 +136,17 @@ export class LoginComponent implements OnInit {
       this.loading = false;
       this.LocalStorageService.setPerfilSubjetivo(perfilUsuario);
       this.LocalStorageService.SetPerfilActualLocal();
+      this.LocalStorageService.setItem('perfilinversor', perfilUsuario.perfilInversor);
+      if(perfilUsuario.tipoNivelConocimiento!=null||perfilUsuario.nivelConocimiento!=null){
+      this.LocalStorageService.setItem('perfilObjetivoCartera', perfilUsuario.perfilInversor);
+      }
+     
       this.navegarAHome();
     }
   }
 
   buscarPerfilUsuario(usuariodb: UsuarioAPI): Observable<PerfilInversorAPI | null> {
-
     return this.perfilesServicios.obtenerPerfil(usuariodb)
-
   }
 
   validarEntradas() {

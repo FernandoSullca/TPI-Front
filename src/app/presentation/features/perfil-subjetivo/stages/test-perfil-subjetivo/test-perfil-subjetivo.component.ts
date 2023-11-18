@@ -6,11 +6,13 @@ import { QuestionsProfileService } from 'src/app/core/services/api/subjective-pr
 import { PreguntaSubjetivasService } from 'src/app/core/services/dataLocalServices/Preguntas-Subjetivas/preguntaSubjetiva.service';
 import { PerfilInversorAPI } from 'src/app/core/models/API/Perfil-Inversor-API.model';
 import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
+
 @Component({
   selector: 'app-test-perfil-subjetivo',
   templateUrl: './test-perfil-subjetivo.component.html',
   styleUrls: ['./test-perfil-subjetivo.component.scss']
 })
+
 export class TestPerfilSubjetivoComponent implements OnInit {
 
   loading: boolean = false;
@@ -92,7 +94,6 @@ export class TestPerfilSubjetivoComponent implements OnInit {
     this.profileServiceAPI_.obtenerTestSubjetivo()
       .then((testSubjetivo) => {
         this.resCuestionarioAPI = testSubjetivo;
-        //Si vino Vacio y quiero buscar en mi local
         if (this.resCuestionarioAPI == null || this.resCuestionarioAPI.length == 0) {
           this.loadQuestionsFromLocal()
         }
@@ -108,7 +109,6 @@ export class TestPerfilSubjetivoComponent implements OnInit {
         .finally(() => {
           this.loading = false;
           this.perfilInversorUsuario = this.localStorageService.GetPerfilActualLocal();
-          console.log("🚀 ~ file: test-perfil-subjetivo.component.ts:111 ~ TestPerfilSubjetivoComponent ~ .finally ~ perfilInversorUsuario:", this.perfilInversorUsuario)
           this.perfilInversorUsuario.UsuarioDTO = this.localStorageService.GetUsuarioPerfilActualLocal();   
          })
   }
@@ -124,13 +124,10 @@ export class TestPerfilSubjetivoComponent implements OnInit {
   }
 
   loadQuestions() {
-
     this.cuestionario = this.resCuestionarioAPI[0];
-
   }
 
   loadNextQuestion(): void {
-
     if (this.resCuestionarioAPI) {
       this.guardarrespuestas(this.cuestionario?.seccion?.nombre, this.cuestionario?.tipoComponente);
       this.currentQuestionIndex++;
@@ -173,15 +170,12 @@ export class TestPerfilSubjetivoComponent implements OnInit {
       case 'BOTON':
         let suma = 0;
         for (const instrumento in this.respuestasSeleccionadasPorInstrumento) {
-          // if (this.respuestasSeleccionadasPorInstrumento.hasOwnProperty(instrumento)) {
             suma += this.respuestasSeleccionadasPorInstrumento[instrumento];
             this.respuestasSeleccionadasPorInstrumento[instrumento] = 0;
-          // }
         }
         Sumatoria=suma
         break;
       default:
-        // Tipo de pregunta no reconocido
         console.error('Tipo de pregunta no reconocido-para valorizar respuesta');
         break;
     }
@@ -197,26 +191,17 @@ export class TestPerfilSubjetivoComponent implements OnInit {
   public FinalizarTestSubjetivo() {
     this.isLastQuestion = true;
     this.buttonText = 'FINALIZAR';
-
-    /////Si es correcto Almaceno el perfil en el Perfil en Local
     this.entregarResultados().then((data) => {
       this.respuestasPerfil = data;
-      // console.log("🚀 ~ file: test-perfil-subjetivo.component.ts:213 ~ TestPerfilSubjetivoComponent ~ this.entregarResultados ~ data:", data)
       this.respPerfilResultante = data.perfilInversor;
-      //VAriables locales Perfil y Usuario...
       this.localStorageService.setItem('perfilinversor', this.respuestasPerfil.perfilInversor);
      
       this.localStorageService.setItem('perfilsubjetivo', this.respuestasPerfil.tipoPerfilSubjetivo);
-       console.log("🚀 ~ file: test-perfil-subjetivo.component.ts:208 ~ TestPerfilSubjetivoComponent ~ this.entregarResultados ~ this.respuestasPerfil:", this.respuestasPerfil)
-      // this.localStorageService.setItem('Username', this.perfilInversorUsuario.UsuarioDTO.nombreUsuario);
-      // this.localStorageService.setItem('Username', this.perfilInversorUsuario.UsuarioDTO.nombreUsuario);
      
       this.perfilInversorUsuario.perfilInversor = this.respuestasPerfil.perfilInversor;
       this.perfilInversorUsuario.tipoPerfilSubjetivo = this.respuestasPerfil.tipoPerfilSubjetivo;
       this.perfilInversorUsuario.oid = data.oid;
       this.localStorageService.UpdatePerfilActualLocal(this.perfilInversorUsuario);
-      // this.localStorageService.setPerfilSubjetivo(this.perfilInversorUsuario);
-      // this.localStorageService.SetPerfilActualLocal();
       this.loadPageResultado();
     });
   }
@@ -236,7 +221,6 @@ export class TestPerfilSubjetivoComponent implements OnInit {
       this.perfilInversorUsuario.horizonteTemporal = this.AnalisisSubjetivo["Horizonte Temporal"];
       this.perfilInversorUsuario.toleranciaRiesgo = this.AnalisisSubjetivo["Tolerancia al riesgo"];
       const username=this.localStorageService.getItem("Username");
-      console.log("🚀 ~ file: test-perfil-subjetivo.component.ts:235 ~ TestPerfilSubjetivoComponent ~ entregarResultados ~ username:", username)
       
       const data = await from(this.profileServiceAPI_.TestSubjetivoResultadosObtenidos(this.perfilInversorUsuario,username)).toPromise();
       if (data && data.perfilInversor) {
@@ -268,11 +252,6 @@ export class TestPerfilSubjetivoComponent implements OnInit {
     this.router.navigate(['/perfil-inversor-resultado']);
     this.buttonText = 'Continuar al Panel de usuario';
   }
-
-  /***************************************************************/
-
-  //Helpers Html
-  //Obtiene el refactor de preguntas de botones para que sea visibles
   opcionesPorInstrumento(respuestasbnts: RespuestaAPI[], instrumento: string): any[] {
 
     return respuestasbnts
@@ -283,22 +262,16 @@ export class TestPerfilSubjetivoComponent implements OnInit {
   esRespuestaSeleccionada(instrumento: string, valor: number, order: number): boolean {
     return this.respuestasSeleccionadasPorInstrumento[instrumento] === valor;
   }
-
-  //CheckBox, opciones multiples...
   actualizarOpcionesSeleccionadas(seccion: string, pregunta: string, valor: number) {
 
     const index = this.opcionesSeleccionadas.findIndex(opcion => opcion.pregunta === pregunta && opcion.valor === valor);
     if (index !== -1) {
-      // Eliminar la opción no seleccionada del arreglo de opciones seleccionadas
       this.opcionesSeleccionadas.splice(index, 1);
 
     } else {
-      // Si noesta en el grupo de opciones ingresadas se guarda
       this.opcionesSeleccionadas.push({ seccion, pregunta, valor });
     }
   }
-
-  //instrumewntos multiples, opciones multiples...
   actualizarOpcionesSeleccionadasBotonInstrumento(seccion: string, instrumento: string, valor: number) {
 
     this.respuestasSeleccionadasPorInstrumento[instrumento] = valor;

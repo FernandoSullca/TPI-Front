@@ -6,13 +6,14 @@ import { CarteraService } from 'src/app/core/services/api/cartera/cartera.servic
 import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
 import { environment } from 'environments/environment';
 import { Subscription } from 'rxjs';
+import { driver } from "driver.js";
 
 @Component({
   selector: 'app-price-panel',
   templateUrl: './price-panel.component.html',
   styleUrls: ['./price-panel.component.scss']
 })
-export class PricePanelComponent implements OnInit {
+export class PricePanelComponent implements OnInit,OnDestroy {
   public titulos: Titulo[] = [];
   public titulosSimboloObjeto: any = {};
   public simboloByCartera: string = '';
@@ -38,7 +39,7 @@ export class PricePanelComponent implements OnInit {
   ngOnDestroy(): void {
     if (this.instrumentoSeleccionadoSubject) {
       this.instrumentoSeleccionadoSubject.unsubscribe();
-      this.pricePanelService.setearSimboloDePortafolioSugerido('');
+      this.pricePanelService.setearSimboloDePortafolioSugerido('', '');
     }
   }
   ngOnInit(): void {
@@ -46,6 +47,7 @@ export class PricePanelComponent implements OnInit {
     this.getDineroDisponible();
     this.getTitulos(this.panel);
     this.updateTitulosEvery(environment.UPDATE_PRICE_PANEL_EVERY_SECONDS);
+    this.ayuda();
   }
 
   public async seleccionarPanel(panel: string) {
@@ -57,11 +59,11 @@ export class PricePanelComponent implements OnInit {
   public generarSubjectASimbolo() {
     this.instrumentoSeleccionadoSubject = this.pricePanelService.obtenerSimboloDePortafolioSugerido().subscribe({
       next: instrumentoSeleccionado => {
-        this.simbolo = instrumentoSeleccionado;
+        this.simbolo = instrumentoSeleccionado.split(",")[0];
+        this.titulosSimboloObjeto.instrumento = instrumentoSeleccionado.split(",")[1];
       },
       error: error => {
-        this.simbolo = ''
-        console.log("Error al recuperar datos");
+        return error;
       }
     })
   }
@@ -70,8 +72,6 @@ export class PricePanelComponent implements OnInit {
     if (detalleInstrumento) {
       this.detalleInstrumento = detalleInstrumento;
       this.modalService.openModal();
-    } else {
-      console.log('Instrumento no encontrado');
     }
   }
   openModalService() {
@@ -104,9 +104,10 @@ export class PricePanelComponent implements OnInit {
   public seleccionarInstrumento(instrumento: string, tipoInstrumento: string) {
     this.simboloByCartera = instrumento;
     this.simbolo = instrumento;
+    this.titulosSimboloObjeto.instrumento = tipoInstrumento;
   }
 
-  public updateTitulosEvery(segundos: number) {
+  public updateTitulosEvery(segundos: number):any {
     if (segundos > 0) {
       setInterval(() => {
         return this.getTitulos(this.panel)
@@ -115,6 +116,8 @@ export class PricePanelComponent implements OnInit {
   }
 
   public async getTitulos(panel: string) {
+    this.textMessage = '';
+    this.typeMessage = '';
     try {
       try {
         this.loading = true;
@@ -141,18 +144,25 @@ export class PricePanelComponent implements OnInit {
       this.typeMessage = "error"
       return false;
     }
-
     this.loadingButton = true;
-
     return this.pricePanelService.capturarOrden('venta', this.simbolo, this.cantidad, this.titulosSimboloObjeto)
       .then(() => {
         this.loadingButton = false;
         this.textMessage = "Operacion realizada"
         this.typeMessage = "success"
+        this.getDineroDisponible();
       })
       .catch((error) => {
         this.loadingButton = false;
-        this.textMessage = error.response.data;
+        const mesaggeError = error.response.data.message.includes("Ocurrió un error en el servicio");
+        const index = error.response.data.message.indexOf("Puede operar");
+        const subString = error.response.data.message.substring(index);
+
+        if (mesaggeError) {
+          this.textMessage = subString;
+        } else {
+          this.textMessage = error.response.data.message;
+        }
         this.typeMessage = "error"
         console.error(error)
       })
@@ -165,9 +175,7 @@ export class PricePanelComponent implements OnInit {
       this.typeMessage = "error"
       return false;
     }
-
     this.loadingButton = true;
-
     return this.pricePanelService.capturarOrden('compra', this.simbolo, this.cantidad, this.titulosSimboloObjeto)
       .then(() => {
         this.loadingButton = false;
@@ -177,7 +185,15 @@ export class PricePanelComponent implements OnInit {
       })
       .catch((error) => {
         this.loadingButton = false;
-        this.textMessage = error.response.data
+        const mesaggeError = error.response.data.message.includes("Ocurrió un error en el servicio");
+        const index = error.response.data.message.indexOf("Puede operar");
+        const subString = error.response.data.message.substring(index);
+
+        if (mesaggeError) {
+          this.textMessage = subString;
+        } else {
+          this.textMessage = error.response.data.message;
+        }
         this.typeMessage = "error"
         console.error(error)
       })
@@ -185,5 +201,45 @@ export class PricePanelComponent implements OnInit {
 
   public validateData() {
     return this.cantidad && this.simbolo
+  }
+
+  public ayuda() {
+    if (!this.loading) {
+
+      const htmlString = `
+    <div style="display: flex; flex-direction: column;">
+    <div>
+      <i class="fa-solid fa-chart-line mx-1" title="Ver grafico"></i>
+      Aca podras ver a detalle el grafico instrumento.
+    </div>
+    <div>
+      <i class="fa-solid fa-money-bill-transfer" title="Operar"></i>
+      Aca podras seleccionar el instrumento para operarlo.
+    </div>
+    </div>
+    `;
+      const driverObj = driver({
+        showProgress: true,
+        steps: [
+          {
+            element: '#seleccion',
+            popover: {
+              title: 'Seleccion de panel',
+              description: 'Aca podras seleccionar si quieres ver Acciones Bonos o Cedears',
+              side: "left",
+              align: 'start'
+            }
+          },
+          { element: '#atajos', popover: { title: 'Atajos utiles', description: htmlString, side: "left", align: 'start' } },
+          { element: '#dineroDisponible', popover: { title: 'Tu dinero', description: 'Aca podras observar tu dinero disponible', side: "left", align: 'start' } },
+          { popover: { title: 'Ahora podes aprender a invertir', description: 'compra distintos instrumentos y mira como va el rendimiento en el paso del tiempo.' } }
+        ],
+        nextBtnText: 'Siguiente',
+        prevBtnText: 'Atras',
+        doneBtnText: 'Finalizar'
+      });
+
+      driverObj.drive();
+    }
   }
 }

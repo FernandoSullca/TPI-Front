@@ -18,11 +18,9 @@ export class PricePanelService {
   mapToTitulos(resp: any) {
     const { data } = resp;
     const datos = Array.from(data);
-    const maximoPorPerfil = 20;
-    const conservador = datos.filter((instrumento: any) => instrumento?.categoriaPerfil === 'Conservador').slice(0, maximoPorPerfil)
-    const agresivo = datos.filter((instrumento: any) => instrumento?.categoriaPerfil === 'Agresivo').slice(0, maximoPorPerfil)
-    const moderado = datos.filter((instrumento: any) => instrumento?.categoriaPerfil === 'Moderado').slice(0, maximoPorPerfil)
-    const titulos = [...conservador, ...moderado, ...agresivo].sort((a: any, b: any) => a.simbolo > b.simbolo ? 1 : -1);
+    const maximoPorPerfil = 60;
+    const titulosFiltrados = datos.slice(0, maximoPorPerfil)
+    const titulos = [...titulosFiltrados].sort((a: any, b: any) => a.simbolo > b.simbolo ? 1 : -1);
 
     return titulos.map((titulo: any) => {
       return Titulo.serializar(titulo);
@@ -34,37 +32,45 @@ export class PricePanelService {
     return this.mapToTitulos(resp);
   }
 
-  // todo separar logica
   public async capturarOrden(sentido: string, simbolo: string, cantidad: number, objeto: any) {
+    const body = this.creacionBody(sentido, simbolo, cantidad, objeto);
+    const token = this.localStorage.getItem("token");
+    const headers = this.creacionHeader(token);
+    const resp = await axios.post(`${environment.API}/orden/capturar`, body, { headers });
+    const { data } = resp;
+    return data;
+  }
+  setearSimboloDePortafolioSugerido(simbolo: string, categoriaInstrumento: string) {
+    this.behaviorSubjectIntrumentoSeleccionado.next(simbolo + ',' + categoriaInstrumento);
+  }
+  obtenerSimboloDePortafolioSugerido(): Observable<string> {
+    return this.behaviorSubjectIntrumentoSeleccionado.asObservable();
+  }
+  creacionFecha(){
     let date = new Date()
     let day = `${(date.getDate())}`.padStart(2, '0');
     let month = `${(date.getMonth() + 1)}`.padStart(2, '0');
     let year = date.getFullYear();
     const fecha = `${year}-${month}-${day}`;
+    return fecha;
+  }
+  creacionBody(sentido: string, simbolo: string, cantidad: number, objeto: any){
     const categoriaInstrumento = objeto.instrumento;
     const body = {
       "simboloInstrumento": simbolo,
-      "monedaOid": 1, // siempre 1 moneda peso
-      "fecha_orden": fecha, // fecha actual
-      "cantidad": cantidad, // cantidad de "acciones" del instrumento
-      "sentido": sentido, // venta
+      "monedaOid": 1,
+      "fecha_orden": this.creacionFecha(),
+      "cantidad": cantidad,
+      "sentido": sentido,
       "categoriaInstrumento": categoriaInstrumento
     }
-    const token = this.localStorage.getItem("token");
+    return body
+  }
+  creacionHeader(token:any){
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     };
-
-    const resp = await axios.post(`${environment.API}/orden/capturar`, body, { headers });
-    const { data } = resp;
-
-    return data;
-  }
-  setearSimboloDePortafolioSugerido(simbolo: string) {
-    this.behaviorSubjectIntrumentoSeleccionado.next(simbolo);
-  }
-  obtenerSimboloDePortafolioSugerido(): Observable<string> {
-    return this.behaviorSubjectIntrumentoSeleccionado.asObservable();
+    return headers;
   }
 }

@@ -30,7 +30,6 @@ export class Titulo {
         public flashVenta?: number
     ) {}
 
-    // Método para serializar el objeto JSON recibido desde la API
     public static serializar(json: any): Titulo {
         return new this(
             json.simbolo,

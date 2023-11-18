@@ -12,7 +12,6 @@ import { LocalStorageService } from '../../LocalStorage/local-storage.service';
 export class PortfolioSugeridoService {
 
   constructor(private http : HttpClient,private handleErrorService: HandleErrorApiService, private localStorage : LocalStorageService) { }
-  private simboloSeleccionado : string = "";
 
   getPortfolioSugerido(tipoPerfil?:string,idProducto?:number): Observable<PortfolioSugerido[]>{
    

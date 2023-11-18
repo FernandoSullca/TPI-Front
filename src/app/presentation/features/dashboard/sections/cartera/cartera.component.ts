@@ -4,6 +4,7 @@ import { CarteraService } from 'src/app/core/services/api/cartera/cartera.servic
 import { Cartera } from 'src/app/core/models/cartera/cartera';
 import { DolarBolsa } from 'src/app/core/models/dolar-bolsa/dolar-bolsa';
 import { ChartType } from 'chart.js';
+import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
 
 
 @Component({
@@ -13,25 +14,26 @@ import { ChartType } from 'chart.js';
 })
 export class CarteraComponent implements OnInit {
 
-  constructor(private carteraService: CarteraService, private router: Router) { }
-  datosGrafico : any;
+  constructor(private carteraService: CarteraService, private router: Router, private localStorageService: LocalStorageService) { }
+  datosGrafico: any;
   tipoGrafico: ChartType = 'pie';
   tipoGraficoLinea: ChartType = 'line';
   totalValorizadoNulo: number = 0;
   cartera: Cartera | undefined;
   valorActualDolarMEP: DolarBolsa | undefined;
   fechaCompletaDolarMEP: string = '';
-  tituloGraficoTorta : string ="Instrumentos en posesión";
-  tituloGraficoLinea : string ="Mi progreso";
-  perfil? :string;
+  tituloGraficoTorta: string = "Instrumentos en posesión";
+  tituloGraficoLinea: string = "Mi progreso";
+  perfil: string | null | undefined;
 
   ngOnInit(): void {
     this.getCartera();
-    this.perfil=this.obtenerTipoNivelConocimiento();
+    if (this.obtenerTipoNivelConocimiento())
+      this.perfil = this.obtenerTipoNivelConocimiento();
   }
   getCartera() {
     return this.carteraService.getCartera().subscribe((response) => {
-      this.cartera = this.formatearRespuesa(response);
+      this.cartera = this.formatearRespuesta(response);
     });
   }
   mostrarValuacionTotalCartera(): number {
@@ -50,21 +52,18 @@ export class CarteraComponent implements OnInit {
       this.fechaCompletaDolarMEP = fecha;
     })
   }
-  formatearRespuesa(response:Cartera):Cartera{
+  formatearRespuesta(response: Cartera): Cartera {
     const { totalCartera = '', totalInstrumentos = '', totalMonedas = '' } = response;
-      const responseFormated: Cartera = {
-        ...response,
-        totalCartera: Number(totalCartera),
-        totalInstrumentos: Number(totalInstrumentos),
-        totalMonedas: Number(totalMonedas),
-      }
-      return responseFormated;
-  }
-  obtenerTipoNivelConocimiento(){
-    const perfilString = localStorage.getItem('Perfil');
-    if(perfilString){
-      const perfil = JSON.parse(perfilString);
-      return perfil.tipoNivelConocimiento;
+    const responseFormated: Cartera = {
+      ...response,
+      totalCartera: Number(totalCartera),
+      totalInstrumentos: Number(totalInstrumentos),
+      totalMonedas: Number(totalMonedas),
     }
+    return responseFormated;
+  }
+  obtenerTipoNivelConocimiento() {
+    const resultadoObjetivoCartera=this.localStorageService.getItem('perfilObjetivoCartera') ;
+    return resultadoObjetivoCartera || '';
   }
 }

@@ -7,7 +7,6 @@ import { LoginComponent } from './features/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { LandingComponent } from './features/landing/landing.component';
 import { PricePanelComponent } from './features/dashboard/sections/price-panel/price-panel.component';
-
 import { PerfilSubjetivoComponent } from './features/perfil-subjetivo/perfil-subjetivo.component';
 import { TestPerfilSubjetivoComponent } from './features/perfil-subjetivo/stages/test-perfil-subjetivo/test-perfil-subjetivo.component';
 import { CarteraComponent } from './features/dashboard/sections/cartera/cartera.component'; 
@@ -21,13 +20,11 @@ import { RegistarUsuarioComponent } from './features/registar-usuario/registar-u
 import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta.component';
 import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
 import { RendimientoComponent } from './features/dashboard/sections/rendimiento/rendimiento.component';
-import { LoadingComponent } from './common/components/loading/loading.component';
 import { RecuperarCuentaComponent } from './features/recuperar-cuenta/recuperar-cuenta.component';
 
 
 
 const routes: Routes = [
-  // Rutas de las páginas
   { path: '', component: LandingComponent }, // Redirección por defecto
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
@@ -46,13 +43,13 @@ const routes: Routes = [
       { path: "perfil-inversor", component: PerfilInversorObjetivoPresentacionComponent},
       { path: "perfil-inversor-cuestionario", component: TestPerfilInversorObjetivoComponent},
       { path: "administrar", component: AdministrarComponent},
-      { path: "administrar-Preguntas", component: AdministrarPreguntasComponent},
+      { path: "administrar-preguntas", component: AdministrarPreguntasComponent},
       { path: "cartera", component: CarteraComponent},
       { path: "prediccion", component : PrediccionComponent},
       { path: "rendimiento", component : RendimientoComponent}
     ],
   },
-  // Otras rutas o manejo de errores
+
   { path: '**', component: DefaultPathComponent}, // Manejo de rutas no encontradas
 ];
 

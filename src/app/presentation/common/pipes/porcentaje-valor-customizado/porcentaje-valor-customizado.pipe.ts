@@ -32,7 +32,6 @@ export class PorcentajeValorCustomizadoPipe implements PipeTransform {
   }
 
   private formatearValor(valor: number): string {
-    // Formato de moneda argentina
     return valor.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 }

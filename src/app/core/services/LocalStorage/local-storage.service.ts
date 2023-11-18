@@ -7,8 +7,6 @@ import { UsuarioAPI } from '../../models/API/Usuario-API.model';
 })
 export class LocalStorageService {
 
-  constructor() { }
-
   public perfilInversor: PerfilInversorAPI = {
     oid: 0,
     deleted: 0,
@@ -34,7 +32,6 @@ export class LocalStorageService {
     }
   }
 
-  // Métodos para guardar y obtener datos en localStorage
   setItem(key: string, value: any): void {
     localStorage.setItem(key, JSON.stringify(value));
   }

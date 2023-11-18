@@ -61,7 +61,7 @@ export class GraficoComponent implements OnInit{
   };
 
   public grafico: ChartData ={
-    labels: [], // Etiquetas en formato de arreglo de cadenas
+    labels: [], 
     datasets: [
       {
         data: [],
@@ -72,23 +72,15 @@ export class GraficoComponent implements OnInit{
 
   ngOnChanges(changes: SimpleChanges) {
     this.actualizarArray();
-    // Check if the `datosGrafico` input has changed.
     if (changes['datosGrafico']) {
       if (this.datosGrafico) {
-        // Check if the `tipoGrafico` input is set to `line`.
-        if (this.tipoGrafico === 'line') {
-        } else {
-          // Update the chart data for a pie chart.
           this.grafico.labels = Object.keys(this.datosGrafico);
           this.grafico.datasets[0].data = Object.values(this.datosGrafico);
-        }
       } else {
-        // En caso de que los datos sean nulos o no válidos, establece el gráfico en blanco o con datos predeterminados.
         this.grafico.labels = [];
         this.grafico.datasets[0].data = [];
       }
     }
-    // Check if the `tituloGrafico` input has changed.
     if (changes['tituloGrafico']) {
       this.actualizarTitulo();
     }

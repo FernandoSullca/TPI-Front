@@ -1,7 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AdministrarPreguntasService } from 'src/app/core/services/api/administracion/administrar-preguntas.service';
-import { NgbProgressbar, NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-storage.service';
+import { jwtDecode } from "jwt-decode";
+
 @Component({
   selector: 'app-administrar-preguntas',
   templateUrl: './administrar-preguntas.component.html',
@@ -33,25 +36,44 @@ export class AdministrarPreguntasComponent {
 
   constructor(private servicioPreguntasAPI_: AdministrarPreguntasService,
     private configBar: NgbProgressbarConfig,
-    private router: Router) {
+    private router: Router,
+    private LocalStorageService: LocalStorageService) {
 
   }
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
-  // selectedFile: File | null = null;
   formattedSize: string = 'Tamaño no disponible';
   formattedType: string = 'Tipo no disponible';
   formattedLastModified: string = 'Última modificación no disponible';
 
+  ngOnInit(): void {
+    this.verificarAdministracion();
+  }
+
+  verificarAdministracion() {
+    let token = this.LocalStorageService.getItem("token");
+    if (!token) {
+      this.loadHome();
+      return false;
+    }
+    const tokenDecoded: any = { ...jwtDecode(token) };
+    if (!tokenDecoded.esAdministrador) {
+      this.loadHome();
+      return false;
+    }
+    return true;
+  }
+
+  loadHome() {
+    this.router.navigate(['/login']);
+  }
+
   openFileInput() {
-    console.log("SSolicitando menu");
     if (this.fileInput) {
       this.fileInput.nativeElement.click();
     }
 
   }
-  ///Seleccion Arrastrar y soltar
   onFileSelected(event: Event) {
-    console.log("Selecionar Archivo con Soltar");
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     if (file) {
@@ -68,46 +90,32 @@ export class AdministrarPreguntasComponent {
     }
   }
 
-  /***************************** */
   onFileSelectedSecciones(event: Event) {
-    console.log("Selecionar Archivo con Boton");
-    console.log("Area preguntas secciones")
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.asignacionDeArchivo(file);
-    // this.selectedFileSeccion=file;
-
-
   }
 
 
   onFileSelectedCategorias(event: Event) {
-    console.log("Area preguntas Categoria")
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.asignacionDeArchivo(file);
-    // this.selectedFileCategoria= null;
-
   }
 
   onFileSelectedPreguntas(event: Event) {
-    console.log("Area preguntas Preguntas")
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.asignacionDeArchivo(file);
-    // this.selectedFilePregunta= null;
   }
 
   onFileSelectedRespuestas(event: Event) {
-    console.log("Area preguntas Respuestas")
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.asignacionDeArchivo(file);
-    // this.selectedFileRespuesta= null;
   }
 
   private asignacionDeArchivo(file: File | undefined) {
-    console.log(file);
     if (file) {
       this.selectedFile = file;
       this.selectedFileSeccion = file;
@@ -130,34 +138,24 @@ export class AdministrarPreguntasComponent {
   private construirDatosTabla(file: File) {
     if (file.size !== undefined) {
       this.formattedSize = `${(file.size / 1024 / 1024).toPrecision(2)} MB`;
-      console.log(this.formattedSize);
     }
     if (file.type !== undefined) {
       const extension = file.name.split('.').pop();
       console.log(`Extensión del archivo: ${extension}`);
-      // this.formattedType = file.type;
 
       this.formattedType = extension !== undefined ? extension : 'Tipo no disponible';
 
-      console.log(this.formattedType);
     }
     if (file.lastModified !== undefined) {
       this.formattedLastModified = new Date(file.lastModified).toLocaleDateString();
-      console.log(this.formattedLastModified);
     }
   }
 
   uploadFileSecciones() {
-    console.log("uploadFileSecciones()");
     this.errorTipo = "";
     if (this.selectedFile) {
-
-      // Simula la carga del archivo y actualiza la barra de progreso
       this.servicioPreguntasAPI_.CargarSeccionesExcel(this.selectedFile).subscribe(
         (data) => {
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // if (this.resp != null) {
           this.uploadProgressSecciones = 100;
           this.typeProgressSecciones = "success"
           this.configBar.type = "success";
@@ -181,15 +179,11 @@ export class AdministrarPreguntasComponent {
   }
 
   uploadFileCategorias() {
-    console.log("uploadFileSecciones()");
     this.errorTipo = "";
     if (this.selectedFile) {
 
       this.servicioPreguntasAPI_.CargarCategoriasExcel(this.selectedFile).subscribe(
         (data) => {
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // if (this.resp != null) {
           this.uploadProgressCategorias = 100;
           this.typeProgressCategorias = "success"
           this.configBar.type = "success";
@@ -213,16 +207,11 @@ export class AdministrarPreguntasComponent {
   }
 
   uploadFilePreguntas() {
-    console.log("uploadFilePreguntas()");
     this.errorTipo = "";
     if (this.selectedFile) {
 
       this.servicioPreguntasAPI_.CargarPreguntasExcel(this.selectedFile).subscribe(
         (data) => {
-          console.log(data);
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // if (this.resp != null) {
           this.uploadProgressPreguntas = 100;
           this.typeProgressPreguntas = "success"
           this.configBar.type = "success";
@@ -246,20 +235,14 @@ export class AdministrarPreguntasComponent {
   }
 
   uploadFileRespuestas() {
-    console.log("uploadFileRespuestas");
     this.errorTipo = "";
     if (this.selectedFile) {
       this.servicioPreguntasAPI_.CargarRespuestasExcel(this.selectedFile).subscribe(
         (data) => {
-          console.log(data);
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // if (this.resp != null) {
           this.uploadProgressRespuestas = 100;
           this.typeProgressRespuesta = "success"
           this.configBar.type = "success";
           this.configBar.animated = true;
-          // }
         },
         (error) => {
           console.error('Error en la carga de datos', error);
@@ -267,16 +250,12 @@ export class AdministrarPreguntasComponent {
           this.errorTipo = error.error.message;
           this.uploadProgressRespuestas = 50;
           this.typeProgressRespuesta = "danger"
-
         }
       );
-
     }
-
     if (!this.selectedFile) {
       alert('Por favor, seleccione un archivo antes de cargarlo.');
     }
-
   }
 
   RemoveFile(file: string) {
@@ -313,7 +292,7 @@ export class AdministrarPreguntasComponent {
   }
 
   loadAdministracion() {
-    this.router.navigate(['/dashboard/Administrar']);
+    this.router.navigate(['/dashboard/administrar']);
 
   }
 

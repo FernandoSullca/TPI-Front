@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,17 +6,28 @@ import { Router } from '@angular/router';
   templateUrl: './perfil-inversor-objetivo-presentacion.component.html',
   styleUrls: ['./perfil-inversor-objetivo-presentacion.component.scss']
 })
-export class PerfilInversorObjetivoPresentacionComponent {
+export class PerfilInversorObjetivoPresentacionComponent implements OnInit {
+  perfilObjetivoActual?: string | null ;
 
   constructor(private router: Router) {
-    // customize default values of progress bars used by this component tree
+  }
+  ngOnInit(): void {
+    this.obtenerPerfilObjetivo()
   }
 
-  loadStages() { 
+  loadStages() {
     let url: string = './dashboard/perfil-inversor-cuestionario';
     this.router.navigate([url]);
   }
   loadHome(): void {
     this.router.navigate(['/dashboard/precios']);
+  }
+  obtenerPerfilObjetivo() {
+    const perfilInversorLogeado = JSON.parse(localStorage.getItem('Perfil') || '').perfilInversor;
+    const resultadoObjetivo = localStorage.getItem('perfilinversor');
+
+    this.perfilObjetivoActual = resultadoObjetivo || perfilInversorLogeado || '';
+
+
   }
 }
