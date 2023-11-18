@@ -63,7 +63,6 @@ export class AdministrarPreguntasComponent {
     }
 
   openFileInput() {
-    console.log("SSolicitando menu");
     if (this.fileInput) {
       this.fileInput.nativeElement.click();
     }
@@ -71,7 +70,6 @@ export class AdministrarPreguntasComponent {
   }
   ///Seleccion Arrastrar y soltar
   onFileSelected(event: Event) {
-    console.log("Selecionar Archivo con Soltar");
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     if (file) {
@@ -90,8 +88,6 @@ export class AdministrarPreguntasComponent {
 
   /***************************** */
   onFileSelectedSecciones(event: Event) {
-    console.log("Selecionar Archivo con Boton");
-    console.log("Area preguntas secciones")
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.asignacionDeArchivo(file);
@@ -102,7 +98,6 @@ export class AdministrarPreguntasComponent {
 
 
   onFileSelectedCategorias(event: Event) {
-    console.log("Area preguntas Categoria")
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.asignacionDeArchivo(file);
@@ -111,7 +106,6 @@ export class AdministrarPreguntasComponent {
   }
 
   onFileSelectedPreguntas(event: Event) {
-    console.log("Area preguntas Preguntas")
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.asignacionDeArchivo(file);
@@ -119,7 +113,6 @@ export class AdministrarPreguntasComponent {
   }
 
   onFileSelectedRespuestas(event: Event) {
-    console.log("Area preguntas Respuestas")
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.asignacionDeArchivo(file);
@@ -127,7 +120,6 @@ export class AdministrarPreguntasComponent {
   }
 
   private asignacionDeArchivo(file: File | undefined) {
-    console.log(file);
     if (file) {
       this.selectedFile = file;
       this.selectedFileSeccion = file;
@@ -150,7 +142,6 @@ export class AdministrarPreguntasComponent {
   private construirDatosTabla(file: File) {
     if (file.size !== undefined) {
       this.formattedSize = `${(file.size / 1024 / 1024).toPrecision(2)} MB`;
-      console.log(this.formattedSize);
     }
     if (file.type !== undefined) {
       const extension = file.name.split('.').pop();
@@ -159,25 +150,19 @@ export class AdministrarPreguntasComponent {
 
       this.formattedType = extension !== undefined ? extension : 'Tipo no disponible';
 
-      console.log(this.formattedType);
     }
     if (file.lastModified !== undefined) {
       this.formattedLastModified = new Date(file.lastModified).toLocaleDateString();
-      console.log(this.formattedLastModified);
     }
   }
 
   uploadFileSecciones() {
-    console.log("uploadFileSecciones()");
     this.errorTipo = "";
     if (this.selectedFile) {
 
       // Simula la carga del archivo y actualiza la barra de progreso
       this.servicioPreguntasAPI_.CargarSeccionesExcel(this.selectedFile).subscribe(
         (data) => {
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // if (this.resp != null) {
           this.uploadProgressSecciones = 100;
           this.typeProgressSecciones = "success"
           this.configBar.type = "success";
@@ -201,15 +186,11 @@ export class AdministrarPreguntasComponent {
   }
 
   uploadFileCategorias() {
-    console.log("uploadFileSecciones()");
     this.errorTipo = "";
     if (this.selectedFile) {
 
       this.servicioPreguntasAPI_.CargarCategoriasExcel(this.selectedFile).subscribe(
         (data) => {
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // if (this.resp != null) {
           this.uploadProgressCategorias = 100;
           this.typeProgressCategorias = "success"
           this.configBar.type = "success";
@@ -233,16 +214,11 @@ export class AdministrarPreguntasComponent {
   }
 
   uploadFilePreguntas() {
-    console.log("uploadFilePreguntas()");
     this.errorTipo = "";
     if (this.selectedFile) {
 
       this.servicioPreguntasAPI_.CargarPreguntasExcel(this.selectedFile).subscribe(
         (data) => {
-          console.log(data);
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // if (this.resp != null) {
           this.uploadProgressPreguntas = 100;
           this.typeProgressPreguntas = "success"
           this.configBar.type = "success";
@@ -266,15 +242,10 @@ export class AdministrarPreguntasComponent {
   }
 
   uploadFileRespuestas() {
-    console.log("uploadFileRespuestas");
     this.errorTipo = "";
     if (this.selectedFile) {
       this.servicioPreguntasAPI_.CargarRespuestasExcel(this.selectedFile).subscribe(
         (data) => {
-          console.log(data);
-          // this.resp = data;
-          console.log('Todas las solicitudes se completaron con éxito');
-          // if (this.resp != null) {
           this.uploadProgressRespuestas = 100;
           this.typeProgressRespuesta = "success"
           this.configBar.type = "success";

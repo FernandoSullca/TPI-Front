@@ -234,8 +234,6 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
 
   validateData() {
     if(this.perfilInversorUsuario.UsuarioDTO!=null && this.perfilInversorUsuario!=null){
-      console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:235 ~ TestPerfilInversorObjetivoComponent ~ validateData ~ this.perfilInversorUsuario:", this.perfilInversorUsuario)
-      console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:235 ~ TestPerfilInversorObjetivoComponent ~ validateData ~ this.perfilInversorUsuario.UsuarioDTO:", this.perfilInversorUsuario.UsuarioDTO)
       return true;
     }
     else{
@@ -245,15 +243,11 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   }
 
   guardarRespuestas() {
-    // console.log("Entrando en guardar respuestas");
-    // console.log(this.AnalisisObjetivo["Conocimento"]);
     if (!this.AnalisisObjetivo["Conocimento"]) {
       this.AnalisisObjetivo["Conocimento"] = 0;
     }
     this.AnalisisObjetivo["Conocimento"] += this.opcionSeleccionada;
     this.opcionSeleccionada = 0;
-    // console.log("Ver respuestas almacenadas");
-    // console.log(this.AnalisisObjetivo["Conocimento"]);
   }
 
   async solicitarcertificado() {

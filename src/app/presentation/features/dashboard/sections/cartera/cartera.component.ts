@@ -66,10 +66,5 @@ export class CarteraComponent implements OnInit {
     //Con login y test se carga la variable o queda null si es que no hizo el perfil objetivo
     const resultadoObjetivoCartera=this.localStorageService.getItem('perfilObjetivoCartera') ;
     return resultadoObjetivoCartera || '';
-    // console.log("🚀 ~ file: cartera.component.ts:67 ~ CarteraComponent ~ obtenerTipoNivelConocimiento ~ resultadoObjetivoCartera:", resultadoObjetivoCartera)
-    // const perfilInversorLogeado = JSON.parse(localStorage.getItem('Perfil') || '').perfilInversor;
-    // const resultadoObjetivo = localStorage.getItem('perfilinversor');
-
-    // return resultadoObjetivo || perfilInversorLogeado || '';
   }
 }

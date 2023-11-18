@@ -13,8 +13,6 @@ export class AdministrarPreguntasService {
   constructor(private http: HttpClient) { }
 
   public CargarSeccionesExcel(archivoSeleccionado: File): Observable<FormData> {
-    console.log("Cargando Secciones...");
-
     const encabezado = this.configurarEncabezado();
     const formularioDeDatos = new FormData();
     formularioDeDatos.append('excelSeccion', archivoSeleccionado, archivoSeleccionado.name);
@@ -24,8 +22,6 @@ export class AdministrarPreguntasService {
   }
 
   public CargarCategoriasExcel(archivoSeleccionado: File): Observable<FormData> {
-    console.log("Cargando Categoria...");
-
     const encabezado = this.configurarEncabezado();
     const formularioDeDatos = new FormData();
     formularioDeDatos.append('excelCategoria', archivoSeleccionado, archivoSeleccionado.name);
@@ -35,8 +31,6 @@ export class AdministrarPreguntasService {
   }
 
   public CargarPreguntasExcel(archivoSeleccionado: File): Observable<FormData> {
-    console.log("Cargando Preguntas...");
-
     const encabezado = this.configurarEncabezado();
     const formularioDeDatos = new FormData();
     formularioDeDatos.append('excelPregunta', archivoSeleccionado, archivoSeleccionado.name);
@@ -46,8 +40,6 @@ export class AdministrarPreguntasService {
   }
 
   public CargarRespuestasExcel(archivoSeleccionado: File): Observable<FormData> {
-    console.log("Cargando Respuesta...");
-
     const encabezado = this.configurarEncabezado();
 
     const formularioDeDatos = new FormData();

@@ -58,7 +58,6 @@ export class QuestionsTargetService {
   async TestObjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI): Promise<any> {
     const regex = /\"/ig;
     const username = localStorage.getItem("Username")?.replace(regex, "");
-    console.log("🚀 ~ file: questions-target-profile.service.ts:60 ~ QuestionsTargetService ~ TestObjetivoResultadosObtenidos ~ username:", username)
     const body = {
       "horizonteTemporal": perfilInversorUsuario.horizonteTemporal,
       "toleranciaRiesgo": perfilInversorUsuario.toleranciaRiesgo,
