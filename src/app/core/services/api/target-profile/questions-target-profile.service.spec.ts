@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { QuestionsTargetService} from './questions-target-profile.service'
 import axios from 'axios';
 import { PreguntaApi } from 'src/app/core/models/API/Pregunta-APi.model';
@@ -93,34 +92,24 @@ describe('QuestionsTargetProfileService', () => {
   });
 
   it('debería manejar la solicitud de preguntas objetivas y la respuesta exitosa TIPO CONSERVADOR', async () => {
-    // Define un tipo de perfil (por ejemplo, 'CONSERVADOR') que desees probar
     const tipoPerfil = 'CONSERVADOR';
 
-    // Mockea la llamada a axios.get y devuelve el valor de mockAxiosResponse
     spyOn(axios, 'get').and.returnValue(mockAxiosResponseObjetivoConservador);
 
-    // Llama a la función que deseas probar
     const result = await service.obtenerTestObjetivo(tipoPerfil);
-
-    // Verifica que la función devuelva los datos esperados
     expect(result).toEqual(AxiosResponseConservador);
-
-    // También puedes realizar otras expectativas según tus necesidades
-    // Por ejemplo, verifica la longitud de las preguntas o algún valor específico.
   });
 
   it('debería manejar la solicitud de perfil Actualizado y la respuesta exitosa', async () => {
-    // Llama a la función que deseas probar
     const analisisObjetivo = {
       horizonteTemporal: 3,
       toleranciaRiesgo: 2,
       Conocimento: 5,
     };
-    const username:String="fer";
+    const username:string="fer";
     spyOn(axios, 'post').and.returnValue(mockAxiosResponse);
     const result = await service.TestObjetivoResultados(analisisObjetivo,username);
 
-    // Verifica que la función devuelva los datos esperados
    expect(result.perfilInversor).toEqual('Moderado' );
   
    return service.TestObjetivoResultados(analisisObjetivo,username).then((data) => {

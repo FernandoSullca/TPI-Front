@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Chart, ChartConfiguration, ChartData, ChartType } from 'chart.js';
-import { Value } from 'sass';
+import { Component, Input, OnInit } from '@angular/core';
+import { Chart, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-grafico-linea',

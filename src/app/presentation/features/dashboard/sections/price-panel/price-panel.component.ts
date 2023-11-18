@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './price-panel.component.html',
   styleUrls: ['./price-panel.component.scss']
 })
-export class PricePanelComponent implements OnInit {
+export class PricePanelComponent implements OnInit,OnDestroy {
   public titulos: Titulo[] = [];
   public titulosSimboloObjeto: any = {};
   public simboloByCartera: string = '';
@@ -60,7 +60,7 @@ export class PricePanelComponent implements OnInit {
         this.simbolo = instrumentoSeleccionado;
       },
       error: error => {
-        this.simbolo = ''
+        return error;
       }
     })
   }
@@ -69,8 +69,6 @@ export class PricePanelComponent implements OnInit {
     if (detalleInstrumento) {
       this.detalleInstrumento = detalleInstrumento;
       this.modalService.openModal();
-    } else {
-      console.log('Instrumento no encontrado');
     }
   }
   openModalService() {
@@ -106,7 +104,7 @@ export class PricePanelComponent implements OnInit {
     this.titulosSimboloObjeto.instrumento = tipoInstrumento;
   }
 
-  public updateTitulosEvery(segundos: number) {
+  public updateTitulosEvery(segundos: number):any {
     if (segundos > 0) {
       setInterval(() => {
         return this.getTitulos(this.panel)
@@ -143,9 +141,7 @@ export class PricePanelComponent implements OnInit {
       this.typeMessage = "error"
       return false;
     }
-
     this.loadingButton = true;
-
     return this.pricePanelService.capturarOrden('venta', this.simbolo, this.cantidad, this.titulosSimboloObjeto)
       .then(() => {
         this.loadingButton = false;
@@ -176,9 +172,7 @@ export class PricePanelComponent implements OnInit {
       this.typeMessage = "error"
       return false;
     }
-
     this.loadingButton = true;
-
     return this.pricePanelService.capturarOrden('compra', this.simbolo, this.cantidad, this.titulosSimboloObjeto)
       .then(() => {
         this.loadingButton = false;
