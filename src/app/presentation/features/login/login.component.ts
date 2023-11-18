@@ -112,7 +112,6 @@ export class LoginComponent implements OnInit {
             this.loading = false;
             this.errorform = false;
             this.errorLogin = true;
-            console.log("🚀 ~ file: login.component.ts:82 ~ LoginComponent ~ verfificarUsuario ~ errorLogin:", this.errorLogin)
             console.error("Error al buscar Usuario", error);
           });
       },
@@ -120,7 +119,6 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         this.errorform = false;
         this.errorLogin = true;
-        console.log("🚀 ~ file: login.component.ts:82 ~ LoginComponent ~ verfificarUsuario ~ errorLogin:", this.errorLogin)
         console.error("Error al buscar Usuario", error);
       });
   }
@@ -133,7 +131,6 @@ export class LoginComponent implements OnInit {
   private AlmacenarUsuario_Perfil(perfilUsuario: PerfilInversorAPI | null) {
     //A nivel login la variable se llama username
     this.LocalStorageService.setItem('Username', this.usuariodb.username);
-    console.log("🚀 ~ file: login.component.ts:78 ~ LoginComponent ~ verfificarUsuario ~ this.usuariodb.nombreUsuario:", this.usuariodb.username)
     if (perfilUsuario === null || perfilUsuario === undefined) {
       console.log("El usuario no tiene un perfil asociado");
       this.loading = false;
@@ -148,9 +145,6 @@ export class LoginComponent implements OnInit {
       ///Verifica si el test que completo esra el objetivo , ebn caso de serlo actualiza la flag que usa cartera, y muestra el perfil obtenido
       this.LocalStorageService.setItem('perfilinversor', perfilUsuario.perfilInversor);
       if(perfilUsuario.tipoNivelConocimiento!=null||perfilUsuario.nivelConocimiento!=null){
-      console.log("🚀 ~ file: login.component.ts:151 ~ LoginComponent ~ AlmacenarUsuario_Perfil ~ perfilUsuario.tipoNivelConocimiento!=null||perfilUsuario.tipoNivelConocimiento!", perfilUsuario.tipoNivelConocimiento!=null||perfilUsuario.nivelConocimiento!=null)
-      console.log("🚀 ~ file: login.component.ts:150 ~ LoginComponent ~ AlmacenarUsuario_Perfil ~ tipoNivelConocimiento:", perfilUsuario.tipoNivelConocimiento)
-      console.log("🚀 ~ file: login.component.ts:150 ~ LoginComponent ~ AlmacenarUsuario_Perfil ~ tipoNivelConocimiento:", perfilUsuario.nivelConocimiento)
       this.LocalStorageService.setItem('perfilObjetivoCartera', perfilUsuario.perfilInversor);
       }
      

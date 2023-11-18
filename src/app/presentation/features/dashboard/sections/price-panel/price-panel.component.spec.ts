@@ -91,7 +91,7 @@ xdescribe('PricePanelComponent', () => {
     const loading = fixture.debugElement.query(By.css(".container-loading h3"))
     
     expect(loading.nativeElement.innerText).toBe('Cargando panel de precios ...');
-    await component.getTitulos();
+    await component.getTitulos("acciones");
     expect(component.titulos).toHaveSize(81);
     expect(component).toBeTruthy();
   });
