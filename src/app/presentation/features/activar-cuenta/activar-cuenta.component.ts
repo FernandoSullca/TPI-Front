@@ -26,7 +26,6 @@ export class ActivarCuentaComponent {
     
     this.registroUsuarioService.ActivarConToken(this.token).subscribe(
       (response) => {
-        console.log('Usuario registrado con éxito', response);
         this.loading = false
         this.error = false;
       },

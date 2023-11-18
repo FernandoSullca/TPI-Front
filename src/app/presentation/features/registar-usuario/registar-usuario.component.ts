@@ -41,14 +41,9 @@ export class RegistarUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.errorReg = false;
-    
-    console.log("🚀 ~ file: registar-usuario.component.ts:45 ~ RegistarUsuarioComponent ~ ngOnInit ~ this.usuarioForm:", this.usuarioForm)
   }
 
   public registrarUsuario() {
-
-    console.log("🚀 ~ file: registar-usuario.component.ts:15 ~ RegistarUsuarioComponent ~ usuarioForm:", this.usuarioForm)
-    console.log("🚀 ~ file: registar-usuario.component.ts:15 ~ RegistarUsuarioComponent ~ usuarioForm:", this.usuarioForm.password)
     if (!this.validarCampos()) {
       this.errorEntradas = true;
       console.log("Error de campos enviados")
@@ -60,7 +55,6 @@ export class RegistarUsuarioComponent implements OnInit {
     this.registroUsuarioService.registrarNuevoUsuario(this.usuarioForm).subscribe(
       (response) => {
         this.loading = false;
-        console.log('Usuario registrado con éxito', response);
         this.registro = true;
       },
       (error) => {
@@ -70,7 +64,6 @@ export class RegistarUsuarioComponent implements OnInit {
         console.error('Error al registrar el usuario', error);
       }
     );
-    console.log("🚀 ~ file: registar-usuario.component.ts:60 ~ RegistarUsuarioComponent ~ registrarUsuario ~ usuarioForm:", this.usuarioForm)
   }
 
   validarCampos(): boolean {
@@ -79,11 +72,9 @@ export class RegistarUsuarioComponent implements OnInit {
       !this.usuarioForm.lastname ||
       !this.usuarioForm.email ||
       !this.usuarioForm.password) {
-      console.log("🚀 ~ file: registar-usuario.component.ts:65 ~ RegistarUsuarioComponent ~ validarCampos ~ usuarioForm:", this.usuarioForm)
 
       return false;
     }
-    console.log("🚀 ~ file: registar-usuario.component.ts:65 ~ RegistarUsuarioComponent ~ validarCampos ~ usuarioForm:", this.usuarioForm)
     return true;
   }
 

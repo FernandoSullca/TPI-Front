@@ -151,6 +151,7 @@ export class PricePanelComponent implements OnInit {
         this.loadingButton = false;
         this.textMessage = "Operacion realizada"
         this.typeMessage = "success"
+        this.getDineroDisponible();
       })
       .catch((error) => {
         

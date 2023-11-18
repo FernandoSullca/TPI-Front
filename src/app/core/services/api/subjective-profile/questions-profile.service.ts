@@ -39,9 +39,6 @@ export class QuestionsProfileService {
   }
 
   async TestSubjetivoResultadosObtenidos(perfilInversorUsuario: PerfilInversorAPI,username: String){
-   console.log("🚀 ~ file: questions-profile.service.ts:42 ~ QuestionsProfileService ~ TestSubjetivoResultadosObtenidos ~ username:", username)
-   console.log("🚀 ~ file: questions-profile.service.ts:41 ~ QuestionsProfileService ~ TestSubjetivoResultadosObtenidos ~ perfilInversorUsuario:", perfilInversorUsuario)
-   
     const body = {
 
         "horizonteTemporal": perfilInversorUsuario.horizonteTemporal,

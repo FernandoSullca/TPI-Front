@@ -154,10 +154,10 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
       } else {
         // Si no hay más preguntas, puedes mostrar un mensaje o realizar otra acción
         //Anteds de mostrar la sig pan
-
         this.entregarResultados().then((data) => {
           this.respuestasPerfil = data;
           this.localStorageService.setItem('perfilinversor', this.respuestasPerfil.perfilInversor);
+          this.localStorageService.setItem('perfilObjetivoCartera', this.respuestasPerfil.perfilInversor);
           this.ResultadoPerfilObjetivo = this.respuestasPerfil.perfilInversor;
           this.perfilInversorUsuario.perfilInversor = this.respuestasPerfil.perfilInversor;
         }).finally(() => {
@@ -184,14 +184,14 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   }
 
   public async entregarResultados(): Promise<any> {
-    if (!this.validateData()) {
+    /* if (!this.validateData()) {
+      debugger;
       return;
-    }
+    } */
 
     this.perfilInversorUsuario.nivelConocimiento = this.AnalisisObjetivo["Conocimento"];
 
     try {
-
       // const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultados(this.AnalisisObjetivo,this.Username)).toPromise();
       const data = await from(this.preguntaObjetivasServiceAPI_.TestObjetivoResultadosObtenidos(this.perfilInversorUsuario)).toPromise();
       // data && data.perfilInversor
@@ -234,8 +234,6 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
 
   validateData() {
     if(this.perfilInversorUsuario.UsuarioDTO!=null && this.perfilInversorUsuario!=null){
-      console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:235 ~ TestPerfilInversorObjetivoComponent ~ validateData ~ this.perfilInversorUsuario:", this.perfilInversorUsuario)
-      console.log("🚀 ~ file: test-perfil-inversor-objetivo.component.ts:235 ~ TestPerfilInversorObjetivoComponent ~ validateData ~ this.perfilInversorUsuario.UsuarioDTO:", this.perfilInversorUsuario.UsuarioDTO)
       return true;
     }
     else{
@@ -245,15 +243,11 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   }
 
   guardarRespuestas() {
-    // console.log("Entrando en guardar respuestas");
-    // console.log(this.AnalisisObjetivo["Conocimento"]);
     if (!this.AnalisisObjetivo["Conocimento"]) {
       this.AnalisisObjetivo["Conocimento"] = 0;
     }
     this.AnalisisObjetivo["Conocimento"] += this.opcionSeleccionada;
     this.opcionSeleccionada = 0;
-    // console.log("Ver respuestas almacenadas");
-    // console.log(this.AnalisisObjetivo["Conocimento"]);
   }
 
   async solicitarcertificado() {

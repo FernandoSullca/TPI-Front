@@ -37,9 +37,9 @@ describe('PricePanelService', () => {
         return service.obtenerTitulos("acciones")
             .then((titulos: Titulo[]) => {
                 const [primer, segundo] = titulos;
-                expect(titulos).toHaveSize(81);
-                expect(primer.simbolo).toBe('MOCK');
-                expect(segundo.simbolo).toBe('5913');
+                expect(titulos).toHaveSize(60);
+                expect(primer.simbolo).toBe('5913');
+                expect(segundo.simbolo).toBe('7485');
             })
 
 

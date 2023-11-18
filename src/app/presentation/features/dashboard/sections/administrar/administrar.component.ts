@@ -17,6 +17,10 @@ export class AdministrarComponent  implements OnInit {
 
   verificarAdministracion(){
     let token = this.LocalStorageService.getItem("token");
+    if (!token) {
+      this.loadHome();
+      return;
+    }
     const tokenDecoded: any = { ...jwtDecode(token) };
     if (!tokenDecoded.esAdministrador) {
       this.loadHome();

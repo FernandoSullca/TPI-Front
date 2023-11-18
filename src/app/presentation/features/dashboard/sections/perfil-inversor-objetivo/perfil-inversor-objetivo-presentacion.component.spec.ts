@@ -7,12 +7,19 @@ describe('PerfilInversorObjetivoPresentacionComponent', () => {
   let component: PerfilInversorObjetivoPresentacionComponent;
   let fixture: ComponentFixture<PerfilInversorObjetivoPresentacionComponent>;
 
-   ///Mock
-   let router: jasmine.SpyObj<Router>;
+  ///Mock
+  let router: jasmine.SpyObj<Router>;
   beforeEach(() => {
+    let localStore: any = { 
+      'Perfil':'{}',
+      'perfilInversor':'MODERADO'
+    };
 
-     // Configura los spies para el Router declarado en el providers
-     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+    spyOn(window.localStorage, 'getItem').and.callFake((key) =>
+      key in localStore ? localStore[key] : null
+    );
+    // Configura los spies para el Router declarado en el providers
+    const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     TestBed.configureTestingModule({
       declarations: [PerfilInversorObjetivoPresentacionComponent],

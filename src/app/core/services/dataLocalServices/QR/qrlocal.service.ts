@@ -8,8 +8,6 @@ export class QRLocalService {
   constructor() { }
 
   urlcertificadoLocal(perfil: string) {
-    console.log(perfil);
-
     switch (perfil) {
       case 'CONSERVADOR':
         return 'assets/perfiles/perfil_inversor_conservador.pdf'; // Ruta al archivo JSON
@@ -44,8 +42,6 @@ export class QRLocalService {
     }
 
     urlqrLocal(perfil: string) {
-      console.log(perfil);
-  
       switch (perfil) {
         case 'CONSERVADOR':
           return 'assets/mock/perfilQR/qrcode_mercadojunior_Conservador.png'; // Ruta al archivo JSON
