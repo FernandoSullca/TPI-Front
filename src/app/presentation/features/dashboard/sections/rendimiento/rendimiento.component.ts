@@ -25,10 +25,7 @@ export class RendimientoComponent implements OnInit {
   }
   obtenerHistoricoInstrumento(simbolo: string) {
     this.rendimientoService.obtenerHistoricoInstrumento(simbolo).then((rendimiento) => {
-      // Accede a la propiedad rendimientosActuales
-      var rendimientosActuales = rendimiento
-
-      // Recorre las propiedades dentro de rendimientosActuales
+      let rendimientosActuales = rendimiento;
       const keys = Object.keys(rendimientosActuales);
       const nuevo = keys.map((clave) => {
         const rendimiento = rendimientosActuales[clave];
@@ -55,12 +52,8 @@ export class RendimientoComponent implements OnInit {
     this.loading = true;
 
     this.rendimientoService.getRendimiento().then((rendimiento) => {
-      // Accede a la propiedad rendimientosActuales
-      var rendimientosActuales = rendimiento.rendimientosActuales;
-
-      // Recorre las propiedades dentro de rendimientosActuales
+      let rendimientosActuales = rendimiento.rendimientosActuales;
       const keys = Object.keys(rendimientosActuales);
-
       const nuevo = keys.map((clave) => {
         const rendimiento = rendimientosActuales[clave];
         return {
@@ -84,8 +77,5 @@ export class RendimientoComponent implements OnInit {
 
       return [];
     });
-
-
-
   }
 }

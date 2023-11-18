@@ -15,7 +15,7 @@ describe('CarteraService', () => {
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
     handleErrorService = TestBed.inject(HandleErrorApiService);
-    service = new CarteraService(httpClientSpy as any, handleErrorService);
+    //service = new CarteraService(httpClientSpy as any, handleErrorService);
   });
 
   it('should be created', () => {

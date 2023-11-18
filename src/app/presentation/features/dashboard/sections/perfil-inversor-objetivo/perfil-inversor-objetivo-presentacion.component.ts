@@ -7,9 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./perfil-inversor-objetivo-presentacion.component.scss']
 })
 export class PerfilInversorObjetivoPresentacionComponent implements OnInit {
-  perfilObjetivoActual?: string | null | undefined;
+  perfilObjetivoActual?: string | null ;
+
   constructor(private router: Router) {
-    // customize default values of progress bars used by this component tree
   }
   ngOnInit(): void {
     this.obtenerPerfilObjetivo()

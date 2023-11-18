@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
 })
 export class PerfilSubjetivoComponent {
 
-
   constructor(private router: Router) {
   }
+
   loadStages() { 
     let url: string = '/perfil-inversor';
     this.router.navigate([url]);

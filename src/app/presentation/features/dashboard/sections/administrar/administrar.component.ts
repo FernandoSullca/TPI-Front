@@ -19,17 +19,17 @@ export class AdministrarComponent  implements OnInit {
     let token = this.LocalStorageService.getItem("token");
     if (!token) {
       this.loadHome();
-      return;
+      return false;
     }
     const tokenDecoded: any = { ...jwtDecode(token) };
     if (!tokenDecoded.esAdministrador) {
       this.loadHome();
-      return;
+      return false;
     }
+    return true;
   }
 
   loadHome() {
     this.router.navigate(['/login']);
   }
-  
 }

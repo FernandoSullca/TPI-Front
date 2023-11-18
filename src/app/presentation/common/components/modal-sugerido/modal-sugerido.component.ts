@@ -20,10 +20,9 @@ export class ModalSugeridoComponent {
 
   public ngOnInit(): void {
     this.perfilObjetivoUsuario = localStorage.getItem('perfilObjetivoCartera') || '';
-
-    // if (this.portfolioSugerido.length > 0) {
-    //   this.instrumentoSeleccionadoId = this.portfolioSugerido[0].oid;
-    // }  VERIFICAR PORQUE ROMPE AL SELECCIONAR EL PRIMER INSTRUMENTO EN PANEL DE PRECIOS PARA MOSTRAR GRAFICO
+     if (this.portfolioSugerido.length > 0) {
+       this.instrumentoSeleccionadoId = this.portfolioSugerido[0].oid;
+     }  
   }
 
 

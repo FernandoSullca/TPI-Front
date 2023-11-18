@@ -9,7 +9,7 @@ import { ChartType } from 'chart.js';
   templateUrl: './prediccion.component.html',
   styleUrls: ['./prediccion.component.scss']
 })
-export class PrediccionComponent {
+export class PrediccionComponent implements OnInit{
 
   constructor(private prediccionPrecioService: PrediccionPrecioService, private router: Router) { }
   prediccionPrecio: PrediccionPrecio | undefined;
@@ -31,7 +31,6 @@ export class PrediccionComponent {
       };
     })
   }
-
 
   convertirFecha(fechaString: string) {
     const parts = fechaString.split("-");
