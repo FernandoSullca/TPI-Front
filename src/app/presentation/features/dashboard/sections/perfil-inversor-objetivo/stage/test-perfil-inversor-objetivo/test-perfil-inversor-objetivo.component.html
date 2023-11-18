@@ -72,18 +72,7 @@
                         [imageHeight]="40" [imageWidth]="40" [margin]="4" [scale]="1" [width]="175"
                         [title]="'Certificado Mercado Junior'"> </qrcode>
                 </div>
-
-                <!-- 
-                    <div class="AreaQRLINKS">
-                    <a [href]="qrCodeDownloadLink" download="Certificado Mercado Junior">Download QR</a> -->
-
-                <!-- <a href="javascript:void(0);" (click)="solicitarcertificado()" *ngIf="!issugerencia">
-                    Obtenga su certificado </a> 
-
-                <a href="javascript:void(0);" (click)="descargarCertificado()" *ngIf="!issugerencia">
-                    Descargar Certificado </a>
-                </div> -->
-
+                <a href="javascript:void(0);" (click)="solicitarcertificado()">Obtenga su certificado </a>
             </div>
             <div>
                 <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg"
@@ -99,10 +88,12 @@
         <div *ngIf="isLastQuestion && issugerencia" class="contenedor-sugerencias">
 
             <h3> Portfolio sugerido acorde a tú perfil</h3>
-            <button type="button" class="boton btn btn-sm mx-auto" data-dismiss="modal" (click)="openModal()"data-toggle="modal" data-target="#sugerido">Ver cartera sugerida</button>
-            <app-modal-sugerido *ngIf="modalService.isModalOpen()" [portfolioSugerido]="portfolioSugerido"></app-modal-sugerido>
+            <button type="button" class="boton btn btn-sm mx-auto" data-dismiss="modal" (click)="openModal()"
+                data-toggle="modal" data-target="#sugerido">Ver cartera sugerida</button>
+            <app-modal-sugerido *ngIf="modalService.isModalOpen()"
+                [portfolioSugerido]="portfolioSugerido"></app-modal-sugerido>
         </div>
-         
+
     </div>
 
 
