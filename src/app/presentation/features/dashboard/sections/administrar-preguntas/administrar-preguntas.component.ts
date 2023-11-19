@@ -57,6 +57,7 @@ export class AdministrarPreguntasComponent {
     }
     const tokenDecoded: any = { ...jwtDecode(token) };
     if (!tokenDecoded.esAdministrador) {
+      this.LocalStorageService.removeAllItems();
       this.loadHome();
       return false;
     }
