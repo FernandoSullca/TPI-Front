@@ -33,7 +33,7 @@ export class CarteraComponent implements OnInit {
   }
   getCartera() {
     return this.carteraService.getCartera().subscribe((response) => {
-      this.cartera = this.formatearRespuesta(response);
+      this.cartera = response
     });
   }
   mostrarValuacionTotalCartera(): number {
@@ -52,18 +52,18 @@ export class CarteraComponent implements OnInit {
       this.fechaCompletaDolarMEP = fecha;
     })
   }
-  formatearRespuesta(response: Cartera): Cartera {
-    const { totalCartera = '', totalInstrumentos = '', totalMonedas = '' } = response;
-    const responseFormated: Cartera = {
-      ...response,
-      totalCartera: Number(totalCartera),
-      totalInstrumentos: Number(totalInstrumentos),
-      totalMonedas: Number(totalMonedas),
-    }
-    return responseFormated;
-  }
   obtenerTipoNivelConocimiento() {
     const resultadoObjetivoCartera=this.localStorageService.getItem('perfilObjetivoCartera') ;
     return resultadoObjetivoCartera || '';
+  }
+  verificarSigno(valor:string){
+    const valorFormateado= parseFloat(valor);
+    if (valorFormateado > 0) {
+      return "success";
+    } else if (valorFormateado === 0) {
+      return "neutral";
+    } else {
+      return "error";
+    }
   }
 }

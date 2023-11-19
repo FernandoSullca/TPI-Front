@@ -23,6 +23,7 @@ export class AdministrarComponent  implements OnInit {
     }
     const tokenDecoded: any = { ...jwtDecode(token) };
     if (!tokenDecoded.esAdministrador) {
+      this.LocalStorageService.removeAllItems();
       this.loadHome();
       return false;
     }

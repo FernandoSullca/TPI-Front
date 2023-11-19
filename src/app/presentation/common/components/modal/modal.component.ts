@@ -13,8 +13,8 @@ import { driver } from "driver.js";
 export class ModalComponent implements OnInit {
   @Input() detalleInstrumento!: Titulo;
   @Input() tipoModal: string | undefined;
-  textMessage: string = '';
-  typeMessage: string = '';
+  montoVariacion?:number;
+  variacionPorcentual?: string = '';
   instrumento: string = '';
   solapaDetalleInstrumento!: SolapaDetalleInstrumento;
   datosGraficoVelas!: DatosGraficoVelas[];
@@ -22,7 +22,6 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.seleccionarInstrumento();
-    this.mostrarVariacionDiaria();
   }
   public seleccionarInstrumento() {
     const simbolo = this.detalleInstrumento?.simbolo;
@@ -34,21 +33,37 @@ export class ModalComponent implements OnInit {
       };
     });
   }
-  public mostrarVariacionDiaria() {
+  public verificarSigno(): string {
+    this.montoVariacion = this.calcularMonto();
+    const valor = this.detalleInstrumento.variacionPorcentual;
+    this.variacionPorcentual = this.detalleInstrumento.variacionPorcentual?.toString();
+    if (valor) {
+      if (valor > 0)
+        return "success";
+      else if (valor === 0)
+        return "neutral";
+      else
+        return "error";
+    }
+    else {
+      return '';
+    }
+  }
+  public calcularMonto(){
     if (this.detalleInstrumento?.variacionPorcentual) {
       const variacion = this.detalleInstrumento.variacionPorcentual;
       const ultimoCierre = this.detalleInstrumento.ultimoCierre;
       if (ultimoCierre != undefined) {
-        const valorFinal = ((ultimoCierre * variacion) / 100).toFixed(2);
-        const textoPorcentual = `(${variacion.toFixed(2)}%)`;
-        this.textMessage = '$' + valorFinal.toString().concat(textoPorcentual);
-        if (this.detalleInstrumento.variacionPorcentual > 0)
-          this.typeMessage = 'success';
-        else
-          this.typeMessage = 'error';
+        const valorFinal = ((ultimoCierre * variacion) / 100);
+        return valorFinal;
       }
+      else
+        return undefined;
     }
+    else
+    return undefined
   }
+  
   public cerrarModal() {
     this.modalService.closeModal();
   }
@@ -75,7 +90,7 @@ export class ModalComponent implements OnInit {
           }
         }
       ],
-      showButtons :["close"]
+      showButtons: ["close"]
     });
 
     driverObj.drive();

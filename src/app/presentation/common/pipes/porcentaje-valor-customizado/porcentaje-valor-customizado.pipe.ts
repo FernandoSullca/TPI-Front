@@ -5,12 +5,20 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PorcentajeValorCustomizadoPipe implements PipeTransform {
 
-  transform(valor: number, tipo: 'porcentual' | 'monto'): string {
-    if (tipo === 'porcentual') {
-      return this.formatearPorcentaje(valor);
-    } else if (tipo === 'monto') {
-      return this.formatearMonto(valor);
-    } else {
+  transform(valor: number | string | undefined, tipo: 'porcentual' | 'monto'): string  {
+    if (valor != undefined) {
+      if (typeof valor === 'string')
+        valor = parseFloat(valor);
+      if (tipo === 'porcentual') {
+        return this.formatearPorcentaje(valor);
+      } else if (tipo === 'monto') {
+        return this.formatearMonto(valor);
+      }
+      else{
+        return 'Formato no reconocido';
+      }
+    }
+    else {
       return 'Formato no reconocido';
     }
   }

@@ -34,17 +34,17 @@
   justify-content: center;
   text-align: center;
   height: auto;
-  width: 40%;
+  width: 50%;
   border: none;
   background-color: transparent;
 
   b {
-    h3 {
-      font-weight: bold;
+    h2 {
+      font-weight: normal;
     }
   }
 
-  h2,
+  h3,
   ng-template {
     color: #3261A8;
     font-weight: bold;
@@ -216,7 +216,16 @@
     width: 100%;
   }
 }
-
+@media (max-width: 770px){
+  .valores {
+    flex-direction: column-reverse;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    gap: 40px;
+    padding: 5%;
+  }
+}
 @media (min-width: 770px) and (max-width: 1062px) {
   .valores {
     width: 100%;

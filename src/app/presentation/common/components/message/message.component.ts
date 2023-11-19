@@ -6,8 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./message.component.scss']
 })
 export class MessageComponent implements OnInit {
-  @Input() textMessage: string = '';
-  @Input() typeMessage: string = '';
+  @Input() textMessage?: string ;
+  @Input() typeMessage?: string ;
 
   constructor() { }
 
