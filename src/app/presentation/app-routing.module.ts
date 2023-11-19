@@ -21,12 +21,15 @@ import { ActivarCuentaComponent } from './features/activar-cuenta/activar-cuenta
 import { PrediccionComponent } from './features/dashboard/sections/prediccion/prediccion.component';
 import { RendimientoComponent } from './features/dashboard/sections/rendimiento/rendimiento.component';
 import { RecuperarCuentaComponent } from './features/recuperar-cuenta/recuperar-cuenta.component';
+import { isLoggedInGuard } from '../core/security/guards/is-logged-in.guard';
 
 
 
 const routes: Routes = [
   { path: '', component: LandingComponent }, // Redirección por defecto
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', 
+    canLoad:[isLoggedInGuard],
+    component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: "registrarme", component:  RegistarUsuarioComponent},
   { path: "activar-cuenta", component:  ActivarCuentaComponent},
@@ -36,9 +39,11 @@ const routes: Routes = [
   { path: 'perfil-inversor-resultado', component:  PerfilSubjetivoResultadoComponent},
   {
     path: 'dashboard',
+    canLoad:[isLoggedInGuard],
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'cartera', pathMatch: 'full' }, // Ruta por defecto del dashboard
+      { path: '', redirectTo: 'cartera', pathMatch: 'full' ,
+        canLoad:[isLoggedInGuard]}, // Ruta por defecto del dashboard
       { path: 'precios', component: PricePanelComponent },
       { path: "perfil-inversor", component: PerfilInversorObjetivoPresentacionComponent},
       { path: "perfil-inversor-cuestionario", component: TestPerfilInversorObjetivoComponent},
