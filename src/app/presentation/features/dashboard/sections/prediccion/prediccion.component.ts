@@ -9,7 +9,7 @@ import { ChartType } from 'chart.js';
   templateUrl: './prediccion.component.html',
   styleUrls: ['./prediccion.component.scss']
 })
-export class PrediccionComponent implements OnInit{
+export class PrediccionComponent implements OnInit {
 
   constructor(private prediccionPrecioService: PrediccionPrecioService, private router: Router) { }
   prediccionPrecio: PrediccionPrecio | undefined;
@@ -22,12 +22,12 @@ export class PrediccionComponent implements OnInit{
   }
   obtenerPrediccionPrecioDolar() {
     return this.prediccionPrecioService.getPrediccionPrecio().subscribe((response) => {
-      console.log("🚀 ~ file: prediccion.component.ts:26 ~ PrediccionComponent ~ returnthis.prediccionPrecioService.getPrediccionPrecio ~ response:", response)
+      const arrayPrediccion = response.dolar.map((dolarItem) => {
+        return { fecha: this.convertirFecha(dolarItem.fecha || ''), precio: dolarItem.precio }
+      }
+      );
       this.prediccionPrecio = {
-        dolar: response.dolar.map((dolarItem) => {
-          return { fecha: this.convertirFecha(dolarItem.fecha || ''), precio: dolarItem.precio }
-        }
-        )
+        dolar: arrayPrediccion
       };
     })
   }
