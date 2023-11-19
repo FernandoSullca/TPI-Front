@@ -17,6 +17,8 @@ export class ModalSugeridoComponent {
   public perfilObjetivoUsuario: string = '';
   public instrumentoSeleccionadoId: number = 0;
 
+  constructor(public modalService: ModalService, private router: Router, private portfolioSugeridoService: PortfolioSugeridoService,
+    private dashboardComponent: DashboardComponent, private pricePanelService: PricePanelService) { }
 
   public ngOnInit(): void {
     this.perfilObjetivoUsuario = localStorage.getItem('perfilObjetivoCartera') || '';
@@ -24,10 +26,6 @@ export class ModalSugeridoComponent {
        this.instrumentoSeleccionadoId = this.portfolioSugerido[0].oid;
      }  
   }
-
-
-  constructor(public modalService: ModalService, private router: Router, private portfolioSugeridoService: PortfolioSugeridoService,
-    private dashboardComponent: DashboardComponent, private pricePanelService: PricePanelService) { }
 
   public cerrarModal() {
     this.modalService.closeModal();

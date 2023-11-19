@@ -20,8 +20,14 @@ export class RendimientoComponent implements OnInit {
   public parseoValorString(valor: number) {
     return valor.toString();
   }
-  public validacionDeSigno(valor: number) {
-    return valor > 0 ? 'success' : 'error'
+  validacionDeSigno(valor:number){
+    if (valor > 0) {
+      return "success";
+    } else if (valor === 0) {
+      return "neutral";
+    } else {
+      return "error";
+    }
   }
   obtenerHistoricoInstrumento(simbolo: string) {
     this.rendimientoService.obtenerHistoricoInstrumento(simbolo).then((rendimiento) => {

@@ -12,19 +12,10 @@ describe('CarteraComponent', () => {
   let fixture: ComponentFixture<CarteraComponent>;
 
   const carteraServiceStub  = {
-    // Define aquí tus métodos simulados
-    // Por ejemplo:
-    // obtenerTestSubjetivo: () => of({}),
-    //Debido al que es por APi es diferente a la declaracion del Lectura observable
     getCartera: () => of([]),
   };
 
   const GraficoServiceStub  = {
-    // Define aquí tus métodos simulados
-    // Por ejemplo:
-    // obtenerTestSubjetivo: () => of({}),
-    //Debido al que es por APi es diferente a la declaracion del Lectura observable
-    // getCartera: () => of([]),
   };
 
   beforeEach(() => {
@@ -53,6 +44,7 @@ describe('CarteraComponent', () => {
       "totalCartera": 12,
       "totalInstrumentos": 77,
       "totalMonedas": 454,
+      "procentajeGananciaPerdida": "0.2",
       "cantidadPorInstrumento": [
         { "simbolo": "MOCK", "cantidad": 11 },
         { "simbolo": "TNC", "cantidad": 100 }
