@@ -15,7 +15,12 @@ export class GraficoLineaComponent implements OnInit {
   ngOnInit(): void {
     this.createChart();
   }
-
+  responsiveChart() {
+    if (window.screen.width > 800) {
+      return 1 | 2
+    }
+    return 0.5 | 1
+  }
   createChart() {
     const currentDate = new Date();
     const months = [];
@@ -65,7 +70,7 @@ export class GraficoLineaComponent implements OnInit {
         ]
       },
       options: {
-        aspectRatio: 1 | 2,
+        aspectRatio: this.responsiveChart(),
         responsive: true,
         resizeDelay: -0.5
       }
