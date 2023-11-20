@@ -13,7 +13,7 @@ import { driver } from "driver.js";
 export class ModalComponent implements OnInit {
   @Input() detalleInstrumento!: Titulo;
   @Input() tipoModal: string | undefined;
-  montoVariacion?:number;
+  montoVariacion?: number;
   variacionPorcentual?: string = '';
   instrumento: string = '';
   solapaDetalleInstrumento!: SolapaDetalleInstrumento;
@@ -49,7 +49,7 @@ export class ModalComponent implements OnInit {
       return '';
     }
   }
-  public calcularMonto(){
+  public calcularMonto() {
     if (this.detalleInstrumento?.variacionPorcentual) {
       const variacion = this.detalleInstrumento.variacionPorcentual;
       const ultimoCierre = this.detalleInstrumento.ultimoCierre;
@@ -61,9 +61,9 @@ export class ModalComponent implements OnInit {
         return undefined;
     }
     else
-    return undefined
+      return undefined
   }
-  
+
   public cerrarModal() {
     this.modalService.closeModal();
   }
@@ -80,17 +80,38 @@ export class ModalComponent implements OnInit {
     </div>
     </div>
     `;
+
+    const htmlStringBajista = `
+    <div style="display: flex">
+    <img src="/assets/image/vela-ayuda-baja.png"> 
+    <div style="display: flex; flex-direction: column; padding-top: 0.5rem; justify-content: space-evenly;">
+      <span>Maximo</span>
+      <span>Apertura</span>
+      <span>Cierre</span>
+      <span>Minimo</span>
+    </div>
+    </div>
+    `
     const driverObj = driver({
       showProgress: false,
       steps: [
         {
           popover: {
-            title: 'Lectura de vela',
+            title: 'Lectura de vela alcista',
             description: htmlString,
+          }
+
+        },
+        {
+          popover: {
+            title: 'Lectura de vela bajista',
+            description: htmlStringBajista,
           }
         }
       ],
-      showButtons: ["close"]
+      nextBtnText: 'Siguiente',
+      prevBtnText: 'Atras',
+      doneBtnText: 'Finalizar'
     });
 
     driverObj.drive();
