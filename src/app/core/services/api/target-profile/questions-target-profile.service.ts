@@ -69,8 +69,15 @@ export class QuestionsTargetService {
     return resp.data;
   }
 
-  public verinforme(usuario: string) {
-    const url = `${environment.API}/api/perfil-inversor/obtener-certificado?nombreUsuario=${usuario}`;
+  public verinforme(perfilObtenido: string) {
+    const perfiles: any = {
+      "MODERADO": "assets/perfiles/perfil_inversor_moderado.pdf",
+      "CONSERVADOR": "assets/perfiles/perfil_inversor_conservador.pdf",
+      "AGRESIVO": 'assets/perfiles/perfil_inversor_agresivo.pdf'
+    };
+
+
+    const url = `/${perfiles[perfilObtenido]}`;
     window.open(url);
   }
 

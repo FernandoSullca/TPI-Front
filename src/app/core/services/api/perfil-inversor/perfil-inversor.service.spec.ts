@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { PerfilInversorService } from './perfil-inversor.service';
 
-xdescribe('PerfilInversorService', () => {
+describe('PerfilInversorService', () => {
   let service: PerfilInversorService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule]
+    });
     service = TestBed.inject(PerfilInversorService);
   });
 

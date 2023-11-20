@@ -8,6 +8,19 @@
   min-height: 100vh;
 }
 
+.boton-certificado {
+  border-radius: 1.5rem;
+  padding: 0.6rem;
+  background: #3261A8;
+  color: #fff;
+  font-weight: bold;
+}
+
+.img-qr-subjetivo {
+  width: 12rem;
+  padding: 1rem;
+}
+
 .brand-box {
   display: flex;
   align-items: center;
@@ -24,6 +37,12 @@
   h2 {
     // margin: 0;
     font-size: 1.3rem;
+    padding-top: 0.3rem;
+    font-family: 'poppins';
+  }
+
+  h3 {
+    font-size: 1rem;
     padding-top: 0.3rem;
     font-family: 'poppins';
   }
@@ -194,6 +213,7 @@
   display: flex;
   flex-direction: column;
   height: auto;
+
   /* margin-left: 5rem; */
   /* margin-top: 1rem;
 
@@ -205,37 +225,37 @@
     // margin-top: -100px;
   }
 
- /* Add custom styles here */
+  /* Add custom styles here */
   .qrStyle {
     display: flex;
     flex: 1;
     justify-content: center;
     height: 8rem;
     width: 200px;
-    
-    canvas{
+
+    canvas {
       height: 8rem;
       width: 200px;
     }
-  } 
+  }
 
   .AreaQRLINKS {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    
-  }
 
   }
 
-  .boton{
-    background-color: #3261A8;
-    color: #FFFFFF;
-    border-radius: 1.5rem;
-    font-weight: bold;
-    width: fit-content;
-  }
+}
+
+.boton {
+  background-color: #3261A8;
+  color: #FFFFFF;
+  border-radius: 1.5rem;
+  font-weight: bold;
+  width: fit-content;
+}
 
 /// 
 @media (min-width: 992px) {}

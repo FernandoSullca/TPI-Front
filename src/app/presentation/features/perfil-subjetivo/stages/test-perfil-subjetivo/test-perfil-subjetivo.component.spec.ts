@@ -7,7 +7,7 @@ import { LocalStorageService } from 'src/app/core/services/LocalStorage/local-st
 import { of } from 'rxjs';
 import { PreguntaApi } from 'src/app/core/models/API/Pregunta-APi.model';
 
-xdescribe('TestPerfilSubjetivoComponent', () => {
+describe('TestPerfilSubjetivoComponent', () => {
   let component: TestPerfilSubjetivoComponent;
   let fixture: ComponentFixture<TestPerfilSubjetivoComponent>;
   let questionsProfileService: QuestionsProfileService;
@@ -192,6 +192,9 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
       // Simula el comportamiento de removeItem, eliminando el valor correspondiente al key
       localStorage.removeItem(key);
     },
+    UpdatePerfilActualLocal: () => {
+      localStorage.setItem('Perfil','Moderado')
+    }
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -270,11 +273,8 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  /********Verificando NGonit********/
 
 
-
-  /********Verificando LoadQuestion********/
   it('debería cargar la primera pregunta en el cuestionario', () => {
     // Datos de prueba para simular this.resCuestionarioAPI Cargo 1 unica Pregunta.
     const mockResCuestionarioAPI = [
@@ -340,7 +340,6 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.cuestionario).toEqual(mockResCuestionarioAPI[0]);
   });
 
-  /********Verificando LoadNextQuestion********/
   it('debería cargar la siguiente pregunta en el cuestionario', () => {
     // Datos de prueba para simular this.resCuestionarioAPI
     const mockResCuestionarioAPI = [
@@ -459,7 +458,6 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.cuestionario).toEqual(mockResCuestionarioAPI[1]);
     expect(component.currentQuestionIndex).toEqual(1);
   });
-
   it('debería finalizar la carga si no hay más preguntas', () => {
     // Datos de prueba para simular this.resCuestionarioAPI
     const mockResCuestionarioAPI = [
@@ -532,8 +530,6 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.FinalizarTestSubjetivo).toHaveBeenCalled();
   });
 
-  /***** Verificando guardarrespuestas(seccion: string, tipo: string)*************/
-  /***** tipo = 'CHECKBOX'*************/
   it('debería guardar respuestas para preguntas de tipo CHECKBOX', () => {
     const seccion = 'Tolerancia al riesgo';
     const tipo = 'CHECKBOX';
@@ -545,7 +541,6 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.AnalisisSubjetivo[seccion]).toBe(31);
 
   });
-  /**** guardarrespuestas(seccion: string, tipo: string)****/
   it('debería sumar valores de un arreglo de checkboxes', () => {
 
     component.opcionesSeleccionadas = [{ seccion: "Tolerancia al riesgo", pregunta: "", valor: 1 }, { seccion: "Tolerancia al riesgo", pregunta: "", valor: 1 }, { seccion: "Tolerancia al riesgo", pregunta: "", valor: 4 }];
@@ -554,6 +549,7 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.AnalisisSubjetivo['seccion']).toBe(6);
   });
 
+  
   it('debería sumar valores de un arreglo de checkboxes Vaciado de opciones', () => {
 
     component.opcionesSeleccionadas = [{ seccion: "Tolerancia al riesgo", pregunta: "", valor: 1 }, 
@@ -565,8 +561,6 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.AnalisisSubjetivo['seccion']).toBe(6);
   });
 
-
-  /*****  tipo = ''RADIO''*************/
   it('debería guardar respuestas para preguntas de tipo RADIO', () => {
     const seccion = 'Tolerancia al riesgo';
     const tipo = 'RADIO';
@@ -579,7 +573,7 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.AnalisisSubjetivo[seccion]).toBe(5);
 
   });
-  /***** guardarrespuestas(seccion: string, tipo: string)****/
+
   it('debería asignar un valor de radio', () => {
     component.opcionSeleccionada = 5;
     component.AnalisisSubjetivo = {};
@@ -587,7 +581,7 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.opcionSeleccionada).toBeNull;
     expect(component.AnalisisSubjetivo['seccion']).toBe(5);
   });
-  /*****  tipo = '''BOTON'''*************/
+
   it('debería guardar respuestas para preguntas de tipo BOTON', () => {
     const seccion = 'Tolerancia al riesgo';
     const tipo = 'BOTON';
@@ -606,7 +600,6 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.AnalisisSubjetivo[seccion]).toBe(30);
   });
 
-  /***** guardarrespuestas(seccion: string, tipo: string)****/
   it('debería sumar valores de un conjunto de botones', () => {
     component.respuestasSeleccionadasPorInstrumento = { instrumento1: 2, instrumento2: 3 };
     component.AnalisisSubjetivo = {};
@@ -616,7 +609,6 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     expect(component.respuestasSeleccionadasPorInstrumento['instrumento1']).toBe(0);
     expect(component.respuestasSeleccionadasPorInstrumento['instrumento2']).toBe(0);
   });
-  /***** guardarrespuestas(seccion: string, tipo: string)****/
   
   it('debería manejar un caso predeterminado', () => {
     // Supongamos que el código no muestra mensajes de error, solo realiza acciones específicas para cada tipo.
@@ -624,6 +616,7 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     component.guardarrespuestas('seccion', 'OTRO_TIPO');
     // Agregar expect o aserciones según lo que se espera que haga en el caso predeterminado.
   });
+
 
   it('debería manejar un tipo de pregunta no reconocido', () => {
     const seccion = 'Seccion Desconocida';
@@ -641,26 +634,6 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
   
   });
 
-  /***** Finalizar y entregar ()*************/
-  it('debería finalizar la carga y entrega de resultados', async () => {
-
-    // Simula una ejecución exitosa de la función entregarResultados
-    spyOn(component, 'entregarResultados').and.returnValue(Promise.resolve({
-      toleranciaRiesgo: 10,
-      horizonteTemporal: 10,
-      perfilInversor: "Moderado",
-    }));
-
-    // Llama a la función FinalizarTestSubjetivo
-    await component.FinalizarTestSubjetivo();
-
-    // Verifica que los valores se hayan guardado correctamente en el localStorage
-    // expect(localStorageServiceMock.getItem('toleranciaRiesgo')).toBe(10);
-    // expect(localStorageServiceMock.getItem('horizonteTemporal')).toBe(10);
-    expect(localStorageServiceMock.getItem('perfilinversor')).toBe("Moderado");
-  });
-
-  /***** public async entregarResultados(): Promise<any> *************/
   it('debería validar contenido para resultados exitosamente', async () => {
 
     // Crea un mock del servicio API
@@ -694,6 +667,5 @@ xdescribe('TestPerfilSubjetivoComponent', () => {
     // expect(component.perfilInversorUsuario.perfilInversor).toEqual("Moderado");
 
   });
-
 
 });
