@@ -6,7 +6,11 @@
             <img src="/assets/image/logo.svg" alt="">
         </div>
     </div>
-
+    <div class="row brand-box mt-0">
+        <div class="col-sm-12 d-flex">
+            <h3>Preguntas de {{perfilSubjetivo}}</h3>
+        </div>
+    </div>
     <div *ngIf="loading">
         <div class="container-loading filas d-flex justify-content-center align-items-center flex-column">
             <div class="spinner-border loading-spiner" role="status">
@@ -65,14 +69,8 @@
                 </p>
             </div>
             <div class="AreaQR">
-                <div class="qrcodeImage">
-                    <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="dataurlcertificado" [allowEmptyString]="true"
-                        [cssClass]="'qrStyle'" [colorDark]="'#000000ff'" [colorLight]="'#ffffffff'"
-                        [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageSrc]="'./assets/image/logo.ico'"
-                        [imageHeight]="40" [imageWidth]="40" [margin]="4" [scale]="1" [width]="175"
-                        [title]="'Certificado Mercado Junior'"> </qrcode>
-                </div>
-                <a href="javascript:void(0);" (click)="solicitarcertificado()">Obtenga su certificado </a>
+                <img src="{{URLQRPerfil}} " alt="QR Resultados objetivos" class="img-qr-subjetivo">
+                <button (click)="solicitarcertificado()" class="boton-certificado">Obtenga su certificado </button>
             </div>
             <div>
                 <button class="btn btn-primary btn btn-primary me-md-2 btn-Iniciar botonera-lg"

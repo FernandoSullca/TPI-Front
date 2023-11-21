@@ -12,6 +12,7 @@ import { ModalService } from 'src/app/core/services/serviceModal/modal.service';
 import { PortfolioSugerido } from 'src/app/core/models/portfolio-sugerido/portfolio-sugerido';
 import { PortfolioSugeridoService } from 'src/app/core/services/api/portfolio-sugerido/portfolio-sugerido.service';
 import { DashboardComponent } from '../../../../dashboard.component';
+import { QRLocalService } from 'src/app/core/services/dataLocalServices/QR/qrlocal.service';
 @Component({
   selector: 'app-test-perfil-inversor-objetivo',
   templateUrl: './test-perfil-inversor-objetivo.component.html',
@@ -37,6 +38,8 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   PerfilSubjetivoObtenido: string = "";
   public portfolioSugerido!: PortfolioSugerido[];
   public tipoPerfil: string | undefined
+  public perfilSubjetivo: string = "";
+  public URLQRPerfil: string = "";
 
   dataPerfil = [
     {
@@ -89,12 +92,14 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
     private router: Router, private preguntaObjetivasServiceLocal_: PreguntaObjetivasService,
     private localStorageService: LocalStorageService, private carteraService: CarteraService,
     public modalService: ModalService, private portfolioSugeridoService: PortfolioSugeridoService,
-    private dashboardComponent: DashboardComponent) {
+    private dashboardComponent: DashboardComponent, private qrlocal: QRLocalService) {
   }
 
   ngOnInit(): void {
     this.loading = true;
     const storedProfile = this.localStorageService.getItem('perfilinversor');
+    this.perfilSubjetivo = this.localStorageService.getItem('perfilinversor');
+
     if (storedProfile) {
       this.PerfilSubjetivoObtenido = storedProfile;
     }
@@ -157,7 +162,7 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
         }).finally(() => {
           this.acreditarDinero();
           this.armardescripcion();
-          this.dataurlcertificado = this.preguntaObjetivasServiceAPI_.solicitarlinkCertificado(this.Username, this.ResultadoPerfilObjetivo);
+          this.URLQRPerfil = this.qrlocal.solicitarQRLocal(this.ResultadoPerfilObjetivo);
           this.dashboardComponent.obtenerPortfolioSugerido(this.ResultadoPerfilObjetivo);
         }
         );;
@@ -172,7 +177,7 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   }
 
   public acreditarDinero() {
-	
+
     this.carteraService.acreditarDinero(5000, "premio preguntas objetivas");
   }
 
@@ -218,10 +223,10 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   }
 
   validateData() {
-    if(this.perfilInversorUsuario.UsuarioDTO!=null && this.perfilInversorUsuario!=null){
+    if (this.perfilInversorUsuario.UsuarioDTO != null && this.perfilInversorUsuario != null) {
       return true;
     }
-    else{
+    else {
       return false
     }
 
@@ -236,46 +241,15 @@ export class TestPerfilInversorObjetivoComponent implements OnInit {
   }
 
   async solicitarcertificado() {
-    const usuario = this.Username;
+    const perfiles: any = {
+      "MODERADO": "assets/perfiles/perfil_inversor_moderado.pdf",
+      "CONSERVADOR": "assets/perfiles/perfil_inversor_conservador.pdf",
+      "AGRESIVO": 'assets/perfiles/perfil_inversor_agresivo.pdf'
+    };
 
-    this.preguntaObjetivasServiceAPI_.verinforme(usuario);
-  }
 
-  async descargarCertificado() {
-    const usuario = this.Username;
-    try {
-      const respuestaAxios = await this.preguntaObjetivasServiceAPI_.obtenerinforme(usuario);
-      if (respuestaAxios) {
-        const archivoBlob: Blob = respuestaAxios;
-        const url = window.URL.createObjectURL(archivoBlob);
-        const a = document.createElement('a');
-        document.body.appendChild(a);
-        a.style.display = 'none';
-        a.href = url;
-        a.download = 'Certificado Mercado Junior.pdf';
-        a.click();
-        window.URL.revokeObjectURL(url);
-      }
-    } catch (error) {
-      // Si la solicitud al servidor remoto falla, intenta obtener el certificado local
-      try {
-        const respuestaLocal = await this.preguntaObjetivasServiceAPI_.obtenercertificadoLocal(this.ResultadoPerfilObjetivo);
-
-        if (respuestaLocal) {
-          const archivoBlob: Blob = respuestaLocal;
-          const url = window.URL.createObjectURL(archivoBlob);
-          const a = document.createElement('a');
-          document.body.appendChild(a);
-          a.style.display = 'none';
-          a.href = url;
-          a.download = 'Certificado Mercado Junior.pdf';
-          a.click();
-          window.URL.revokeObjectURL(url);
-        }
-      } catch (error) {
-        console.error('Error al obtener el certificado: ', error);
-      }
-    }
+    const url = `/${perfiles[this.ResultadoPerfilObjetivo]}`;
+    window.open(url);
 
   }
 

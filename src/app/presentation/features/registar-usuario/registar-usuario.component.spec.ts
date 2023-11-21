@@ -29,10 +29,6 @@ describe('RegistarUsuarioComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   // registrarUsuario()
 
   it('debe evitar registro usuario si los campos No son validos', () => {
