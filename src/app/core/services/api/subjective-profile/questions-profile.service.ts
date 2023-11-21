@@ -20,7 +20,7 @@ export class QuestionsProfileService {
       "horizonteTemporal": AnalisisSubjetivo["Horizonte Temporal"],
       "toleranciaRiesgo": AnalisisSubjetivo["Tolerancia al riesgo"],
       "usuarioDTO": {
-        "nombreUsuario": username
+        "username": username
       },
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-subjetivo`, body);
@@ -33,7 +33,7 @@ export class QuestionsProfileService {
       "horizonteTemporal": perfilInversorUsuario.horizonteTemporal,
       "toleranciaRiesgo": perfilInversorUsuario.toleranciaRiesgo,
       "usuarioDTO": {
-        "nombreUsuario": username,
+        "username": username,
       }
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-subjetivo`, body);

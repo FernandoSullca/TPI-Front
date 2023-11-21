@@ -38,7 +38,7 @@ export class QuestionsTargetService {
       "toleranciaRiesgo": Analisisobjetivo["toleranciaRiesgo"],
       "nivelConocimiento": Analisisobjetivo["Conocimento"],
       "usuarioDTO": {
-        "nombreUsuario": username
+        "username": username
       },
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-inversor`, body);
@@ -54,7 +54,7 @@ export class QuestionsTargetService {
       "toleranciaRiesgo": perfilInversorUsuario.toleranciaRiesgo,
       "nivelConocimiento": perfilInversorUsuario.nivelConocimiento,
       "usuarioDTO": {
-        nombreUsuario: username,
+        "username": username
       }
     }
     const resp = await axios.post(`${environment.API}/api/perfil-inversor/resultado-perfil-inversor`, body);
